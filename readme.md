@@ -1,5 +1,7 @@
 # ResidUP - A inovação que faltava no seu dia a dia!
 
+[PROJETO INTEGRADOR III - Turma B]
+
 ## Funcionalidades
 Para a versão morador:
 1.    Reserva de áreas – salao de festas, churrasqueira, etc.
