@@ -13,5 +13,8 @@
 
 ![ocorrencias_morador](https://user-images.githubusercontent.com/73199083/225443052-55d9a582-7a74-40af-83ac-adffb8bd96af.png)
 
+![perfil_morador](https://user-images.githubusercontent.com/73199083/225444111-69f1a06a-9de9-499e-b335-34d58dda5331.png)
+
+
 
 ## VERSÃO ADM
