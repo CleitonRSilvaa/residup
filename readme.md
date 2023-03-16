@@ -48,3 +48,9 @@ Reserva do Síndico
 
 ## LOGO PRINCIPAL
 ![LOGO_2](https://user-images.githubusercontent.com/73199083/223888565-1238bf38-0241-404e-87d1-cac695306e4d.png)
+
+![IMG-Reserva dos Moradores](https://user-images.githubusercontent.com/126733500/225480161-88930d21-cff3-494d-8a7a-9bb1574e4210.jpg)
+![IMG-Visitantes](https://user-images.githubusercontent.com/126733500/225480229-5ebaaf2c-0ba2-4ddd-ad27-09870627e57b.jpg)
+![IMG-Ocorrências dos Moradores](https://user-images.githubusercontent.com/126733500/225480264-26fab691-6f1a-4d53-9ba4-95c6997a5640.jpg)
+![IMG-Perfil do Morador](https://user-images.githubusercontent.com/126733500/225480285-07b9032c-780c-4ccf-98a6-6994f599b7be.jpg)
+
