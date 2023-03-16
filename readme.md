@@ -14,8 +14,7 @@ Para a versão síndico:
 3.    Registro de ocorrências de problemas do apartamento (enviados para síndico) – Lista de problemas por morador (formulário enviado)
 
 ## Telas 
-### Prototipação Final
-![Tela inicial](https://user-images.githubusercontent.com/125705404/225485849-0bcfa4d4-9444-4644-8719-809b0d48bd2e.png)
+
 
 ### Prototipação LowFidelity
 ![controle_visitantes_morador](https://user-images.githubusercontent.com/104398217/225441172-7ef65f16-8093-4845-ad1a-eb9d42603749.png)
@@ -43,6 +42,8 @@ Reserva do Morador
 Reserva do Síndico
 
 ## Prototipação HighFidelity
+### Landing page
+![tela inicial](https://user-images.githubusercontent.com/125705404/225486445-67bae7d1-1ae3-49a6-91d4-f0a64793911b.png)
 
 ### Telas Gerais
 ![tela_geral](https://user-images.githubusercontent.com/104398217/225482557-9819a548-7fda-4224-83fe-6af1a873bc10.png)
