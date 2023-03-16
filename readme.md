@@ -15,6 +15,12 @@ Para a versão síndico:
 
 ## Telas 
 
+![IMG-Ocorrências dos Moradores](https://user-images.githubusercontent.com/126733500/225482943-feac872c-f121-4eb8-b1e3-97f3ef7505b6.jpg)
+![IMG-Perfil do Morador](https://user-images.githubusercontent.com/126733500/225482956-4470e582-73c9-464f-b8c1-0bfa3b1b0959.jpg)
+![IMG-Reserva dos Moradores](https://user-images.githubusercontent.com/126733500/225482976-401a83a8-2090-4a16-8b05-0a21eada056f.jpg)
+![IMG-Visitantes](https://user-images.githubusercontent.com/126733500/225482994-c4124eea-a1fb-4142-beb9-b5f227e65af7.jpg)
+
+
 ### Prototipação LowFidelity
 ![controle_visitantes_morador](https://user-images.githubusercontent.com/104398217/225441172-7ef65f16-8093-4845-ad1a-eb9d42603749.png)
 Controle De Visitantes do Morador
@@ -48,9 +54,4 @@ Reserva do Síndico
 
 ## LOGO PRINCIPAL
 ![LOGO_2](https://user-images.githubusercontent.com/73199083/223888565-1238bf38-0241-404e-87d1-cac695306e4d.png)
-
-![IMG-Reserva dos Moradores](https://user-images.githubusercontent.com/126733500/225480161-88930d21-cff3-494d-8a7a-9bb1574e4210.jpg)
-![IMG-Visitantes](https://user-images.githubusercontent.com/126733500/225480229-5ebaaf2c-0ba2-4ddd-ad27-09870627e57b.jpg)
-![IMG-Ocorrências dos Moradores](https://user-images.githubusercontent.com/126733500/225480264-26fab691-6f1a-4d53-9ba4-95c6997a5640.jpg)
-![IMG-Perfil do Morador](https://user-images.githubusercontent.com/126733500/225480285-07b9032c-780c-4ccf-98a6-6994f599b7be.jpg)
 
