@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:33:38 -0300] "GET / HTTP/1.1" 200 57 http-bio-8080-exec-1 552
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:33:38 -0300] "GET / HTTP/1.1" 200 57 http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:33:43 -0300] "GET /CadastrarMorador.html HTTP/1.1" 304 - http-bio-8080-exec-4 4
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:33:43 -0300] "GET /estilos.css HTTP/1.1" 304 - http-bio-8080-exec-5 2
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:34:01 -0300] "POST /create_morador HTTP/1.1" 404 971 http-bio-8080-exec-6 14
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:34:35 -0300] "POST /create_morador HTTP/1.1" 404 971 http-bio-8080-exec-7 2
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:35:42 -0300] "POST /create_morador HTTP/1.1" 404 971 http-bio-8080-exec-1 40212
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:36:11 -0300] "GET / HTTP/1.1" 200 57 http-bio-8080-exec-1 72
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:36:11 -0300] "GET / HTTP/1.1" 200 57 http-bio-8080-exec-3 1
+0:0:0:0:0:0:0:1 - - [01/Apr/2023:18:37:04 -0300] "POST /create_morador HTTP/1.1" 404 971 http-bio-8080-exec-4 36741
