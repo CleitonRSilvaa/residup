@@ -8,9 +8,9 @@ public class GerenciadorConexaoDBMySql {
     public static  String status = "Não conectado";
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String SERVER = "localhost";
-    public static final String DATABASE = "br/com/residup";
-    public static final String LOGIN = "root";
-    public static final String SENHA = "senha";
+    public static final String DATABASE = "residup";              //nome do seu banco de dados
+    public static final String LOGIN = "root";                     //nome de um usuário de seu BD
+    public static final String SENHA = "senha";                         //sua senha de acesso
     public static  String url = "";
     public static Connection connection;
 
