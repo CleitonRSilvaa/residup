@@ -1,2 +1,5 @@
+br\com\residup\daos\MoradorDao.class
 br\com\residup\shared\GerenciadorConexaoH2.class
+br\com\residup\models\Morador.class
+br\com\residup\servlets\CadastroMorador.class
 br\com\residup\shared\GerenciadorConexaoDBMySql.class
