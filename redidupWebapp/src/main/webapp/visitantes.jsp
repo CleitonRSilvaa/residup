@@ -1,6 +1,6 @@
+<%@page import="br.com.residup.models.Visitante"%>
 <%@page language="java" contentType="text/html; charset=utf-8"
         pageEncoding="utf-8"%>
-<%@page import="br.com.residup.daos.JavaBeans"%>
 <%@page import="java.util.ArrayList"%>
 <%
     @SuppressWarnings(
@@ -20,7 +20,7 @@
     <body>
         <h1>Visitantes</h1>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novoVisitantesModal">
-            Novo Contato
+            Novo Visitante
         </button>
         <a href="report" class="btn btn-info">Relatório</a>
         <table id="tabela" class="table table-striped">

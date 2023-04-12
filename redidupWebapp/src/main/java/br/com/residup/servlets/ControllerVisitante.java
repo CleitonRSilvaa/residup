@@ -23,8 +23,8 @@ public class ControllerVisitante extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    VisitanteDao visitanteDao = new VisitanteDao();
-    Visitante contato = new Visitante();
+
+    Visitante visitanteDao = new Visitante();
 
     public ControllerVisitante() {
         super();
@@ -80,7 +80,7 @@ public class ControllerVisitante extends HttpServlet {
         contato.setNome(request.getParameter("nome"));
         contato.setFone(request.getParameter("fone"));
         contato.setEmail(request.getParameter("email"));
-        visitanteDao.inserirVisitante(contato);
+        visitanteDao.(contato);
         response.sendRedirect("main");
     }
 
