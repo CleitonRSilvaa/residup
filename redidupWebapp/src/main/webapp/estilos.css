@@ -64,3 +64,45 @@ button:hover {
 form {
   font-family: "Open Sans", sans-serif;
 }
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Estilo do modal em si */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 2;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo do botão para fechar o modal */
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Estilo do título do modal */
+.modal h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+/* Estilo do conteúdo do modal */
+.modal p {
+  margin-bottom: 0;
+  font-size: 18px;
+}
