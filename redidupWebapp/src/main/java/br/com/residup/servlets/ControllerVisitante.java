@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.residup.models.Morador;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -22,12 +21,9 @@ import br.com.residup.daos.VisitanteDao;
 @WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report" })
 public class ControllerVisitante extends HttpServlet {
 
-
     private static final long serialVersionUID = 1L;
 
-
     Visitante visitante = new Visitante();
-
     public ControllerVisitante() {
         super();
     }
@@ -54,6 +50,7 @@ public class ControllerVisitante extends HttpServlet {
         }
         if (action.equals("/delete")) {
             removerContato(request, response);
+            return;
         }
         if (action.equals("/report")) {
             gerarRelatorio(request, response);
@@ -80,15 +77,19 @@ public class ControllerVisitante extends HttpServlet {
     protected void adicionarVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String[] nomeSobrenome = Visitante.separarNomeSobrenome(request.getParameter("nome"));
-        String nome = nomeSobrenome[0];
-        String sobrenome = nomeSobrenome[1];
-        String domuento = request.getParameter("email");
+        String nome = request.getParameter("nome");
+        String sobrenome = request.getParameter("sobrenome");
+        String documento = request.getParameter("documento");
         String fone = request.getParameter("fone");
-        var visitante = new Visitante(nome,sobrenome,domuento) ;
+        var visitante = new Visitante(nome,sobrenome,documento) ;
         visitante.setFone(fone);
-        VisitanteDao.inserirVisitante(visitante);
+        if (VisitanteDao.inserirVisitante(visitante)){
+            request.getSession().setAttribute("validador", true);
+        }else
+            request.getSession().setAttribute("validador", false);
         response.sendRedirect("main");
+
+
     }
 
 
@@ -107,19 +108,25 @@ public class ControllerVisitante extends HttpServlet {
 
     protected void editarContato(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        visitante.setId(request.getParameter("idcon"));
+        visitante.setId(request.getParameter("id"));
         visitante.setNome(request.getParameter("nome"));
+        visitante.setSobrenome(request.getParameter("sobrenome"));
+        visitante.setDocumento(request.getParameter("documento"));
         visitante.setFone(request.getParameter("fone"));
-        visitante.setDocumento(request.getParameter("email"));
-        VisitanteDao.alterarVisitante(visitante);
+        if (VisitanteDao.alterarVisitante(visitante)){
+            request.getSession().setAttribute("validador", true);
+        }else
+            request.getSession().setAttribute("validador", false);
         response.sendRedirect("main");
     }
 
-
     protected void removerContato(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        visitante.setId(request.getParameter("idcon"));
-        VisitanteDao.deletarVisitante(visitante);
+        visitante.setId(request.getParameter("id"));
+        if (VisitanteDao.deletarVisitante(visitante)){
+            request.getSession().setAttribute("validador", true);
+        }else
+            request.getSession().setAttribute("validador", false);
         response.sendRedirect("main");
     }
 
@@ -136,16 +143,17 @@ public class ControllerVisitante extends HttpServlet {
             documento.add(new Paragraph(" "));
             PdfPTable tabela = new PdfPTable(3);
             PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
-            PdfPCell col2 = new PdfPCell(new Paragraph("Fone"));
-            PdfPCell col3 = new PdfPCell(new Paragraph("E-mail"));
+            PdfPCell col2 = new PdfPCell(new Paragraph("Documento"));
+            PdfPCell col3 = new PdfPCell(new Paragraph("Fone"));
             tabela.addCell(col1);
             tabela.addCell(col2);
             tabela.addCell(col3);
             ArrayList<Visitante> lista = VisitanteDao.listarVisitantes();
             for (int i = 0; i < lista.size(); i++) {
-                tabela.addCell(lista.get(i).getNome());
-                tabela.addCell(lista.get(i).getFone());
+                String nome = lista.get(i).getNome() +" "+ lista.get(i).getSobrenome();
+                tabela.addCell(nome);
                 tabela.addCell(lista.get(i).getDocumento());
+                tabela.addCell(lista.get(i).getFone());
             }
             documento.add(tabela);
             documento.close();

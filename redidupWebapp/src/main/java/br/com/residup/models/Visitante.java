@@ -62,17 +62,18 @@ public class Visitante {
 	}
 
 	public static String[] separarNomeSobrenome(String nomeCompleto) {
-		String[] partesNome = nomeCompleto.trim().split("\\s+");
+		String[] partesNome = nomeCompleto.trim().split(" ");
 
 		if (partesNome.length < 2) {
 			throw new IllegalArgumentException("Nome incompleto, deve ter pelo menos nome e sobrenome.");
 		}
 
 		String nome = partesNome[0];
-		String sobrenome = partesNome[partesNome.length - 1];
+		String sobrenome = "";
+//		=partesNome[0] +"" partesNome[partesNome.length - 1];
 
-		for (int i = 1; i < partesNome.length - 1; i++) {
-			nome += " " + partesNome[i];
+		for (int i = 1; i < partesNome.length ; i++) {
+			sobrenome +=" " + partesNome[i];
 		}
 
 		return new String[]{nome, sobrenome};

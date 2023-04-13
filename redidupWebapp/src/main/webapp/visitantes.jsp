@@ -1,28 +1,33 @@
 <%@page import="br.com.residup.models.Visitante"%>
-<%@page language="java" contentType="text/html; charset=utf-8"
-        pageEncoding="utf-8"%>
+<%--<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>--%>
 <%@page import="java.util.ArrayList"%>
 <%
     @SuppressWarnings(
-            "unchecked")
+    
+    "unchecked")
     ArrayList<Visitante> lista = (ArrayList<Visitante>) request.getAttribute("visitantes");
 %>
+<%-- Verifica se o cadastro foi realizado com sucesso --%>
+
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="PT-BR">
+
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Visitantes</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="style.css">
-
     </head>
+
     <body>
         <h1>Visitantes</h1>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novoVisitantesModal">
             Novo Visitante
         </button>
-        <a href="report" class="btn btn-info">RelatÃ³rio</a>
+        <a href="report" class="btn btn-info">Relatório</a>
         <table id="tabela" class="table table-striped">
             <thead>
                 <tr>
@@ -30,7 +35,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Documento</th>
                     <th scope="col" >Fone</th>
-                    <th scope="col">OpÃ§Ãµes</th>
+                    <th scope="col">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,20 +44,18 @@
                 %>
                 <tr scope="row">
                     <td id= <%=lista.get(i).getId()%> ><%=lista.get(i).getId()%></td>
-                    <td><%=lista.get(i).getNome()%></td>
+                    <td><%= lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%></td>
+                    <td><%=lista.get(i).getDocumento()%></td>
                     <td><%=lista.get(i).getFone()%></td>
-                 
+
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarVisitantesModal"
                                 data-id="<%=lista.get(i).getId()%>"
-                                data-fone="<%=lista.get(i).getFone()%>"
                                 data-nome="<%=lista.get(i).getNome()%>"
-                                data-documento="<%=lista.get(i).getDocumento()%>">
-                            Editar
-                        </button>
-
-
-
+                                data-sobrenome="<%= lista.get(i).getSobrenome()%>"
+                                data-documento="<%=lista.get(i).getDocumento()%>"
+                                data-fone="<%=lista.get(i).getFone()%>"
+                                >Editar</button>
                         <a href="javascript: confirmar(<%=lista.get(i).getId()%>)"
                            class="btn btn-danger">Excluir</a>
                     </td>
@@ -63,41 +66,45 @@
             </tbody>
         </table>
 
-           <!-- Modal de CriaÃ§Ã£o -->
-                <div class="modal fade" id="novoVisitantesModal" tabindex="-1" role="dialog" aria-labelledby="novoContatoModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="novoContatoModalLabel">Novo Visitante</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+        <!-- Modal de Criação -->
+        <div class="modal fade" id="novoVisitantesModal" tabindex="-1" role="dialog" aria-labelledby="novoContatoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="novoContatoModalLabel">Novo Visitante</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="frmContato" action="insert">
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
                             </div>
-                            <div class="modal-body">
-                                <form name="frmContato" action="insert">
-                                    <div class="form-group">
-                                        <label for="nome">Nome:</label>
-                                        <input type="text" class="form-control" id="nome" name="nome" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="telefone">Telefone:</label>
-                                        <input type="text" class="form-control" id="fone" name="fone" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">E-mail:</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
-                                </form>
+                            <div class="form-group">
+                                <label for="sobrenome">Sobrenome</label>
+                                <input type="text" class="form-control" id="sobrenome" name="sobrenome" required>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="LimpaModalCriacao()">Cancelar</button>
-                                <button type="button" class="btn btn-primary" onclick="validarNovo()">Salvar</button>
+                            <div class="form-group">
+                                <label for="documento">Documento:</label>
+                                <input type="text" class="form-control" id="documento" name="documento" required>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control" id="fone" name="fone">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="LimpaModalCriacao()">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="validarNovo()">Salvar</button>
                     </div>
                 </div>
+            </div>
+        </div>
 
-        <!-- Modal de ediÃ§Ã£o -->
+        <!-- Modal de edição -->
         <div class="modal fade" id="editarVisitantesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -110,22 +117,26 @@
                     <div class="modal-body">
                         <form  name="frmContatoEdit" action="update" >
                             <div class="form-group">
-
-                                <label for="nome" >ID: <input type="text" name="idcon" id="idconEdicao" readonly
-                                                              value=""></label>
+                                <label for="id" >ID: <input type="numero"id="idEdicao" name="id"  readonly
+                                                            value=""></label>
                             </div>
                             <div class="form-group">
                                 <label for="nome">Nome:</label>
                                 <input type="text" class="form-control" id="nomeEdicao" name="nome">
                             </div>
                             <div class="form-group">
-                                <label for="fone">Fone:</label>
-                                <input type="text" class="form-control" id="foneEdicao" name="fone">
+                                <label for="sobrenome">Sobrenome</label>
+                                <input type="text" class="form-control" id="sobrenomeEdicao" name="sobrenome" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="emailEdicao" name="email">
+                                <label for="Documento">Documento:</label>
+                                <input type="text" class="form-control" id="documentoEdicao" name="documento">
                             </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control" id="foneEdicao" name="fone">
+                            </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -141,9 +152,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="scripts/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link href="
-              https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
               " rel="stylesheet">
-
+<!--    <c:if test="${requestScope.validador eq true}">
+        <script>
+         Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    );
+        </script>-->
     </body>
 </html>

@@ -1,7 +1,7 @@
-function confirmar(idcon) {
+function confirmar(id) {
     Swal.fire({
         title: 'Deletar Visitante?',
-        text: "Você não será capaz de reverter isso!",
+        text: "Voc� n�o ser� capaz de reverter isso!",
         timer: 10000,
         icon: 'warning',
         showCancelButton: true,
@@ -10,12 +10,7 @@ function confirmar(idcon) {
         confirmButtonText: 'Sim, deletar visitante!'
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    );
-            window.location.href = "delete?idcon=" + idcon
+            window.location.href = "delete?id=" + id
         }
     })
 
@@ -26,12 +21,14 @@ $(document).ready(function () {
         // Obter os valores atuais do item
         var id = $(this).data("id");
         var nome = $(this).data("nome");
+        var sobrenome = $(this).data("sobrenome");
+        var documento = $(this).data("documento");
         var fone = $(this).data("fone");
-        var email = $(this).data("email");
-
-        $("#editarVisitantesModal #idconEdicao").val(id);
+        
+        $("#editarVisitantesModal #idEdicao").val(id);
         $("#editarVisitantesModal #nomeEdicao").val(nome);
-        $("#editarVisitantesModal #emailEdicao").val(email);
+        $("#editarVisitantesModal #sobrenomeEdicao").val(sobrenome);
+        $("#editarVisitantesModal #documentoEdicao").val(documento);
         $("#editarVisitantesModal #foneEdicao").val(fone);
     });
 });
@@ -40,73 +37,61 @@ $(document).ready(function () {
 
 function LimpaModalCriacao() {
   $("#novoVisitantesModal #nome").val("");
-  $("#novoVisitantesModal #email").val("");
+  $("#novoVisitantesModal #sobrenomenome").val("");
+  $("#novoVisitantesModal #documento").val("");
   $("#novoVisitantesModal #fone").val("");
 }
 
 function validarEditar() {
-
-    console.log(document.forms["frmContatoEdit"].action)
-
+    console.log(document.forms["frmContatoEdit"].action);
+    
     let nome = document.querySelector("#editarVisitantesModal input[name='nome']").value;
+    let sobrenome = document.querySelector("#editarVisitantesModal input[name='sobrenome']").value;
+    let documento = document.querySelector("#editarVisitantesModal input[name='documento']").value;
     let fone = document.querySelector("#editarVisitantesModal input[name='fone']").value;
-    let email = document.querySelector("#editarVisitantesModal input[name='email']").value;
-
-    if (nome == "" || fone == "") {
+    console.log(nome);
+    if (nome === "" || documento ==="") {
         // Exibe mensagem de erro
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Todos os campos são obrigatórios!',
-        })
+            text: 'Nome, Sobrenome e Documento campos obrigatorios!',
+        });
         return false;
     }
-    if (email.length  > 0){
-        let emailformat = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
-        if(!emailformat.test(email)){
-            // Exibe mensagem de erro
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Digite um endereço de e-mail valido!',
-            })
-            return false;
-        }
-    }
-
     document.forms["frmContatoEdit"].submit();
 }
-
 
 function validarNovo() {
     console.log(document.forms["frmContato"].action)
 
     let nome = document.querySelector("#novoVisitantesModal input[name='nome']").value;
+    let sobrenome = document.querySelector("#novoVisitantesModal input[name='sobrenome']").value;
+    let documento = document.querySelector("#novoVisitantesModal input[name='documento']").value;
     let fone = document.querySelector("#novoVisitantesModal input[name='fone']").value;
-    let email = document.querySelector("#novoVisitantesModal input[name='email']").value;
-
-    if (nome == "" || fone == "") {
+    
+    if (nome === "" || documento === "") {
         // Exibe mensagem de erro
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Todos os campos são obrigatórios!',
+            text: 'Nome e Documento s�o campos obrigatorios!',
         })
         return false;
     }
 
-    if (email.length  > 0){
-        var emailRegex =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        if (!emailRegex.test(email)) {
-            // Exibe mensagem de erro
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Digite um endereço de e-mail valido!',
-            })
-            return false;
-        }
-    }
+//    if (email.length  > 0){
+//        var emailRegex =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+//        if (!emailRegex.test(email)) {
+//            // Exibe mensagem de erro
+//            Swal.fire({
+//                icon: 'error',
+//                title: 'Oops...',
+//                text: 'Digite um endereço de e-mail valido!',
+//            })
+//            return false;
+//        }
+//    }
 
     document.forms["frmContato"].submit();
 }
