@@ -28,8 +28,8 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Fone</th>
-                    <th scope="col" >E-mail</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col" >Fone</th>
                     <th scope="col">Opções</th>
                 </tr>
             </thead>
@@ -38,22 +38,22 @@
                     for (int i = 0; i < lista.size(); i++) {
                 %>
                 <tr scope="row">
-                    <td id= <%=lista.get(i).getIdcon()%> ><%=lista.get(i).getIdcon()%></td>
+                    <td id= <%=lista.get(i).getId()%> ><%=lista.get(i).getId()%></td>
                     <td><%=lista.get(i).getNome()%></td>
                     <td><%=lista.get(i).getFone()%></td>
-                    <td><%=lista.get(i).getEmail()%></td>
+                 
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarVisitantesModal"
-                                data-id="<%=lista.get(i).getIdcon()%>"
+                                data-id="<%=lista.get(i).getId()%>"
                                 data-fone="<%=lista.get(i).getFone()%>"
                                 data-nome="<%=lista.get(i).getNome()%>"
-                                data-email="<%=lista.get(i).getEmail()%>">
+                                data-documento="<%=lista.get(i).getDocumento()%>">
                             Editar
                         </button>
 
 
 
-                        <a href="javascript: confirmar(<%=lista.get(i).getIdcon()%>)"
+                        <a href="javascript: confirmar(<%=lista.get(i).getId()%>)"
                            class="btn btn-danger">Excluir</a>
                     </td>
                 </tr>

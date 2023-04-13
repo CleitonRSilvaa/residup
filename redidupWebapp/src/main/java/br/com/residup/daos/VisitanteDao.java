@@ -6,9 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
-import static br.com.residup.shared.GerenciadorConexaoH2.fecharConexao;
 
-public s class VisitanteDao {
+public  class VisitanteDao {
 	private static VisitanteDao instance;
 	private Connection connection;
 	public VisitanteDao() {
@@ -32,15 +31,16 @@ public s class VisitanteDao {
 		return instance;
 	}
 
-
-	public void inserirVisitante(Visitante visitante) {
-		String create = "insert into contatos (nome,fone,email) values (?,?,?)";
+	public static void inserirVisitante(Visitante visitante) {
+		String create = "INSERT INTO VISITANTE (NOME, SOBRENOME, DOCUMENTO, TELEFONE)\n" +
+				"VALUES (?, ?,?,?);";
 		try {
 			Connection connection = abrirConexao();
 			PreparedStatement pst = connection.prepareStatement(create);
 			pst.setString(1, visitante.getNome());
-			pst.setString(2, visitante.getFone());
-			pst.setString(3, visitante.getEmail());
+			pst.setString(2, visitante.getSobrenome());
+			pst.setString(3, visitante.getDocumento());
+			pst.setString(4, visitante.getFone());
 			pst.executeUpdate();
 			connection.close();
 		} catch (Exception e) {
@@ -48,19 +48,22 @@ public s class VisitanteDao {
 		}
 	}
 
-	public ArrayList<Visitante> listarVisitantes() {
+	public static ArrayList<Visitante> listarVisitantes() {
 		ArrayList<Visitante> visitantes = new ArrayList<>();
-		String read = "select * from visitantes order by nome";
+		String read = "select * from visitante order by nome";
 		try {
 			Connection connection = abrirConexao();
 			PreparedStatement pst = connection.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				String idcon = rs.getString(1);
+				String id = rs.getString(1);
 				String nome = rs.getString(2);
-				String fone = rs.getString(3);
-				String email = rs.getString(4);
-				visitantes.add(new Visitante(idcon, nome, fone, email));
+				String sobreNome = rs.getString(3);
+				String documento = rs.getString(4);
+				String fone = rs.getString(5);
+				var v = new Visitante(nome,sobreNome,documento);
+				v.setFone(fone);
+				visitantes.add(v);
 			}
 			connection.close();
 			return visitantes;
@@ -70,18 +73,18 @@ public s class VisitanteDao {
 		}
 	}
 
-	public void selecionarVisitante(Visitante visitante) {
-		String read2 = "select * from contatos where idcon = ?";
+	public static void selecionarVisitante(Visitante visitante) {
+		String read2 = "select * from visitante where ID_VISITANTE  = ?";
 		try {
 			Connection connection = abrirConexao();
 			PreparedStatement pst = connection.prepareStatement(read2);
-			pst.setString(1, visitante.getIdcon());
+			pst.setString(1, visitante.getId());
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				visitante.setIdcon(rs.getString(1));
-				visitante.setNome(rs.getString(2));
-				visitante.setFone(rs.getString(3));
-				visitante.setEmail(rs.getString(4));
+				String id = rs.getString(1);
+				String nome = rs.getString(2);
+				String sobreNome = rs.getString(3);
+				String documento = rs.getString(4);
 			}
 			connection.close();
 		} catch (Exception e) {
@@ -89,15 +92,15 @@ public s class VisitanteDao {
 		}
 	}
 
-	public void alterarVisitante(Visitante visitante) {
-		String update = "update contatos set nome=?,fone=?,email=? where idcon=?";
+	public static void alterarVisitante(Visitante visitante) {
+		String update = "update visitante set nome=?,sobrenome=?,documento=? where ID_VISITANTE =?";
 		try {
 			Connection connection = abrirConexao();
 			PreparedStatement pst = connection.prepareStatement(update);
 			pst.setString(1, visitante.getNome());
-			pst.setString(2, visitante.getFone());
-			pst.setString(3, visitante.getEmail());
-			pst.setString(4, visitante.getIdcon());
+			pst.setString(2, visitante.getSobrenome());
+			pst.setString(3, visitante.getDocumento());
+			pst.setString(3, visitante.getId());
 			pst.executeUpdate();
 			connection.close();
 		} catch (Exception e) {
@@ -105,12 +108,12 @@ public s class VisitanteDao {
 		}
 	}
 
-	public void deletarVisitante(Visitante visitante) {
-		String delete = "delete from contatos where idcon=?";
+	public static void deletarVisitante(Visitante visitante) {
+		String delete = "delete from visitante where ID_VISITANTE=?";
 		try {
 			Connection connection = abrirConexao();
 			PreparedStatement pst = connection.prepareStatement(delete);
-			pst.setString(1, visitante.getIdcon());
+			pst.setString(1, visitante.getId());
 			pst.executeUpdate();
 			connection.close();
 		} catch (Exception e) {

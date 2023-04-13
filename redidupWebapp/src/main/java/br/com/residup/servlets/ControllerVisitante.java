@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.com.residup.models.Morador;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -24,7 +26,7 @@ public class ControllerVisitante extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 
-    Visitante visitanteDao = new Visitante();
+    Visitante visitante = new Visitante();
 
     public ControllerVisitante() {
         super();
@@ -39,7 +41,7 @@ public class ControllerVisitante extends HttpServlet {
             return;
         }
         if (action.equals("/insert")) {
-            adicionarContato(request, response);
+            adicionarVisitante(request, response);
             return;
         }
         if (action.equals("/select")) {
@@ -68,31 +70,36 @@ public class ControllerVisitante extends HttpServlet {
 
     protected void visitantes(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Visitante> lista = visitanteDao.listarVisitantes();
+        ArrayList<Visitante> lista = VisitanteDao.listarVisitantes();
         request.setAttribute("visitantes", lista);
         RequestDispatcher rd = request.getRequestDispatcher("visitantes.jsp");
         rd.forward(request, response);
     }
 
 
-    protected void adicionarContato(HttpServletRequest request, HttpServletResponse response)
+    protected void adicionarVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        contato.setNome(request.getParameter("nome"));
-        contato.setFone(request.getParameter("fone"));
-        contato.setEmail(request.getParameter("email"));
-        visitanteDao.(contato);
+
+        String[] nomeSobrenome = Visitante.separarNomeSobrenome(request.getParameter("nome"));
+        String nome = nomeSobrenome[0];
+        String sobrenome = nomeSobrenome[1];
+        String domuento = request.getParameter("email");
+        String fone = request.getParameter("fone");
+        var visitante = new Visitante(nome,sobrenome,domuento) ;
+        visitante.setFone(fone);
+        VisitanteDao.inserirVisitante(visitante);
         response.sendRedirect("main");
     }
 
 
     protected void listarContato(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        contato.setIdcon(request.getParameter("idcon"));
-        visitanteDao.selecionarVisitante(contato);
-        request.setAttribute("idcon", contato.getIdcon());
-        request.setAttribute("nome", contato.getNome());
-        request.setAttribute("fone", contato.getFone());
-        request.setAttribute("email", contato.getEmail());
+        visitante.setId(request.getParameter("id"));
+        VisitanteDao.selecionarVisitante(visitante);
+        request.setAttribute("id", visitante.getId());
+        request.setAttribute("nome", visitante.getNome());
+        request.setAttribute("fone", visitante.getFone());
+        request.setAttribute("email", visitante.getDocumento());
         RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
         rd.forward(request, response);
     }
@@ -100,19 +107,19 @@ public class ControllerVisitante extends HttpServlet {
 
     protected void editarContato(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        contato.setIdcon(request.getParameter("idcon"));
-        contato.setNome(request.getParameter("nome"));
-        contato.setFone(request.getParameter("fone"));
-        contato.setEmail(request.getParameter("email"));
-        visitanteDao.alterarVisitante(contato);
+        visitante.setId(request.getParameter("idcon"));
+        visitante.setNome(request.getParameter("nome"));
+        visitante.setFone(request.getParameter("fone"));
+        visitante.setDocumento(request.getParameter("email"));
+        VisitanteDao.alterarVisitante(visitante);
         response.sendRedirect("main");
     }
 
 
     protected void removerContato(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        contato.setIdcon(request.getParameter("idcon"));
-        visitanteDao.deletarVisitante(contato);
+        visitante.setId(request.getParameter("idcon"));
+        VisitanteDao.deletarVisitante(visitante);
         response.sendRedirect("main");
     }
 
@@ -134,11 +141,11 @@ public class ControllerVisitante extends HttpServlet {
             tabela.addCell(col1);
             tabela.addCell(col2);
             tabela.addCell(col3);
-            ArrayList<Visitante> lista = visitanteDao.listarVisitantes();
+            ArrayList<Visitante> lista = VisitanteDao.listarVisitantes();
             for (int i = 0; i < lista.size(); i++) {
                 tabela.addCell(lista.get(i).getNome());
                 tabela.addCell(lista.get(i).getFone());
-                tabela.addCell(lista.get(i).getEmail());
+                tabela.addCell(lista.get(i).getDocumento());
             }
             documento.add(tabela);
             documento.close();
