@@ -1,5 +1,7 @@
 package br.com.residup.daos;
 import br.com.residup.models.Morador;
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
 import static br.com.residup.shared.GerenciadorConexaoH2.fecharConexao;
 import java.io.IOException;
@@ -16,6 +18,8 @@ import java.util.logging.Logger;
 public class MoradorDao {
 
     private static MoradorDao instance;
+
+
     private Connection connection;
     private MoradorDao() {
         this.handleOpenConnection();
@@ -39,7 +43,9 @@ public class MoradorDao {
     }
 
     public static boolean createMorador(Morador morador) {
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
         boolean retorno = false;
+
         try (Connection connection = abrirConexao();
              PreparedStatement instrucaoSQL = connection.prepareStatement(
                      "INSERT INTO MORADOR (NOME, SOBRENOME, CPF, RG, NUMERO_APARTAMENTO, BLOCO, SENHA_ACESSO, DATA_INCERCAO) " +
@@ -52,7 +58,7 @@ public class MoradorDao {
             instrucaoSQL.setString(4, morador.getRg());
             instrucaoSQL.setString(5, morador.getNumeroApartamento());
             instrucaoSQL.setString(6, morador.getBloco());
-            instrucaoSQL.setString(7, morador.getSenhaDeAcesso());
+            instrucaoSQL.setString(7, passwordEncryptor.encryptPassword(morador.getSenhaDeAcesso()));
 
             int linhasRetorno = instrucaoSQL.executeUpdate();
 
