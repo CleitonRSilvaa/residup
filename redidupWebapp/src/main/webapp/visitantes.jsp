@@ -44,7 +44,7 @@
                 %>
                 <tr scope="row">
                     <td id= <%=lista.get(i).getId()%> ><%=lista.get(i).getId()%></td>
-                    <td><%= lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%></td>
+                    <td><%=lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%></td>
                     <td><%=lista.get(i).getDocumento()%></td>
                     <td><%=lista.get(i).getFone()%></td>
 
@@ -77,7 +77,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form name="frmContato" action="insert">
+                        <form name="frmContato" action="insert" method="post">
                             <div class="form-group">
                                 <label for="nome">Nome:</label>
                                 <input type="text" class="form-control" id="nome" name="nome" required>
@@ -115,7 +115,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form  name="frmContatoEdit" action="update" >
+                        <form  name="frmContatoEdit" action="update" method="post">
                             <div class="form-group">
                                 <label for="id" >ID: <input type="numero"id="idEdicao" name="id"  readonly
                                                             value=""></label>
@@ -152,8 +152,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="scripts/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
-              " rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
 <!--    <c:if test="${requestScope.validador eq true}">
         <script>
          Swal.fire(

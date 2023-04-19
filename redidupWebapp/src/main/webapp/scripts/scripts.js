@@ -19,11 +19,11 @@ function confirmar(id) {
 $(document).ready(function () {
     $("button[data-target='#editarVisitantesModal']").click(function () {
         // Obter os valores atuais do item
-        var id = $(this).data("id");
-        var nome = $(this).data("nome");
-        var sobrenome = $(this).data("sobrenome");
-        var documento = $(this).data("documento");
-        var fone = $(this).data("fone");
+        let id = $(this).data("id");
+        let nome = $(this).data("nome");
+        let sobrenome = $(this).data("sobrenome");
+        let documento = $(this).data("documento");
+        let fone = $(this).data("fone");
         
         $("#editarVisitantesModal #idEdicao").val(id);
         $("#editarVisitantesModal #nomeEdicao").val(nome);

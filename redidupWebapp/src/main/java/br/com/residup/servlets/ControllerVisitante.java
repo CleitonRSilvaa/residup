@@ -36,6 +36,21 @@ public class ControllerVisitante extends HttpServlet {
             visitantes(request, response);
             return;
         }
+        if (action.equals("/delete")) {
+            removerContato(request, response);
+            return;
+        }
+        if (action.equals("/report")) {
+            gerarRelatorio(request, response);
+            return;
+        }
+        response.sendRedirect("reservaArea.jsp");
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getServletPath();
         if (action.equals("/insert")) {
             adicionarVisitante(request, response);
             return;
@@ -48,21 +63,8 @@ public class ControllerVisitante extends HttpServlet {
             editarContato(request, response);
             return;
         }
-        if (action.equals("/delete")) {
-            removerContato(request, response);
-            return;
-        }
-        if (action.equals("/report")) {
-            gerarRelatorio(request, response);
-            return;
-        }
-        response.sendRedirect("index.html");
 
-    }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getServletPath();
     }
 
     protected void visitantes(HttpServletRequest request, HttpServletResponse response)
