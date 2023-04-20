@@ -20,7 +20,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Visitantes</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/visitanteStyle.css">
     </head>
 
     <body>

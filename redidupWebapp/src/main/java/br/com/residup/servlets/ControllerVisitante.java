@@ -18,7 +18,7 @@ import br.com.residup.models.Visitante;
 import br.com.residup.daos.VisitanteDao;
 
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report", "/visitor" })
+@WebServlet(urlPatterns = { "/Controller", "/Visitante", "/insert", "/select", "/update", "/delete", "/report"})
 public class ControllerVisitante extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -32,7 +32,7 @@ public class ControllerVisitante extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/main")) {
+        if (action.equals("/Visitante")) {
 //            request.getSession().setAttribute("validador", false);
             visitantes(request, response);
             return;
@@ -46,9 +46,11 @@ public class ControllerVisitante extends HttpServlet {
             return;
         }
         if (action.equals("/visitor")) {
+            request.getSession().setAttribute("validator", true);
             visitantes(request, response);
             return;
         }
+        visitantes(request, response);
 
     }
 
@@ -67,6 +69,11 @@ public class ControllerVisitante extends HttpServlet {
             editarContato(request, response);
             return;
         }
+        if (action.equals("/visitor")) {
+            request.getSession().setAttribute("validator", true);
+            visitantes(request, response);
+            return;
+        }
 
 
     }
@@ -75,6 +82,8 @@ public class ControllerVisitante extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<Visitante> lista = VisitanteDao.listarVisitantes();
         request.setAttribute("visitantes", lista);
+
+        request.getParameter("validator");
         RequestDispatcher rd = request.getRequestDispatcher("visitantes.jsp");
         rd.forward(request, response);
     }
@@ -94,6 +103,7 @@ public class ControllerVisitante extends HttpServlet {
         }else
             request.getSession().setAttribute("validator", false);
         response.sendRedirect("main");
+
     }
 
 
