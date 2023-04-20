@@ -1,5 +1,7 @@
 package br.com.residup.daos;
 import br.com.residup.models.Morador;
+import br.com.residup.shared.GerenciadorConexaoH2;
+
 import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
 import static br.com.residup.shared.GerenciadorConexaoH2.fecharConexao;
 import java.io.IOException;
@@ -72,7 +74,6 @@ public class MoradorDao {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
             return retorno;
         }
     }
