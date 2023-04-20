@@ -1,6 +1,7 @@
 package br.com.residup.daos;
 
 import br.com.residup.models.Morador;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -34,28 +35,19 @@ public class LoginDao {
         return instance;
     }
 
-    public static boolean login(Morador morador) {
+    public static boolean logar(Morador morador) {
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
         boolean retorno = false;
-        try (Connection connection = abrirConexao(); PreparedStatement instrucaoSQL = connection.prepareStatement("INSERT INTO MORADOR (NOME, SOBRENOME, CPF, RG, NUMERO_APARTAMENTO, BLOCO, SENHA_ACESSO, DATA_INCERCAO) " + "VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP )", Statement.RETURN_GENERATED_KEYS)) {
-            instrucaoSQL.setString(1, morador.getNome());
-            instrucaoSQL.setString(2, morador.getSobrenome());
-            instrucaoSQL.setString(3, morador.getCpf());
-            instrucaoSQL.setString(4, morador.getRg());
-            instrucaoSQL.setString(5, morador.getNumeroApartamento());
-            instrucaoSQL.setString(6, morador.getBloco());
-            instrucaoSQL.setString(7, morador.getSenhaDeAcesso());
+        try (Connection connection = abrirConexao();
+             PreparedStatement instrucao = connection
+                .prepareStatement("SELECT * FROM MORADOR WHERE CPF = ? AND SENHA_ACESSO = ?")) {
+            instrucao.setString(1, morador.getCpf());
+            instrucao.setString(2, passwordEncryptor.encryptPassword(morador.getSenhaDeAcesso()));
 
-            int linhasRetorno = instrucaoSQL.executeUpdate();
+            int linhasRetorno = instrucao.executeUpdate();
 
             if (linhasRetorno > 0) {
                 retorno = true;
-
-                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    morador.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Falha ao obter o ID do morador.");
-                }
             } else {
                 retorno = false;
             }

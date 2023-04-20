@@ -1,19 +1,13 @@
 package br.com.residup.daos;
+
 import br.com.residup.models.Morador;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
-import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
-import static br.com.residup.shared.GerenciadorConexaoH2.fecharConexao;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
 
 public class MoradorDao {
 
@@ -21,9 +15,11 @@ public class MoradorDao {
 
 
     private Connection connection;
+
     private MoradorDao() {
         this.handleOpenConnection();
     }
+
     private void handleOpenConnection() {
         try {
             this.connection = abrirConexao();
@@ -36,7 +32,7 @@ public class MoradorDao {
     }
 
     public static MoradorDao getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new MoradorDao();
         }
         return instance;
@@ -79,6 +75,6 @@ public class MoradorDao {
             throw new RuntimeException(e);
         }
 
-            return retorno;
-        }
+        return retorno;
     }
+}
