@@ -29,7 +29,7 @@
   </jsp-config>
 
 <!--  <welcome-file-list>-->
-<!--    <welcome-file></welcome-file>-->
+<!--    <welcome-file>visitantes.jsp</welcome-file>-->
 <!--  </welcome-file-list>-->
 
 </web-app>
