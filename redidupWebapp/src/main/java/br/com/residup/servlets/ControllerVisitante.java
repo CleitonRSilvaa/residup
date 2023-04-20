@@ -18,7 +18,7 @@ import br.com.residup.models.Visitante;
 import br.com.residup.daos.VisitanteDao;
 
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report", "/visitor" })
 public class ControllerVisitante extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +33,7 @@ public class ControllerVisitante extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getServletPath();
         if (action.equals("/main")) {
+//            request.getSession().setAttribute("validador", false);
             visitantes(request, response);
             return;
         }
@@ -44,7 +45,10 @@ public class ControllerVisitante extends HttpServlet {
             gerarRelatorio(request, response);
             return;
         }
-        response.sendRedirect("reservaArea.jsp");
+        if (action.equals("/visitor")) {
+            visitantes(request, response);
+            return;
+        }
 
     }
 
@@ -86,13 +90,12 @@ public class ControllerVisitante extends HttpServlet {
         var visitante = new Visitante(nome,sobrenome,documento) ;
         visitante.setFone(fone);
         if (VisitanteDao.inserirVisitante(visitante)){
-            request.getSession().setAttribute("validador", true);
+            request.getSession().setAttribute("validator", true);
         }else
-            request.getSession().setAttribute("validador", false);
+            request.getSession().setAttribute("validator", false);
         response.sendRedirect("main");
-
-
     }
+
 
 
     protected void listarContato(HttpServletRequest request, HttpServletResponse response)
@@ -105,6 +108,7 @@ public class ControllerVisitante extends HttpServlet {
         request.setAttribute("email", visitante.getDocumento());
         RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
         rd.forward(request, response);
+        response.sendRedirect("main");
     }
 
 

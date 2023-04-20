@@ -1,7 +1,8 @@
 <%@page import="br.com.residup.models.Visitante"%>
-<%--<%@page language="java" contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8"%>--%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
     @SuppressWarnings(
     
@@ -27,7 +28,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novoVisitantesModal">
             Novo Visitante
         </button>
-        <a href="report" class="btn btn-info">Relatório</a>
+        <a href="report" class="btn btn-info">Relatï¿½rio</a>
         <table id="tabela" class="table table-striped">
             <thead>
                 <tr>
@@ -35,7 +36,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Documento</th>
                     <th scope="col" >Fone</th>
-                    <th scope="col">Opções</th>
+                    <th scope="col">OpÃ§Ãµeses</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +67,7 @@
             </tbody>
         </table>
 
-        <!-- Modal de Criação -->
+        <!-- Modal de Criaï¿½ï¿½o -->
         <div class="modal fade" id="novoVisitantesModal" tabindex="-1" role="dialog" aria-labelledby="novoContatoModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -104,7 +105,7 @@
             </div>
         </div>
 
-        <!-- Modal de edição -->
+        <!-- Modal de ediÃ§Ã£o -->
         <div class="modal fade" id="editarVisitantesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -153,13 +154,14 @@
         <script src="scripts/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
-<!--    <c:if test="${requestScope.validador eq true}">
+        <c:if test="${requestScope.validator eq true}">
         <script>
-         Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    );
-        </script>-->
+             Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                        );
+            </script>
+        </c:if>
     </body>
 </html>
