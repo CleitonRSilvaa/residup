@@ -1,5 +1,6 @@
 package br.com.residup.servlets;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -18,12 +19,13 @@ import br.com.residup.models.Visitante;
 import br.com.residup.daos.VisitanteDao;
 
 
-@WebServlet(urlPatterns = { "/Controller", "/Visitante", "/insert", "/select", "/update", "/delete", "/report"})
+@WebServlet(urlPatterns = {"/visitantes", "/insert", "/select", "/update", "/delete", "/report"})
 public class ControllerVisitante extends HttpServlet {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
-    Visitante visitante = new Visitante();
+
     public ControllerVisitante() {
         super();
     }
@@ -32,22 +34,20 @@ public class ControllerVisitante extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/Visitante")) {
-//            request.getSession().setAttribute("validador", false);
+        if (action.equals("/visitantes")) {
+            visitantes(request, response);
+            return;
+        }
+        if (action.equals("/newVisitante")) {
             visitantes(request, response);
             return;
         }
         if (action.equals("/delete")) {
-            removerContato(request, response);
+            removerVisitante(request, response);
             return;
         }
         if (action.equals("/report")) {
             gerarRelatorio(request, response);
-            return;
-        }
-        if (action.equals("/visitor")) {
-            request.getSession().setAttribute("validator", true);
-            visitantes(request, response);
             return;
         }
         visitantes(request, response);
@@ -62,28 +62,21 @@ public class ControllerVisitante extends HttpServlet {
             return;
         }
         if (action.equals("/select")) {
-            listarContato(request, response);
+            buscarVisitante(request, response);
             return;
         }
         if (action.equals("/update")) {
-            editarContato(request, response);
-            return;
+            editarVisitante(request, response);
         }
-        if (action.equals("/visitor")) {
-            request.getSession().setAttribute("validator", true);
-            visitantes(request, response);
-            return;
-        }
-
-
     }
 
-    protected void visitantes(HttpServletRequest request, HttpServletResponse response)
+
+
+    protected void visitantes(HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
         ArrayList<Visitante> lista = VisitanteDao.listarVisitantes();
-        request.setAttribute("visitantes", lista);
-
-        request.getParameter("validator");
+        request.setAttribute("listaVisitantes", lista);
+        System.out.println(request.getParameter("validator"));
         RequestDispatcher rd = request.getRequestDispatcher("visitantes.jsp");
         rd.forward(request, response);
     }
@@ -99,17 +92,18 @@ public class ControllerVisitante extends HttpServlet {
         var visitante = new Visitante(nome,sobrenome,documento) ;
         visitante.setFone(fone);
         if (VisitanteDao.inserirVisitante(visitante)){
-            request.getSession().setAttribute("validator", true);
+            request.setAttribute("validator", true);
         }else
             request.getSession().setAttribute("validator", false);
-        response.sendRedirect("main");
+        response.sendRedirect("visitantes");
 
     }
 
 
 
-    protected void listarContato(HttpServletRequest request, HttpServletResponse response)
+    protected void buscarVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Visitante visitante = new Visitante();
         visitante.setId(request.getParameter("id"));
         VisitanteDao.selecionarVisitante(visitante);
         request.setAttribute("id", visitante.getId());
@@ -118,12 +112,12 @@ public class ControllerVisitante extends HttpServlet {
         request.setAttribute("email", visitante.getDocumento());
         RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
         rd.forward(request, response);
-        response.sendRedirect("main");
     }
 
 
-    protected void editarContato(HttpServletRequest request, HttpServletResponse response)
+    protected void editarVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Visitante visitante = new Visitante();
         visitante.setId(request.getParameter("id"));
         visitante.setNome(request.getParameter("nome"));
         visitante.setSobrenome(request.getParameter("sobrenome"));
@@ -133,17 +127,18 @@ public class ControllerVisitante extends HttpServlet {
             request.getSession().setAttribute("validador", true);
         }else
             request.getSession().setAttribute("validador", false);
-        response.sendRedirect("main");
+        response.sendRedirect("visitantes");
     }
 
-    protected void removerContato(HttpServletRequest request, HttpServletResponse response)
+    protected void removerVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Visitante visitante = new Visitante();
         visitante.setId(request.getParameter("id"));
         if (VisitanteDao.deletarVisitante(visitante)){
             request.getSession().setAttribute("validador", true);
         }else
             request.getSession().setAttribute("validador", false);
-        response.sendRedirect("main");
+        response.sendRedirect("visitantes");
     }
 
 

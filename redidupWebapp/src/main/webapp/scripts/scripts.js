@@ -1,7 +1,7 @@
 function confirmar(id) {
     Swal.fire({
         title: 'Deletar Visitante?',
-        text: "VocÍ n„o ser· capaz de reverter isso!",
+        text: "Voc√™ n√£o ser√° capaz de reverter isso!",
         timer: 10000,
         icon: 'warning',
         showCancelButton: true,
@@ -75,7 +75,7 @@ function validarNovo() {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Nome e Documento s„o campos obrigatorios!',
+            text: 'Nome e Documento s√£o campos obrigatorios!',
         })
         return false;
     }

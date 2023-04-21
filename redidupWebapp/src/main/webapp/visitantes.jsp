@@ -4,10 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-    @SuppressWarnings(
-    
-    "unchecked")
-    ArrayList<Visitante> lista = (ArrayList<Visitante>) request.getAttribute("visitantes");
+    ArrayList<Visitante> lista = (ArrayList<Visitante>) request.getAttribute("listaVisitantes");
 %>
 <%-- Verifica se o cadastro foi realizado com sucesso --%>
 
@@ -28,7 +25,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novoVisitantesModal">
             Novo Visitante
         </button>
-        <a href="report" class="btn btn-info">Relat�rio</a>
+        <a href="report" class="btn btn-info">Relatório</a>
         <table id="tabela" class="table table-striped">
             <thead>
                 <tr>
@@ -43,6 +40,8 @@
                 <%
                     for (int i = 0; i < lista.size(); i++) {
                 %>
+                
+                
                 <tr scope="row">
                     <td id= <%=lista.get(i).getId()%> ><%=lista.get(i).getId()%></td>
                     <td><%=lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%></td>
@@ -157,10 +156,11 @@
         <c:if test="${requestScope.validator eq true}">
         <script>
              Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'Sucesso!',
+                        'Visitante cadastrado.',
                         'success'
                         );
+                        window.location.href ="visitante"
             </script>
         </c:if>
     </body>
