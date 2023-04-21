@@ -85,48 +85,33 @@ public class OcorrenciaDao {
 
 
     public static boolean deletar(Ocorrencia ocorrencia) {
-        boolean retorno = false;
-        try (Connection connection = abrirConexao();
-             PreparedStatement instrucao = connection
-                     .prepareStatement(" * FROM MORADOR WHERE CPF = ? AND SENHA_ACESSO = ?")) {
-            instrucao.setString(1, morador.getCpf());
-            instrucao.setString(2, morador.getSenhaDeAcesso());
-
-            int linhasRetorno = instrucao.executeUpdate();
-
-            if (linhasRetorno > 0) {
-                retorno = true;
-            } else {
-                retorno = false;
-            }
-
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        String delete = "DELETE FROM REGISTRO_OCORRENCIA WHERE ID_OCORRENCIA=?";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(delete);
+            pst.setInt(1, ocorrencia.getId());
+            pst.executeUpdate();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
         }
-
-        return retorno;
     }
 
     public static boolean resolver(Ocorrencia ocorrencia) {
-        boolean retorno = false;
-        try (Connection connection = abrirConexao();
-             PreparedStatement instrucao = connection
-                     .prepareStatement("SELECT * FROM MORADOR WHERE CPF = ? AND SENHA_ACESSO = ?")) {
-            instrucao.setString(1, morador.getCpf());
-            instrucao.setString(2, morador.getSenhaDeAcesso());
-
-            int linhasRetorno = instrucao.executeUpdate();
-
-            if (linhasRetorno > 0) {
-                retorno = true;
-            } else {
-                retorno = false;
-            }
-
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        String update = "UPDATE REGISTRO_OCORRENCIA SET RESOLUCAO=? WHERE ID_OCORRENCIA=?";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(update);
+            pst.setString(1, ocorrencia.getResolucao());
+            pst.setInt(2, ocorrencia.getId());
+            pst.executeUpdate();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
         }
-
-        return retorno;
     }
 }
