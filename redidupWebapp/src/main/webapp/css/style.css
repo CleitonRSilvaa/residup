@@ -1,0 +1,283 @@
+body {
+  animation: fade-in 0.1s ease;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@font-face {
+  font-family: Roboto;
+  src: url("../../assets/fontes/Roboto-Thin.ttf");
+}
+#arrow-up-short {
+  display: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  user-select: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.arrow-left-short {
+  background-color: #eeede5;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  margin-top: -20px;
+}
+.nome-socio {
+  text-transform: uppercase;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bolder;
+  color: #221d71;
+}
+.conteudo-site {
+  flex-grow: 1;
+}
+.titulo-site {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-weight: bolder;
+  color: #221d71;
+  padding: 10px;
+}
+@media (max-width: 768px) {
+  .titulo-site {
+    font-size: 22px;
+  }
+  .nome-socio {
+    font-size: 18px;
+  }
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #221d71;
+  border: 0.5px solid white;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: #eeede5;
+}
+.buttons-main {
+  margin-top: 30px;
+}
+
+.btnConfirmar {
+    cursor: pointer;
+    border-radius:4px;
+}
+
+    .btnConfirmar:hover {
+        background-color: #408b51;
+    }
+
+    .btnConfirmar:disabled {
+        cursor: auto;
+        opacity: 0.5;
+    }
+
+    .btnConfirmar:disabled, .btnConfirmar {
+        padding: 8px 12px;
+        background-color: #28a745;
+        color: white;
+    }
+
+.voltar,
+#btnVoltar {
+  font-size: 16px;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px;
+  text-decoration: none;
+}
+.voltar:hover {
+  background-color: #bb313e;
+  transition: 0.3s;
+}
+.confirmar {
+  font-size: 16px;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px;
+  cursor: pointer;
+}
+.confirmar:hover {
+  background-color: forestgreen;
+  transition: 0.3s;
+}
+.confirmar:disabled {
+  opacity: 0.5;
+}
+.confirmar:disabled:hover {
+  background-color: green;
+  cursor: auto;
+}
+.avancar {
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.avancar:hover {
+  background-color: #0063cc;
+  transition: 0.3s;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  user-select: none;
+  font-weight: bolder;
+}
+td {
+  text-align: center;
+}
+#lblDependentesTitle {
+  color: #221d71 !important;
+}
+.senha {
+  border-radius: 25px;
+  border: none;
+  background-color: #eeede5;
+  height: 60px;
+  width: 190%;
+  padding-left: 30px;
+  transition: 0.7s;
+  font-size: 15px;
+}
+.senha:focus {
+  width: 210%;
+  transition: 0.7s;
+}
+.container-solicitacao {
+  padding: 60px;
+  padding-top: 0px;
+}
+#lblUsuario {
+  color: #221d71;
+  display: block;
+  margin: 25px;
+  font-size: 22px;
+  font-family: Roboto;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+label {
+  color: #221d71 !important;
+  font-family: "Roboto";
+}
+.titulo-pagina {
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-size: 35px;
+  font-family: "Roboto";
+  color: #221d71;
+}
+.container-table {
+  overflow: auto;
+  padding: 40px;
+}
+.container00 {
+  box-shadow: 0px 6px 35px -10px #221d71;
+  margin-top: 40px;
+  padding: 40px;
+  width: 100%;
+}
+
+
+.caixa-input {
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding-left: 10px;
+  transition: 0.7s !important;
+  font-weight: bolder;
+}
+.caixa-input:focus {
+  outline: none;
+  box-shadow: 2px 9px 9px -8px #221d71 !important;
+  border: 1px solid #221d71 !important;
+}
+.options {
+  font-size: 15px;
+  color: #221d71;
+  font-weight: bolder;
+  border-radius: 5px;
+  height: 35px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.options:focus {
+  box-shadow: 2px 9px 9px -8px #221d71;
+  border: 1px solid #221d71;
+}
+.options option {
+  color: #221d71;
+  font-weight: bolder;
+}
+#LblNumeroSolicitacao {
+  text-align: center;
+  margin: auto;
+  display: block;
+  margin-bottom: 20px !important;
+  color: #221d71;
+  font-size: 25px;
+}
+@media (max-width: 768px) {
+  .container-solicitacao {
+    padding: 30px;
+  }
+  .titulo-pagina {
+    font-size: 28px;
+    padding: 10px;
+  }
+  .container00 {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 375px) {
+  .container-solicitacao {
+    padding: 10px;
+  }
+  .titulo-pagina {
+    font-size: 23px;
+  }
+}
