@@ -22,6 +22,11 @@ public class Morador {
         this.senhaDeAcesso = senhaDeAcesso;
     }
 
+    public Morador(String cpf, String senhaDeAcesso) {
+        this.cpf = cpf;
+        this.senhaDeAcesso = senhaDeAcesso;
+    }
+
     public static String[] separarNomeSobrenome(String nomeCompleto) {
         String[] partesNome = nomeCompleto.trim().split("\\s+");
 

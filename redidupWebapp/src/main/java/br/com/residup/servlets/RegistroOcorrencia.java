@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = {"/Ocorrencia", "/insert", "/select", "/update", "/delete", "/resolve"})
 public class RegistroOcorrencia extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
     Ocorrencia ocorrencias = new Ocorrencia();
 
     public RegistroOcorrencia() {
@@ -24,11 +26,6 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/select")) {
-            request.getSession().setAttribute("validator", true);
-            ocorrencia(request, response);
-            return;
-        }
         if (action.equals("/select")) {
             request.getSession().setAttribute("validator", true);
             listarOcorrencia(request, response);
@@ -98,20 +95,20 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validator", true);
         } else
             request.getSession().setAttribute("validator", false);
-        response.sendRedirect("main");
+        response.sendRedirect("");
     }
 
     protected void listarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
-        OcorrenciaDao.listar();
+        OcorrenciaDao.listar(id);
         request.setAttribute("id", ocorrencias.getId());
         request.setAttribute("titulo", ocorrencias.getTitulo());
         request.setAttribute("texto", ocorrencias.getTexto());
         request.setAttribute("resolucao", ocorrencias.getResolucao());
         RequestDispatcher rd = request.getRequestDispatcher(".jsp");
         rd.forward(request, response);
-        response.sendRedirect("main");
+        response.sendRedirect("");
     }
 
     protected void removerOcorrencia(HttpServletRequest request, HttpServletResponse response)
@@ -121,7 +118,7 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validador", true);
         } else
             request.getSession().setAttribute("validador", false);
-        response.sendRedirect("main");
+        response.sendRedirect("");
     }
 
     private void editarOcorrencia(HttpServletRequest request, HttpServletResponse response)
@@ -134,7 +131,7 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validador", true);
         } else
             request.getSession().setAttribute("validador", false);
-        response.sendRedirect("main");
+        response.sendRedirect("");
     }
 
     private void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response)
@@ -145,7 +142,7 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validador", true);
         } else
             request.getSession().setAttribute("validador", false);
-        response.sendRedirect("main");
+        response.sendRedirect("");
     }
 
 }
