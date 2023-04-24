@@ -42,4 +42,7 @@ public class Ocorrencia {
         this.texto = texto;
         this.resolucao = resolucao;
     }
+
+    public Ocorrencia() {
+    }
 }

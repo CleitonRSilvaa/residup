@@ -61,7 +61,7 @@ public class OcorrenciaDao {
         return retorno;
     }
 
-    public static ArrayList<Ocorrencia> listar(Ocorrencia ocorrencia) {
+    public static ArrayList<Ocorrencia> listar() {
         try (Connection connection = abrirConexao();
              PreparedStatement instrucao = connection
                      .prepareStatement("SELECT * FROM REGISTRO_OCORRENCIA")) {
@@ -106,6 +106,23 @@ public class OcorrenciaDao {
             PreparedStatement pst = connection.prepareStatement(update);
             pst.setString(1, ocorrencia.getResolucao());
             pst.setInt(2, ocorrencia.getId());
+            pst.executeUpdate();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static boolean editar(Ocorrencia ocorrencia) {
+        String update = "UPDATE REGISTRO_OCORRENCIA SET TITULO=?, OCORRENCIA=? WHERE ID_OCORRENCIA=?";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(update);
+            pst.setString(1, ocorrencia.getTitulo());
+            pst.setString(2, ocorrencia.getTexto());
+            pst.setInt(3, ocorrencia.getId());
             pst.executeUpdate();
             connection.close();
             return true;
