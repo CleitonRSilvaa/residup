@@ -101,7 +101,7 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void listarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
-        OcorrenciaDao.listar(id);
+        OcorrenciaDao.selecionar(ocorrencias);
         request.setAttribute("id", ocorrencias.getId());
         request.setAttribute("titulo", ocorrencias.getTitulo());
         request.setAttribute("texto", ocorrencias.getTexto());

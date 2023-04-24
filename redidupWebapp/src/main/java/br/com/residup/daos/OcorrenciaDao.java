@@ -131,4 +131,23 @@ public class OcorrenciaDao {
             return false;
         }
     }
+
+    public static void selecionar(Ocorrencia ocorrencia) {
+        String read2 = "SELECT * FROM REGISTRO_OCORRENCIAe WHERE ID_OCORRENCIA=?";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(read2);
+            pst.setInt(1, ocorrencia.getId());
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString(1);
+                String titulo = rs.getString(2);
+                String texto = rs.getString(3);
+                String resolucao = rs.getString(4);
+            }
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
