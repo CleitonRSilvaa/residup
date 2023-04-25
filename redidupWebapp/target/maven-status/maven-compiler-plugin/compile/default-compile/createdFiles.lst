@@ -1,0 +1,10 @@
+br\com\residup\daos\MoradorDao.class
+br\com\residup\models\Ocorrencia.class
+br\com\residup\servlets\CadastroMorador.class
+br\com\residup\servlets\RegistroOcorrencia.class
+br\com\residup\shared\GerenciadorConexaoH2.class
+br\com\residup\daos\LoginDao.class
+br\com\residup\daos\OcorrenciaDao.class
+br\com\residup\servlets\Login.class
+br\com\residup\models\Morador.class
+br\com\residup\shared\GerenciadorConexaoDBMySql.class
