@@ -84,7 +84,7 @@ public class MoradorDao {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-            return retorno;
-        }
+
+        return retorno;
     }
 }
