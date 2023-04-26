@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = {"/Ocorrencia", "/insert", "/select", "/update", "/delete", "/resolve"})
+@WebServlet(urlPatterns = {"/Ocorrencia", "/occurrenceInsert", "/occurrenceSelect", "/occurrenceUpdate", "/occurrenceDelete", "/occurrenceResolve"})
 public class RegistroOcorrencia extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/select")) {
+        if (action.equals("/occurrenceSelect")) {
             request.getSession().setAttribute("validator", true);
             listarOcorrencia(request, response);
             return;
@@ -39,7 +39,7 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/delete")) {
+        if (action.equals("/occurrenceDelete")) {
             removerOcorrencia(request, response);
             return;
         }
@@ -50,7 +50,7 @@ public class RegistroOcorrencia extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/insert")) {
+        if (action.equals("/occurrenceInsert")) {
             registrarOcorrencia(request, response);
             return;
         }
@@ -62,11 +62,11 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/update")) {
+        if (action.equals("/occurrenceUpdate")) {
             editarOcorrencia(request, response);
             return;
         }
-        if (action.equals("/resolve")) {
+        if (action.equals("/occurrenceResolve")) {
             resolverOcorrencia(request, response);
             return;
         }

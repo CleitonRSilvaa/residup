@@ -2,18 +2,8 @@ package br.com.residup.daos;
 
 import br.com.residup.models.Morador;
 import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import java.sql.*;
-import br.com.residup.shared.GerenciadorConexaoH2;
-import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
-import static br.com.residup.shared.GerenciadorConexaoH2.fecharConexao;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,7 +74,7 @@ public class MoradorDao {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-            return retorno;
-        }
+        return retorno;
     }
+
 }
