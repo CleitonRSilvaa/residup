@@ -20,6 +20,16 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 ## Instalação
 ## Contribuição
 ## Autoria e suporte
+Backend:
+Ana Carolina Guimarães - a.carolina1903@gmail.com
+Cleiton Ribeiro da Silva - cleiton_ribeiro@live.com
+Thiago Soares Bellico - thiagobellico@Outlook.com 
+
+Frontend:
+Anderson Rodrigues de Souza - Andersonrodirgues@hotmail.com 
+Barbara Vitoria dos Santos Silva - barbaravitoria.sts@gamil.com
+Daniel Xavier Rodrigues - contato_danielrodrigues@outlook.com
+
 ## Referências
 
 ## Funcionalidades
