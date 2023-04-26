@@ -12,7 +12,11 @@ Ele é composto por três recursos:
 
 Utilizando essas funcionalidades, o sistema visa disponibilizar um ambiente mais harmônico e seguro para todos os moradores do condomínio.
 
-## Requisitos
+## Pré-requisitos
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [JAVA SDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
+ Além disto é bom ter um editor para trabalhar com o código como [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows)
+
 ## Instalação
 ## Contribuição
 ## Autoria e suporte
