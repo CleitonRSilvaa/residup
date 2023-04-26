@@ -1,0 +1,386 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+body, h1, h2, h3, p, ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+.menu{
+    width: 100%;
+    height: 60px;
+    background: #f4f3f3;
+    padding: 5px 0px 30px 30px;
+    position: fixed;
+}
+
+.logo{
+   display: block;
+   float: left;
+   margin-top: -10px;
+   margin-right: 600px;
+}
+.menu-cloud{
+    max-width: 100%;
+    float: left;
+}
+
+.menu-cloud d-flex{
+    
+}
+.menu-cloud li{
+    margin-top: 10px;
+    display: inline-block;
+    font-family: arial;
+    border-radius: 19px;
+}
+
+.ativa{
+  opacity: 50%;
+}
+
+.menu-cloud a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    margin-left: 33px;
+    font-weight: bold;
+}
+
+.login{
+    float: right;
+    
+}
+.login li{
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    padding-right: 70px;
+}
+
+.login a{
+    text-decoration: none;
+    color: #4C5B6A;
+}
+
+/* inicio imagem após menu*/
+.imagem{
+   
+   background: url('img/Fund.png') no-repeat center center;
+   background-size: cover;
+   height: 685px;
+    
+}
+
+
+.form{
+    box-sizing: border-box;
+    background: #545454;
+    max-width: 300px;
+    height: 300px;
+    float: right;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 180px;
+
+    margin-right: 100px;
+}
+
+.form h3{
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: arial;
+    text-align: center
+    
+}
+.linha{
+    height: 2px;
+    width: 10px;
+    background-color: #545454;
+    margin-left: 100px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.carousel-inner bt{
+    background-color: black;
+    float: left;
+    margin-bottom: 300px    
+}
+.name{ 
+    color: #585858;
+    font-size: 15px;
+}
+
+.bto{
+    background: #f4f3f3;
+    display: flex;
+    justify-content: space-between;
+    border: 0px;
+    font-weight: bold;
+    align-items: center;
+    color: black;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+.bto h3{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.campo{
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+/* final imagem após menu*/
+
+/* inicio seção 2*/
+#key-benefits h2 {
+    background-color: var(--secondary);
+    text-align: center;
+    padding: 2em;
+    font-weight: 500;
+  }
+  
+  .benefits {
+    display: flex;
+    justify-content: space-around;
+    padding: 4em;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .benefit {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 20%;
+    color: var(--text-tertiary);
+  }
+  
+  .benefit .benefit-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 1em;
+  }
+  
+  #benefit-1 {
+    background-image: url("img/teste.png");
+  }
+  
+  #benefit-2 {
+    background-image: url("img/teste.png");
+  }
+  
+  #benefit-3 {
+    background-image: url("img/teste.png");
+  }
+  
+/* final seção 2*/
+
+#details {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #f4f3f3;
+    height: 1770px;
+  }
+  #details h2{
+    font-size: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 40px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #545454;
+  }
+  
+  .detail {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 5%;
+    margin-bottom: 4em;
+  }
+  
+  .detail img {
+    width: 40%;
+    border-radius: 20px;
+  }
+  
+  .detail h3 {
+    margin-bottom: 1em;
+    font-size: 30px;
+    font-weight: 500;
+    color: #545454;
+    margin-left: 100px;
+    margin-top: 40px;
+  }
+  
+  #detail-1 h3 {
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #545454;
+  
+  }
+  #detail-1 p {
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #545454;
+    margin-left: 100px;
+  }
+  
+  
+  .detail-description {
+    width: 100%;
+    padding-left: 2em;
+  }
+  .detail-description-1{
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 15px;
+    
+  }
+  .detail-description-1 p{
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #545454;
+    margin-left: 100px;
+  }
+  #detail-3 .detail-description h3 {
+    justify-self: flex-start;
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #545454;
+
+  }
+  
+  .detail-description p {
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #545454;
+    margin-left: 100px;
+  }
+  
+  .detail-description ul li {
+    margin-bottom: 0.4em;
+    color: #545454;
+  }
+  
+  .detail-description ul li:last-child {
+    font-weight: bold;
+    text-decoration: none;
+    color: #545454;
+  }
+/* Inicio Rodapé*/
+.rodape{
+    width: 100%;
+    height: 250px;
+    background-color: black;
+    color: white;
+}
+
+
+.fileira1{
+    width: 20%;
+    float: left;
+    margin-left: 100px;  
+      
+}
+
+.fileira1 li{
+    color: white;
+    font-weight: bold;
+    font-family: arial;   
+    list-style: none;
+    font-weight: bold;
+    font-family: arial;
+    margin-bottom: 10px;
+}
+
+.fileira2{
+    width: 20%;
+    float: left;
+}
+
+.fileira2 li{
+   color: white;
+   font-weight: bold;
+   font-family: arial;   
+   list-style: none;
+   font-weight: bold;
+   font-family: arial;
+   margin-bottom: 10px;
+}
+
+.fileira3{
+    width: 20%;
+    float: left;
+}
+
+.fileira3 li{
+   color: white;
+   font-weight: bold;
+   font-family: arial;   
+   list-style: none; 
+   font-weight: bold;
+   font-family: arial;
+   margin-bottom: 3px;
+}
+.fileira4{
+   width: 23%;
+   float: left; 
+   font-family: arial;
+}
+
+.fileira4 h2{
+    font-size: 20px;
+}
+
+.fileira1, .fileira2, .fileira3{
+    margin-top: 30px;
+}
+
+.fileira1 a, .fileira2 a, .fileira3 a{
+    text-decoration: none;
+    color: white;
+    font-family: arial;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+
+
+.fileira1 h2, .fileira2 h2, .fileira3 h2{
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 8%;
+    color: white;
+    margin-bottom: 15px;
+}
+/* Fim Rodapé*/
