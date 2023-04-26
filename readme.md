@@ -2,6 +2,22 @@
 
 [PROJETO INTEGRADOR III - Turma B]
 
+## Introdução
+O sistema foi desenvolvido para melhorar a comunicação entre os serviços do condomínio e os moradores do prédio, proporcionando uma experiência mais segura e organizada.
+Ele é composto por três recursos:
+* Controle de visitantes, permitindo que os moradores façam um pré-cadastro de visitantes para que apenas pessoas autorizadas tenham acesso às dependências do edifício.
+* Gestão de reservas de áreas, como salões de festas e playgrounds, evitando conflitos de planejamento.
+* Controle de ocorrências de morador para o administrador (possivelmente, síndico) permitindo que qualquer problema seja relatado e resolvido com maior velocidade e eficiência.
+
+
+Utilizando essas funcionalidades, o sistema visa disponibilizar um ambiente mais harmônico e seguro para todos os moradores do condomínio.
+
+## Requisitos
+## Instalação
+## Contribuição
+## Autoria e suporte
+## Referências
+
 ## Funcionalidades
 Para a versão morador:
 1.    Reserva de áreas – salao de festas, churrasqueira, etc.
@@ -12,7 +28,6 @@ Para a versão síndico:
 1.    Reserva de áreas – relatório por ambiente 
 2.    Controle de acesso de visitantes – lista de nomes dos visitantes permitidos por morador
 3.    Registro de ocorrências de problemas do apartamento (enviados para síndico) – Lista de problemas por morador (formulário enviado)
-
 ## Telas 
 ## LOGO PRINCIPAL
 ![LOGO_2](https://user-images.githubusercontent.com/73199083/223888565-1238bf38-0241-404e-87d1-cac695306e4d.png)
