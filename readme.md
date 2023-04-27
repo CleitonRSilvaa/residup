@@ -38,12 +38,13 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 ![image](https://user-images.githubusercontent.com/88353387/234722479-125a4dc5-28cc-4d75-9816-e8cc0ff13b6f.png)
 
-6.	Após a execução, abrir a URL http://localhost:8080/ no seu navegador;
-7.	Antes de fazer a execução do projeto na WEB, acessar a URL http://localhost:8080/console 
-8.	Com o console aberto, informar a senha “sa”;
-9.	Acessar o diretório residup/docs/modelo_DER_MER/ScriptTables_DB_H2.txt e copiar o texto;
-10.	Informe o script na caixa de texto do banco, e clique em “Run”;
-11.	Execute o projeto;
+6.	Após a execução, abrir a URL http://localhost:8080/console no seu navegador;
+7.	Com o console aberto, informar a senha “sa”;
+8.	Acessar o diretório [Script - Banco de Dados](./residup/docs/modelo_DER_MER/ScriptTables_DB_H2.txt) e copiar o texto;
+9. Informe o script na caixa de texto do banco, e clique em “Run”;
+
+   Obs: Importante executar o script do banco, caso não realize essas etapas. Sujeito a erro!
+10. Execute o projeto na URL http://localhost:8080/visitantes
 
 ## Contribuição
 Tem interesse em contribuir com o projeto? Siga o tutorial abaixo:
