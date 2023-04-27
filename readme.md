@@ -98,16 +98,17 @@ Fazendo um pull request
 2- O GitHub levará você para uma página que mostra as diferenças entre o fork e o projeto. Clique em Criar solicitação de pull.
 
 3- GitHub levará você a uma página onde você pode inserir um título e uma descrição das suas alterações. É importante fornecer tantas informações úteis e uma razão para o motivo de você estar fazendo este pull request. Por fim, clique em Criar solicitação de pull.
+
 ## Autoria e suporte
 Backend:
-- Ana Carolina Guimarães / a.carolina1903@gmail.com
-- Cleiton Ribeiro da Silva / cleiton_ribeiro@live.com
-- Thiago Soares Bellico / thiagobellico@Outlook.com 
+- Ana Carolina Guimarães - a.carolina1903@gmail.com
+- Cleiton Ribeiro da Silva - cleiton_ribeiro@live.com
+- Thiago Soares Bellico - thiagobellico@Outlook.com 
 
 Frontend:
-- Anderson Rodrigues de Souza / Andersonrodirgues@hotmail.com 
-- Barbara Vitoria dos Santos Silva / barbaravitoria.sts@gamil.com
-- Daniel Xavier Rodrigues / contato_danielrodrigues@outlook.com
+- Anderson Rodrigues de Souza - Andersonrodirgues@hotmail.com 
+- Barbara Vitoria dos Santos Silva - barbaravitoria.sts@gamil.com
+- Daniel Xavier Rodrigues - contato_danielrodrigues@outlook.com
 
 ## Referências
 Algumas referências retiramos de alguns sites como; 
