@@ -40,7 +40,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 6.	Após a execução, abrir a URL http://localhost:8080/console no seu navegador;
 7.	Com o console aberto, informar a senha “sa”;
-8.	Acessar o diretório [Script - Banco de Dados](./residup/docs/modelo_DER_MER/ScriptTables_DB_H2.txt) e copiar o texto;
+8.	Acessar o diretório [Script - Banco de Dados](./docs/modelo_DER_MER/ScriptTables_DB_H2.txt) e copiar o texto;
 9. Informe o script na caixa de texto do banco, e clique em “Run”;
 
    Obs: Importante executar o script do banco, caso não realize essas etapas. Sujeito a erro!
