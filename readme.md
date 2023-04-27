@@ -2,8 +2,7 @@
 
 [PROJETO INTEGRADOR III - Turma B]
 
-![image](https://user-images.githubusercontent.com/88353387/234729533-3b74873b-4251-43ee-9f92-a73e09e5b320.png)
-
+<h1 align = "center"> <img src = "https://user-images.githubusercontent.com/88353387/234729533-3b74873b-4251-43ee-9f92-a73e09e5b320.png" /><h1/>
 
 ## Introdução
 O sistema foi desenvolvido para melhorar a comunicação entre os serviços do condomínio e os moradores do prédio, proporcionando uma experiência mais segura e organizada.
