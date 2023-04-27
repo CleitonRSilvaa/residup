@@ -19,18 +19,20 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 ## Instalação
 
-``` git bash
-# Clone este repositório
-$ git clone https://github.com/CleitonRSilvaa/residup.git
+- Git bash
+##### Clone este repositório
+ git clone https://github.com/CleitonRSilvaa/residup.git
 
-``` IntelliJ
+- IntelliJ
 1.	Iniciar o IntelliJ;
 2.	Abra um novo projeto, selecionando a pasta do repositório;
 3.	Clique no botão “Load” para ativar o carregamento do Maven;
+
  ![image](https://user-images.githubusercontent.com/88353387/234722458-0ac41803-7429-4ec7-9895-ab4dc7a86eff.png)
 
 4.	Após o download, será apresentado as funções Maven no canto superior direito;
 5.	Executar o comando Plugins/tomcat7/tomcat7:run
+
 ![image](https://user-images.githubusercontent.com/88353387/234722479-125a4dc5-28cc-4d75-9816-e8cc0ff13b6f.png)
 
 6.	Após a execução, abrir a URL http://localhost:8080/ no seu navegador;
