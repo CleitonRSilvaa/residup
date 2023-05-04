@@ -40,8 +40,7 @@
             </ul>
         </nav>
     </div>
-</body>
-<body>
+
     <section class="container">
         <div class="wrapper">
             <div class="text">Adicionar novo visitante</div>
@@ -67,4 +66,5 @@
         </div>
     </section>
 </body>
+
 </html>
