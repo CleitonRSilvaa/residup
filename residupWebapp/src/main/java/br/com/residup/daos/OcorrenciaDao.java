@@ -48,17 +48,11 @@ public class OcorrenciaDao {
 
             int linhasRetorno = instrucao.executeUpdate();
 
-            if (linhasRetorno > 0) {
-                retorno = true;
-            } else {
-                retorno = false;
-            }
+            return linhasRetorno > 0;
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-        return retorno;
     }
 
     public static ArrayList<Ocorrencia> listar() {
@@ -133,17 +127,16 @@ public class OcorrenciaDao {
     }
 
     public static void selecionar(Ocorrencia ocorrencia) {
-        String read2 = "SELECT * FROM REGISTRO_OCORRENCIAe WHERE ID_OCORRENCIA=?";
+        String read2 = "SELECT * FROM REGISTRO_OCORRENCIA WHERE ID_OCORRENCIA=?";
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(read2);
             pst.setInt(1, ocorrencia.getId());
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String id = rs.getString(1);
-                String titulo = rs.getString(2);
-                String texto = rs.getString(3);
-                String resolucao = rs.getString(4);
+                ocorrencia.setTitulo(rs.getString("TITULO"));
+                ocorrencia.setTexto(rs.getString("OCORRENCIA"));
+                ocorrencia.setResolucao(rs.getString("RESOLUCAO"));
             }
             connection.close();
         } catch (Exception e) {

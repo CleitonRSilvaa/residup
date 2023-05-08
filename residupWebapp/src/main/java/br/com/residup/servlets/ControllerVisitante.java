@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -57,6 +58,10 @@ public class ControllerVisitante extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
+
+        HttpSession session = request.getSession(false);
+        String cpf = (String) session.getAttribute("cpf");
+
         if (action.equals("/insert")) {
             adicionarVisitante(request, response);
             return;
@@ -167,7 +172,6 @@ public class ControllerVisitante extends HttpServlet {
                 tabela.addCell(lista.get(i).getFone());
             }
             documento.add(tabela);
-            documento.close();
         } catch (Exception e) {
             System.out.println(e);
             documento.close();

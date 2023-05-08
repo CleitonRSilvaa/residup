@@ -40,8 +40,8 @@
                 <%
                     for (int i = 0; i < lista.size(); i++) {
                 %>
-                
-                
+
+
                 <tr scope="row">
                     <td id= <%=lista.get(i).getId()%> ><%=lista.get(i).getId()%></td>
                     <td><%=lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%></td>

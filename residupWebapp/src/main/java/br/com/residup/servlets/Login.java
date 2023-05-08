@@ -25,15 +25,22 @@ public class Login extends HttpServlet {
         String senha = request.getParameter("senha");
         Morador morador = new Morador(cpf, senha);
 
-        boolean loginValido = LoginDao.logar(morador);
+        LoginDao loginDao = LoginDao.getInstance();
+        boolean loginValido = loginDao.logar(morador);
 
         if (loginValido) {
             HttpSession session = request.getSession();
             session.setAttribute("cpf", cpf);
-            response.sendRedirect(".jsp");
+            response.sendRedirect("/visitantes");
+            System.out.println("Login finalizado com sucesso!");
         } else {
+            System.out.println("Login não encontrado/incorreto");
             request.setAttribute("error", "CPF e/ou senha incorretos.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
+
+
+
+
 }
