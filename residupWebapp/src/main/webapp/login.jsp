@@ -1,11 +1,7 @@
-<%@page import="br.com.residup.models.Visitante"%>
-<%@page language="java" contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8"%>
+<%@page import="br.com.residup.models.Morador"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-
-%>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -26,18 +22,16 @@
 <body>
     <header>
         <h1><a href="#">RESIDUP</a></h1>
-
     </header>
     <main>
-        <form>
+        <form action="${pageContext.request.contextPath}/login" method="post">
             <section class="makelogin">
                 <h2>Login</h2>
             </section>
             <section class="inputs-container">
-                <input type="CPF" placeholder="123.456.789-10">
-
+                <input type="text" name="cpf" placeholder="123.456.789-10">
                 <div class="password-container">
-                    <input type="password" id="field-password" class="field-password" placeholder="******">
+                    <input type="password" id="field-password" class="field-password" name="senha" placeholder="******">
                     <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
                     <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
                 </div>
@@ -52,7 +46,7 @@
                 <a href="#">Esqueceu sua senha?</a>
             </section>
 
-            <button id="btn-login">Entrar</button>
+            <button type="submit" id="btn-login">Entrar</button>
         </form>
     </main>
     <footer>

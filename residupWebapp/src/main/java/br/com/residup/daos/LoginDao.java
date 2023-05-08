@@ -35,27 +35,28 @@ public class LoginDao {
         return instance;
     }
 
-    public static boolean logar(Morador morador) {
+    public boolean logar(Morador morador) {
         StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
         boolean retorno = false;
-        try (Connection connection = abrirConexao();
-             PreparedStatement instrucao = connection
-                .prepareStatement("SELECT * FROM MORADOR WHERE CPF = ? AND SENHA_ACESSO = ?")) {
+        try (
+                PreparedStatement instrucao = connection.prepareStatement("SELECT * FROM MORADOR WHERE CPF = ?")
+        ) {
             instrucao.setString(1, morador.getCpf());
-            instrucao.setString(2, passwordEncryptor.encryptPassword(morador.getSenhaDeAcesso()));
 
-            int linhasRetorno = instrucao.executeUpdate();
+            ResultSet rs = instrucao.executeQuery();
 
-            if (linhasRetorno > 0) {
-                retorno = true;
+            if (rs.next() && passwordEncryptor.checkPassword(morador.getSenhaDeAcesso(), rs.getString("SENHA_ACESSO"))) {
+                System.out.println("Morador encontrado!");
+                return true;
             } else {
-                retorno = false;
+                return false;
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar a consulta: " + e.getMessage());
             throw new RuntimeException(e);
         }
-
-        return retorno;
     }
+
+
 }
