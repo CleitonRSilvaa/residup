@@ -1,8 +1,7 @@
 package br.com.residup.servlets;
 
 
-import br.com.residup.daos.PerfilDao;
-import br.com.residup.models.Perfil;
+import br.com.residup.daos.PerfilMoradorDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +12,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet("/encontrar-perfil")
+@WebServlet("/encontrar-perfil-morador")
 public class PerfilMorador extends HttpServlet{
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
             try {
-                ArrayList<Perfil> moradorPerfil = new PerfilDao().encontrarPerfil();
+                ArrayList<br.com.residup.models.PerfilMorador> moradorPerfil = new PerfilMoradorDao().encontrarMorador();
 
                 req.setAttribute("moradorPerfil", moradorPerfil);
 

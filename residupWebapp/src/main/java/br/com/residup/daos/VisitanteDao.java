@@ -68,7 +68,6 @@ public  class VisitanteDao {
 				v.setFone(fone);
 				visitantes.add(v);
 			}
-			connection.close();
 			return visitantes;
 		} catch (Exception e) {
 			System.out.println(e);

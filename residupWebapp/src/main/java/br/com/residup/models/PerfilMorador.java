@@ -1,6 +1,6 @@
 package br.com.residup.models;
 
-public class Perfil {
+public class PerfilMorador {
 
     private int id ;
     private String nome;
