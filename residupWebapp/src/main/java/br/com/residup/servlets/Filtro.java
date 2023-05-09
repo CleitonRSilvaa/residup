@@ -22,12 +22,18 @@ public class Filtro implements Filter {
         String loginURL = req.getContextPath() + "/login"; // Substitua "/login" pela URL real do processo de login
         boolean isLoginRequest = req.getRequestURI().equals(loginURL);
 
+        if (req.getServletPath().equals("/console")){
+            chain.doFilter(request, response);
+            return;
+        }
+
+
         if (sessao == null || sessao.getAttribute("cpf") == null) {
             if (isLoginRequest) {
                 // Permite que a solicitação de login prossiga normalmente sem redirecionamento
                 chain.doFilter(request, response);
             } else {
-                res.sendRedirect("login.jsp");
+                res.sendRedirect("login");
             }
         } else {
             chain.doFilter(request, response);
