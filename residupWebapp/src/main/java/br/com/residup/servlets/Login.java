@@ -32,10 +32,7 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("cpf", cpf);
             response.sendRedirect("/visitantes");
-//            String idzao = loginDao.recuperarId(cpf);
-            System.out.println("");
-            System.out.println("select return id");
-            session.setAttribute("id_morador", "");
+            session.setAttribute("id_morador", loginDao.recuperarId(cpf));
             System.out.println("Login finalizado com sucesso!");
         } else {
             System.out.println("Login não encontrado/incorreto");

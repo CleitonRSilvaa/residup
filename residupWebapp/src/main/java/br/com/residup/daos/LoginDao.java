@@ -54,35 +54,22 @@ public class LoginDao {
             } else {
                 return false;
             }
-
         } catch (SQLException e) {
             System.out.println("Erro ao executar a consulta: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
 
-
-    public void recuperarId(String cpf) {
-        try (
-                PreparedStatement instrucao = connection.prepareStatement("SELECT * FROM MORADOR WHERE CPF = ?")
-        ) {
-            String a = cpf;
-            System.out.println(a);
-            instrucao.setString(1, a);
-            System.out.println(cpf);
+    public String recuperarId(String cpf) {
+        try (PreparedStatement instrucao =
+                     connection.prepareStatement("SELECT * FROM MORADOR WHERE CPF = ?")) {
+            instrucao.setString(1, cpf);
             ResultSet rs = instrucao.executeQuery();
-            while (rs.next()){
-                System.out.println(rs.getString(1));
-            }
-
-            String aaaa = rs.getString(1);
-
+            rs.next();
+            return rs.getString(1);
         } catch (SQLException e) {
             System.out.println("Erro ao executar a consulta: " + e.getMessage());
             throw new RuntimeException(e);
         }
-
     }
-
-
 }
