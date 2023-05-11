@@ -1,5 +1,6 @@
 package br.com.residup.servlets;
 
+import br.com.residup.daos.LoginDao;
 import br.com.residup.daos.OcorrenciaDao;
 import br.com.residup.models.Ocorrencia;
 
@@ -79,24 +80,32 @@ public class RegistroOcorrencia extends HttpServlet {
         ArrayList<Ocorrencia> lista = OcorrenciaDao.listar();
         request.setAttribute("ocorrencias", lista);
         request.getParameter("validator");
-        RequestDispatcher rd = request.getRequestDispatcher("ocorrencias.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("registroOcorrencias.jsp");
         rd.forward(request, response);
     }
 
 
     protected void registrarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        LoginDao loginDao = LoginDao.getInstance();
         String titulo = request.getParameter("titulo");
         String texto = request.getParameter("texto");
-        int id_morador = Integer.parseInt(request.getParameter("id_morador"));
-        var ocorrencia = new Ocorrencia(titulo, texto, null, id_morador);
-        System.out.println(ocorrencia);
+        int id_morador = Integer.parseInt(loginDao.recuperarId(loginDao.recuperarCpf(request)));
+        var ocorrencia = new Ocorrencia(titulo, texto, "", id_morador);
+
+
         if (OcorrenciaDao.registrar(ocorrencia)) {
-            request.getSession().setAttribute("validator", true);
-        } else
+            request.setAttribute("validator", true);
+            System.out.println("Ocorrência registrada com sucesso.");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.sendRedirect("registroOcorrencia.jsp");
+
+        } else {
             request.getSession().setAttribute("validator", false);
-        response.sendRedirect("");
+            System.out.println("Erro ao registrar ocorrência.");
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     protected void listarOcorrencia(HttpServletRequest request, HttpServletResponse response)

@@ -3,6 +3,8 @@ package br.com.residup.daos;
 import br.com.residup.models.Morador;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,11 +67,21 @@ public class LoginDao {
                      connection.prepareStatement("SELECT * FROM MORADOR WHERE CPF = ?")) {
             instrucao.setString(1, cpf);
             ResultSet rs = instrucao.executeQuery();
-            rs.next();
-            return rs.getString(1);
+            if (rs.next()) {
+                return rs.getString(1);
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             System.out.println("Erro ao executar a consulta: " + e.getMessage());
             throw new RuntimeException(e);
         }
+    }
+
+    public String recuperarCpf(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String cpf = (String) session.getAttribute("cpf");
+
+        return cpf;
     }
 }

@@ -38,6 +38,8 @@ public class Login extends HttpServlet {
             System.out.println("Login não encontrado/incorreto");
             request.setAttribute("error", "CPF e/ou senha incorretos.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            session.invalidate();
         }
     }
 

@@ -160,7 +160,6 @@
                         'Visitante cadastrado.',
                         'success'
                         );
-                        window.location.href ="visitante"
             </script>
         </c:if>
     </body>

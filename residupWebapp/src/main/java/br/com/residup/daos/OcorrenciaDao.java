@@ -42,15 +42,17 @@ public class OcorrenciaDao {
         boolean retorno = false;
         try (Connection connection = abrirConexao();
              PreparedStatement instrucao = connection
-                     .prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA) VALUES (?, ?)")) {
+                     .prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR) VALUES (?, ?, ?)")) {
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
+            instrucao.setInt(3, ocorrencia.getId_morador());
 
             int linhasRetorno = instrucao.executeUpdate();
-
             return linhasRetorno > 0;
 
         } catch (SQLException | ClassNotFoundException e) {
+            System.out.println("erro:" + e.getMessage());
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
