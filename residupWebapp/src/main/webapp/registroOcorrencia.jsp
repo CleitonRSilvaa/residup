@@ -40,18 +40,20 @@
             </ul>
         </nav>
     </div>
+    <form action="occurrenceInsert" method="post">
     <section class="container">
         <div class="wrapper">
             <div class="text">Registrar nova ocorrência</div>
             <div class="buttons">
-                <input type="text" placeholder="Título da ocorrência">
-                <button type="button">Salvar ocorrência</button>
+                <input name="titulo" type="text" placeholder="Título da ocorrência">
+                <button type="submit">Salvar ocorrência</button>
             </div>
             <div class="character">
-                <textarea name="character" id="txtcharacter" cols="30" rows="10"></textarea>
+                <textarea name="texto" id="txtcharacter" cols="30" rows="10"></textarea>
             </div>
         </div>
     </section>
+    </form>
     <section class="container">
         <div class="wrapper">
             <div class="text">Minhas ocorrências</div>

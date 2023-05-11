@@ -42,7 +42,7 @@ public class OcorrenciaDao {
         boolean retorno = false;
         try (Connection connection = abrirConexao();
              PreparedStatement instrucao = connection
-                     .prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA) VALUES (?, ?")) {
+                     .prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA) VALUES (?, ?)")) {
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
 
@@ -66,7 +66,8 @@ public class OcorrenciaDao {
                 String titulo = rs.getString(2);
                 String texto = rs.getString(3);
                 String resolucao = rs.getString(4);
-                var registroOcorrencia = new Ocorrencia(titulo, texto, resolucao);
+                int id_morador = rs.getInt(5);
+                var registroOcorrencia = new Ocorrencia(titulo, texto, resolucao, id_morador);
                 registroOcorrencia.setId(id);
                 ocorrencias.add(registroOcorrencia);
             }

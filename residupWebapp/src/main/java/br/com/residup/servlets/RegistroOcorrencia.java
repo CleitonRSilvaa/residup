@@ -89,8 +89,9 @@ public class RegistroOcorrencia extends HttpServlet {
 
         String titulo = request.getParameter("titulo");
         String texto = request.getParameter("texto");
-        String resolucao = request.getParameter("resolucao");
-        var ocorrencia = new Ocorrencia(titulo, texto, resolucao);
+        int id_morador = Integer.parseInt(request.getParameter("id_morador"));
+        var ocorrencia = new Ocorrencia(titulo, texto, null, id_morador);
+        System.out.println(ocorrencia);
         if (OcorrenciaDao.registrar(ocorrencia)) {
             request.getSession().setAttribute("validator", true);
         } else
