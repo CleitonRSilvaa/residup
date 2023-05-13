@@ -32,7 +32,7 @@
     </head>
 
     <body>
-        <form >
+        <form action="insertReserva" method="post" >
             <span class="titulo-pagina">Reserva Area</span>
             <div class="container">
                 <div class="row">
@@ -42,7 +42,7 @@
                             <select class="form-control" id="areaSelect">
                                 <option></option>
                                 <%for (int i = 1; i < 6; i++) {%>
-                                    <option>¡rea <%=i%></option>
+                                    <option>√Årea <%=i%></option>
                                 <%}%>
                             </select>
                         </div>
@@ -57,7 +57,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
 
-                            <label for="horarioSelect">HOR¡RIO</label>
+                            <label for="horarioSelect">HOR√íRIO</label>
                             <select class="form-control" id="horarioSelect">
                                 <option></option>
                                 <%
