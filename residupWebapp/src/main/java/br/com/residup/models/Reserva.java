@@ -1,63 +1,88 @@
 package br.com.residup.models;
 
 
-import java.util.Date;
-
 public class Reserva {
 
-    int id_reserva;
-    int id_morador;
-    int id_area;
+    private int idReserva;
+    private int idMorador;
+    private int idArea ;
 
-    String date_reserva;
-    String area;
-    String hora_reserva;
+    private  String dateReserva;
+    private String nomeArea;
+    private String horaReserva;
 
-    public int getId_reserva() {
-        return id_reserva;
+
+    public Reserva(int idReserva, int idMorador, int idArea, String dateReserva, String nomeArea, String horaReserva) {
+        this.idReserva = idReserva;
+        this.idMorador = idMorador;
+        this.idArea = idArea;
+        this.dateReserva = dateReserva;
+        this.nomeArea = nomeArea;
+        this.horaReserva = horaReserva;
     }
 
-    public void setId_reserva(int id_reserva) {
-        this.id_reserva = id_reserva;
+
+    public static ReserbaBuilder builder(){
+        return new ReserbaBuilder();
     }
 
-    public int getId_morador() {
-        return id_morador;
+    public int getIdReserva() {
+        return idReserva;
     }
 
-    public void setId_morador(int id_morador) {
-        this.id_morador = id_morador;
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
     }
 
-    public int getId_area() {
-        return id_area;
+    public int getIdMorador() {
+        return idMorador;
     }
 
-    public void setId_area(int id_area) {
-        this.id_area = id_area;
+    public void setIdMorador(int idMorador) {
+        this.idMorador = idMorador;
     }
 
-    public String getDate_reserva() {
-        return date_reserva;
+    public int getIdArea() {
+        return idArea;
     }
 
-    public void setDate_reserva(String date_reserva) {
-        this.date_reserva = date_reserva;
+    public void setIdArea(int idArea) {
+        this.idArea = idArea;
     }
 
-    public String getArea() {
-        return area;
+    public String getDateReserva() {
+        return dateReserva;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setDateReserva(String dateReserva) {
+        this.dateReserva = dateReserva;
     }
 
-    public String getHora_reserva() {
-        return hora_reserva;
+    public String getNomeArea() {
+        return nomeArea;
     }
 
-    public void setHora_reserva(String hora_reserva) {
-        this.hora_reserva = hora_reserva;
+    public void setNomeArea(String nomeArea) {
+        this.nomeArea = nomeArea;
+    }
+
+    public String getHoraReserva() {
+        return horaReserva;
+    }
+
+    public void setHoraReserva(String horaReserva) {
+        this.horaReserva = horaReserva;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "idReserva=" + idReserva +
+                ", idMorador=" + idMorador +
+                ", idArea=" + idArea +
+                ", dateReserva='" + dateReserva + '\'' +
+                ", nomeArea='" + nomeArea + '\'' +
+                ", horaReserva='" + horaReserva + '\'' +
+                '}';
     }
 }
