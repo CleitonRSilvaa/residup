@@ -3,12 +3,13 @@ package br.com.residup.daos;
 
 
 import br.com.residup.models.Reserva;
-import br.com.residup.models.Visitante;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,12 +42,16 @@ public class ReservaDao {
         return instance;
     }
 
-    public boolean moradorTemRederva(int id_morador) throws SQLException {
+    public boolean moradorTemRederva(Reserva reserva) throws SQLException {
         boolean retorno = false;
-        String qurey = "SELECT ID_MORADOR FROM RESERVA_AREA WHERE ID_MORADOR  = ?;";
+        String qurey = "SELECT ID_MORADOR FROM RESERVA_AREA WHERE ID_MORADOR  = ? AND DATA_RESERVA = ? ;";
         try {
+            Connection connection = abrirConexao();
+
             PreparedStatement pst = connection.prepareStatement(qurey);
-            pst.setInt(1, id_morador);
+            pst.setInt(1, reserva.getIdMorador());
+            pst.setString(2, reserva.getDateReserva());
+
             ResultSet rs = pst.executeQuery();
             retorno = rs.next();
 
@@ -67,10 +72,12 @@ public class ReservaDao {
                 "AND HORA_RESERVA  = ?  " +
                 "AND ID_AREA = ?;";
         try {
+            Connection connection = abrirConexao();
+
             PreparedStatement pst = connection.prepareStatement(qurey);
-            pst.setString(1, reserva.getDate_reserva());
-            pst.setString(2, reserva.getHora_reserva());
-            pst.setInt(3, reserva.getId_morador());
+            pst.setString(1, reserva.getDateReserva());
+            pst.setString(2, reserva.getHoraReserva());
+            pst.setInt(3, reserva.getIdArea());
             ResultSet rs = pst.executeQuery();
             retorno = rs.next();
 
@@ -90,14 +97,14 @@ public class ReservaDao {
     public boolean insertReserva(Reserva reserva) {
         Boolean retorno = false;
         String create = "INSERT INTO RESERVA_AREA (DATA_RESERVA, HORA_RESERVA, ID_MORADOR, ID_AREA)\n" +
-                "VALUES (TIMESTAMP ?, ?, ?, ?);";
+                "VALUES ( ?, ?, ?, ?);";
         try {
-//            Connection connection = abrirConexao();
+            Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(create);
-            pst.setString(1, reserva.getDate_reserva());
-            pst.setString(2, reserva.getHora_reserva());
-            pst.setInt(3, reserva.getId_morador());
-            pst.setInt(4, reserva.getId_area());
+            pst.setString(1, reserva.getDateReserva());
+            pst.setString(2, reserva.getHoraReserva());
+            pst.setInt(3, reserva.getIdMorador());
+            pst.setInt(4, reserva.getIdArea());
 
             int linhasRetorno =  pst.executeUpdate();
             connection.close();
@@ -113,14 +120,12 @@ public class ReservaDao {
     }
     public boolean deleteReserva(Reserva reserva) {
         Boolean retorno = false;
-        String create = "DELETE * FROM RESERVA_AREA WHERE ID_RESERVA = ? AND ID_MORADOR = ?);";
+        String create = "DELETE FROM RESERVA_AREA WHERE ID_RESERVA_AREA = ? AND ID_MORADOR = ?;";
         try {
-//            Connection connection = abrirConexao();
+            Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(create);
-            pst.setString(1, reserva.getDate_reserva());
-            pst.setString(2, reserva.getHora_reserva());
-            pst.setInt(3, reserva.getId_morador());
-            pst.setInt(4, reserva.getId_area());
+            pst.setInt(1, reserva.getIdReserva());
+            pst.setInt(2, reserva.getIdMorador());
 
             int linhasRetorno =  pst.executeUpdate();
             connection.close();
@@ -128,11 +133,79 @@ public class ReservaDao {
 
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getLocalizedMessage());
-            throw new RuntimeException("----->>>> Erro ao executar insert reserva ");
+            throw new RuntimeException("----->>>> Erro ao executar delete  reserva ");
         }catch (Exception e){
             System.out.println(e.getLocalizedMessage());
             return retorno;
         }
+    }
+
+    public List areas() throws SQLException {
+        List <Reserva> areaList = new ArrayList<>();
+        String qurey = "SELECT * FROM AREA;" ;
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(qurey);
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String nomeArea = rs.getString(2);
+               var area = Reserva.builder()
+                        .idArea(id)
+                        .nomeArea(nomeArea).build();
+                areaList.add(area);
+            }
+            connection.close();
+            return areaList;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query ares() ");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return areaList;
+        }
+
+    }
+
+    public List reservas(int id_morador) throws SQLException {
+
+        List <Reserva> reservaList = new ArrayList<>();
+        String qurey = "SELECT * FROM RESERVA_AREA  R \n" +
+                "INNER JOIN  AREA  A\n" +
+                "ON R.ID_AREA= A.ID_AREA\n" +
+                "WHERE ID_MORADOR = ?;";
+        try {
+            Connection connection = abrirConexao();
+
+            PreparedStatement pst = connection.prepareStatement(qurey);
+            pst.setInt(1, id_morador);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String data = rs.getString(2);
+                String hora = rs.getString(3);
+                String area = rs.getString(7);
+                var reserva = Reserva.builder()
+                        .idReserva(id)
+                        .dateReserva(data)
+                        .horaReserva(hora)
+                        .nomeArea(area).build();
+                reservaList.add(reserva);
+            }
+
+            connection.close();
+            return reservaList;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query TemReserva() ");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return reservaList;
+        }
+
     }
 
 
