@@ -40,9 +40,8 @@ public class OcorrenciaDao {
 
     public static boolean registrar(Ocorrencia ocorrencia) {
         boolean retorno = false;
-        try (Connection connection = abrirConexao();
-             PreparedStatement instrucao = connection
-                     .prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR) VALUES (?, ?, ?)")) {
+        try {Connection connection = abrirConexao();
+            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR) VALUES (?, ?, ?)");
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
             instrucao.setInt(3, ocorrencia.getId_morador());
@@ -50,12 +49,15 @@ public class OcorrenciaDao {
             int linhasRetorno = instrucao.executeUpdate();
             return linhasRetorno > 0;
 
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("erro:" + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
             e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public static ArrayList<Ocorrencia> listar() {
         try (Connection connection = abrirConexao();
