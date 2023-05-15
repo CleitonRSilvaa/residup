@@ -12,6 +12,9 @@ public class Morador {
     private String  bloco;
     private String  senhaDeAcesso;
 
+    private String enderecoFoto;
+
+
     public Morador(String nome, String sobrenome, String cpf, String rg, String numeroApartamento, String bloco, String senhaDeAcesso) {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -124,4 +127,13 @@ public class Morador {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getEnderecoFoto() {
+        return enderecoFoto;
+    }
+
+    public void setEnderecoFoto(String enderecoFoto) {
+        this.enderecoFoto = enderecoFoto;
+    }
+
 }

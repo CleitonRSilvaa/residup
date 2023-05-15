@@ -1,3 +1,15 @@
+<%@page import="br.com.residup.models.Morador"%>
+
+<%--<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%
+    Morador morador = (Morador) request.getAttribute("morador");
+
+%>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -46,36 +58,44 @@
         <div class="meuPerfil">
             <p>Meu perfil</p>
         </div>
-        <div class="containerDados">
-            <div class="dados">
-                <div class="image">
+        <form  name="perfil" action="encontrar-perfil-morador" method="post" enctype="multipart/form-data">
+            <div class="containerDados">
+                <div class="dados">
+                    <div class="image">
+                            <label for="file">Choose file</label>
+                            <input type="file" name="file" id="file">
+
+                    </div>
+                    <div class="itemDados">
+                        <input type="text" class="campo" placeholder="Nome do titular:" value="<%= morador.getNome() + ' ' + morador.getSobrenome() %>"  readonly >
+                        <input type="text" class="campo" placeholder="CPF do titular:" value= <%= morador.getCpf() %>  readonly>
+                        <input type="text" class="campo" placeholder="RG do titular:" value= <%= morador.getRg() %>  readonly>
+                        <a id="button" href="#">Alterar senha</a>
+                    </div>
                 </div>
-                <div class="itemDados">
-                    <input type="text" class="campo" placeholder="Nome do titular:">
-                    <input type="text" class="campo" placeholder="CPF do titular:">
-                    <input type="text" class="campo" placeholder="RG do titular:">
-                    <a id="button" href="#">Alterar senha</a>
+                <div class="end">
+                    <div class="caixas">
+                        <input type="text" class="text" placeholder="Número do apartamento" value= <%= morador.getNumeroApartamento() %>  readonly>
+                        <input type="text" class="text" placeholder="Número do bloco" value= <%= morador.getBloco() %>  readonly>
+                    </div>
+                    <input type="text" id="especifie" class="text" placeholder="Moradores da casa">
+                    <input type="text" id="especifie" class="text" placeholder="Nome do morador 2">
+                    <div class="caixas">
+                        <input type="text" class="text" placeholder="RG do morador 2">
+                        <input type="text" class="text" placeholder="CPF do morador 2">
+                    </div>
+                    <input type="text" id="especifie" class="text">
+                    <div class="caixas">
+                        <input type="text" class="text">
+                        <input type="text" class="text">
+                    </div>
                 </div>
             </div>
-            <div class="end">
-                <div class="caixas">
-                    <input type="text" class="text" placeholder="Número do apartamento">
-                    <input type="text" class="text" placeholder="Número do bloco">
-                </div>
-                <input type="text" id="especifie" class="text" placeholder="Moradores da casa">
-                <input type="text" id="especifie" class="text" placeholder="Nome do morador 2">
-                <div class="caixas">
-                    <input type="text" class="text" placeholder="RG do morador 2">
-                    <input type="text" class="text" placeholder="CPF do morador 2">
-                </div>
-                <input type="text" id="especifie" class="text">
-                <div class="caixas">
-                    <input type="text" class="text">
-                    <input type="text" class="text">
-                </div>
-            </div>
-        </div>
+            <button type="submit">Save</button>
+        </form>
     </div>
 </section>
+
+
 </body>
 </html>
