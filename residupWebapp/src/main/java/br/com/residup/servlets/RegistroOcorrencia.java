@@ -80,7 +80,7 @@ public class RegistroOcorrencia extends HttpServlet {
         ArrayList<Ocorrencia> lista = OcorrenciaDao.listar();
         request.setAttribute("ocorrencias", lista);
         request.getParameter("validator");
-        RequestDispatcher rd = request.getRequestDispatcher("registroOcorrencias.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("Ocorrencias.jsp");
         rd.forward(request, response);
     }
 
@@ -98,7 +98,7 @@ public class RegistroOcorrencia extends HttpServlet {
             request.setAttribute("validator", true);
             System.out.println("Ocorrência registrada com sucesso.");
             response.setStatus(HttpServletResponse.SC_OK);
-            response.sendRedirect("registroOcorrencia.jsp");
+            response.sendRedirect("Ocorrencias.jsp");
 
         } else {
             request.getSession().setAttribute("validator", false);

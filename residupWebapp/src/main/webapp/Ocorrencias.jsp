@@ -48,19 +48,22 @@
 </nav>
 </div>
 <section class="container">
-<div class="NovaOcor">
-  <div class="text">Registrar nova ocorrência</div>
-  <div class="buttons">
-    <input type="text" placeholder="Título da ocorrência" name="Title">
-    <button type="button">
-      <h4>Salvar ocorrência</h4>
-    </button>
+  <div class="NovaOcor">
+    <div class="text">Registrar nova ocorrência</div>
+    <form action="occurrenceInsert" method="post">
+      <div class="buttons">
+        <input type="text" placeholder="Título da ocorrência" name="titulo">
+        <button type="submit">
+          <h4>Salvar ocorrência</h4>
+        </button>
+      </div>
+      <div class="character">
+        <textarea name="texto" id="txtcharacter" cols="30" rows="10"></textarea>
+      </div>
+    </form>
   </div>
-  <div class="character">
-    <textarea name="character" id="txtcharacter" cols="30" rows="10"></textarea>
-  </div>
-</div>
 </section>
+
 <section class="container">
 <div class="wrapper">
   <div class="text">Minhas ocorrências</div>
