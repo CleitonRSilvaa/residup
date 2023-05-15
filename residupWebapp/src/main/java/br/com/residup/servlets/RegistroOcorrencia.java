@@ -98,7 +98,7 @@ public class RegistroOcorrencia extends HttpServlet {
             request.setAttribute("validator", true);
             System.out.println("Ocorrência registrada com sucesso.");
             response.setStatus(HttpServletResponse.SC_OK);
-            response.sendRedirect("Ocorrencias.jsp");
+            response.sendRedirect("registroOcorrencia.jsp");
 
         } else {
             request.getSession().setAttribute("validator", false);
