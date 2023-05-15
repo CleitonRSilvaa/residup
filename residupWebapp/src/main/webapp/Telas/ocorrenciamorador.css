@@ -206,10 +206,10 @@ html {
     color: #1e1e1e;
     font-family: 'Arial';
     font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 17px;
+    height: 33px;
+    border-radius: 15px;
     width: 15%;
-    float: right;
+    margin-right: %;
   }
   
   button h4 {
@@ -278,22 +278,6 @@ html {
   
   }
   
-  .group .x {
-    width: 25%;
-    height: 10px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
-    outline: none;
-    border: 2px solid transparent;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 15px;
-    color: #616161;
-    transition: all 0.4s ease;
-    display: inline-block;
-  
-  }
-  
   .group .oc {
     width: 10%;
     height: 10px;
@@ -301,39 +285,25 @@ html {
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-  
-    margin-right: 5px;
-    font-size: 15px;
-    color: #616161;
-    transition: all 0.4s ease;
-    display: inline-block;
-  
-  
-  }
-  
-  .group .edta {
-    width: 10%;
-    height: 10px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
-    outline: none;
-    border: 2px solid transparent;
     margin-left: 20%;
-    margin-right: 5px;
+    margin-right: 2%;
     font-size: 15px;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
   
+  
   }
-  .group .exc {
+  
+  .group .editar {
     width: 12%;
-    height: 10px;
+    height: 35px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-right: 5px;
+    margin-left: 1px;
+    margin-right: 2%;
     font-size: 15px;
     color: #616161;
     transition: all 0.4s ease;
@@ -370,21 +340,6 @@ html {
   
   }
   
-  .group-2 .x {
-    width: 25%;
-    height: 10px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
-    outline: none;
-    border: 2px solid transparent;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 15px;
-    color: #616161;
-    transition: all 0.4s ease;
-    display: inline-block;
-  
-  }
   
   .group-2 .oc {
     width: 10%;
@@ -393,46 +348,30 @@ html {
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-  
-    margin-right: 5px;
-    font-size: 15px;
-    color: #616161;
-    transition: all 0.4s ease;
-    display: inline-block;
-  
-  
-  }
-  
-  .group-2 .edta {
-    width: 10%;
-    height: 10px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
-    outline: none;
-    border: 2px solid transparent;
     margin-left: 20%;
-    margin-right: 5px;
+    margin-right: 2%;
     font-size: 15px;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
-  
   }
-  .group-2 .exc {
+  
+  .group-2 .editar {
     width: 12%;
-    height: 10px;
+    height: 35px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-right: 5px;
+    margin-left: 1px;
+    margin-right: 2%;
     font-size: 15px;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
   
   }
-  
+
   
   .group-2 input:focus {
     border-color: #49ae96;
@@ -463,22 +402,6 @@ html {
   
   }
   
-  .group-3 .x {
-    width: 25%;
-    height: 10px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
-    outline: none;
-    border: 2px solid transparent;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 15px;
-    color: #616161;
-    transition: all 0.4s ease;
-    display: inline-block;
-  
-  }
-  
   .group-3 .oc {
     width: 10%;
     height: 10px;
@@ -486,47 +409,30 @@ html {
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-  
-    margin-right: 5px;
-    font-size: 15px;
-    color: #616161;
-    transition: all 0.4s ease;
-    display: inline-block;
-  
-  
-  }
-  
-  .group-3 .edta {
-    width: 10%;
-    height: 10px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
-    outline: none;
-    border: 2px solid transparent;
     margin-left: 20%;
-    margin-right: 5px;
+    margin-right: 2%;
     font-size: 15px;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
-  
   }
-  .group-3 .exc {
+  
+  .group-3 .editar {
     width: 12%;
-    height: 10px;
+    height: 35px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-right: 5px;
+    margin-left: 1px;
+    margin-right: 2%;
     font-size: 15px;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
   
   }
-  
-  
+ 
   .group-3 input:focus {
     border-color: #49ae96;
   }
