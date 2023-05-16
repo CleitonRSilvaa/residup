@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -131,21 +133,27 @@ public class OcorrenciaDao {
         }
     }
 
-    public static void selecionar(Ocorrencia ocorrencia) {
-        String read2 = "SELECT * FROM REGISTRO_OCORRENCIA WHERE ID_OCORRENCIA=?";
+    public static List<Ocorrencia> selecionar(int idmorador) {
+        String read2 = "SELECT * FROM REGISTRO_OCORRENCIA WHERE ID_MORADOR=?";
+        List<Ocorrencia> ocorrencias = null;
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(read2);
-            pst.setInt(1, ocorrencia.getId());
+            pst.setInt(1, idmorador);
             ResultSet rs = pst.executeQuery();
+
+            ocorrencias = new ArrayList<>();
+
             while (rs.next()) {
+                Ocorrencia ocorrencia = new Ocorrencia();
                 ocorrencia.setTitulo(rs.getString("TITULO"));
-                ocorrencia.setTexto(rs.getString("OCORRENCIA"));
+                ocorrencia.setTexto(rs.getString("TEXTO"));
                 ocorrencia.setResolucao(rs.getString("RESOLUCAO"));
+                ocorrencias.add(ocorrencia);
             }
-            connection.close();
         } catch (Exception e) {
             System.out.println(e);
         }
+        return ocorrencias;
     }
 }

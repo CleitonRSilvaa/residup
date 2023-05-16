@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/Ocorrencia", "/occurrenceInsert", "/occurrenceSelect", "/occurrenceUpdate", "/occurrenceDelete", "/occurrenceResolve"})
 public class RegistroOcorrencia extends HttpServlet {
@@ -110,16 +111,22 @@ public class RegistroOcorrencia extends HttpServlet {
 
     protected void listarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
-        OcorrenciaDao.selecionar(ocorrencias);
-        request.setAttribute("id", ocorrencias.getId());
-        request.setAttribute("titulo", ocorrencias.getTitulo());
-        request.setAttribute("texto", ocorrencias.getTexto());
-        request.setAttribute("resolucao", ocorrencias.getResolucao());
-        RequestDispatcher rd = request.getRequestDispatcher(".jsp");
+        LoginDao loginDao = LoginDao.getInstance();
+
+        // Obtenha o ID da sessão ativa
+        int idmorador =  Integer.parseInt(loginDao.recuperarId(loginDao.recuperarCpf(request)));// Substitua essa linha com a lógica adequada para obter o ID da sessão ativa
+
+        // Recupere as ocorrências relacionadas ao ID da sessão ativa
+        List<Ocorrencia> listaOcorrencias = OcorrenciaDao.selecionar(idmorador); // Ajuste o método para selecionar as ocorrências pelo ID da sessão
+        System.out.println("Tamanho da lista de ocorrencias: " + listaOcorrencias.size());
+
+        request.setAttribute("ocorrencias", listaOcorrencias); // Defina a lista de ocorrências como um atributo no request
+        RequestDispatcher rd = request.getRequestDispatcher("Ocorrencias.jsp");
         rd.forward(request, response);
-        response.sendRedirect("");
     }
+
+
+
 
     protected void removerOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
