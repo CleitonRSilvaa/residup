@@ -1,13 +1,13 @@
 package br.com.residup.daos;
 
 import br.com.residup.models.Ocorrencia;
+import br.com.residup.models.OcorrenciaBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,10 +43,11 @@ public class OcorrenciaDao {
     public static boolean registrar(Ocorrencia ocorrencia) {
         boolean retorno = false;
         try {Connection connection = abrirConexao();
-            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR) VALUES (?, ?, ?)");
+            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR, STATUS) VALUES (?, ?, ?)");
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
             instrucao.setInt(3, ocorrencia.getId_morador());
+            instrucao.setString(4, "Aberto");
 
             int linhasRetorno = instrucao.executeUpdate();
             return linhasRetorno > 0;
@@ -61,20 +62,18 @@ public class OcorrenciaDao {
     }
 
 
-    public static ArrayList<Ocorrencia> listar() {
+    public static ArrayList<Ocorrencia> listarDoMorador(int id_morador) {
         try (Connection connection = abrirConexao();
              PreparedStatement instrucao = connection
-                     .prepareStatement("SELECT * FROM REGISTRO_OCORRENCIA")) {
+                     .prepareStatement("SELECT * FROM REGISTRO_OCORRENCIA WHERE ID_MORADOR= ?")) {
+            instrucao.setInt(1, id_morador);
             ArrayList<Ocorrencia> ocorrencias = new ArrayList<>();
             ResultSet rs = instrucao.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String titulo = rs.getString(2);
-                String texto = rs.getString(3);
-                String resolucao = rs.getString(4);
-                int id_morador = rs.getInt(5);
-                var registroOcorrencia = new Ocorrencia(titulo, texto, resolucao, id_morador);
-                registroOcorrencia.setId(id);
+                int id = rs.getInt("ID_OCORRENCIA");
+                String titulo = rs.getString("TITULO");
+                String status = rs.getString("STATUS");
+                var registroOcorrencia = Ocorrencia.builder().id(id).titulo(titulo).status(status).build();
                 ocorrencias.add(registroOcorrencia);
             }
             return ocorrencias;
@@ -105,7 +104,7 @@ public class OcorrenciaDao {
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(update);
-            pst.setString(1, ocorrencia.getResolucao());
+            pst.setString(1, ocorrencia.getStatus());
             pst.setInt(2, ocorrencia.getId());
             pst.executeUpdate();
             connection.close();
@@ -148,7 +147,7 @@ public class OcorrenciaDao {
                 Ocorrencia ocorrencia = new Ocorrencia();
                 ocorrencia.setTitulo(rs.getString("TITULO"));
                 ocorrencia.setTexto(rs.getString("TEXTO"));
-                ocorrencia.setResolucao(rs.getString("RESOLUCAO"));
+                ocorrencia.setStatus(rs.getString("RESOLUCAO"));
                 ocorrencias.add(ocorrencia);
             }
         } catch (Exception e) {

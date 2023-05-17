@@ -4,7 +4,7 @@ public class Ocorrencia {
     private int id;
     private String titulo;
     private String texto;
-    private String resolucao;
+    private String status;
 
     public int getId_morador() {
         return id_morador;
@@ -16,12 +16,12 @@ public class Ocorrencia {
 
     private int id_morador;
 
-    public String getResolucao() {
-        return resolucao;
+    public String getStatus() {
+        return status;
     }
 
-    public void setResolucao(String resolucao) {
-        this.resolucao = resolucao;
+    public void setStatus(String status) {
+        this.status = status;
     }
     public int getId() {
         return id;
@@ -47,12 +47,17 @@ public class Ocorrencia {
         this.texto = texto;
     }
 
-    public Ocorrencia(String titulo, String texto, String resolucao, int id_morador) {
+    public Ocorrencia(String titulo, String texto, String status, int id_morador) {
         this.titulo = titulo;
         this.texto = texto;
-        this.resolucao = resolucao;
+        this.status = status;
         this.id_morador = id_morador;
     }
+
+    public static OcorrenciaBuilder builder(){
+        return new OcorrenciaBuilder();
+    }
+
 
     public Ocorrencia() {}
 
@@ -62,7 +67,7 @@ public class Ocorrencia {
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
                 ", texto='" + texto + '\'' +
-                ", resolucao='" + resolucao + '\'' +
+                ", status='" + status + '\'' +
                 ", id_morador=" + id_morador +
                 '}';
     }

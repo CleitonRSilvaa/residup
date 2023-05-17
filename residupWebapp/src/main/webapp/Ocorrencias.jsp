@@ -1,8 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="br.com.residup.models.Ocorrencia"%>
-
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+    ArrayList<Ocorrencia> lista = (ArrayList<Ocorrencia>) request.getAttribute("ocorrencias");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,40 +75,24 @@
 
 
 
+      <section class="container">
+        <div class="wrapper">
+          <div class="text">Minhas ocorrências</div>
+          <div class="group">
+           <c:forEach var="ocorrencia" items="${ocorrencias}">
+            <input type="text" value = ${ocorrencia.getTitulo()} id="nome" name="Title Ocorrência" required>
+                       <input class="oc" type="text"  id="nome" value = ${ocorrencia.getStatus()} name="Status" required>
+                       <button class="editar" type='submit'>Editar Ocorrência</button>
+                       <button class="editar" type='submit'>Excluir Ocorrência</button>
+                        <hr>
+              </c:forEach>
 
-<section class="container">
-  <div class="wrapper">
-    <div class="text">Minhas ocorrências</div>
-  </div>
-
-<table id="tabela" class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Título da Ocorrência</th>
-      <th scope="col">Status</th>
-      <th scope="col">Opções</th>
-    </tr>
-  </thead>
-  <tbody>
-    <c:forEach var="ocorrencia" items="${ocorrencias}">
-      <tr>
-        <td>${ocorrencia.getTitulo()}</td>
-        <td>${ocorrencia.getResolucao()}</td>
-        <td>
-          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarOcorrenciaModal"
-            data-id="${ocorrencia.getId()}"
-            data-titulo="${ocorrencia.getTitulo()}"
-            data-texto="${ocorrencia.getTexto()}"
-            data-resolucao="${ocorrencia.getResolucao()}">Editar</button>
-          <a href="javascript: confirmar(${ocorrencia.getId()})" class="btn btn-danger">Excluir</a>
-        </td>
-      </tr>
-    </c:forEach>
-  </tbody>
-</table>
+          </div>
 
 
-</section>
+
+        </div>
+      </section>
 
 
 

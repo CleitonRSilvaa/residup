@@ -28,12 +28,11 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/occurrenceSelect")) {
+        if (action.equals("/Ocorrencia")) {
             request.getSession().setAttribute("validator", true);
-            listarOcorrencia(request, response);
+            ocorrencia(request, response);
             return;
         }
-        ocorrencia(request, response);
 
     }
 
@@ -78,7 +77,8 @@ public class RegistroOcorrencia extends HttpServlet {
 
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Ocorrencia> lista = OcorrenciaDao.listar();
+        int id_morador = (int) request.getSession().getAttribute("id_morador");
+        ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(id_morador);
         request.setAttribute("ocorrencias", lista);
         request.getParameter("validator");
         RequestDispatcher rd = request.getRequestDispatcher("Ocorrencias.jsp");
@@ -91,7 +91,7 @@ public class RegistroOcorrencia extends HttpServlet {
         LoginDao loginDao = LoginDao.getInstance();
         String titulo = request.getParameter("titulo");
         String texto = request.getParameter("texto");
-        int id_morador = Integer.parseInt(loginDao.recuperarId(loginDao.recuperarCpf(request)));
+        int id_morador = (int) request.getSession().getAttribute("id_morador");
         var ocorrencia = new Ocorrencia(titulo, texto, "", id_morador);
 
 
@@ -109,21 +109,19 @@ public class RegistroOcorrencia extends HttpServlet {
 
     }
 
-    protected void listarOcorrencia(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        LoginDao loginDao = LoginDao.getInstance();
-
-        // Obtenha o ID da sessão ativa
-        int idmorador =  Integer.parseInt(loginDao.recuperarId(loginDao.recuperarCpf(request)));// Substitua essa linha com a lógica adequada para obter o ID da sessão ativa
-
-        // Recupere as ocorrências relacionadas ao ID da sessão ativa
-        List<Ocorrencia> listaOcorrencias = OcorrenciaDao.selecionar(idmorador); // Ajuste o método para selecionar as ocorrências pelo ID da sessão
-        System.out.println("Tamanho da lista de ocorrencias: " + listaOcorrencias.size());
-
-        request.setAttribute("ocorrencias", listaOcorrencias); // Defina a lista de ocorrências como um atributo no request
-        RequestDispatcher rd = request.getRequestDispatcher("Ocorrencias.jsp");
-        rd.forward(request, response);
-    }
+//    protected void listarOcorrencia(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//
+//        int idmorador = ;
+//
+//
+//        List<Ocorrencia> listaOcorrencias = OcorrenciaDao.selecionar(idmorador);
+//        System.out.println("Tamanho da lista de ocorrencias: " + listaOcorrencias.size());
+//
+//        request.setAttribute("ocorrencias", listaOcorrencias);
+//        RequestDispatcher rd = request.getRequestDispatcher("Ocorrencias.jsp");
+//        rd.forward(request, response);
+//    }
 
 
 
@@ -143,7 +141,7 @@ public class RegistroOcorrencia extends HttpServlet {
         ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
         ocorrencias.setTitulo(request.getParameter("titulo"));
         ocorrencias.setTexto(request.getParameter("texto"));
-        ocorrencias.setResolucao(request.getParameter("resolucao"));
+        ocorrencias.setStatus(request.getParameter("resolucao"));
         if (OcorrenciaDao.editar(ocorrencias)) {
             request.getSession().setAttribute("validador", true);
         } else
@@ -154,7 +152,7 @@ public class RegistroOcorrencia extends HttpServlet {
     private void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
-        ocorrencias.setResolucao(request.getParameter("resolucao"));
+        ocorrencias.setStatus(request.getParameter("resolucao"));
         if (OcorrenciaDao.resolver(ocorrencias)) {
             request.getSession().setAttribute("validador", true);
         } else

@@ -77,11 +77,4 @@ public class LoginDao {
             throw new RuntimeException(e);
         }
     }
-
-    public String recuperarCpf(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String cpf = (String) session.getAttribute("cpf");
-
-        return cpf;
-    }
 }
