@@ -45,7 +45,7 @@ public class CadastroMorador extends HttpServlet {
                 out.println("</script>");
             }
             request.setAttribute("status", "SUCCESS");//ou session.setAttribute("status", "ERROR");
-            request.setAttribute("mensagem", "Morador Cadastardo com sucesso");//ou session.setAttribute("mensagem", "Nome já inserido. Informe outro");
+            request.setAttribute("mensagem", "Morador Cadastrado com sucesso");//ou session.setAttribute("mensagem", "Nome já inserido, Informe outro");
             request.getRequestDispatcher("cadastroMorador.jsp").forward(request, response);
         } catch (Exception e){
             e.printStackTrace();
