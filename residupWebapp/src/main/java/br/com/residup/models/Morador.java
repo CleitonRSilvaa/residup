@@ -30,22 +30,22 @@ public class Morador {
         this.senhaDeAcesso = senhaDeAcesso;
     }
 
-    public static String[] separarNomeSobrenome(String nomeCompleto) {
-        String[] partesNome = nomeCompleto.trim().split("\\s+");
-
-        if (partesNome.length < 2) {
-            throw new IllegalArgumentException("Nome incompleto, deve ter pelo menos nome e sobrenome.");
-        }
-
-        String nome = partesNome[0];
-        String sobrenome = partesNome[partesNome.length - 1];
-
-        for (int i = 1; i < partesNome.length - 1; i++) {
-            nome += " " + partesNome[i];
-        }
-
-        return new String[]{nome, sobrenome};
-    }
+//    public static String[] separarNomeSobrenome(String nomeCompleto) {
+//        String[] partesNome = nomeCompleto.trim().split("\\s+");
+//
+//        if (partesNome.length < 2) {
+//            throw new IllegalArgumentException("Nome incompleto, deve ter pelo menos nome e sobrenome.");
+//        }
+//
+//        String nome = partesNome[0];
+//        String sobrenome = partesNome[partesNome.length - 1];
+//
+//        for (int i = 1; i < partesNome.length - 1; i++) {
+//            nome += " " + partesNome[i];
+//        }
+//
+//        return new String[]{nome, sobrenome};
+//    }
 
 
     public int getId() {
@@ -136,4 +136,21 @@ public class Morador {
         this.enderecoFoto = enderecoFoto;
     }
 
+
+    @Override
+    public String toString() {
+        return "Morador{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", rg='" + rg + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", numeroApartamento='" + numeroApartamento + '\'' +
+                ", bloco='" + bloco + '\'' +
+                ", senhaDeAcesso='" + senhaDeAcesso + '\'' +
+                ", enderecoFoto='" + enderecoFoto + '\'' +
+                '}';
+    }
 }

@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RESIDUP</title>
 
-    <link href="Telas/login.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="Telas/login.css" type="text/css">
     <script src="index.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
