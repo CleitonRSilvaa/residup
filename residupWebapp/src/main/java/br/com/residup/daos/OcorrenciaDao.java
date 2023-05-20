@@ -71,8 +71,9 @@ public class OcorrenciaDao {
             while (rs.next()) {
                 int id = rs.getInt("ID_OCORRENCIA");
                 String titulo = rs.getString("TITULO");
+                String texto = rs.getString("OCORRENCIA");
                 String status = rs.getString("STATUS");
-                var registroOcorrencia = Ocorrencia.builder().id(id).titulo(titulo).status(status).build();
+                var registroOcorrencia = Ocorrencia.builder().id(id).titulo(titulo).texto(texto).status(status).build();
                 ocorrencias.add(registroOcorrencia);
             }
             return ocorrencias;

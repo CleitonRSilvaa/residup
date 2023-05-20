@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,9 +153,12 @@ public class RegistroOcorrencia extends HttpServlet {
         response.sendRedirect("");
     }
 
-    public static String scriptMensagemAlertJs(IconAlertJS iconAlertJS, String titulo, String messagem) {
-        String mgs = "Swal.fire(\n '" + titulo + "',\n'" + messagem + "'\n,'" + iconAlertJS + "'\n" + ");\n";
-        return mgs;
+
+
+
+    public static String scriptMensagemAlertJs(IconAlertJS iconAlertJS, String titulo, String mensagem) throws UnsupportedEncodingException {
+        String msg = "Swal.fire(\n '" + titulo + "',\n'" + mensagem + "'\n,'" + iconAlertJS + "'\n" + ");\n";
+        return new String(msg.getBytes("UTF-8"), "UTF-8");
     }
 
 }
