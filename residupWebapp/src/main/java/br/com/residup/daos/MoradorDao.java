@@ -46,8 +46,8 @@ public class MoradorDao {
 
         try (Connection connection = abrirConexao();
              PreparedStatement instrucaoSQL = connection.prepareStatement(
-                     "INSERT INTO MORADOR (NOME, SOBRENOME, CPF, RG, NUMERO_APARTAMENTO, BLOCO, SENHA_ACESSO, DATA_INCERCAO) " +
-                             "VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP )",
+                     "INSERT INTO MORADOR (NOME, SOBRENOME, CPF, RG, NUMERO_APARTAMENTO, BLOCO, SENHA_ACESSO, DATA_INCERCAO, ENDERECO_FOTO) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ? )",
                      Statement.RETURN_GENERATED_KEYS)
         ) {
             instrucaoSQL.setString(1, morador.getNome());
@@ -57,7 +57,8 @@ public class MoradorDao {
             instrucaoSQL.setString(5, morador.getNumeroApartamento());
             instrucaoSQL.setString(6, morador.getBloco());
             instrucaoSQL.setString(7, passwordEncryptor.encryptPassword(morador.getSenhaDeAcesso()));
-
+            instrucaoSQL.setString(8, morador.getEnderecoFoto());
+            System.out.println(morador);
             int linhasRetorno = instrucaoSQL.executeUpdate();
 
             if (linhasRetorno > 0) {

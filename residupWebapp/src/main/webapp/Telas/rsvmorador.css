@@ -5,7 +5,7 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f3f4f4;
+    background-color: #9ed8db;
     color: var(--color-white);
 }
 
@@ -17,7 +17,7 @@ body{
     align-items: center;
 }
 .header{
-    background-color: #f3f4f4;
+    background-color: white;
     justify-content: space-between;
     padding: 0 10px;
     height: 3.5em;
@@ -45,7 +45,7 @@ body{
     color: red;
 }
 .active{
-    background: #545454;
+    background: #467599;
     padding: 10px;
     border-radius: 10px;
    
@@ -60,7 +60,8 @@ body{
 }
  
 nav{
-   background-color: #fff;
+   background-color: white;
+   height: 3.5em;
 }
     
 nav li{
@@ -75,7 +76,7 @@ nav li a{
 }
     
 nav li a:hover{
-    background-color: red;
+    background-color: #f4f3f3;
 }
     
 .dropdown-menu{
@@ -113,86 +114,110 @@ nav li a:hover{
     from {margin-left: -100vw;}
     to {margin-left: -10vw;}
 }
+
 /*Fim Header*/
+
 .form{
     box-sizing: border-box;
-    background: #545454;
-    width: 1315px;
+    background: #467599;
+    width: 97%;
     height: 105px;
     border-radius: 10px;
-    margin-top: 10px;
-    margin-left: 17px;;
+    
+    margin-left: 1.5%;
 }
 .titulo{
-    background-color: #000000;
+    background-color: black;
     width: 100%;
-    height: 15px;
+    height: 25px;
     border-radius: 10px 10px 0px 0px;
 }
 .titulo h1{
-    font-size: 13px;
-    color: #f3f4f4;
+    font-size: 16px;
+    color: white;
     margin-left: 10px;
+    font-weight: bold;
 
 }
 .area{
+    width: 12%;
     float: left;
     margin-top: 30px;
-    margin-left: 60px;
-    margin-right: 60px;
+    margin-left: 5%;
     color: black;
     font-weight: bold;
 }
 .form-area{
-    width: 200px;
-    height: 25px;
+    width: 100%;
+    height: 28px;
     border-radius: 20px;
     text-align: center;
     font-weight: bold;
     border: 0px;
-    background-color: #f3f4f4;
+    background-color:#9ed8db;
 }
 .horario{
+    width: 12%;
     color: black;
     float: left;
     margin-top: 30px;
-    margin-right: 60px;
+    margin-left:  6.16%;
 }
 .form-horario{
-    width: 200px;
-    height: 25px;
+    width: 100%;
+    height: 28px;
     border-radius: 20px;
     text-align: center;
     font-weight: bold;
     border: 0px;
-    background-color: #f3f4f4;
+    background-color: #9ed8db;
 }
 .datas{
+    width: 12%;
     color: black;
     float: left;
     margin-top: 30px;
-    margin-right: 60px ;
+    margin-left:  6.16%;
     font-weight: bold;
 }
 .date{
-    width: 150px;
-    height: 25px;
+    width: 100%;
+    margin-right: 80px;
+    height: 28px;
     border-radius: 20px;
     text-align: center;
     font-weight: bold;
     border: 0px;
-    background-color: #f3f4f4;
+    background-color: #9ed8db;
+    margin-bottom: 30px;
 }
 .convid{
+    
     float: right;
-    margin-top: 8px;
-    margin-right: 60px;
     border: 0px;
+    margin-right: 150px;
 }
+
 .convid label{
     color: #f3f4f4;
     font-weight: bold;
     font-size: 13px;
+    margin-left: 50px;
+}
+.bton{
+    width: 200px;
+    height: 25px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: 0px;
+    background-color: #f3f4f4;
+}
+textarea{
+    width: 350px;
+    height: 500px;
+    resize: none;
+    border-radius: 20px;
 }
 .lista{
     float: right;
@@ -208,21 +233,28 @@ nav li a:hover{
     float: right;
     height: 30px;
     width: 130px;
-    margin-top: 50px;
-    margin-right: 10px;
+    margin-top: 47px;
+    margin-right: 6%;
     border-radius: 10px;
     background-color: rgb(29, 211, 99);
     border: 0px;
-    
+    font-weight: bold;
 }
+
 .mr{
     box-sizing: border-box;
-    background: #545454;
-    width: 1315px;
-    height: 200px;
+    background: #467599;
+    width: 97%;
+    height: 350px;
     border-radius: 10px;
     margin-top: 30px;
-    margin-left: 17px;   
+    margin-left: 1.5%;   
+}
+.minhasreservas{
+    margin-top: 15px;
+    height: 20px;
+    width: 100%;
+    background-color: white;
 }
 .mr h2{
     background-color: #c4c4c4;
@@ -238,26 +270,41 @@ h2{
 }
 
 .all-products{
+    margin-top: 15% ;
 	display: flex;
+    width: 100%;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+    background-color: white;
+}
+.espacos{
+    display: flex;
 }
 
 .product{
 	overflow: hidden;
 	background: #545454;
-	color: #21201e;
+	color: white;
 	text-align: center;
-	width: 200px;
-	height: 250px;
-	padding: 2rem;
+	width: 24%;
+	height: 550px;
+	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	border-radius: 1.2rem;
-	margin: 36px;
+	
+	margin: 5px;
+    margin-top: 30px;
+}
+.all-products h2{
+font-size: 50px;
+text-align: center;
+text-decoration: none;
+margin-bottom: 40px;
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+color: #545454;
 }
 .product-info{
     background-color: #545454;
@@ -278,16 +325,32 @@ h2{
 }
 
 .product img {
-	height: 100px;
+    width: 100%;
+	height: 300px;
 	margin: 1rem;
 	transition: all 0.3s;
-    border-radius: 30px;
-    margin-top: 10px;
+    margin-top: 0px;
+    
+    
 }
-.product h3{
-    font-size: 10px;
+.tit{
+    width: 100%;
+    height: 20px;
+    background-color: white;
 }
-
+.tit h3{
+   font-size: 13px;
+   
+}
+.card{
+    margin-left: 1.5%;
+    display: inline-block;
+}
+.area2{
+    margin-left: 350px;
+    display: inline-block;
+    margin-top: 0px;
+}
 .product a:link, .product a:visited{
 	color: #ececec;
 	display: inline-block;
@@ -304,3 +367,239 @@ h2{
 	transform: scale(1.1);
 }
 
+.group {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 100%;
+  
+}
+  
+.group input {
+    width: 12%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 5%;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+    align-items: center;
+    font-weight: bold;
+}
+  
+.group .oc {
+    width: 12%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left:  6.16%;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+  
+  
+ }
+.group .dt {
+    width: 12%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    font-size: 15px;
+    margin-left:  6.16%;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+  
+  
+}
+.group .convidados{
+    width: 15%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    transition: all 0.4s ease;
+    display: inline-block;
+    margin-left:  6.16%;
+}
+.modal-body .nomecomp{
+    width: 50%;
+}
+.modal-body .doc{
+    width: 30%;
+}
+
+  .group .editar {
+    width: 12%;
+    height: 28px;
+    background-color: red;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-right: 5%;
+    margin-left:  6.16%;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    display: inline-block;
+  }
+  
+  .group input:focus {
+    border-color: #c4c4c4;
+  }
+  
+  .group-2 input {
+    width: 12%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 5%;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+    align-items: center;
+    font-weight: bold;
+}
+  
+.group-2 .oc {
+    width: 12%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left:  6.16%;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+  
+  
+ }
+.group-2 .dt {
+    width: 12%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    font-size: 15px;
+    margin-left:  6.16%;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+  
+  
+}
+.group-2 .convidados{
+    width: 15%;
+    height: 28px;
+    background-color: #9ed8db;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    transition: all 0.4s ease;
+    display: inline-block;
+    margin-left:  6.16%;
+}
+.modal-body .nomecomp{
+    width: 50%;
+}
+.modal-body .doc{
+    width: 30%;
+}
+
+.group-2 .editar {
+    width: 12%;
+    height: 28px;
+    background-color: red;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-right: 5%;
+    margin-left:  6.16%;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+  
+  .group-2 input:focus {
+    border-color: #c4c4c4;
+  }
+  
+
+  .wrapper {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #545454;
+    margin-bottom: 50px;
+  }
+  
+  .wrapper hr {
+    margin-top: 20px;
+  }
+  
+  .text {
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    color: black;
+    background-color: #1d3354;
+  }
+
+  .text h1 {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+  
+  }
+  
+  input,
+  button {
+    margin: 0;
+  }
+  
+  input {
+    border: none;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 17px;
+    width: 20%;
+    background-color: #9ed8db;
+  }
+  
+  input::placeholder {
+  
+    color: #1e1e1e;
+    font-family: 'Arial';
+    font-size: 16px;
+  }

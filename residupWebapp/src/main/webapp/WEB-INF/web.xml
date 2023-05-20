@@ -12,6 +12,7 @@
 
   <servlet>
     <servlet-name>H2Console</servlet-name>
+    <display-name>H2 DB Console</display-name>
     <servlet-class>org.h2.server.web.WebServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -20,6 +21,14 @@
     <servlet-name>H2Console</servlet-name>
     <url-pattern>/console/*</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>createTablesH2</servlet-name>
+    <display-name>Servlet-CreateTables-H2</display-name>
+    <servlet-class>br.com.residup.servlets.CreateTablesH2</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
 
   <jsp-config>
     <jsp-property-group>
