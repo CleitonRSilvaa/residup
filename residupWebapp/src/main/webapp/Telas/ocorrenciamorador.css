@@ -55,7 +55,7 @@ html {
   }
   
   .active {
-    background: #49ae96;
+    background: #467599;
     padding: 10px;
     border-radius: 10px;
   
@@ -148,14 +148,14 @@ html {
   .NovaOcor {
     width: 100%;
     border-radius: 10px 10px 10px 10px;
-    background-color: #49ae96;
+    background-color: #467599;
   }
   
   .wrapper {
     width: 100%;
     height: 300px;
     border-radius: 10px 10px 10px 10px;
-    background-color: #49ae96;
+    background-color: #467599;
     margin-bottom: 50px;
   }
   
@@ -168,7 +168,13 @@ html {
     padding: 10px;
     border-radius: 10px 10px 0 0;
     color: black;
-    background-color: #C4C4C4;
+    background-color: #1d3354;
+  }
+
+  .text h1 {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
   }
   
   .buttons {
@@ -189,7 +195,7 @@ html {
     padding: 10px 20px;
     border-radius: 17px;
     width: 20%;
-    background-color: #B4EFE1;
+    background-color: #9ed8db;
   }
   
   input::placeholder {
@@ -202,7 +208,7 @@ html {
   button {
     border: none;
     text-align: center;
-    background-color: #B4EFE1;
+    background-color: #9ed8db;
     color: #1e1e1e;
     font-family: 'Arial';
     font-size: 16px;
@@ -261,34 +267,47 @@ html {
   
   }
   
-  .group input {
-    width: 25%;
-    height: 10px;
+  .group label {
+    width: 20%;
+    height: 28px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 2%;
-    margin-right: 5px;
+    margin-left: 4%;
     font-size: 15px;
-    color: #616161;
+    color: black;
+    font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
     align-items: center;
+    text-align: center;
   
   }
   
   .group .oc {
-    width: 10%;
-    height: 10px;
+    width: 32%;
+    height: 28px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 20%;
-    margin-right: 2%;
+    margin-left: 4%;
     font-size: 15px;
-    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+  
+  
+  }
+  .group .or {
+    width: 12%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 4%;
+    font-size: 15px;
     transition: all 0.4s ease;
     display: inline-block;
   
@@ -296,20 +315,33 @@ html {
   }
   
   .group .editar {
+    float: right;
     width: 12%;
-    height: 35px;
-    background-color: #B4EFE1;
+    height: 28px;
+    background-color: red;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 1px;
-    margin-right: 2%;
+    margin-right: 4%;
+  
     font-size: 15px;
-    color: #616161;
+    color: white;
+    font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
   
   }
+  .group .ed {
+    width: 100%;
+    height: 28px;
+    border-radius:15px ;
+    background-color: red;
+    font-weight: bold;
+    color: white;
+
+  
+  }
+  
   
   .group input:focus {
     border-color: #49ae96;
@@ -323,60 +355,84 @@ html {
   
   }
   
-  .group-2 input {
-    width: 25%;
-    height: 10px;
+  .group-2 label {
+    width: 20%;
+    height: 28px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 2%;
-    margin-right: 5px;
+    margin-left: 4%;
     font-size: 15px;
-    color: #616161;
+    color: black;
+    font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
     align-items: center;
+    text-align: center;
   
   }
   
-  
   .group-2 .oc {
-    width: 10%;
-    height: 10px;
+    width: 32%;
+    height: 28px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 20%;
-    margin-right: 2%;
+    margin-left: 4%;
     font-size: 15px;
-    color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
+  
+  
+  }
+  .group-2 .or {
+    width: 12%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 4%;
+    font-size: 15px;
+    transition: all 0.4s ease;
+    display: inline-block;
+  
+  
   }
   
   .group-2 .editar {
+    float: right;
     width: 12%;
-    height: 35px;
-    background-color: #B4EFE1;
+    height: 28px;
+    background-color: red;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 1px;
-    margin-right: 2%;
+    margin-right: 4%;
+  
     font-size: 15px;
-    color: #616161;
+    color: white;
+    font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
   
   }
+  .group-2 .ed {
+    width: 100%;
+    height: 28px;
+    border-radius:15px ;
+    background-color: red;
+    font-weight: bold;
+    color: white;
 
+  
+  }
   
   .group-2 input:focus {
     border-color: #49ae96;
   }
-  
   .group-3 {
     margin-top: 20px;
     margin-bottom: 5px;
@@ -384,54 +440,81 @@ html {
     width: 100%;
   
   }
-  
-  .group-3 input {
-    width: 25%;
-    height: 10px;
+  .group-3 label {
+    width: 20%;
+    height: 28px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 2%;
-    margin-right: 5px;
+    margin-left: 4%;
     font-size: 15px;
-    color: #616161;
+    color: black;
+    font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
     align-items: center;
+    text-align: center;
   
   }
   
   .group-3 .oc {
-    width: 10%;
-    height: 10px;
+    width: 32%;
+    height: 28px;
     background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 20%;
-    margin-right: 2%;
+    margin-left: 4%;
     font-size: 15px;
-    color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
+  
+  
+  }
+  .group-3 .or {
+    width: 12%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 4%;
+    font-size: 15px;
+    transition: all 0.4s ease;
+    display: inline-block;
+  
+  
   }
   
   .group-3 .editar {
+    float: right;
     width: 12%;
-    height: 35px;
-    background-color: #B4EFE1;
+    height: 28px;
+    background-color: red;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-left: 1px;
-    margin-right: 2%;
+    margin-right: 4%;
+  
     font-size: 15px;
-    color: #616161;
+    color: white;
+    font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
   
   }
+  .group-3 .ed {
+    width: 100%;
+    height: 28px;
+    border-radius:15px ;
+    background-color: red;
+    font-weight: bold;
+    color: white;
+
+  
+  }
+  
  
   .group-3 input:focus {
     border-color: #49ae96;
