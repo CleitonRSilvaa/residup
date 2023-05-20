@@ -11,17 +11,18 @@ import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
 public class PerfilMoradorDao {
 
     private Connection connection;
-    ResultSet rs;
+
     ArrayList<PerfilMorador> listPerfilMorador = new ArrayList<>();
-    public ArrayList <PerfilMorador> encontrarMorador() throws SQLException, ClassNotFoundException {
+    public ArrayList <PerfilMorador> encontrarMorador(String CPF) throws SQLException, ClassNotFoundException {
 
-        String comandoSQL = "SELECT * FROM Morador";
+        String comandoSQL = "SELECT * FROM Morador WHERE CPF=?";
         try{
-
             this.connection = abrirConexao();
-            PreparedStatement instrucaoSQL = connection.prepareStatement(comandoSQL,
-                    Statement.RETURN_GENERATED_KEYS);
-            rs = instrucaoSQL.executeQuery(comandoSQL);
+
+            PreparedStatement instrucaoSQL = connection.prepareStatement(comandoSQL);
+            instrucaoSQL.setString(1, CPF);
+            ResultSet rs = instrucaoSQL.executeQuery();
+
 
                 PerfilMorador perfilMorador = new PerfilMorador();
                 perfilMorador.setNome(rs.getString("NOME"));
