@@ -12,17 +12,12 @@
             <div>
                 <a class="logo" href="#"><img src="img/LogoHeader.png" alt=""></a>
             </div>
+            
          
             <nav class="menu-cloud">
                 
-                <ul>
-                    <li><a href="#" class="ativa">Morador</a></li>
-                    <li><a href="#">Administração</a></li>
-                </ul>
             </nav>
-            <ul class="login">
-                <li><a href="#">Login</li> 
-            </ul>
+                
         </header>
         <!-- inicio da imagem após o menu -->
         <section class="imagem">
@@ -30,18 +25,39 @@
                 
             </div>
 
-            <div class="form">
-                <h3>Já tem conta? </h3>
-                <a href="#"><button type="submit"
-                                    class="bto"><h3>Cadastrar-se</h3></button>
-                     <div class="linha">
-
-                     </div>               
-                    <h3>Ainda não?</h3>
-                   <a href="#"><button type="submit"
-                                    class="bto"><h3>Cadastrar-se</h3></button>
-  
-                        </div>
+            <form>
+                <section class="makelogin">
+                    <h2>Login</h2>
+                </section>
+                <section class="inputs-container">
+                    <input type="CPF" placeholder="123.456.789-10">
+    
+                    <div class="password-container">
+                        <input type="password" id="field-password" class="field-password" placeholder="******">
+                        <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
+                        <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
+                    </div>
+                </section>
+    
+                <section class="password-infos">
+                    <div>
+                        <input type="checkbox">
+                        <Span>Lembrar senha</Span>
+                    </div>
+    
+                    <a href="#">Esqueceu sua senha?</a>
+                </section>
+    
+                <button id="btn-login">Entrar</button>
+                
+                <div class="cadastro">
+                    <hr>
+                    <span>Ainda não possui uma conta? <a href="#">Cadastre-se</a></span>
+                </div>
+    
+               
+               
+             </form>
                         </section>
                         <!-- Final da imagem após menu -->
 

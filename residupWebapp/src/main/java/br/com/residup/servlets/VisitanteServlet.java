@@ -9,27 +9,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import br.com.residup.models.Visitante;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import br.com.residup.models.Visitante;
 import br.com.residup.daos.VisitanteDao;
 
 
 @WebServlet(urlPatterns = {"/visitantes", "/insert", "/select", "/update", "/delete", "/report"})
-public class ControllerVisitante extends HttpServlet {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-
-    public ControllerVisitante() {
-        super();
-    }
+public class VisitanteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,9 +50,6 @@ public class ControllerVisitante extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
 
-        HttpSession session = request.getSession(false);
-        String cpf = (String) session.getAttribute("cpf");
-
         if (action.equals("/insert")) {
             adicionarVisitante(request, response);
             return;
@@ -79,7 +67,7 @@ public class ControllerVisitante extends HttpServlet {
 
     protected void visitantes(HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
-        ArrayList<Visitante> lista = VisitanteDao.listarVisitantes();
+        ArrayList<br.com.residup.models.Visitante> lista = VisitanteDao.listarVisitantes();
         request.setAttribute("listaVisitantes", lista);
         System.out.println(request.getParameter("validator"));
         RequestDispatcher rd = request.getRequestDispatcher("visitantes.jsp");
@@ -94,7 +82,7 @@ public class ControllerVisitante extends HttpServlet {
         String sobrenome = request.getParameter("sobrenome");
         String documento = request.getParameter("documento");
         String fone = request.getParameter("fone");
-        var visitante = new Visitante(nome,sobrenome,documento) ;
+        var visitante = new Visitante(nome,sobrenome,documento);
         visitante.setFone(fone);
         if (VisitanteDao.inserirVisitante(visitante)){
             request.setAttribute("validator", true);
@@ -108,7 +96,7 @@ public class ControllerVisitante extends HttpServlet {
 
     protected void buscarVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Visitante visitante = new Visitante();
+        br.com.residup.models.Visitante visitante = new br.com.residup.models.Visitante();
         visitante.setId(request.getParameter("id"));
         VisitanteDao.selecionarVisitante(visitante);
         request.setAttribute("id", visitante.getId());
@@ -122,7 +110,7 @@ public class ControllerVisitante extends HttpServlet {
 
     protected void editarVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Visitante visitante = new Visitante();
+        br.com.residup.models.Visitante visitante = new br.com.residup.models.Visitante();
         visitante.setId(request.getParameter("id"));
         visitante.setNome(request.getParameter("nome"));
         visitante.setSobrenome(request.getParameter("sobrenome"));
@@ -137,7 +125,7 @@ public class ControllerVisitante extends HttpServlet {
 
     protected void removerVisitante(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Visitante visitante = new Visitante();
+        br.com.residup.models.Visitante visitante = new br.com.residup.models.Visitante();
         visitante.setId(request.getParameter("id"));
         if (VisitanteDao.deletarVisitante(visitante)){
             request.getSession().setAttribute("validador", true);
@@ -164,7 +152,7 @@ public class ControllerVisitante extends HttpServlet {
             tabela.addCell(col1);
             tabela.addCell(col2);
             tabela.addCell(col3);
-            ArrayList<Visitante> lista = VisitanteDao.listarVisitantes();
+            ArrayList<br.com.residup.models.Visitante> lista = VisitanteDao.listarVisitantes();
             for (int i = 0; i < lista.size(); i++) {
                 String nome = lista.get(i).getNome() +" "+ lista.get(i).getSobrenome();
                 tabela.addCell(nome);

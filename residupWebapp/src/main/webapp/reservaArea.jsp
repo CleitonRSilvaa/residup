@@ -55,7 +55,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
 
-                            <label for="horarioSelect">HORÒRIO</label>
+                            <label for="horarioSelect">HORÁRIO</label>
                             <select class="form-control" id="horarioSelect" name="horarioSelect" required>
                                 <option></option>
                                 <%
@@ -101,6 +101,15 @@
                                     
                                     <a href="javascript: cancelarReserva(<%=reserva.getIdReserva()%>)"
                                        class="btn btn-danger">Cancelar reserva</a>
+
+
+                                       <form action="/delete" method="pods">
+
+                                       <input type="hidden" name="id" id="id" value="${param.id}"
+
+
+
+                                       </form>
                                 </td>
 
                             </tr>
@@ -126,9 +135,7 @@
     <c:if test="${not empty mensagem}">
         <%-- Exibe o alerta somente se a mensagem não for nula --%>
         <script>
-
             <%= request.getAttribute("mensagem")%>
-
         </script>
     </c:if>
 

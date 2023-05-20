@@ -44,11 +44,11 @@ public class ReservaDao {
 
     public boolean moradorTemRederva(Reserva reserva) throws SQLException {
         boolean retorno = false;
-        String qurey = "SELECT ID_MORADOR FROM RESERVA_AREA WHERE ID_MORADOR  = ? AND DATA_RESERVA = ? ;";
+        String query = "SELECT ID_MORADOR FROM RESERVA_AREA WHERE ID_MORADOR  = ? AND DATA_RESERVA = ? ;";
         try {
             Connection connection = abrirConexao();
 
-            PreparedStatement pst = connection.prepareStatement(qurey);
+            PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, reserva.getIdMorador());
             pst.setString(2, reserva.getDateReserva());
 
@@ -67,14 +67,14 @@ public class ReservaDao {
 
     public boolean TemReserva(Reserva reserva) throws SQLException {
         boolean retorno = false;
-        String qurey = "SELECT * FROM RESERVA_AREA WHERE  " +
+        String query = "SELECT * FROM RESERVA_AREA WHERE  " +
                 "DATA_RESERVA = ?  " +
                 "AND HORA_RESERVA  = ?  " +
                 "AND ID_AREA = ?;";
         try {
             Connection connection = abrirConexao();
 
-            PreparedStatement pst = connection.prepareStatement(qurey);
+            PreparedStatement pst = connection.prepareStatement(query);
             pst.setString(1, reserva.getDateReserva());
             pst.setString(2, reserva.getHoraReserva());
             pst.setInt(3, reserva.getIdArea());
@@ -142,10 +142,10 @@ public class ReservaDao {
 
     public List areas() throws SQLException {
         List <Reserva> areaList = new ArrayList<>();
-        String qurey = "SELECT * FROM AREA;" ;
+        String query = "SELECT * FROM AREA;" ;
         try {
             Connection connection = abrirConexao();
-            PreparedStatement pst = connection.prepareStatement(qurey);
+            PreparedStatement pst = connection.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -160,7 +160,7 @@ public class ReservaDao {
             return areaList;
         }catch (SQLException sqlException){
             System.out.println(sqlException.getLocalizedMessage());
-            throw new RuntimeException("----->>>> Erro ao executar query ares() ");
+            throw new RuntimeException("----->>>> Erro ao executar query areas() ");
 
         }catch (Exception exception){
             System.out.println(exception.getLocalizedMessage());
@@ -172,14 +172,14 @@ public class ReservaDao {
     public List reservas(int id_morador) throws SQLException {
 
         List <Reserva> reservaList = new ArrayList<>();
-        String qurey = "SELECT * FROM RESERVA_AREA  R \n" +
+        String query = "SELECT * FROM RESERVA_AREA  R \n" +
                 "INNER JOIN  AREA  A\n" +
                 "ON R.ID_AREA= A.ID_AREA\n" +
                 "WHERE ID_MORADOR = ?;";
         try {
             Connection connection = abrirConexao();
 
-            PreparedStatement pst = connection.prepareStatement(qurey);
+            PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, id_morador);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
