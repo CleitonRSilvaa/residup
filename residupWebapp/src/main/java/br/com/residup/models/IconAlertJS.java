@@ -1,4 +1,4 @@
-package br.com.residup.daos;
+package br.com.residup.models;
 
 public enum IconAlertJS {
     error,

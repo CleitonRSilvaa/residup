@@ -1,6 +1,6 @@
 package br.com.residup.servlets;
 
-import br.com.residup.daos.IconAlertJS;
+import br.com.residup.models.IconAlertJS;
 import br.com.residup.daos.ReservaDao;
 import br.com.residup.models.Reserva;
 
