@@ -1,5 +1,6 @@
 package br.com.residup.servlets;
 
+import br.com.residup.daos.IconAlertJS;
 import br.com.residup.daos.MoradorDao;
 import br.com.residup.models.Morador;
 import org.apache.commons.fileupload.FileItem;
@@ -27,43 +28,85 @@ import java.util.logging.Logger;
 import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 
 
-@WebServlet("/create_morador")
+@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/selectMorador", "/updateMorador", "/deleteMorador"})
 public class CadastroMorador extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(CadastroMorador.class.getName());
 
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        PrintWriter out = response.getWriter();
-
-        try {
-
-            Map<String, String> parameters = uploadImage(request);
-            String fotoMoradorImagePath = parameters.get("image");
-            var nome = parameters.get("nomeMorador");
-            var sobrenome = parameters.get("sobrenomeMorador");
-            var cpf = parameters.get("cpfMorador");
-            var rg = parameters.get("rgMorador");
-            var bloco = parameters.get("blocoMorador");
-            var email = parameters.get("emailMorador");
-            var telefone = parameters.get("telefoneMorador");
-            var numero_apartamento = parameters.get("numero_apartamentoMorador");
-            var senha = parameters.get("senhaMorador");
-
-            System.out.println(fotoMoradorImagePath);
-            var morador = new Morador(nome,sobrenome,cpf,rg,numero_apartamento,bloco,senha);
-            morador.setEnderecoFoto(fotoMoradorImagePath);
-
-
-            System.out.println(morador);
-            if  (MoradorDao.createMorador(morador)){
-                doGet(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getServletPath();
+        if (action.equals("/cadastro_morador")){
+            Boolean check = (Boolean) request.getSession().getAttribute("check");
+            String mgs = (String) request.getSession().getAttribute("mgsJS");
+            if (check != null) {
+                if (check) {
+                    String msg = mgs;
+                    request.setAttribute("mensagem", msg);
+                }
             }
-            doGet(request, response);
-        } catch (Exception e){
-            System.out.println(e);
+
+            request.getSession().removeAttribute("check");
+            request.getSession().removeAttribute("mgsJS");
+            request.getRequestDispatcher("Telas/registroMorador.jsp").forward(request, response);
+            return;
         }
 
+        request.getRequestDispatcher("Telas/registroMorador.jsp").forward(request, response);
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getServletPath();
+        if (action.equals("/create_morador")) {
+            try {
+
+                Map<String, String> parameters = uploadImage(request);
+                String fotoMoradorImagePath = parameters.get("image");
+                var nome = parameters.get("nomeMorador");
+                var sobrenome = parameters.get("sobrenomeMorador");
+                var cpf = parameters.get("cpfMorador");
+                var rg = parameters.get("rgMorador");
+                var bloco = parameters.get("blocoMorador");
+                var email = parameters.get("emailMorador");
+                var telefone = parameters.get("telefoneMorador");
+                var numero_apartamento = parameters.get("numero_apartamentoMorador");
+                var senha = parameters.get("senhaMorador");
+
+
+
+
+                System.out.println(fotoMoradorImagePath);
+                var morador = new Morador(nome,sobrenome,cpf,rg,numero_apartamento,bloco,senha);
+                morador.setEnderecoFoto(fotoMoradorImagePath);
+
+
+
+                if(MoradorDao.checkCadastro(cpf)){
+                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "CPF já cadastrado!");
+                    request.getSession().setAttribute("mgsJS", msgJs);
+                    request.getSession().setAttribute("check", true);
+                    response.sendRedirect("/cadastro_morador");
+                    return;
+                }
+                if  (MoradorDao.createMorador(morador)){
+                    String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Cadastro realizado com sucesso!");
+                    request.getSession().setAttribute("mgsJS", msgJs);
+                    request.getSession().setAttribute("check", true);
+                    response.sendRedirect("/cadastro_morador");
+                    return;
+                }
+                String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Ocorreu um erro no cadastro. Tente novamente, mais tarde!");
+                request.getSession().setAttribute("mgsJS", msgJs);
+                request.getSession().setAttribute("check", true);
+                response.sendRedirect("/cadastro_morador");
+
+            } catch (Exception e){
+                System.out.println(e);
+            }
+        }
     }
 
     private Map<String, String> uploadImage(HttpServletRequest httpServletRequest) {
@@ -118,5 +161,11 @@ public class CadastroMorador extends HttpServlet {
         fileItem.write(new File(filePath));
         return fileName;
     }
+
+    public static String scriptMensagemAlertJs(IconAlertJS iconAlertJS, String titulo, String messagem) {
+        String mgs = "Swal.fire(\n '" + titulo + "',\n'" + messagem + "'\n,'" + iconAlertJS + "'\n" + ");\n";
+        return mgs;
+    }
+
 
 }
