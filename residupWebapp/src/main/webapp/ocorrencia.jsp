@@ -85,9 +85,10 @@
                         <label>${ocorrencia.getTitulo()}</label>
                         <label class="oc">${ocorrencia.getTexto()}</label>
                         <label class="or">${ocorrencia.getStatus()}</label>
-                        <label class="editar">
-                            <button class="ed" type='submit'>Excluir</button>
+                        <label class="editar" for="deletarOcorrencia">
+                            <button id="deletarOcorrencia" class="ed"  onclick="deletarOcorrencia(${ocorrencia.getId()})">Excluir</button>
                         </label>
+
                     </div>
                     <hr>
                 </c:forEach>
@@ -111,6 +112,23 @@
             </script>
         </c:if>
         <script src="Telas/script.js"></script>
+
+        <script> function deletarOcorrencia(id){
+                 Swal.fire({
+                         title: 'Deletar ocorrência?',
+                         text: "Você não será capaz de reverter isso!",
+                         timer: 10000,
+                         icon: 'warning',
+                         showCancelButton: true,
+                         confirmButtonColor: '#d33',
+                         cancelButtonColor: '#3085d6',
+                         confirmButtonText: 'Sim, deletar ocorrência!'
+                     }).then((result) => {
+                         if (result.isConfirmed) {
+                             window.location.href = "/occurrenceDelete?id=" + id;
+                         }
+                     });
+                 } </script>
     </body>
 </html>
 
