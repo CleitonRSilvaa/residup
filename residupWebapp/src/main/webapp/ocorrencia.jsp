@@ -82,9 +82,8 @@
            <c:forEach var="ocorrencia" items="${ocorrencias}">
             <input type="text" value = ${ocorrencia.getTitulo()} id="nome" name="Title Ocorrência" required>
                        <input class="oc" type="text"  id="nome" value = ${ocorrencia.getStatus()} name="Status" required>
-                       <button class="editar" type='submit'>Editar Ocorrência</button>
-                       <button class="editar" type='submit'>Excluir Ocorrência</button>
-                        <hr>
+                       <button  class="editar" type='submit'>Excluir Ocorrência</button>
+                       <hr>
               </c:forEach>
 
           </div>
@@ -94,8 +93,25 @@
         </div>
       </section>
 
+<!-- JavaScript Link -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="scripts/scriptsReservas.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
 
 
+ <c:if test="${not empty mensagem}">
+        <%-- Exibe o alerta somente se a mensagem não for nula --%>
+        <script>
+
+            <%= request.getAttribute("mensagem")%>
+
+        </script>
+    </c:if>
 
 
 

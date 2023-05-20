@@ -25,7 +25,7 @@
             </button>
             <a href="">RESERVAR ÁREA</a>
             <a href="#" class="active">CONTROLE DE VISITANTES</a>
-            <a href="registroOcorrencia.jsp">REGISTRO DE OCORRÊNCIAS</a>
+            <a href="ocorrencia.jsp">REGISTRO DE OCORRÊNCIAS</a>
         </div>
         <nav>
             <ul>

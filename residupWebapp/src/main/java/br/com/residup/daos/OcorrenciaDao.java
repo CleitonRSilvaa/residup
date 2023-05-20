@@ -1,7 +1,6 @@
 package br.com.residup.daos;
 
 import br.com.residup.models.Ocorrencia;
-import br.com.residup.models.OcorrenciaBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +42,7 @@ public class OcorrenciaDao {
     public static boolean registrar(Ocorrencia ocorrencia) {
         boolean retorno = false;
         try {Connection connection = abrirConexao();
-            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR, STATUS) VALUES (?, ?, ?)");
+            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR, STATUS) VALUES (?, ?, ?, ?)");
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
             instrucao.setInt(3, ocorrencia.getId_morador());
@@ -106,23 +105,6 @@ public class OcorrenciaDao {
             PreparedStatement pst = connection.prepareStatement(update);
             pst.setString(1, ocorrencia.getStatus());
             pst.setInt(2, ocorrencia.getId());
-            pst.executeUpdate();
-            connection.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-    }
-
-    public static boolean editar(Ocorrencia ocorrencia) {
-        String update = "UPDATE REGISTRO_OCORRENCIA SET TITULO=?, OCORRENCIA=? WHERE ID_OCORRENCIA=?";
-        try {
-            Connection connection = abrirConexao();
-            PreparedStatement pst = connection.prepareStatement(update);
-            pst.setString(1, ocorrencia.getTitulo());
-            pst.setString(2, ocorrencia.getTexto());
-            pst.setInt(3, ocorrencia.getId());
             pst.executeUpdate();
             connection.close();
             return true;

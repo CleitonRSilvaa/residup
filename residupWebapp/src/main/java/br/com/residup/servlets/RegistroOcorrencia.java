@@ -1,5 +1,6 @@
 package br.com.residup.servlets;
 
+import br.com.residup.daos.IconAlertJS;
 import br.com.residup.daos.LoginDao;
 import br.com.residup.daos.OcorrenciaDao;
 import br.com.residup.models.Ocorrencia;
@@ -28,10 +29,11 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
+
         if (action.equals("/Ocorrencia")) {
-            request.getSession().setAttribute("validator", true);
             ocorrencia(request, response);
             return;
+
         }
 
     }
@@ -58,48 +60,50 @@ public class RegistroOcorrencia extends HttpServlet {
         ocorrencia(request, response);
     }
 
-
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getServletPath();
-        if (action.equals("/occurrenceUpdate")) {
-            editarOcorrencia(request, response);
-            return;
-        }
-        if (action.equals("/occurrenceResolve")) {
-            resolverOcorrencia(request, response);
-            return;
-        }
-        ocorrencia(request, response);
-
-    }
-
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id_morador = (int) request.getSession().getAttribute("id_morador");
-        ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(id_morador);
+
+        String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
+        ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(Integer.parseInt((id_morador)));
+
+        Boolean parametro = (Boolean) request.getSession().getAttribute("validator");
+        String mgs = (String) request.getSession().getAttribute("mgsJS");
+
+        System.out.println(mgs);
+        System.out.println(parametro);
+
+
+        if (parametro != null) {
+            if (parametro) {
+                String msg = mgs;
+                request.setAttribute("mensagem", msg);
+            }
+        }
+        request.getSession().removeAttribute("validator");
+        request.getSession().removeAttribute("mgsJS");
         request.setAttribute("ocorrencias", lista);
-        request.getParameter("validator");
-        RequestDispatcher rd = request.getRequestDispatcher("Ocorrencias.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("ocorrencia.jsp");
         rd.forward(request, response);
     }
 
 
     protected void registrarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LoginDao loginDao = LoginDao.getInstance();
         String titulo = request.getParameter("titulo");
         String texto = request.getParameter("texto");
-        int id_morador = (int) request.getSession().getAttribute("id_morador");
-        var ocorrencia = new Ocorrencia(titulo, texto, "", id_morador);
+        String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
+        var ocorrencia = new Ocorrencia(titulo, texto, "", Integer.parseInt((id_morador)));
 
 
         if (OcorrenciaDao.registrar(ocorrencia)) {
-            request.setAttribute("validator", true);
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Ocorrência registrada com sucesso!", "Aguarde o retorno do síndico.");
+            request.getSession().setAttribute("mgsJS", msgJs);
+            request.getSession().setAttribute("validator", true );
             System.out.println("Ocorrência registrada com sucesso.");
             response.setStatus(HttpServletResponse.SC_OK);
-            response.sendRedirect("Ocorrencias.jsp");
+            response.sendRedirect("/Ocorrencia");
+
+
 
         } else {
             request.getSession().setAttribute("validator", false);
@@ -119,7 +123,7 @@ public class RegistroOcorrencia extends HttpServlet {
 //        System.out.println("Tamanho da lista de ocorrencias: " + listaOcorrencias.size());
 //
 //        request.setAttribute("ocorrencias", listaOcorrencias);
-//        RequestDispatcher rd = request.getRequestDispatcher("Ocorrencias.jsp");
+//        RequestDispatcher rd = request.getRequestDispatcher("ocorrencia.jsp");
 //        rd.forward(request, response);
 //    }
 
@@ -136,18 +140,6 @@ public class RegistroOcorrencia extends HttpServlet {
         response.sendRedirect("");
     }
 
-    private void editarOcorrencia(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
-        ocorrencias.setTitulo(request.getParameter("titulo"));
-        ocorrencias.setTexto(request.getParameter("texto"));
-        ocorrencias.setStatus(request.getParameter("resolucao"));
-        if (OcorrenciaDao.editar(ocorrencias)) {
-            request.getSession().setAttribute("validador", true);
-        } else
-            request.getSession().setAttribute("validador", false);
-        response.sendRedirect("");
-    }
 
     private void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -158,6 +150,11 @@ public class RegistroOcorrencia extends HttpServlet {
         } else
             request.getSession().setAttribute("validador", false);
         response.sendRedirect("");
+    }
+
+    public static String scriptMensagemAlertJs(IconAlertJS iconAlertJS, String titulo, String messagem) {
+        String mgs = "Swal.fire(\n '" + titulo + "',\n'" + messagem + "'\n,'" + iconAlertJS + "'\n" + ");\n";
+        return mgs;
     }
 
 }
