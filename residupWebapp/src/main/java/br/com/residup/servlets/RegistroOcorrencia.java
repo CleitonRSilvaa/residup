@@ -1,7 +1,7 @@
 package br.com.residup.servlets;
 
-import br.com.residup.daos.IconAlertJS;
 import br.com.residup.daos.OcorrenciaDao;
+import br.com.residup.models.IconAlertJS;
 import br.com.residup.models.Ocorrencia;
 
 import javax.servlet.RequestDispatcher;
@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+
+import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 
 @WebServlet(urlPatterns = {"/Ocorrencia", "/occurrenceInsert", "/occurrenceSelect", "/occurrenceUpdate", "/occurrenceDelete", "/occurrenceResolve"})
 public class RegistroOcorrencia extends HttpServlet {
@@ -117,10 +118,4 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validador", false);
         response.sendRedirect("");
     }
-
-    public static String scriptMensagemAlertJs(IconAlertJS iconAlertJS, String titulo, String mensagem) throws UnsupportedEncodingException {
-        String msg = "Swal.fire(\n '" + titulo + "',\n'" + mensagem + "'\n,'" + iconAlertJS + "'\n" + ");\n";
-        return new String(msg.getBytes("UTF-8"), "UTF-8");
-    }
-
 }
