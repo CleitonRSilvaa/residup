@@ -1,6 +1,6 @@
 package br.com.residup.shared;
 
-import br.com.residup.daos.IconAlertJS;
+import br.com.residup.models.IconAlertJS;
 
 public class Uteis {
 
