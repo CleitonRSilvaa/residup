@@ -55,7 +55,7 @@ function validarEditar() {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Nome, Sobrenome e Documento campos obrigatorios!',
+            text: 'Nome, Sobrenome e Documento são campos obrigatórios!',
         });
         return false;
     }
@@ -77,7 +77,7 @@ function validarNovo() {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Nome e Documento são campos obrigatorios!',
+            text: 'Nome e Documento são campos obrigatórios!',
         })
         return false;
     }

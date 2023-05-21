@@ -1,6 +1,6 @@
 package br.com.residup.servlets;
 
-import br.com.residup.daos.IconAlertJS;
+import br.com.residup.models.IconAlertJS;
 import br.com.residup.daos.ReservaDao;
 import br.com.residup.models.Reserva;
 
@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 @WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva"})
 public class ReservaArea extends HttpServlet {
 
@@ -24,15 +23,12 @@ public class ReservaArea extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
             String action = request.getServletPath();
-
             if (action.equals("/deleteReserva")) {
                 doDelete(request, response);
                 return;
             }
-
-            Boolean parametro3 = (Boolean) request.getSession().getAttribute("inserReserva");
+            Boolean parametro3 = (Boolean) request.getSession().getAttribute("resultReserva");
             String mgs = (String) request.getSession().getAttribute("mgsJS");
             if (parametro3 != null) {
                 if (parametro3) {
@@ -42,7 +38,7 @@ public class ReservaArea extends HttpServlet {
             }
 
 
-            request.getSession().removeAttribute("inserReserva");
+            request.getSession().removeAttribute("resultReserva");
             request.getSession().removeAttribute("mgsJS");
 
             ReservaDao reservaDao = ReservaDao.getInstance();
@@ -51,7 +47,7 @@ public class ReservaArea extends HttpServlet {
 
             request.setAttribute("revervas", reservaList);
             request.setAttribute("areas", areasList);
-            request.getRequestDispatcher("reservaArea.jsp").forward(request, response);
+            request.getRequestDispatcher("/Telas/Reservamorador.jsp").forward(request, response);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -77,9 +73,9 @@ public class ReservaArea extends HttpServlet {
 
 
                 if (!validarCapos(reserva).equals("ok")) {
-                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Todos as campos devem estar preenchidos");
+                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Todos os campos devem estar preenchidos");
                     request.getSession().setAttribute("mgsJS", msgJs);
-                    request.getSession().setAttribute("inserReserva", true);
+                    request.getSession().setAttribute("resultReserva", true);
                     response.sendRedirect("/reservas");
                     return;
                 }
@@ -88,22 +84,22 @@ public class ReservaArea extends HttpServlet {
                 if (!comparaData(data)) {
                     String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Informe uma data maior que a data de hoje ");
                     request.getSession().setAttribute("mgsJS", msgJs);
-                    request.getSession().setAttribute("inserReserva", true);
+                    request.getSession().setAttribute("resultReserva", true);
                     response.sendRedirect("/reservas");
                     return;
                 }
 
                 if (reservaDao.moradorTemRederva(reserva)) {
-                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Você só pode reserva uma area por dia !");
+                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Voc� pode reservar uma area por dia !");
                     request.getSession().setAttribute("mgsJS", msgJs);
-                    request.getSession().setAttribute("inserReserva", true);
+                    request.getSession().setAttribute("resultReserva", true);
                     response.sendRedirect("/reservas");
                     return;
                 }
                 if (reservaDao.TemReserva(reserva)) {
-                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Infelizmente ja tem uma reservada para esse dia, horadio e area !");
+                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Infelizmente ja tem uma reserva para este dia, horário e area!");
                     request.getSession().setAttribute("mgsJS", msgJs);
-                    request.getSession().setAttribute("inserReserva", true);
+                    request.getSession().setAttribute("resultReserva", true);
                     response.sendRedirect("/reservas");
                     return;
                 }
@@ -111,18 +107,19 @@ public class ReservaArea extends HttpServlet {
                 if (reservaDao.insertReserva(reserva)) {
                     String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Reserva realizada com sucesso!");
                     request.getSession().setAttribute("mgsJS", msgJs);
-                    request.getSession().setAttribute("inserReserva", true);
+                    request.getSession().setAttribute("resultReserva", true);
                     response.sendRedirect("/reservas");
                     return;
                 }
 
                 response.sendRedirect("/reservas");
             } catch (Exception e) {
+                String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Atenção", "");
+                request.getSession().setAttribute("mgsJS", msgJs);
+                request.getSession().setAttribute("resultReserva", true);
                 System.out.println(e);
                 response.sendRedirect("/reservas");
             }
-
-
         }
     }
 
@@ -138,7 +135,7 @@ public class ReservaArea extends HttpServlet {
                 if (reservaDao.deleteReserva(reserva)) {
                     String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Reserva cancelada com sucesso!");
                     request.getSession().setAttribute("mgsJS", msgJs);
-                    request.getSession().setAttribute("inserReserva", true);
+                    request.getSession().setAttribute("resultReserva", true);
                     response.sendRedirect("/reservas");
                     return;
                 }

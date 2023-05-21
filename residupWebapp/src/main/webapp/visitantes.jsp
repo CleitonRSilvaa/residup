@@ -33,7 +33,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Documento</th>
                     <th scope="col" >Fone</th>
-                    <th scope="col">Opçõeses</th>
+                    <th scope="col">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,7 +83,7 @@
                                 <input type="text" class="form-control" id="nome" name="nome" required>
                             </div>
                             <div class="form-group">
-                                <label for="sobrenome">Sobrenome</label>
+                                <label for="sobrenome">Sobrenome:</label>
                                 <input type="text" class="form-control" id="sobrenome" name="sobrenome" required>
                             </div>
                             <div class="form-group">
@@ -125,7 +125,7 @@
                                 <input type="text" class="form-control" id="nomeEdicao" name="nome">
                             </div>
                             <div class="form-group">
-                                <label for="sobrenome">Sobrenome</label>
+                                <label for="sobrenome">Sobrenome:</label>
                                 <input type="text" class="form-control" id="sobrenomeEdicao" name="sobrenome" required>
                             </div>
                             <div class="form-group">
