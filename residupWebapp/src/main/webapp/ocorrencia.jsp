@@ -14,9 +14,9 @@
 <html lang="pt-BR">
     <head>
         <meta charset="utf-8">
-           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-           <meta http-equiv="X-UA-Compatible" content="IE=edge">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="Telas/ocorrenciamorador.css" rel="stylesheet" type="text/css"/>
         <title>Ocorrências</title>
     </head>
@@ -74,7 +74,6 @@
 
             </div>
         </section>
-
         <section class="container">
             <div class="wrapper">
                 <div class="text">
@@ -86,14 +85,15 @@
                         <label class="oc">${ocorrencia.getTexto()}</label>
                         <label class="or">${ocorrencia.getStatus()}</label>
                         <label class="editar" for="deletarOcorrencia">
-                            <button id="deletarOcorrencia" class="ed" >Excluir</button>
+                            <button id="deletarOcorrencia" class="ed" onclick="deletarOcorrencia(${ocorrencia.getId_ocorrencia()})" >Excluir</button>
                         </label>
-
                     </div>
                     <hr>
                 </c:forEach>
             </div>
         </section>
+
+
         <!-- JavaScript Link -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -103,32 +103,16 @@
         <script src="scripts/scriptsReservas.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+        <script src="scripts/scriptsOcorrencia.js"></script>
 
         <c:if test="${not empty mensagem}">
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
             <script>
-
                 <%= request.getAttribute("mensagem")%>
             </script>
         </c:if>
         <script src="Telas/script.js"></script>
 
-        <script> function deletarOcorrencia(id){
-                 Swal.fire({
-                         title: 'Deletar ocorrência?',
-                         text: "Você não será capaz de reverter isso!",
-                         timer: 10000,
-                         icon: 'warning',
-                         showCancelButton: true,
-                         confirmButtonColor: '#d33',
-                         cancelButtonColor: '#3085d6',
-                         confirmButtonText: 'Sim, deletar ocorrência!'
-                     }).then((result) => {
-                         if (result.isConfirmed) {
-                             window.location.href = "/occurrenceDelete?id=" + id;
-                         }
-                     });
-                 } </script>
     </body>
 </html>
 

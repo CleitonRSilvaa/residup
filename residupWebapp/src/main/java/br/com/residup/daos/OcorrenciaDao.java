@@ -69,8 +69,7 @@ public class OcorrenciaDao {
             ArrayList<Ocorrencia> ocorrencias = new ArrayList<>();
             ResultSet rs = instrucao.executeQuery();
             while (rs.next()) {
-                int id_ocorrencia = rs.getInt(1);
-                System.out.println(id_ocorrencia);
+                int id_ocorrencia = rs.getInt("ID_OCORRENCIA");
                 String titulo = rs.getString("TITULO");
                 String texto = rs.getString("OCORRENCIA");
                 String status = rs.getString("STATUS");

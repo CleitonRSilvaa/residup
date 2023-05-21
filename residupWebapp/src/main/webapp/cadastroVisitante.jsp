@@ -1,8 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="br.com.residup.models.Ocorrencia"%>
-<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="java.util.ArrayList"%>
+
 
 <%
     ArrayList<Ocorrencia> lista = (ArrayList<Ocorrencia>) request.getAttribute("ocorrencias");
@@ -11,7 +13,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="Telas/ocorrenciamorador.css" rel="stylesheet" type="text/css"/>
@@ -77,24 +80,20 @@
                 <div class="text">
                     <h1>Minhas ocorrências</h1>
                 </div>
-
                 <c:forEach var="ocorrencia" items="${ocorrencias}">
                     <div class="group">
                         <label>${ocorrencia.getTitulo()}</label>
                         <label class="oc">${ocorrencia.getTexto()}</label>
                         <label class="or">${ocorrencia.getStatus()}</label>
-                        <label class="editar">
-                            <button class="ed" type='submit'>Excluir</button>
+                        <label class="editar" for="deletarOcorrencia">
+                            <button id="deletarOcorrencia" class="ed" onclick="deletarOcorrencia(${ocorrencia.getId_ocorrencia()})" >Excluir</button>
                         </label>
+
                     </div>
                     <hr>
                 </c:forEach>
             </div>
         </section>
-
-
-
-
         <!-- JavaScript Link -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -105,20 +104,56 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
 
-
         <c:if test="${not empty mensagem}">
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
             <script>
 
                 <%= request.getAttribute("mensagem")%>
-
             </script>
         </c:if>
-
-
-
-
         <script src="Telas/script.js"></script>
+
+        <script>
+                                function deletarOcorrencia(id) {
+                                    Swal.fire({
+                                        title: 'Deletar ocorrência?',
+                                        text: "Você não será capaz de reverter isso!",
+                                        timer: 10000,
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Sim, deletar ocorrência!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Faz uma requisição AJAX para remover a ocorrência no servidor
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open("DELETE", "/occurrenceDelete?id=" + id, true);
+                                            xhr.onreadystatechange = function () {
+                                                if (xhr.readyState === 4) {
+                                                    if (xhr.status === 200) {
+                                                        Swal.fire({
+                                                            title: 'Sucesso',
+                                                            text: 'Ocorrência excluída com sucesso!',
+                                                            icon: 'success'
+                                                        }).then(() => {
+                                                            window.location.href = "/Ocorrencia";
+                                                        });
+                                                    } else {
+                                                        Swal.fire({
+                                                            title: 'Erro',
+                                                            text: 'Não foi possível excluir a ocorrência.',
+                                                            icon: 'error'
+                                                        });
+                                                    }
+                                                }
+                                            };
+                                            xhr.send();
+                                        }
+                                    });
+                                }
+        </script>
+
     </body>
 </html>
 

@@ -28,13 +28,10 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
         if (action.equals("/Ocorrencia")) {
             ocorrencia(request, response);
             return;
-
         }
-
     }
 
     @Override
@@ -46,7 +43,6 @@ public class RegistroOcorrencia extends HttpServlet {
             return;
         }
         ocorrencia(request, response);
-
     }
 
     @Override
@@ -61,16 +57,10 @@ public class RegistroOcorrencia extends HttpServlet {
 
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
         ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(Integer.parseInt((id_morador)));
         Boolean parametro = (Boolean) request.getSession().getAttribute("validator");
         String mgs = (String) request.getSession().getAttribute("mgsJS");
-
-        System.out.println(mgs);
-        System.out.println(parametro);
-
-
         if (parametro != null) {
             if (parametro) {
                 String msg = mgs;
@@ -84,14 +74,12 @@ public class RegistroOcorrencia extends HttpServlet {
         rd.forward(request, response);
     }
 
-
     protected void registrarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String titulo = request.getParameter("titulo");
         String texto = request.getParameter("texto");
         String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
-        var ocorrencia = new Ocorrencia(titulo, texto, "", Integer.parseInt((id_morador)));
-
+        var ocorrencia = Ocorrencia.builder().titulo(titulo).texto(texto).id_morador(Integer.parseInt(id_morador)).build();
 
         if (OcorrenciaDao.registrar(ocorrencia)) {
             String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Ocorrência registrada com sucesso!", "Aguarde o retorno do síndico.");
@@ -100,9 +88,6 @@ public class RegistroOcorrencia extends HttpServlet {
             System.out.println("Ocorrência registrada com sucesso.");
             response.setStatus(HttpServletResponse.SC_OK);
             response.sendRedirect("/Ocorrencia");
-
-
-
         } else {
             request.getSession().setAttribute("validator", false);
             System.out.println("Erro ao registrar ocorrência.");
@@ -110,24 +95,6 @@ public class RegistroOcorrencia extends HttpServlet {
         }
 
     }
-
-//    protected void listarOcorrencia(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        int idmorador = ;
-//
-//
-//        List<Ocorrencia> listaOcorrencias = OcorrenciaDao.selecionar(idmorador);
-//        System.out.println("Tamanho da lista de ocorrencias: " + listaOcorrencias.size());
-//
-//        request.setAttribute("ocorrencias", listaOcorrencias);
-//        RequestDispatcher rd = request.getRequestDispatcher("ocorrencia.jsp");
-//        rd.forward(request, response);
-//    }
-
-
-
-
     protected void removerOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
@@ -135,7 +102,8 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validador", true);
         } else
             request.getSession().setAttribute("validador", false);
-        response.sendRedirect("");
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        response.sendRedirect("/Ocorrencia");
     }
 
 
@@ -149,9 +117,6 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validador", false);
         response.sendRedirect("");
     }
-
-
-
 
     public static String scriptMensagemAlertJs(IconAlertJS iconAlertJS, String titulo, String mensagem) throws UnsupportedEncodingException {
         String msg = "Swal.fire(\n '" + titulo + "',\n'" + mensagem + "'\n,'" + iconAlertJS + "'\n" + ");\n";
