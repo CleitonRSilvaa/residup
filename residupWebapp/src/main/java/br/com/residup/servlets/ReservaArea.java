@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 @WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva"})
 public class ReservaArea extends HttpServlet {
 
@@ -24,14 +23,11 @@ public class ReservaArea extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
             String action = request.getServletPath();
-
             if (action.equals("/deleteReserva")) {
                 doDelete(request, response);
                 return;
             }
-
             Boolean parametro3 = (Boolean) request.getSession().getAttribute("resultReserva");
             String mgs = (String) request.getSession().getAttribute("mgsJS");
             if (parametro3 != null) {
@@ -51,7 +47,7 @@ public class ReservaArea extends HttpServlet {
 
             request.setAttribute("revervas", reservaList);
             request.setAttribute("areas", areasList);
-            request.getRequestDispatcher("reservaArea.jsp").forward(request, response);
+            request.getRequestDispatcher("/Telas/Reservamorador.jsp").forward(request, response);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -94,7 +90,7 @@ public class ReservaArea extends HttpServlet {
                 }
 
                 if (reservaDao.moradorTemRederva(reserva)) {
-                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Você só pode reservar uma area por dia !");
+                    String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Voc� pode reservar uma area por dia !");
                     request.getSession().setAttribute("mgsJS", msgJs);
                     request.getSession().setAttribute("resultReserva", true);
                     response.sendRedirect("/reservas");
@@ -118,11 +114,12 @@ public class ReservaArea extends HttpServlet {
 
                 response.sendRedirect("/reservas");
             } catch (Exception e) {
+                String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Atenção", "");
+                request.getSession().setAttribute("mgsJS", msgJs);
+                request.getSession().setAttribute("resultReserva", true);
                 System.out.println(e);
                 response.sendRedirect("/reservas");
             }
-
-
         }
     }
 
