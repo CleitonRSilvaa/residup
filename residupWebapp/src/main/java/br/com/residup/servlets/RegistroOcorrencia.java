@@ -1,7 +1,6 @@
 package br.com.residup.servlets;
 
 import br.com.residup.daos.IconAlertJS;
-import br.com.residup.daos.LoginDao;
 import br.com.residup.daos.OcorrenciaDao;
 import br.com.residup.models.Ocorrencia;
 
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(urlPatterns = {"/Ocorrencia", "/occurrenceInsert", "/occurrenceSelect", "/occurrenceUpdate", "/occurrenceDelete", "/occurrenceResolve"})
 public class RegistroOcorrencia extends HttpServlet {
@@ -66,7 +64,6 @@ public class RegistroOcorrencia extends HttpServlet {
 
         String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
         ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(Integer.parseInt((id_morador)));
-
         Boolean parametro = (Boolean) request.getSession().getAttribute("validator");
         String mgs = (String) request.getSession().getAttribute("mgsJS");
 
@@ -133,7 +130,7 @@ public class RegistroOcorrencia extends HttpServlet {
 
     protected void removerOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
+        ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
         if (OcorrenciaDao.deletar(ocorrencias)) {
             request.getSession().setAttribute("validador", true);
         } else
@@ -144,7 +141,7 @@ public class RegistroOcorrencia extends HttpServlet {
 
     private void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ocorrencias.setId(Integer.parseInt(request.getParameter("id")));
+        ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
         ocorrencias.setStatus(request.getParameter("resolucao"));
         if (OcorrenciaDao.resolver(ocorrencias)) {
             request.getSession().setAttribute("validador", true);

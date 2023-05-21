@@ -69,11 +69,12 @@ public class OcorrenciaDao {
             ArrayList<Ocorrencia> ocorrencias = new ArrayList<>();
             ResultSet rs = instrucao.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("ID_OCORRENCIA");
+                int id_ocorrencia = rs.getInt(1);
+                System.out.println(id_ocorrencia);
                 String titulo = rs.getString("TITULO");
                 String texto = rs.getString("OCORRENCIA");
                 String status = rs.getString("STATUS");
-                var registroOcorrencia = Ocorrencia.builder().id(id).titulo(titulo).texto(texto).status(status).build();
+                var registroOcorrencia = Ocorrencia.builder().id_ocorrencia(id_ocorrencia).titulo(titulo).texto(texto).status(status).build();
                 ocorrencias.add(registroOcorrencia);
             }
             return ocorrencias;
@@ -89,7 +90,7 @@ public class OcorrenciaDao {
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(delete);
-            pst.setInt(1, ocorrencia.getId());
+            pst.setInt(1, ocorrencia.getId_ocorrencia());
             pst.executeUpdate();
             connection.close();
             return true;
@@ -105,7 +106,7 @@ public class OcorrenciaDao {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(update);
             pst.setString(1, ocorrencia.getStatus());
-            pst.setInt(2, ocorrencia.getId());
+            pst.setInt(2, ocorrencia.getId_ocorrencia());
             pst.executeUpdate();
             connection.close();
             return true;

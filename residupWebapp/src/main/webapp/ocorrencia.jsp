@@ -86,7 +86,7 @@
                         <label class="oc">${ocorrencia.getTexto()}</label>
                         <label class="or">${ocorrencia.getStatus()}</label>
                         <label class="editar" for="deletarOcorrencia">
-                            <button id="deletarOcorrencia" class="ed"  onclick="deletarOcorrencia(${ocorrencia.getId()})">Excluir</button>
+                            <button id="deletarOcorrencia" class="ed" >Excluir</button>
                         </label>
 
                     </div>

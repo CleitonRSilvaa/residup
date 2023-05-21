@@ -1,10 +1,11 @@
 package br.com.residup.models;
 
 public class Ocorrencia {
-    private int id;
+    private int id_ocorrencia;
     private String titulo;
     private String texto;
     private String status;
+    private int id_morador;
 
     public int getId_morador() {
         return id_morador;
@@ -14,7 +15,6 @@ public class Ocorrencia {
         this.id_morador = id_morador;
     }
 
-    private int id_morador;
 
     public String getStatus() {
         return status;
@@ -23,13 +23,14 @@ public class Ocorrencia {
     public void setStatus(String status) {
         this.status = status;
     }
-    public int getId() {
-        return id;
+    public int getId_ocorrencia() {
+        return id_ocorrencia;
+    }
+    public void setId_ocorrencia(int id_ocorrencia) {
+        this.id_ocorrencia = id_ocorrencia;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public String getTitulo() {
         return titulo;
@@ -53,6 +54,14 @@ public class Ocorrencia {
         this.status = status;
         this.id_morador = id_morador;
     }
+    public Ocorrencia(String titulo, String texto, String status, int id_morador, int id_ocorrencia) {
+        this.titulo = titulo;
+        this.texto = texto;
+        this.status = status;
+        this.id_morador = id_morador;
+        this.id_ocorrencia = id_ocorrencia;
+
+    }
 
     public static OcorrenciaBuilder builder(){
         return new OcorrenciaBuilder();
@@ -64,7 +73,7 @@ public class Ocorrencia {
     @Override
     public String toString() {
         return "Ocorrencia{" +
-                "id=" + id +
+                "id=" + id_ocorrencia +
                 ", titulo='" + titulo + '\'' +
                 ", texto='" + texto + '\'' +
                 ", status='" + status + '\'' +
