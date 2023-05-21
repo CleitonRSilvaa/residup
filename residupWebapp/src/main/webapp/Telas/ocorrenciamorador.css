@@ -175,8 +175,20 @@ html {
     font-size: 18px;
     color: white;
     font-weight: bold;
+    margin-left: 2%;
   }
-  
+
+  h2 {
+    padding: 0px;
+    border-radius: 10px 10px 0 0;
+    color: black;
+    background-color: #1d3354;
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+    margin-left: 90%;
+  }
+
   .buttons {
     display: flex;
     justify-content: space-between;

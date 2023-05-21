@@ -74,26 +74,38 @@
 
             </div>
         </section>
-
         <section class="container">
             <div class="wrapper">
                 <div class="text">
                     <h1>Minhas ocorrências</h1>
-                </div>
+                    <form action="Ocorrencia" method="GET">
+                        <div class="filter">
+                            <h2>Filtrar por status:</h2>
+                            <select class="form-area" id="status-filter" name="status-filter">
+                                <option value="Aberto" <c:if test="${filtroOcorrencias.equalsIgnoreCase('aberto')}">selected</c:if>>Aberto</option>
+                                <option value="Todos" <c:if test="${filtroOcorrencias.equalsIgnoreCase('todos')}">selected</c:if>>Todos</option>
+                                <option value="m_analise" <c:if test="${filtroOcorrencias.equalsIgnoreCase('em_analise')}">selected</c:if>>Em análise</option>
+                                <option value="em_andamento" <c:if test="${filtroOcorrencias.equalsIgnoreCase('em_andamento')}">selected</c:if>>Em andamento</option>
+                                <option value="Resolvido" <c:if test="${filtroOcorrencias.equalsIgnoreCase('resolvido')}">selected</c:if>>Resolvido</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="form-button">Filtrar</button>
+                        </form>
+                    </div>
                 <c:forEach var="ocorrencia" items="${ocorrencias}">
                     <div class="group">
                         <label>${ocorrencia.getTitulo()}</label>
                         <label class="oc">${ocorrencia.getTexto()}</label>
                         <label class="or">${ocorrencia.getStatus()}</label>
                         <label class="editar" for="deletarOcorrencia">
-                            <button id="deletarOcorrencia" class="ed" onclick="deletarOcorrencia(${ocorrencia.getId_ocorrencia()})" >Excluir</button>
+                            <button id="deletarOcorrencia" class="ed" onclick="deletarOcorrencia(${ocorrencia.getId_ocorrencia()})">Excluir</button>
                         </label>
-
                     </div>
                     <hr>
                 </c:forEach>
             </div>
         </section>
+
         <!-- JavaScript Link -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -103,57 +115,15 @@
         <script src="scripts/scriptsReservas.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+        <script src="scripts/scriptsOcorrencia.js"></script>
 
         <c:if test="${not empty mensagem}">
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
             <script>
-
                 <%= request.getAttribute("mensagem")%>
             </script>
         </c:if>
         <script src="Telas/script.js"></script>
-
-        <script>
-                                function deletarOcorrencia(id) {
-                                    Swal.fire({
-                                        title: 'Deletar ocorrência?',
-                                        text: "Você não será capaz de reverter isso!",
-                                        timer: 10000,
-                                        icon: 'warning',
-                                        showCancelButton: true,
-                                        confirmButtonColor: '#d33',
-                                        cancelButtonColor: '#3085d6',
-                                        confirmButtonText: 'Sim, deletar ocorrência!'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            // Faz uma requisição AJAX para remover a ocorrência no servidor
-                                            var xhr = new XMLHttpRequest();
-                                            xhr.open("DELETE", "/occurrenceDelete?id=" + id, true);
-                                            xhr.onreadystatechange = function () {
-                                                if (xhr.readyState === 4) {
-                                                    if (xhr.status === 200) {
-                                                        Swal.fire({
-                                                            title: 'Sucesso',
-                                                            text: 'Ocorrência excluída com sucesso!',
-                                                            icon: 'success'
-                                                        }).then(() => {
-                                                            window.location.href = "/Ocorrencia";
-                                                        });
-                                                    } else {
-                                                        Swal.fire({
-                                                            title: 'Erro',
-                                                            text: 'Não foi possível excluir a ocorrência.',
-                                                            icon: 'error'
-                                                        });
-                                                    }
-                                                }
-                                            };
-                                            xhr.send();
-                                        }
-                                    });
-                                }
-        </script>
-
     </body>
 </html>
 

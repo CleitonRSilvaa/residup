@@ -78,21 +78,33 @@
             <div class="wrapper">
                 <div class="text">
                     <h1>Minhas ocorrências</h1>
-                </div>
+                    <form action="Ocorrencia" method="GET">
+                        <div class="filter">
+                            <h2>Filtrar por status:</h2>
+                            <select class="form-area" id="status-filter" name="status-filter">
+                                <option value="Em aberto" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Em aberto')}">selected</c:if>>Em aberto</option>
+                                <option value="todos" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Todos')}">selected</c:if>>Todos</option>
+                                <option value="Em análise" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Em análise')}">selected</c:if>>Em análise</option>
+                                <option value="Em andamento" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Em andamento')}">selected</c:if>>Em andamento</option>
+                                <option value="Resolvido" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Resolvido')}">selected</c:if>>Resolvido</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="form-button">Filtrar</button>
+                        </form>
+                    </div>
                 <c:forEach var="ocorrencia" items="${ocorrencias}">
                     <div class="group">
                         <label>${ocorrencia.getTitulo()}</label>
                         <label class="oc">${ocorrencia.getTexto()}</label>
                         <label class="or">${ocorrencia.getStatus()}</label>
                         <label class="editar" for="deletarOcorrencia">
-                            <button id="deletarOcorrencia" class="ed" onclick="deletarOcorrencia(${ocorrencia.getId_ocorrencia()})" >Excluir</button>
+                            <button id="deletarOcorrencia" class="ed" onclick="deletarOcorrencia(${ocorrencia.getId_ocorrencia()})">Excluir</button>
                         </label>
                     </div>
                     <hr>
                 </c:forEach>
             </div>
         </section>
-
 
         <!-- JavaScript Link -->
 
@@ -112,7 +124,6 @@
             </script>
         </c:if>
         <script src="Telas/script.js"></script>
-
     </body>
 </html>
 

@@ -1,13 +1,13 @@
 package br.com.residup.daos;
 
 import br.com.residup.models.Ocorrencia;
+import br.com.residup.models.Status;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,12 +41,13 @@ public class OcorrenciaDao {
 
     public static boolean registrar(Ocorrencia ocorrencia) {
         boolean retorno = false;
-        try {Connection connection = abrirConexao();
+        try {
+            Connection connection = abrirConexao();
             PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR, STATUS) VALUES (?, ?, ?, ?)");
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
             instrucao.setInt(3, ocorrencia.getId_morador());
-            instrucao.setString(4, "Aberto");
+            instrucao.setString(4, Status.EM_ABERTO.getStatus());
 
             int linhasRetorno = instrucao.executeUpdate();
             return linhasRetorno > 0;
@@ -113,29 +114,5 @@ public class OcorrenciaDao {
             System.out.println(e);
             return false;
         }
-    }
-
-    public static List<Ocorrencia> selecionar(int idmorador) {
-        String read2 = "SELECT * FROM REGISTRO_OCORRENCIA WHERE ID_MORADOR=?";
-        List<Ocorrencia> ocorrencias = null;
-        try {
-            Connection connection = abrirConexao();
-            PreparedStatement pst = connection.prepareStatement(read2);
-            pst.setInt(1, idmorador);
-            ResultSet rs = pst.executeQuery();
-
-            ocorrencias = new ArrayList<>();
-
-            while (rs.next()) {
-                Ocorrencia ocorrencia = new Ocorrencia();
-                ocorrencia.setTitulo(rs.getString("TITULO"));
-                ocorrencia.setTexto(rs.getString("TEXTO"));
-                ocorrencia.setStatus(rs.getString("RESOLUCAO"));
-                ocorrencias.add(ocorrencia);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return ocorrencias;
     }
 }

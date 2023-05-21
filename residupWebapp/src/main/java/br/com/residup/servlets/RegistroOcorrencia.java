@@ -59,21 +59,37 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
-        ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(Integer.parseInt((id_morador)));
+        String filtroOcorrencias = request.getParameter("status-filter");
+        ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(Integer.parseInt(id_morador));
+        ArrayList<Ocorrencia> listaFiltrada = new ArrayList<>();
+
+        if (filtroOcorrencias != null && !filtroOcorrencias.isEmpty() && !filtroOcorrencias.equals("todos")) {
+            for (Ocorrencia ocorrencia : lista) {
+                if (ocorrencia.getStatus().equals(filtroOcorrencias)) {
+                    listaFiltrada.add(ocorrencia);
+                }
+            }
+        } else {
+            listaFiltrada = lista;
+            filtroOcorrencias = "todos";
+        }
+
         Boolean parametro = (Boolean) request.getSession().getAttribute("validator");
         String mgs = (String) request.getSession().getAttribute("mgsJS");
-        if (parametro != null) {
-            if (parametro) {
-                String msg = mgs;
-                request.setAttribute("mensagem", msg);
-            }
+
+        if (parametro != null && parametro) {
+            String msg = mgs;
+            request.setAttribute("mensagem", msg);
         }
+
         request.getSession().removeAttribute("validator");
         request.getSession().removeAttribute("mgsJS");
-        request.setAttribute("ocorrencias", lista);
+        request.setAttribute("ocorrencias", listaFiltrada);
+        request.setAttribute("filtroOcorrencias", filtroOcorrencias); // Passa o valor do filtro para o JSP
         RequestDispatcher rd = request.getRequestDispatcher("ocorrencia.jsp");
         rd.forward(request, response);
     }
+
 
     protected void registrarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,7 +101,7 @@ public class RegistroOcorrencia extends HttpServlet {
         if (OcorrenciaDao.registrar(ocorrencia)) {
             String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Ocorrência registrada com sucesso!", "Aguarde o retorno do síndico.");
             request.getSession().setAttribute("mgsJS", msgJs);
-            request.getSession().setAttribute("validator", true );
+            request.getSession().setAttribute("validator", true);
             System.out.println("Ocorrência registrada com sucesso.");
             response.setStatus(HttpServletResponse.SC_OK);
             response.sendRedirect("/Ocorrencia");
@@ -94,8 +110,8 @@ public class RegistroOcorrencia extends HttpServlet {
             System.out.println("Erro ao registrar ocorrência.");
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
-
     }
+
     protected void removerOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
@@ -103,7 +119,7 @@ public class RegistroOcorrencia extends HttpServlet {
             request.getSession().setAttribute("validador", true);
         } else
             request.getSession().setAttribute("validador", false);
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         response.sendRedirect("/Ocorrencia");
     }
 
