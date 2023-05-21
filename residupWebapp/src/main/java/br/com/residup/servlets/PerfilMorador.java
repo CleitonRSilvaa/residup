@@ -19,18 +19,22 @@ import java.util.*;
 
 import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 
-@WebServlet("/encontrar-perfil-morador")
+@WebServlet(urlPatterns = {"/perfilMorador"})
 public class PerfilMorador extends HttpServlet{
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            String action = req.getServletPath();
+            System.out.println(action);
 
             try {
+                if (action.equals("/perfilMorador")){
                 Morador morador = new MoradorDao().buscarMorador("52201779821");
 
                 req.setAttribute("morador", morador);
 
-                req.getRequestDispatcher("perfil.jsp").forward(req, resp);
+                req.getRequestDispatcher("/Telas/perfilMorador.jsp").forward(req, resp);
 
+                }
             } catch (Exception exception){
 
 
@@ -41,7 +45,8 @@ public class PerfilMorador extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, String> parameters = uploadImage(req);
-
+        String action = req.getServletPath();
+        System.out.println(action);
         String fotoMoradorImagePath = parameters.get("image");
         System.out.println(fotoMoradorImagePath);
         doGet(req, resp);

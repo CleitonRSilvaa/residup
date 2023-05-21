@@ -1,6 +1,6 @@
 package br.com.residup.servlets;
 
-import br.com.residup.daos.IconAlertJS;
+import br.com.residup.models.IconAlertJS;
 import br.com.residup.daos.MoradorDao;
 import br.com.residup.models.Morador;
 import org.apache.commons.fileupload.FileItem;
@@ -25,10 +25,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 
 
-@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/selectMorador", "/updateMorador", "/deleteMorador"})
+@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/selectMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador"})
 public class CadastroMorador extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(CadastroMorador.class.getName());
 
@@ -36,6 +37,8 @@ public class CadastroMorador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
+
+
         if (action.equals("/cadastro_morador")){
             Boolean check = (Boolean) request.getSession().getAttribute("check");
             String mgs = (String) request.getSession().getAttribute("mgsJS");
@@ -102,13 +105,46 @@ public class CadastroMorador extends HttpServlet {
                 request.getSession().setAttribute("mgsJS", msgJs);
                 request.getSession().setAttribute("check", true);
                 response.sendRedirect("/cadastro_morador");
+                return;
 
             } catch (Exception e){
                 System.out.println(e);
             }
         }
+        if(action.equals("/updatePerfilMorador")){
+            updatePerfilMorador(request, response);
+            return;
+        }
+
+
     }
 
+
+    public void updatePerfilMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String action = request.getServletPath();
+        Map<String, String> parameters = uploadImage(request);
+        String fotoMoradorImagePath = parameters.get("image");
+        var senha = parameters.get("Senha");
+        var confirmarSenha = parameters.get("Confs");
+
+
+            var morador = new Morador(null,null,"52201779821",null,null,null,senha);
+            morador.setEnderecoFoto(fotoMoradorImagePath);
+
+            if(!MoradorDao.updateMoradorPerfil(morador)){
+                String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Ocorreu um erro na alteração do Perfil. Tente novamente, mais tarde!");
+                request.getSession().setAttribute("mgsJS", msgJs);
+                request.getSession().setAttribute("check", true);
+                response.sendRedirect("/reservas");
+            }
+            response.sendRedirect("/perfilMorador");
+
+
+
+
+
+    }
     private Map<String, String> uploadImage(HttpServletRequest httpServletRequest) {
 
         Map<String, String> requestParameters = new HashMap<>();
@@ -162,10 +198,6 @@ public class CadastroMorador extends HttpServlet {
         return fileName;
     }
 
-    public static String scriptMensagemAlertJs(IconAlertJS iconAlertJS, String titulo, String messagem) {
-        String mgs = "Swal.fire(\n '" + titulo + "',\n'" + messagem + "'\n,'" + iconAlertJS + "'\n" + ");\n";
-        return mgs;
-    }
 
 
 }

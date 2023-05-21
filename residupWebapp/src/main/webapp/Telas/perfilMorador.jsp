@@ -1,13 +1,25 @@
+<%@page import="br.com.residup.models.Morador"%>
+
+<%--<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%
+    Morador morador = (Morador) request.getAttribute("morador");
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="../css/perfil.css">
     <title>Header Reserva</title>
 </head>
 <body>
+
     <div class="header" id="header">
         <button onclick="toggleSidebar()" class="btn_icon_header">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -29,47 +41,73 @@
             <a href="HeaderOcorrencias.html">REGISTRO DE OCORRENCIAS</a>
         </div>
         <nav>
-            <button id="openModal">Meu Perfil</button>
-
+        <form action="perfilMorador" method="get">
+            <button type="submit" id="openModal">Meu Perfil</button>
+            </form>
         <div id="modalOverlay" class="modal-overlay">
     <div class="modal">
             <h2>Seu Perfil</h2>
-            <form action="#">
-              <div class="perfil">
-                <input type="text" id="nome" placeholder="Nome " name="Nome" disabled>
+            <c:if test="${not empty morador}">
 
-                <input type="text" id="nome" placeholder="Sobrenome" name="Sobrenome"  disabled>
+            <form action="updatePerfilMorador" method="post" enctype="multipart/form-data">
+              <div class="perfil">
+                <input type="text" id="nome" placeholder="Nome " name="Nome" value="<%= morador.getNome() + ' ' + morador.getSobrenome() %>" disabled>
+
+                <input type="text" id="nome" placeholder="Sobrenome" name="Sobrenome" value="<%= morador.getSobrenome() %>"  disabled>
                 <label class="picture" for="picture__input" tabIndex="0">
                   <span class="picture__image"></span>
                 </label>
                 <label></label>
     
-                <input type="file" name="picture__input" id="picture__input">
+                <input type="file" name="picture__input" id="picture__input" value="<%= morador.getEnderecoFoto() %>" >
               </div>
               <div class="input-group2">
-                <input type="rg" id="rg" placeholder="RG" maxlength="9" name="RG"  disabled>
-                <input class="cpff" type="cpf" id="cpf" placeholder="CPF" maxlength="14" name="CPF"  disabled>
+                <input type="rg" id="rg" placeholder="RG" maxlength="9" name="RG" value= <%= morador.getRg() %> disabled>
+                <input class="cpff" type="cpf" id="cpf" placeholder="CPF" maxlength="14" name="CPF" value= <%= morador.getCpf() %> disabled>
               </div>
     
               <div class="input-group2">
-                <input type="rg" id="rg" placeholder="apto" maxlength="9" name="Apto"  disabled>
-                <input class="cpff" type="cpf" id="cpf" placeholder="Bloco" maxlength="14" name="Bloco"  disabled>
+                <input type="rg" id="rg" placeholder="apto" maxlength="9" name="Apto" value= <%= morador.getNumeroApartamento() %> disabled>
+                <input class="cpff" type="cpf" id="cpf" placeholder="Bloco" maxlength="14" name="Bloco" value= <%= morador.getBloco() %> disabled>
               </div>
                 <div class="input-group2">
                     <input type="rg" id="rg" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
                     <input class="cpff" type="cpf" id="cpf" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
                 </div>
               <div class="input-group">
-                <button class="cadastrar">Alterar Senha</button>
+                <button type="submit" class="cadastrar">Alterar Senha</button>
               </div>
     
             </form>
+            </c:if>
           </div>
 
 
     </div>
         </nav>
-    </div>´
-    <script src="perfil.js"></script> 
+    </div>
+
+        <script>
+          // Obtenha uma referência ao botão "Meu Perfil" e ao modal
+          const openModalButton = document.getElementById('openModal');
+          const modalOverlay = document.getElementById('modalOverlay');
+
+          openModalButton.addEventListener('click', function () {
+                  event.preventDefault();
+                  modalOverlay.style.opacity = '1';
+                  modalOverlay.style.pointerEvents = 'auto';
+                });
+
+                modalOverlay.addEventListener('click', function (event) {
+                        if (event.target === modalOverlay) {
+                          modalOverlay.style.opacity = '0';
+                          modalOverlay.style.pointerEvents = 'none';
+                        }
+                      });
+
+        </script>
+
+        <script src="../scripts/perfil.js"></script>
+
 </body>
 </html>
