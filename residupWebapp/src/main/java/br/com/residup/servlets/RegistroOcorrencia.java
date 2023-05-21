@@ -117,6 +117,7 @@ public class RegistroOcorrencia extends HttpServlet {
         ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
         if (OcorrenciaDao.deletar(ocorrencias)) {
             request.getSession().setAttribute("validador", true);
+            response.setStatus(HttpServletResponse.SC_OK);
         } else
             request.getSession().setAttribute("validador", false);
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -130,8 +131,10 @@ public class RegistroOcorrencia extends HttpServlet {
         ocorrencias.setStatus(request.getParameter("resolucao"));
         if (OcorrenciaDao.resolver(ocorrencias)) {
             request.getSession().setAttribute("validador", true);
+            response.setStatus(HttpServletResponse.SC_OK);
         } else
             request.getSession().setAttribute("validador", false);
-        response.sendRedirect("");
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        response.sendRedirect("/Ocorrencia");
     }
 }

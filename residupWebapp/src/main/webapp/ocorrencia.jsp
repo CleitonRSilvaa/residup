@@ -62,16 +62,15 @@
                 <div class="text"><h1>Nova ocorrência</h1></div>
                 <form action="occurrenceInsert" method="post">
                     <div class="buttons">
-                        <input type="text" placeholder="Título da ocorrência" name="titulo">
+                        <input type="text" placeholder="Título da ocorrência" name="titulo" required>
                         <button type="submit">
                             <h4>Salvar ocorrência</h4>
                         </button>
                     </div>
                     <div class="character">
-                        <textarea name="texto" id="txtcharacter" cols="30" rows="10"></textarea>
+                        <textarea name="texto" id="txtcharacter" cols="30" rows="10" required></textarea>
                     </div>
                 </form>
-
             </div>
         </section>
         <section class="container">
