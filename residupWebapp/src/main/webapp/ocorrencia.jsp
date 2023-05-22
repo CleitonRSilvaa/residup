@@ -51,7 +51,7 @@
                         <a href="">MEU PERFIL</a>
                         <div class="dropdown-menu">
                             <a href="">Editar perfil</a>
-                            <a href="">Sair da Conta</a>
+                            <a href="logout">Sair da Conta</a>
                         </div>
                     </li>
                 </ul>

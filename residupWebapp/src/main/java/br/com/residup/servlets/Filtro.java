@@ -8,35 +8,23 @@ import java.io.IOException;
 
 public class Filtro implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig){
 
     }
 
+
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        HttpSession session = httpRequest.getSession(false);
 
-        HttpSession sessao = req.getSession(false);
+        boolean loggedIn = session != null && session.getAttribute("cpf") != null;
+        boolean loginRequest = httpRequest.getRequestURI().equals(httpRequest.getContextPath() + "/index");
 
-        // Verifica se a URL da solicitação é relacionada ao processo de login
-        String loginURL = req.getContextPath() + "/login"; // Substitua "/login" pela URL real do processo de login
-        boolean isLoginRequest = req.getRequestURI().equals(loginURL);
-
-        if (req.getServletPath().equals("/console")){
+        if (loggedIn || loginRequest) {
             chain.doFilter(request, response);
-            return;
-        }
-
-
-        if (sessao == null || sessao.getAttribute("cpf") == null) {
-            if (isLoginRequest) {
-                // Permite que a solicitação de login prossiga normalmente sem redirecionamento
-                chain.doFilter(request, response);
-            } else {
-                res.sendRedirect("login");
-            }
         } else {
-            chain.doFilter(request, response);
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index");
         }
     }
 
