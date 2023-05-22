@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
         if (session.getAttribute("cpf") != null) {
             response.sendRedirect(request.getContextPath() + "/Ocorrencia");
         } else {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
         } else {
             System.out.println("Login não encontrado/incorreto");
             request.setAttribute("error", "CPF e/ou senha incorretos.");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 }

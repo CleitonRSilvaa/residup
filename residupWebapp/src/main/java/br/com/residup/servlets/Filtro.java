@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Filtro implements Filter {
     @Override
-    public void init(FilterConfig filterConfig){
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -24,7 +24,7 @@ public class Filtro implements Filter {
         if (loggedIn || loginRequest) {
             chain.doFilter(request, response);
         } else {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index");
+            httpResponse.sendRedirect("/index");
         }
     }
 
