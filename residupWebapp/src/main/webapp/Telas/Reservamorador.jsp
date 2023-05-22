@@ -1,11 +1,14 @@
+<%@page import="java.util.List"%>
 <%@page import="br.com.residup.models.Reserva"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%--<%@page language="java" contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8"%>--%>
+<%@page import="br.com.residup.models.Convidado"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
     ArrayList<Reserva> reservas = (ArrayList<Reserva>) request.getAttribute("revervas");
     ArrayList<Reserva> areas = (ArrayList<Reserva>) request.getAttribute("areas");
+    ArrayList<Convidado> convidados = (ArrayList<Convidado>) request.getAttribute("listaConvidados");
     ArrayList<String> horarios = new ArrayList<String>();
 
     horarios.add("07:00 - 12:00");
@@ -114,17 +117,23 @@
                     <label><%=reserva.getNomeArea()%></label>
                     <label class="oc" ><%=reserva.getDateReserva()%></label>
                     <label class="dt" ><%=reserva.getHoraReserva()%></label>
-                    <button type="button" class="convidados" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Listar Convidados
-                    </button>
-                    <form  class="editar" action="/deleteReserva" method="delete">
+                    <form action="/convidosReserva" method="post">
+                        
                         <input class="editar" type="hidden" name="idReserva" id="idReserva" value="<%=reserva.getIdReserva()%>">
-                        <button class="editar" type='submit'>Excluir</button>
+
+                        <button type="submit"  class="convidados" >
+                            Listar Convidados
+                        </button>
+
+                    </form>
+
+                    <form  name="frmDelete"  action="/deleteReserva" method="post">
+                        <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
+                        <a class="editar"  href="javascript: cancelarReserva()" >Excluir</a>
                     </form>
                 </div>
                 <hr>
                 <%}%>
-
 
                 <div class="all-products">
 
@@ -164,7 +173,6 @@
                 </form>
             </div>
 
-
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                  aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -174,31 +182,62 @@
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Digite os dados do convidados</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <input class="nomecomp" placeholder="Digite o nome"  type="text" name="nome" required>
-                            <input class="doc" placeholder="Digite o Documento" type="text" required>
+                        <form action="cadastroConvidado" method="post">
+                            
+                            <div class="modal-body">
+                            <input class="nomecomp" placeholder="Digite o nome"  type="text" name="nomeConvidado" required>
+                            <input class="doc" placeholder="Digite o Documento" type="text" name="identidade" required>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>   
+                            <hr>
+                            <%
+                                if (convidados != null) {
+                                    if (!convidados.isEmpty()) {
+                                        for (Convidado objConvidado : convidados) {
+                            %>
+                            <label class="nomecomp"><%= objConvidado.getNome()%></label>
+                            <label class="doc"><%= objConvidado.getIndentidade()%> </label>
+                            <a class="btn btn-danger" href="javascript: cancelarReserva()" >Excluir</a>
+                                <input class="editar" type="hidden" name="idConviado" id="idConviado" value="<%= objConvidado.getId()%>">
+
+                             <input class="editar" type="hidden" name="idReservaConviado" id="idReservaConviado" value="<%= request.getAttribute("IdReservaConvidado")%>">
+                            <hr>
+                            <%
+                                        }
+                                    }
+                                }
+                            %>
+
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                            <button type="button" class="btn btn-primary">Salvar</button>
-                        </div>
+                            
+                        </form>
+                        
                     </div>
                 </div>
             </div>
         </section>
-
 
         <script src="../scripts/scriptReserva.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
 
+        <c:if test="${not empty mensagem}">
+            <%-- Exibe o alerta somente se a mensagem não for nula --%>
+            <script>
+                <%= request.getAttribute("mensagem")%>
+            </script>
+        </c:if>
 
-    <c:if test="${not empty mensagem}">
-        <%-- Exibe o alerta somente se a mensagem não for nula --%>
-        <script>
-            <%= request.getAttribute("mensagem")%>
-        </script>
-    </c:if>
-</body>
+        <c:if test="${not empty mgsmodal}">
+            <script>
+                let modal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
+                modal.show();
+            </script>
+        </c:if>
+
+    </body>
 </html>

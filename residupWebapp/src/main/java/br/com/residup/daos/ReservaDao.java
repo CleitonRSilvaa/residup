@@ -2,12 +2,16 @@ package br.com.residup.daos;
 
 
 
+import br.com.residup.models.Convidado;
+import br.com.residup.models.Morador;
 import br.com.residup.models.Reserva;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -64,6 +68,32 @@ public class ReservaDao {
 
     }
 
+    public Reserva reserva(int id_reserva) throws SQLException {
+        boolean retorno = false;
+        String query = "SELECT * FROM RESERVA_AREA WHERE AND ID_RESER = ID_RESERVA_AREA ?;";
+        var reserva = Reserva.builder().build();
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, id_reserva);
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                reserva = Reserva.builder().dateReserva(rs.getString("DATA_RESERVA")).build();
+            }
+
+            connection.close();
+            return reserva ;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query TemReserva() ");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return reserva;
+        }
+
+    }
 
     public boolean TemReserva(Reserva reserva) throws SQLException {
         boolean retorno = false;
@@ -118,6 +148,30 @@ public class ReservaDao {
             return retorno;
         }
     }
+    public boolean insertConviado(Convidado convidado) {
+        Boolean retorno = false;
+        String create = "INSERT INTO CONVIDADO_RESERVA (NOME, DOCUMENTO, ID_RESERVA_AREA, ID_MORADOR)\n" +
+                "VALUES ( ?, ?, ?, ?);";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(create);
+            pst.setString(1, convidado.getNome());
+            pst.setString(2, convidado.getIndentidade());
+            pst.setInt(3, convidado.getId_reserva());
+            pst.setInt(4, convidado.getId_morador());
+
+            int linhasRetorno =  pst.executeUpdate();
+            connection.close();
+            return linhasRetorno > 0;
+
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar insert reserva ");
+        }catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+            return retorno;
+        }
+    }
     public boolean deleteReserva(Reserva reserva) {
         Boolean retorno = false;
         String create = "DELETE FROM RESERVA_AREA WHERE ID_RESERVA_AREA = ? AND ID_MORADOR = ?;";
@@ -134,6 +188,28 @@ public class ReservaDao {
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getLocalizedMessage());
             throw new RuntimeException("----->>>> Erro ao executar delete  reserva ");
+        }catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+            return retorno;
+        }
+    }
+
+
+    public boolean deleteConviado(int id_convidado) {
+        Boolean retorno = false;
+        String create = "DELETE FROM CONVIDADO_RESERVA WHERE ID_CONVIDADO = ? ;";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(create);
+            pst.setInt(1, id_convidado);
+
+            int linhasRetorno =  pst.executeUpdate();
+            connection.close();
+            return linhasRetorno > 0;
+
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar delete  convidado ");
         }catch (Exception e){
             System.out.println(e.getLocalizedMessage());
             return retorno;
@@ -184,15 +260,21 @@ public class ReservaDao {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(1);
-                String data = rs.getString(2);
+                String dataString  = rs.getString(2);
                 String hora = rs.getString(3);
                 String area = rs.getString(7);
+                DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatoSaida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                LocalDate data = LocalDate.parse(dataString, formatoEntrada);
+                String dataFormatada = formatoSaida.format(data);
                 var reserva = Reserva.builder()
                         .idReserva(id)
-                        .dateReserva(data)
+                        .dateReserva(dataFormatada)
                         .horaReserva(hora)
                         .nomeArea(area).build();
                 reservaList.add(reserva);
+
             }
 
             connection.close();
@@ -207,6 +289,42 @@ public class ReservaDao {
         }
 
     }
+
+
+    public List convidados(int id_morador, int id_reserva) throws SQLException {
+
+        List <Convidado> convidados = new ArrayList<>();
+        String query = "SELECT * FROM CONVIDADO_RESERVA \n" +
+                "WHERE ID_MORADOR = ? AND ID_RESERVA_AREA = ?;";
+        try {
+            Connection connection = abrirConexao();
+
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, id_morador);
+            pst.setInt(2, id_reserva);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String nome  = rs.getString(2);
+                String identidade = rs.getString(3);
+                var convidado = new Convidado(id,nome,identidade,id_morador,id_reserva);
+                convidados.add(convidado);
+
+            }
+
+            connection.close();
+            return convidados;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query convidados() ");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return convidados;
+        }
+
+    }
+
 
 
 
