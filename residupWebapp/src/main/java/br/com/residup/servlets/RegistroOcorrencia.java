@@ -85,7 +85,7 @@ public class RegistroOcorrencia extends HttpServlet {
         request.getSession().removeAttribute("validator");
         request.getSession().removeAttribute("mgsJS");
         request.setAttribute("ocorrencias", listaFiltrada);
-        request.setAttribute("filtroOcorrencias", filtroOcorrencias); // Passa o valor do filtro para o JSP
+        request.setAttribute("filtroOcorrencias", filtroOcorrencias);
         RequestDispatcher rd = request.getRequestDispatcher("ocorrencia.jsp");
         rd.forward(request, response);
     }
@@ -96,8 +96,16 @@ public class RegistroOcorrencia extends HttpServlet {
         String titulo = request.getParameter("titulo");
         String texto = request.getParameter("texto");
         String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
-        var ocorrencia = Ocorrencia.builder().titulo(titulo).texto(texto).id_morador(Integer.parseInt(id_morador)).build();
 
+        if (titulo.length() > 20) {
+            String msg = "Título limitado a 20 caracteres.";
+            request.getSession().setAttribute("mgsJS", scriptMensagemAlertJs(IconAlertJS.error, "Erro ao registrar ocorrência!", msg));
+            request.getSession().setAttribute("validator", true);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.sendRedirect("/Ocorrencia");
+            return;
+        }
+        var ocorrencia = Ocorrencia.builder().titulo(titulo).texto(texto).id_morador(Integer.parseInt(id_morador)).build();
         if (OcorrenciaDao.registrar(ocorrencia)) {
             String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Ocorrência registrada com sucesso!", "Aguarde o retorno do síndico.");
             request.getSession().setAttribute("mgsJS", msgJs);
@@ -105,12 +113,10 @@ public class RegistroOcorrencia extends HttpServlet {
             System.out.println("Ocorrência registrada com sucesso.");
             response.setStatus(HttpServletResponse.SC_OK);
             response.sendRedirect("/Ocorrencia");
-        } else {
-            request.getSession().setAttribute("validator", false);
-            System.out.println("Erro ao registrar ocorrência.");
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
         }
     }
+
 
     protected void removerOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -134,7 +140,7 @@ public class RegistroOcorrencia extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_OK);
         } else
             request.getSession().setAttribute("validador", false);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         response.sendRedirect("/Ocorrencia");
     }
 }
