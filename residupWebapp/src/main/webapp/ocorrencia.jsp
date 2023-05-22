@@ -63,7 +63,7 @@
                 <form action="occurrenceInsert" method="post">
                     <div class="buttons">
                         <input type="text" placeholder="Título da ocorrência" name="titulo" required>
-                        <button type="submit">
+                        <button id="deletarOcorrencia" type="submit">
                             <h4>Salvar ocorrência</h4>
                         </button>
                     </div>
@@ -106,12 +106,6 @@
         </section>
 
         <!-- JavaScript Link -->
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="scripts/scriptsReservas.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
         <script src="scripts/scriptsOcorrencia.js"></script>

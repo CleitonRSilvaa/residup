@@ -178,22 +178,11 @@ html {
     margin-left: 2%;
   }
 
-  h2 {
-    padding: 0px;
-    border-radius: 10px 10px 0 0;
-    color: black;
-    background-color: #1d3354;
-    font-size: 17px;
-    color: white;
-    font-weight: bold;
-    margin-left: 90%;
-  }
-
   .buttons {
     display: flex;
     justify-content: space-between;
     padding: 15px;
-  
+
   }
   
   input,
@@ -217,18 +206,20 @@ html {
     font-size: 16px;
   }
   
-  button {
-    border: none;
-    text-align: center;
-    background-color: #9ed8db;
-    color: #1e1e1e;
-    font-family: 'Arial';
-    font-size: 16px;
-    height: 33px;
-    border-radius: 15px;
-    width: 15%;
-    margin-right: %;
-  }
+  #deletarOcorrencia{
+        border: none;
+     text-align: center;
+     background-color: #9ed8db;
+     color: #1e1e1e;
+     font-family: 'Arial';
+     font-size: 16px;
+     height: 33px;
+     border-radius: 15px;
+     width: 15%;
+     margin-right: %;
+
+ }
+
   
   button h4 {
     font-size: 13px;
@@ -344,15 +335,13 @@ html {
     display: inline-block;
   
   }
-  .group .ed {
+  .editar #deletarOcorrencia {
     width: 100%;
     height: 28px;
     border-radius:15px ;
     background-color: red;
     font-weight: bold;
     color: white;
-
-  
   }
   
   
