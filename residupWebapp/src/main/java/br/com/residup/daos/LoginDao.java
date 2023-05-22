@@ -3,8 +3,6 @@ package br.com.residup.daos;
 import br.com.residup.models.Morador;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
