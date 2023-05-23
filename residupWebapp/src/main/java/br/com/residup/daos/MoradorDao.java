@@ -46,7 +46,7 @@ public class MoradorDao {
 
         try (Connection connection = abrirConexao();
              PreparedStatement instrucaoSQL = connection.prepareStatement(
-                     "INSERT INTO MORADOR (NOME, SOBRENOME, CPF, RG, NUMERO_APARTAMENTO, BLOCO, SENHA_ACESSO, DATA_INCERCAO, ENDERECO_FOTO) " +
+                     "INSERT INTO MORADOR (NOME, SOBRENOME, CPF, RG, NUMERO_APARTAMENTO, BLOCO, SENHA_ACESSO, DATA_INCERCAO, FOTO_FILE_PATH) " +
                              "VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ? )",
                      Statement.RETURN_GENERATED_KEYS)
         ) {
@@ -116,7 +116,7 @@ public class MoradorDao {
 
     }
 
-    public Morador buscarMorador(String CPF){
+    public  Morador buscarMorador(String CPF){
 
         String comandoSQL = "SELECT * FROM Morador WHERE CPF=?";
 
@@ -136,7 +136,7 @@ public class MoradorDao {
                 String rg = rs.getString("RG");
                 String numApartamento = rs.getString("NUMERO_APARTAMENTO");
                 String bloco = rs.getString("BLOCO");
-                String enderecoFoto = rs.getString("ENDERECO_FOTO");
+                String enderecoFoto = rs.getString("FOTO_FILE_PATH");
 
                 Morador morador1 = new Morador(nome, sobrenome, cpf, rg, numApartamento, bloco, null);
                 morador1.setEnderecoFoto(enderecoFoto);
@@ -177,5 +177,57 @@ public class MoradorDao {
             return false;
         }
     }
+
+    public static Boolean updateMoradorPerfil(Morador morador){
+
+        String updateMorador = "UPDATE MORADOR SET SENHA_ACESSO= ?, DATA_ALTERACAO= CURRENT_TIMESTAMP, FOTO_FILE_PATH= ? WHERE CPF=?";
+        try{
+            Connection connection = abrirConexao();
+            PreparedStatement upd = connection.prepareStatement(updateMorador);
+            upd.setString(1,morador.getSenhaDeAcesso());
+            upd.setString(2,morador.getEnderecoFoto());
+            upd.setString(3,morador.getCpf());
+            upd.executeUpdate();
+            return true;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query Update Perfil Morador()");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    public static Boolean checkCadastro(String CPF){
+
+        Boolean result = false;
+        String comandoSQL = "SELECT * FROM Morador WHERE CPF=?";
+
+
+        try{
+            Connection connection = abrirConexao();
+            PreparedStatement instrucaoSQL = connection.prepareStatement(comandoSQL);
+            instrucaoSQL.setString(1, CPF);
+            ResultSet rs = instrucaoSQL.executeQuery();
+
+            result = rs.next();
+
+            connection.close();
+            return result;
+
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query Buscar Morador() ");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return result;
+        }
+
+
+    }
+
+
 
 }

@@ -7,11 +7,318 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="cadastro.css">
+  <link rel="stylesheet" href="../cadastro.css">
 
   <title>cadastro</title>
 </head>
 
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body{
+        background-color: white;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: block;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        min-height: 100vh;
+    }
+    .header,
+    .navigation_header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .header{
+        background-color: white;
+        justify-content: space-between;
+        padding: 0 10px;
+        height: 50PX;
+        width: 100%;
+
+    }
+    .navigation_header{
+        gap: 3em;
+        z-index: 2;
+    }
+    .content{
+        padding-top: 5em;
+        text-align: center;
+        height: 100vh;
+        transition: 1s;
+    }
+    .navigation_header a{
+        text-decoration: none;
+        color: black;
+        transition: 1s;
+        font-weight: bold;
+        font-size: 12px;
+        margin-left: 30px;
+    }
+    .navigation_header a:hover{
+        color: red;
+    }
+    .active{
+        background: #49ae96;
+        padding: 10px;
+        border-radius: 10px;
+
+    }
+    .btn_icon_header{
+        background: transparent;
+        border: none;
+        color: var(--color-white);
+        cursor: pointer;
+        display: none;
+    }
+
+    nav{
+       background-color: #fff;
+    }
+
+    nav li{
+       display: inline-block;
+    }
+
+    nav li a{
+       display: inline-block;
+       color: black;
+       text-decoration: none;
+       padding: 10px;
+    }
+
+    nav li a:hover{
+        background-color: #545454;
+        border-radius: 10px;
+    }
+
+    .dropdown-menu{
+        background-color: #c4c4c4;
+        position: absolute;
+        box-shadow: 0 0 2px black;
+        display: none;
+        border-radius: 10px;
+    }
+
+    .dropdown-menu a{
+        display: block;
+        color: black;
+    }
+
+    .dropdown:hover .dropdown-menu{
+        display: block;
+    }
+
+    @media screen and (max-width: 768px) {
+        .navigation_header{
+            position: absolute;
+            flex-direction: column !important;
+            top: 0;
+            background: #c4c4c4;
+            height: 100%;
+            width: 35vw;
+            padding: 1em;
+            animation-duration: 1s;
+            margin-left: -5vw;
+        }
+        .btn_icon_header{
+            display: block;
+        }
+    }
+    @keyframes showSidebar {
+        from {margin-left: -100vw;}
+        to {margin-left: -10vw;}
+    }
+    section{
+        width: 100%;
+        height: 1000px;
+    }
+    .w50{
+        width: 100%;
+        float: left;
+
+    }
+    .box{
+        display: flex;
+        width: 100%;
+    }
+    button{
+        margin-top: 25px;
+        border-radius: 15px;
+        width: 20%;
+        height: 40px;
+        background-color: #c4c4c4;
+        margin-left: 10%;
+        opacity: 50%;
+    }
+    .edtcad{
+        background-color: #c4c4c4;
+        opacity: 100%;
+    }
+    .exccad{
+        background-color:#c4c4c4;
+        opacity: 100%;
+    }
+    .form-box{
+        margin-top: 25px;
+        background-color: #c4c4c4;
+        backdrop-filter: blur(40px);
+        padding: 30px 40px;
+        display: block;
+        width: 100%;
+        height: 900px;
+        border-radius: 20px 20px 20px 20px;
+        align-items: center;
+    }
+    .form-box h2{
+        font-size: 20px;
+    }
+    .form-box p{
+        font-weight: bold;
+        color: #3D3D3D;
+    }
+    .form-box p a{
+        color: #49ae96;
+        text-decoration: none;
+    }
+    .form-box form{
+        margin: 20px 0;
+    }
+    form .input-group{
+        margin-bottom: 15px;
+    }
+    form .input-group label{
+        color: #3D3D3D;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    form .input-group input{
+        width: 100%;
+        height: 47px;
+        background-color: rgba(255, 255, 255, 0.32);
+        border-radius: 20px;
+        outline: none;
+        border: 2px solid transparent;
+        padding: 15px;
+        font-size: 15px;
+        color: #616161;
+        transition: all 0.4s ease;
+    }
+    form .input-group input:focus{
+        border-color: #49ae96;
+    }
+    form .input-group button{
+        width: 100%;
+        height: 47px;
+        background: #49ae96;
+        border-radius: 20px;
+        outline: none;
+        border: none;
+        margin-top: 15px;
+        margin-left: 2px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        opacity: 100%;
+    }
+
+    #picture__input {
+        display: none;
+      }
+
+    .picture {
+        border-radius: 90%;
+        width: 15%;
+        aspect-ratio: 4/4;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        border: 2px dashed currentcolor;
+        cursor: pointer;
+        font-family: sans-serif;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+    }
+
+    .picture:hover {
+        color: #777;
+        background: #ccc;
+      }
+
+    .picture:active {
+        border-color: turquoise;
+        color: turquoise;
+        background: #eee;
+      }
+
+    .picture:focus {
+        color: #777;
+        background: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+    .picture__img {
+        max-width: 100%;
+      }
+    .perfil {
+        align-items: center;
+        width: 100%;
+        background-color: #c4c4c4;
+        border-radius: 15px;
+
+      }
+    .perfil .nome{
+        margin-right: 75%;
+        float: right;
+        color: #3D3D3D;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .perfil .sobrenome{
+        margin-right: 72%;
+        float: right;
+        color: #3D3D3D;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .perfil input{
+        width: 80%;
+        height: 47px;
+        background-color: rgba(255, 255, 255, 0.32);
+        border-radius: 20px;
+        outline: none;
+        border: 2px solid transparent;
+        padding: 15px;
+        font-size: 15px;
+        color: #616161;
+        transition: all 0.4s ease;
+        float: right;
+    }
+    .perfil input:focus{
+        border-color: #49ae96;
+    }
+    .input-cpf {
+      text-transform: 999.999.999-99;
+    }
+
+    .input-rg {
+      text-transform: 99.999.999;
+    }
+</style>
 <body>
   <div class="header" id="header">
     <button onclick="toggleSidebar()" class="btn_icon_header">
@@ -71,11 +378,11 @@
             </div>
             <div class="input-group">
               <label for="cpf">CPF</label>
-              <input type="cpf" id="cpfMorador" placeholder="Digite o CPF do Morador" maxlength="14" name="cpfMorador" required>
+              <input type="cpf" id="cpfMorador" placeholder="Digite o CPF do Morador" maxlength="11" name="cpfMorador" required class="input-cpf">
             </div>
             <div class="input-group">
               <label for="rg">RG</label>
-              <input type="rg" id="rgMorador" placeholder="digite o  RG" maxlength="9" name="rgMorador" required>
+              <input type="rg" id="rgMorador" placeholder="digite o  RG" maxlength="9" name="rgMorador" required class="input-rg">
             </div>
 
             <div class="input-group">
@@ -108,6 +415,110 @@
 
   </section>
   <script src="cadastro.js"></script>
+
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+
+      <c:if test="${not empty mensagem}">
+          <%-- Exibe o alerta somente se a mensagem não for nula --%>
+          <script>
+
+              <%= request.getAttribute("mensagem")%>
+
+          </script>
+      </c:if>
+
+    <script>
+     const inputFile = document.querySelector("#picture__input");
+     const pictureImage = document.querySelector(".picture__image");
+     const pictureImageTxt = "Selecione uma foto";
+     pictureImage.innerHTML = pictureImageTxt;
+
+     inputFile.addEventListener("change", function(e) {
+       const inputTarget = e.target;
+       const file = inputTarget.files[0];
+
+       if (file) {
+         const reader = new FileReader();
+
+         reader.addEventListener("load", function(e) {
+           const readerTarget = e.target;
+
+           const img = document.createElement("img");
+           img.src = readerTarget.result;
+           img.classList.add("picture__img");
+
+           pictureImage.innerHTML = "";
+           pictureImage.appendChild(img);
+         });
+
+         reader.readAsDataURL(file);
+       } else {
+         pictureImage.innerHTML = pictureImageTxt;
+       }
+
+
+     });
+
+     function validarFormulario() {
+       // Obtendo referências para os elementos do formulário
+       const nomeInput = document.getElementById('nomeMorador');
+       const sobrenomeInput = document.getElementById('sobrenomeMorador');
+       const cpfInput = document.getElementById('cpfMorador');
+       const rgInput = document.getElementById('rgMorador');
+       const senhaInput = document.getElementById('senhaMorador');
+       const confirmarSenhaInput = document.getElementById('Confirmarsenha');
+
+       // Função de validação para o campo nome e sobrenome
+       function validarNomeSobrenome(event) {
+         const input = event.target;
+         const regex = /^[a-zA-Z ]*$/; // Permite apenas letras e espaços
+
+         if (!regex.test(input.value)) {
+           input.setCustomValidity('Por favor, insira apenas letras e espaços');
+         } else {
+           input.setCustomValidity('');
+         }
+       }
+
+       // Função de validação para os campos CPF e RG
+       function validarCPF_RG(event) {
+         const input = event.target;
+         const regex = /^[0-9]*$/; // Permite apenas números
+
+         if (!regex.test(input.value)) {
+           input.setCustomValidity('Por favor, insira apenas números');
+         } else {
+           input.setCustomValidity('');
+         }
+       }
+
+       // Função de validação para os campos de senha
+       function validarSenha(event) {
+         const senha = senhaInput.value;
+         const confirmarSenha = confirmarSenhaInput.value;
+
+         if (senha !== confirmarSenha) {
+           confirmarSenhaInput.setCustomValidity('As senhas não coincidem');
+         } else {
+           confirmarSenhaInput.setCustomValidity('');
+         }
+       }
+
+       // Adicionando os ouvintes de eventos para os campos
+       nomeInput.addEventListener('input', validarNomeSobrenome);
+       sobrenomeInput.addEventListener('input', validarNomeSobrenome);
+       cpfInput.addEventListener('input', validarCPF_RG);
+       rgInput.addEventListener('input', validarCPF_RG);
+       senhaInput.addEventListener('input', validarSenha);
+       confirmarSenhaInput.addEventListener('input', validarSenha);
+     }
+
+     // Chamando a função para iniciar a validação do formulário
+     validarFormulario();
+
+     </script>
+
 </body>
 
 </html>
