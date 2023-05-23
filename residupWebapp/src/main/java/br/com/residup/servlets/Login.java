@@ -37,7 +37,14 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("cpf", cpf);
             session.setAttribute("id_morador", loginDao.recuperarId(cpf));
-            response.sendRedirect(request.getContextPath() + "/Ocorrencia");
+
+            // Verifica se é o primeiro acesso
+            if (loginDao.validaPrimeiroAcesso(cpf, senha)) {
+                response.sendRedirect("/visitantes");
+            } else {
+                response.sendRedirect("/Ocorrencia");
+            }
+
             System.out.println("Login finalizado com sucesso!");
         } else {
             System.out.println("Login não encontrado/incorreto");
