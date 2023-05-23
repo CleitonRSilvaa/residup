@@ -45,17 +45,19 @@ public class ReservaArea extends HttpServlet {
 
             ReservaDao reservaDao = ReservaDao.getInstance();
             String modal = (String) request.getSession().getAttribute("mgsmodal");
-            if (modal != null) {
+            String id_reserva = (String) request.getSession().getAttribute("idReserva");
+            if (modal != null && id_reserva != null  ) {
                 request.setAttribute("mgsmodal", modal);
-                String id_reserva = (String) request.getSession().getAttribute("idReserva");
-                List convidadosList = reservaDao.convidados(2, Integer.parseInt(id_reserva));
+                List convidadosList = reservaDao.convidados(1, Integer.parseInt(id_reserva));
                 List convidados = new ArrayList();
                 for (Object convidado : convidadosList) {
                     Convidado convidado1 = (Convidado) convidado;
                     convidados.add(convidado1);
                 }
-                request.setAttribute("IdReservaConvidado", id_reserva);
+                System.out.println("ID DA RESERVA SELESIONADA "+id_reserva);
+//                request.setAttribute("IdReservaConvidado", id_reserva);
                 request.setAttribute("listaConvidados", convidados);
+
             }
 
             request.getSession().removeAttribute("idReserva");
@@ -94,6 +96,11 @@ public class ReservaArea extends HttpServlet {
             doDelete(request,response);
         }
 
+        if(action.equals("/cadastroConvidado")){
+            cadastroConvidado(request,response);
+            return;
+        }
+
         if (action.equals("/excluirConvidado")) {
             try {
                 excuirConvidados(request, response);
@@ -115,6 +122,8 @@ public class ReservaArea extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
 
+            String action = request.getServletPath();
+            System.out.println(action);
             String idReserva = (String) request.getSession().getAttribute("idReservaDelete");
             String idReserva2 = request.getParameter("idReservaDelete");
             ReservaDao reservaDao = ReservaDao.getInstance();
@@ -148,8 +157,10 @@ public class ReservaArea extends HttpServlet {
             String idArea = request.getParameter("areaSelect");
             String hora = request.getParameter("horarioSelect");
             ReservaDao reservaDao = ReservaDao.getInstance();
-
-            var reserva = Reserva.builder().dateReserva(data).horaReserva(hora).idMorador(1).build();
+            String cpf = (String) request.getSession().getAttribute("cpf");
+            String id_moardor = (String) request.getSession().getAttribute("id_morador");
+            System.out.println("CPF: "+ cpf + " ID : "+id_moardor);
+            var reserva = Reserva.builder().dateReserva(data).horaReserva(hora).idMorador(Integer.parseInt(id_moardor)).build();
 
             if (idArea.trim().isEmpty()) {
                 reserva.setIdArea(-1);
@@ -220,7 +231,7 @@ public class ReservaArea extends HttpServlet {
 
 
     public void excuirConvidados(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ParseException {
-        String idReserva = request.getParameter("idReserva");
+        String idReserva = request.getParameter("idReservaListaConvidadoExclui");
         String id_convidado = request.getParameter("idConviado");
 
         ReservaDao reservaDao = ReservaDao.getInstance();
@@ -253,9 +264,19 @@ public class ReservaArea extends HttpServlet {
 
 
 
-    public void cadastroConvidado(HttpServletRequest request, HttpServletResponse response){
-        String idReserva = request.getParameter("idReserva");
-        String id_convidado = request.getParameter("idConviado");
+    public void cadastroConvidado(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String idReserva = request.getParameter("idReservaListaConvidado");
+        String nomeConvidado = request.getParameter("nomeConvidado");
+        String identidade =  request.getParameter("identidade");
+        String id_moardor = (String) request.getSession().getAttribute("id_morador");
+        request.getParameter("idReserva");
+        System.out.println(idReserva);
+        ReservaDao reservaDao = ReservaDao.getInstance();
+        var convidado = new Convidado(0,nomeConvidado,identidade,Integer.parseInt(id_moardor),Integer.parseInt(idReserva));
+        var reserva  = reservaDao.insertConviado(convidado);
+        request.getSession().setAttribute("idReserva",idReserva);
+        response.sendRedirect("/reservas");
+
 
 
     }

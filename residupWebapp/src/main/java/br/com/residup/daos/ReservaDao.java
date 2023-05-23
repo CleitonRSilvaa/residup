@@ -70,7 +70,7 @@ public class ReservaDao {
 
     public Reserva reserva(int id_reserva) throws SQLException {
         boolean retorno = false;
-        String query = "SELECT * FROM RESERVA_AREA WHERE AND ID_RESER = ID_RESERVA_AREA ?;";
+        String query = "SELECT ID_RESERVA_AREA, DATA_RESERVA FROM RESERVA_AREA WHERE ID_RESERVA_AREA = ?;";
         var reserva = Reserva.builder().build();
         try {
             Connection connection = abrirConexao();

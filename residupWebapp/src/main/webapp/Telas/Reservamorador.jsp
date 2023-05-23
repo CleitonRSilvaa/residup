@@ -129,7 +129,7 @@
 
                     <form style="display: inline-block;" name="frmDelete"  action="/deleteReserva" method="post">
                         <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
-                        <button class="editar" type='Button'>Excluir Reserva</button>
+                        <button class="editar" type='submit'>Excluir Reserva</button>
                     </form>
                 </div>
                 <hr>
@@ -182,12 +182,12 @@
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Digite os dados do convidados</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="cadastroConvidado" method="post">
+                        <form  id="FormsConviados"  name="FormsConviados" action="cadastroConvidado" method="post">
                             
                             <div class="modal-body">
                             <input class="nomecomp" placeholder="Digite o nome"  type="text" name="nomeConvidado" required>
                             <input class="doc" placeholder="Digite o Documento" type="text" name="identidade" required>
-
+                            <input class="editar" type="hidden" name="idReservaListaConvidado" id="idReservaListaConvidado" value="<%= request.getAttribute("IdReservaConvidado")%>">
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                                 <button type="submit" class="btn btn-primary">Salvar</button>
@@ -200,10 +200,11 @@
                             %>
                             <label class="nomecomp"><%= objConvidado.getNome()%></label>
                             <label class="doc"><%= objConvidado.getIndentidade()%> </label>
-                            <a class="btn btn-danger" href="javascript: cancelarReserva()" >Excluir</a>
                                 <input class="editar" type="hidden" name="idConviado" id="idConviado" value="<%= objConvidado.getId()%>">
+                                                            <input class="editar" type="hidden" name="idReservaListaConvidadoExclui" id="idReservaListaConvidadoExclui" value="<%= objConvidado.getId_reserva()%>">
 
-                             <input class="editar" type="hidden" name="idReservaConviado" id="idReservaConviado" value="<%= request.getAttribute("IdReservaConvidado")%>">
+                                <button class="editar" type="button" onclick="excluirConvidados()">Alterar e Submeter</button>
+
                             <hr>
                             <%
                                         }
@@ -224,6 +225,33 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+
+
+        <script>
+            function excluirConvidados() {
+                Swal.fire({
+                    title: 'Cancelar reserva?',
+                    text: "Você não será capaz de reverter isso!",
+                    timer: 10000,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sim, cancelar reserva!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    var form = document.getElementById("FormsConviados");
+                        form.action = "excluirConvidado";
+                        form.method = "POST";
+                        form.submit();
+
+                    }
+                });
+            }
+
+
+
+        </script>
 
         <c:if test="${not empty mensagem}">
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
