@@ -37,8 +37,6 @@ public class CadastroMorador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
-
-
         if (action.equals("/cadastro_morador")){
             Boolean check = (Boolean) request.getSession().getAttribute("check");
             String mgs = (String) request.getSession().getAttribute("mgsJS");

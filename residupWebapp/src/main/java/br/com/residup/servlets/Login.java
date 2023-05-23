@@ -11,13 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet("/index")
 public class Login extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("cpf") != null) {
+            response.sendRedirect(request.getContextPath() + "/Ocorrencia");
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,16 +36,13 @@ public class Login extends HttpServlet {
         if (loginValido) {
             HttpSession session = request.getSession();
             session.setAttribute("cpf", cpf);
-            response.sendRedirect("/visitantes");
+            session.setAttribute("id_morador", loginDao.recuperarId(cpf));
+            response.sendRedirect(request.getContextPath() + "/Ocorrencia");
             System.out.println("Login finalizado com sucesso!");
         } else {
             System.out.println("Login não encontrado/incorreto");
             request.setAttribute("error", "CPF e/ou senha incorretos.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
-
-
-
-
 }
