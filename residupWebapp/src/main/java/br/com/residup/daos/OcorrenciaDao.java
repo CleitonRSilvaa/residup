@@ -1,6 +1,7 @@
 package br.com.residup.daos;
 
 import br.com.residup.models.Ocorrencia;
+import br.com.residup.models.Status;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,34 +41,40 @@ public class OcorrenciaDao {
 
     public static boolean registrar(Ocorrencia ocorrencia) {
         boolean retorno = false;
-        try (Connection connection = abrirConexao();
-             PreparedStatement instrucao = connection
-                     .prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA) VALUES (?, ?")) {
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR, STATUS) VALUES (?, ?, ?, ?)");
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
+            instrucao.setInt(3, ocorrencia.getId_morador());
+            instrucao.setString(4, Status.EM_ABERTO.getStatus());
 
             int linhasRetorno = instrucao.executeUpdate();
-
             return linhasRetorno > 0;
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static ArrayList<Ocorrencia> listar() {
+
+    public static ArrayList<Ocorrencia> listarDoMorador(int id_morador) {
         try (Connection connection = abrirConexao();
              PreparedStatement instrucao = connection
-                     .prepareStatement("SELECT * FROM REGISTRO_OCORRENCIA")) {
+                     .prepareStatement("SELECT * FROM REGISTRO_OCORRENCIA WHERE ID_MORADOR= ?")) {
+            instrucao.setInt(1, id_morador);
             ArrayList<Ocorrencia> ocorrencias = new ArrayList<>();
             ResultSet rs = instrucao.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String titulo = rs.getString(2);
-                String texto = rs.getString(3);
-                String resolucao = rs.getString(4);
-                var registroOcorrencia = new Ocorrencia(titulo, texto, resolucao);
-                registroOcorrencia.setId(id);
+                int id_ocorrencia = rs.getInt("ID_OCORRENCIA");
+                String titulo = rs.getString("TITULO");
+                String texto = rs.getString("OCORRENCIA");
+                String status = rs.getString("STATUS");
+                var registroOcorrencia = Ocorrencia.builder().id_ocorrencia(id_ocorrencia).titulo(titulo).texto(texto).status(status).build();
                 ocorrencias.add(registroOcorrencia);
             }
             return ocorrencias;
@@ -83,7 +90,7 @@ public class OcorrenciaDao {
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(delete);
-            pst.setInt(1, ocorrencia.getId());
+            pst.setInt(1, ocorrencia.getId_ocorrencia());
             pst.executeUpdate();
             connection.close();
             return true;
@@ -98,49 +105,14 @@ public class OcorrenciaDao {
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(update);
-            pst.setString(1, ocorrencia.getResolucao());
-            pst.setInt(2, ocorrencia.getId());
+            pst.setString(1, ocorrencia.getStatus());
+            pst.setInt(2, ocorrencia.getId_ocorrencia());
             pst.executeUpdate();
             connection.close();
             return true;
         } catch (Exception e) {
             System.out.println(e);
             return false;
-        }
-    }
-
-    public static boolean editar(Ocorrencia ocorrencia) {
-        String update = "UPDATE REGISTRO_OCORRENCIA SET TITULO=?, OCORRENCIA=? WHERE ID_OCORRENCIA=?";
-        try {
-            Connection connection = abrirConexao();
-            PreparedStatement pst = connection.prepareStatement(update);
-            pst.setString(1, ocorrencia.getTitulo());
-            pst.setString(2, ocorrencia.getTexto());
-            pst.setInt(3, ocorrencia.getId());
-            pst.executeUpdate();
-            connection.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-    }
-
-    public static void selecionar(Ocorrencia ocorrencia) {
-        String read2 = "SELECT * FROM REGISTRO_OCORRENCIA WHERE ID_OCORRENCIA=?";
-        try {
-            Connection connection = abrirConexao();
-            PreparedStatement pst = connection.prepareStatement(read2);
-            pst.setInt(1, ocorrencia.getId());
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                ocorrencia.setTitulo(rs.getString("TITULO"));
-                ocorrencia.setTexto(rs.getString("OCORRENCIA"));
-                ocorrencia.setResolucao(rs.getString("RESOLUCAO"));
-            }
-            connection.close();
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 }

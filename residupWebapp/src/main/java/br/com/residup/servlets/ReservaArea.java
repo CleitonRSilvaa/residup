@@ -63,7 +63,7 @@ public class ReservaArea extends HttpServlet {
             request.getSession().removeAttribute("mgsJS");
             request.getSession().removeAttribute("mgsmodal");
 
-            List reservaList = reservaDao.reservas(2);
+            List reservaList = reservaDao.reservas(1);
             List areasList = reservaDao.areas();
 
             request.setAttribute("revervas", reservaList);
@@ -149,7 +149,7 @@ public class ReservaArea extends HttpServlet {
             String hora = request.getParameter("horarioSelect");
             ReservaDao reservaDao = ReservaDao.getInstance();
 
-            var reserva = Reserva.builder().dateReserva(data).horaReserva(hora).idMorador(2).build();
+            var reserva = Reserva.builder().dateReserva(data).horaReserva(hora).idMorador(1).build();
 
             if (idArea.trim().isEmpty()) {
                 reserva.setIdArea(-1);

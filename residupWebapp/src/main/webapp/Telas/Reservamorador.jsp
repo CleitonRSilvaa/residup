@@ -117,7 +117,7 @@
                     <label><%=reserva.getNomeArea()%></label>
                     <label class="oc" ><%=reserva.getDateReserva()%></label>
                     <label class="dt" ><%=reserva.getHoraReserva()%></label>
-                    <form action="/convidosReserva" method="post">
+                    <form style="display: inline-block;" action="/convidosReserva" method="post">
                         
                         <input class="editar" type="hidden" name="idReserva" id="idReserva" value="<%=reserva.getIdReserva()%>">
 
@@ -127,7 +127,7 @@
 
                     </form>
 
-                    <form  name="frmDelete"  action="/deleteReserva" method="post">
+                    <form style="display: inline-block;" name="frmDelete"  action="/deleteReserva" method="post">
                         <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
                         <button class="editar" type='Button'>Excluir Reserva</button>
                     </form>

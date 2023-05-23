@@ -62,6 +62,8 @@ function validarEditar() {
     document.forms["frmContatoEdit"].submit();
 }
 
+
+
 function validarNovo() {
     console.log(document.forms["frmContato"].action)
 

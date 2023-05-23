@@ -1,25 +1,36 @@
 package br.com.residup.models;
 
 public class Ocorrencia {
-    private int id;
+    private int id_ocorrencia;
     private String titulo;
     private String texto;
-    private String resolucao;
+    private String status;
+    private int id_morador;
 
-    public String getResolucao() {
-        return resolucao;
-    }
-
-    public void setResolucao(String resolucao) {
-        this.resolucao = resolucao;
-    }
-    public int getId() {
-        return id;
+    public int getId_morador() {
+        return id_morador;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_morador(int id_morador) {
+        this.id_morador = id_morador;
     }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public int getId_ocorrencia() {
+        return id_ocorrencia;
+    }
+    public void setId_ocorrencia(int id_ocorrencia) {
+        this.id_ocorrencia = id_ocorrencia;
+    }
+
+
 
     public String getTitulo() {
         return titulo;
@@ -37,12 +48,36 @@ public class Ocorrencia {
         this.texto = texto;
     }
 
-    public Ocorrencia(String titulo, String texto, String resolucao) {
+    public Ocorrencia(String titulo, String texto, String status, int id_morador) {
         this.titulo = titulo;
         this.texto = texto;
-        this.resolucao = resolucao;
+        this.status = status;
+        this.id_morador = id_morador;
+    }
+    public Ocorrencia(String titulo, String texto, String status, int id_morador, int id_ocorrencia) {
+        this.titulo = titulo;
+        this.texto = texto;
+        this.status = status;
+        this.id_morador = id_morador;
+        this.id_ocorrencia = id_ocorrencia;
+
     }
 
-    public Ocorrencia() {
+    public static OcorrenciaBuilder builder(){
+        return new OcorrenciaBuilder();
+    }
+
+
+    public Ocorrencia() {}
+
+    @Override
+    public String toString() {
+        return "Ocorrencia{" +
+                "id=" + id_ocorrencia +
+                ", titulo='" + titulo + '\'' +
+                ", texto='" + texto + '\'' +
+                ", status='" + status + '\'' +
+                ", id_morador=" + id_morador +
+                '}';
     }
 }

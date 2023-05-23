@@ -23,7 +23,6 @@ public class LoginDao {
     private void handleOpenConnection() {
         try {
             this.connection = abrirConexao();
-
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -38,28 +37,52 @@ public class LoginDao {
         return instance;
     }
 
+
     public boolean logar(Morador morador) {
         StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
         boolean retorno = false;
-        try (
-                PreparedStatement instrucao = connection.prepareStatement("SELECT * FROM MORADOR WHERE CPF = ?")
+
+        try (Connection connection = abrirConexao();
+             PreparedStatement instrucao = connection.prepareStatement("SELECT * FROM MORADOR WHERE CPF = ?")
         ) {
             instrucao.setString(1, morador.getCpf());
 
-            ResultSet rs = instrucao.executeQuery();
-
-            if (rs.next() && passwordEncryptor.checkPassword(morador.getSenhaDeAcesso(), rs.getString("SENHA_ACESSO"))) {
-                System.out.println("Morador encontrado!");
-                return true;
-            } else {
-                return false;
+            try (ResultSet rs = instrucao.executeQuery()) {
+                if (rs.next() && passwordEncryptor.checkPassword(morador.getSenhaDeAcesso(), rs.getString("SENHA_ACESSO"))) {
+                    System.out.println("Morador encontrado!");
+                    return true;
+                } else {
+                    return false;
+                }
             }
-
         } catch (SQLException e) {
             System.out.println("Erro ao executar a consulta: " + e.getMessage());
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erro ao carregar o driver do banco de dados: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
 
+    public String recuperarId(String cpf) {
+        try (Connection connection = abrirConexao();
+             PreparedStatement instrucao = connection.prepareStatement("SELECT * FROM MORADOR WHERE CPF = ?")) {
+            instrucao.setString(1, cpf);
+            System.out.println(cpf);
+
+            ResultSet rs = instrucao.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            } else {
+                return "nulo";
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar a consulta: " + e.getMessage());
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erro ao carregar o driver do banco de dados: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 
 }
