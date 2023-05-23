@@ -129,7 +129,7 @@
 
                     <form  name="frmDelete"  action="/deleteReserva" method="post">
                         <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
-                        <a class="editar"  href="javascript: cancelarReserva()" >Excluir</a>
+                        <button class="editar" type='Button'>Excluir Reserva</button>
                     </form>
                 </div>
                 <hr>
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-                </form>
+               </form>
             </div>
 
             <!-- Modal -->
