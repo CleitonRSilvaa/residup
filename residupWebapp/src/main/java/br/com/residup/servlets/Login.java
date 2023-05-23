@@ -2,6 +2,7 @@ package br.com.residup.servlets;
 
 import br.com.residup.daos.LoginDao;
 import br.com.residup.models.Morador;
+import br.com.residup.models.IconAlertJS;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 
 @WebServlet("/index")
 public class Login extends HttpServlet {
@@ -38,18 +41,29 @@ public class Login extends HttpServlet {
             session.setAttribute("cpf", cpf);
             session.setAttribute("id_morador", loginDao.recuperarId(cpf));
 
-            // Verifica se é o primeiro acesso
-            if (loginDao.validaPrimeiroAcesso(cpf, senha)) {
-                response.sendRedirect("/visitantes");
+            if (loginDao.validaPrimeiroAcesso(cpf)) {
+                response.sendRedirect(request.getContextPath() + "/visitantes");
+                String scriptMensagem = scriptMensagemAlertJs
+                        (IconAlertJS.warning, "Sua senha é a padrão fornecida pelo síndico.",
+                                "Para sua segurança, altere a senha!");
+
+                request.getSession().setAttribute("primeiroAcesso", scriptMensagem);
+                request.getSession().setAttribute("primeiroAcessoFlag", true);
+                System.out.println("ok");
+
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
             } else {
-                response.sendRedirect("/Ocorrencia");
+                response.sendRedirect(request.getContextPath() + "/Ocorrencia");
+                return;
             }
 
-            System.out.println("Login finalizado com sucesso!");
         } else {
             System.out.println("Login não encontrado/incorreto");
             request.setAttribute("error", "CPF e/ou senha incorretos.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+
     }
+
 }
