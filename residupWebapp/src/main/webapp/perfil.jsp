@@ -58,7 +58,7 @@
         <div class="meuPerfil">
             <p>Meu perfil</p>
         </div>
-        <form  name="perfil" action="encontrar-perfil-morador" method="post" enctype="multipart/form-data">
+        <form  name="perfil" action="perfilMorador" method="post" enctype="multipart/form-data">
             <div class="containerDados">
                 <div class="dados">
                     <div class="image">

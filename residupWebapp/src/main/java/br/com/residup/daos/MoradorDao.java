@@ -178,6 +178,27 @@ public class MoradorDao {
         }
     }
 
+    public static Boolean updateMoradorPerfil(Morador morador){
+
+        String updateMorador = "UPDATE MORADOR SET SENHA_ACESSO= ?, DATA_ALTERACAO= CURRENT_TIMESTAMP, FOTO_FILE_PATH= ? WHERE CPF=?";
+        try{
+            Connection connection = abrirConexao();
+            PreparedStatement upd = connection.prepareStatement(updateMorador);
+            upd.setString(1,morador.getSenhaDeAcesso());
+            upd.setString(2,morador.getEnderecoFoto());
+            upd.setString(3,morador.getCpf());
+            upd.executeUpdate();
+            return true;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query Update Perfil Morador()");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return false;
+        }
+    }
+
     public static Boolean checkCadastro(String CPF){
 
         Boolean result = false;
