@@ -87,6 +87,7 @@ public class RegistroOcorrencia extends HttpServlet {
         request.setAttribute("ocorrencias", listaFiltrada);
         request.setAttribute("filtroOcorrencias", filtroOcorrencias);
         RequestDispatcher rd = request.getRequestDispatcher("ocorrencia.jsp");
+        response.setStatus(HttpServletResponse.SC_OK);
         rd.forward(request, response);
     }
 

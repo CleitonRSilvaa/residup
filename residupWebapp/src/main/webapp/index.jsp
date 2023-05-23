@@ -15,7 +15,7 @@
     <body>
         <header class="menu">
             <div>
-                <a class="logo" href="#"><img src="../imagens/img/LogoHeader.png" alt=""></a>
+                <a class="logo" href="#"><img src="imagens/img/LogoHeader.png" alt=""></a>
             </div>
 
 
@@ -70,7 +70,7 @@
         <h2>Conheça as funcionalidades do nosso sistema</h2>
 
         <div class="detail" id="detail-1">
-            <img src="../imagens/img/cell.png" alt="Imagem de celular" />
+            <img src="imagens/img/cell.png" alt="Imagem de celular" />
             <div class="detail-description">
                 <h3>Faça sua reserva <br> da tela do seu celular.</h3>
                 <p>Sabe aquela  parte chata quando a gente<br> quer reservar aquele espaço pra festa?<br>
@@ -84,10 +84,10 @@
                     com o RESIDUP você <br>faz a liberação diretamente
                     da tela <br>do seu celular.</p>
             </div>
-            <img src="../imagens/img/visit.png" alt="imagem sobre visita" />
+            <img src="imagens/img/visit.png" alt="imagem sobre visita" />
         </div>
         <div class="detail" id="detail-3">
-            <img src="../imagens/img/chamaddo.png" alt="Imagem sobre chamado" />
+            <img src="imagens/img/chamaddo.png" alt="Imagem sobre chamado" />
             <div class="detail-description">
                 <h3>Quebrou? <br>Chame o síndico em instantes! </h3>
                 <p>sabe quando da aquele problema no seu ap?<br>
