@@ -19,7 +19,7 @@ public class Filtro implements Filter {
         HttpSession session = httpRequest.getSession(false);
 
         boolean loggedIn = session != null && session.getAttribute("cpf") != null;
-        boolean loginRequest = httpRequest.getRequestURI().equals(httpRequest.getContextPath() + "/index");
+        boolean loginRequest = httpRequest.getRequestURI().equals("/index");
 
         if (loggedIn || loginRequest) {
             chain.doFilter(request, response);

@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/stylePerfil.css">
+    <link rel="stylesheet" href="../css/stylePerfil.css">
     <title>Perfil</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
         </svg>
     </button>
     <div class="logo_header">
-        <img src="imagens/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
+        <img src="../imagens/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
     </div>
     <div class="navigation_header" id="navigation_header">
         <button onclick="toggleSidebar()" class="btn_icon_header">
