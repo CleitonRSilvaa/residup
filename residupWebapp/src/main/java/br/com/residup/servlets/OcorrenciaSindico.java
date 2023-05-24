@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = {"/OcorrenciaAdm", "/resolve"})
+@WebServlet(urlPatterns = {"/OcorrenciaAdm", "/carregarOcorrencia", "/resolver"})
 public class OcorrenciaSindico extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Ocorrencia ocorrencias = new Ocorrencia();
@@ -29,18 +29,11 @@ public class OcorrenciaSindico extends HttpServlet {
             ocorrencia(request, response);
             return;
         }
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getServletPath();
-        if (action.equals("/resolve")) {
+        if (action.equals("/carregarOcorrencia")) {
             carregarOcorrencia(request, response);
             return;
         }
     }
-
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String filtroOcorrencias = request.getParameter("status-filter");
@@ -81,16 +74,31 @@ public class OcorrenciaSindico extends HttpServlet {
 
         var ocorrencia = OcorrenciaDao.getOcorrencia(Integer.parseInt(idOcorrenciaSindico));
         request.setAttribute("ocorrenciaUnica", ocorrencia);
-        RequestDispatcher rd = request.getRequestDispatcher("ocorrenciaSindicoDetalhada.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("Telas/ocorrenciaSindicoDetalhada.jsp");
         response.setStatus(HttpServletResponse.SC_OK);
         rd.forward(request, response);
 
-//        if (OcorrenciaDao.resolver(ocorrencias)) {
+
+    }
+
+
+
+    public void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        //        if (OcorrenciaDao.resolver(ocorrencias)) {
 //            request.getSession().setAttribute("validador", true);
 //            response.setStatus(HttpServletResponse.SC_OK);
 //        } else
 //            request.getSession().setAttribute("validador", false);
 //        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 //        response.sendRedirect("/OcorrenciaAdm");
+    }
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getServletPath();
+        if (action.equals("/resolver")) {
+            carregarOcorrencia(request, response);
+            return;
+        }
     }
 }

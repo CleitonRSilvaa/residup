@@ -42,22 +42,18 @@ public class Login extends HttpServlet {
             session.setAttribute("id_morador", loginDao.recuperarId(cpf));
 
             if (loginDao.validaPrimeiroAcesso(cpf)) {
+                String scriptMensagem = scriptMensagemAlertJs(
+                        IconAlertJS.warning,
+                        "Sua senha é a padrão fornecida pelo síndico.",
+                        "Para sua segurança, altere a senha!"
+                );
+
+                request.getSession().setAttribute("validator", scriptMensagem);
+                request.getSession().setAttribute("primeiroAcesso", true);
                 response.sendRedirect(request.getContextPath() + "/visitantes");
-                String scriptMensagem = scriptMensagemAlertJs
-                        (IconAlertJS.warning, "Sua senha é a padrão fornecida pelo síndico.",
-                                "Para sua segurança, altere a senha!");
-
-                request.getSession().setAttribute("primeiroAcesso", scriptMensagem);
-                request.getSession().setAttribute("primeiroAcessoFlag", true);
-                System.out.println("ok");
-
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
             } else {
                 response.sendRedirect(request.getContextPath() + "/Ocorrencia");
-                return;
             }
-
         } else {
             System.out.println("Login não encontrado/incorreto");
             request.setAttribute("error", "CPF e/ou senha incorretos.");
@@ -65,5 +61,6 @@ public class Login extends HttpServlet {
         }
 
     }
+
 
 }

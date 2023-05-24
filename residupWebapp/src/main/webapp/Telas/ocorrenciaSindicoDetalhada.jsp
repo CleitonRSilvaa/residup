@@ -7,8 +7,9 @@
 
 
 <%
-    Ocorrencia ocorrencia = request.getAttribute("ocorrenciaUnica");
-%>
+     Ocorrencia ocorrenciaGet = (Ocorrencia) request.getAttribute("ocorrenciaUnica");
+ %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,28 +59,30 @@
         <div class="title">
             <h3>OCORRENCIA DOS MORADORES</h3>
         </div>
+        <form action="carregarOcorrencia" method="GET">
         <div class="group">
-            <label class="morador"></label>
-            <label class="apto"></label>
-            <label></label>
-            <select class="sts" id="form-horario" required>
-                <option selected disabled value="">Todos</option>
-                <option value=" EM_ABERTO">Em Aberto</option>
-                <option value="EM_ANALISE">Em Análise</option>
-                <option value="EM_ANDAMENTO">Em Andamento</option>
-                <option value="RESOLVIDO">Resolvido</option>
-               </select>
-            
+            <label class="morador">${ocorrenciaGet.getNome()}</label>
+            <label class="apto">${ocorrenciaGet.getNumeroApartamento()}</label>
+            <label>${ocorrenciaGet.getBloco()}</label>
+                <select class="sts" id="form-horario" required>
+                  <option value="Todos" ${ocorrenciaGet.getStatus().equals("Todos") ? 'selected' : ''}>Todos</option>
+                  <option value="Em aberto" ${ocorrenciaGet.getStatus().equals("Em aberto") ? 'selected' : ''}>Em aberto</option>
+                  <option value="Em análise" ${ocorrenciaGet.getStatus().equals("Em análise") ? 'selected' : ''}>Em análise</option>
+                  <option value="Em andamento" ${ocorrenciaGet.getStatus().equals("Em andamento") ? 'selected' : ''}>Em andamento</option>
+                  <option value="Resolvido" ${ocorrenciaGet.getStatus().equals("Resolvido") ? 'selected' : ''}>Resolvido</option>
+                </select>
         </div>
         <div class="ocorrencia">
             <label for="nome"> Detalhes da Ocorrencia</label>
-            <textarea placeholder="Descrição da ocorrencia"></textarea>
+            <textarea placeholder="Descrição da ocorrencia">${ocorrenciaGet.getTexto()}</textarea>
         </div>
         <div class="resolv">
-            <a class="resolv" href="#"><button class="resolvido" >Resolvida</button></a> 
+            <a class="resolv" href="#"><button type:"submit" class="resolvido" >Salvar</button></a>
         </div>
+
+        </form>
         <div class="volt">
-            <a href="ocorenciassind.html"><button class="voltar" >Voltar</button></a> 
+            <a href="#"><button class="voltar">Voltar</button></a>
         </div>
           
     </form> 
