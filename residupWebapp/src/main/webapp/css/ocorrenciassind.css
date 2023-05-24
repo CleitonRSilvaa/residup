@@ -44,6 +44,7 @@ body{
     font-weight: bold;
     font-size: 12px;
     margin-left: 30px;
+    background-image: linear-gradient(to right, #006494, #1b98e0)
 }
 .navigation_header a:hover{
     color: red;
@@ -126,7 +127,7 @@ nav li a:hover{
 
 }
 .form{
-    background-color: #467599;
+    background-color: #fff;
     height: 550px;
     width: 97%;
     margin-left: 1.5%;
@@ -138,7 +139,7 @@ nav li a:hover{
   float: right;
   width: 150px;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #1b98e0;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
@@ -155,7 +156,7 @@ nav li a:hover{
     margin: 0px;
     width: 150px;
     height:  28px;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     text-decoration: none;
     float: right;
     margin-right: 3%;
@@ -175,11 +176,11 @@ nav li a:hover{
     padding: 10px;
     border-radius: 10px 10px 0 0;
     color: black;
-    background-color: #1d3354;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
 }
 .title h3{
 
-    font-size: 18px;
+    font-size: 15px;
     color: white;
     font-weight: bold;
 }
@@ -203,7 +204,7 @@ nav li a:hover{
     
     width: 12%;
     height: 28px;
-    background-color: blue;
+    background-image: linear-gradient(to right, #006494, #561be0);
     text-decoration: none;
     float: right;
     font-size: 13px;
@@ -242,10 +243,10 @@ nav li a:hover{
 .form .group label{
     width: 25%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #FFF;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    border: 2px solid #1b98e0;
     margin-left: 2%;
     margin-right: 5px;
     font-size: 15px;
@@ -284,10 +285,10 @@ nav li a:hover{
 .form .group .x{
     width: 5%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #FFF;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    border: 2px solid #1b98e0;
     margin-left: 1%;
     margin-right: 5px;
     font-size: 15px;
@@ -299,10 +300,10 @@ nav li a:hover{
 .form .group .oc{
     width: 25%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #FFF;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    border: 2px solid #1b98e0;
     margin-left: 5%;
     margin-right: 5px;
     font-size: 15px;
@@ -314,10 +315,10 @@ nav li a:hover{
 .form .group .sts{
     width: 8%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #FFF;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    border: 2px solid #1b98e0;
     margin-left: 1%;
     margin-right: 5px;
     font-size: 15px;
