@@ -1,0 +1,539 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    color: white;
+}
+
+
+.header,
+.navigation_header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.header{
+    background-color: #c4c4c4;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 3.5em;
+    box-shadow: 1px 1px 2px black;
+}
+
+.logo_header{
+  margin-left: 1.5%;
+}
+.navigation_header{
+    gap: 3em;
+    z-index: 2;
+}
+.content{
+    padding-top: 5em;
+    text-align: center;
+    height: 100vh;
+    transition: 1s;
+}
+.navigation_header a{
+    text-decoration: none;
+    color: black;   
+    transition: 1s;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 30px;
+}
+.navigation_header a:hover{
+    color: red;
+}
+.active{
+    background: #467599;
+    padding: 10px;
+    border-radius: 10px; 
+}
+.btn_icon_header{
+    background: transparent;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    display: none;
+}
+ 
+nav{
+   background-color: #c4c4c4;
+}
+    
+nav li{
+   display: inline-block;
+}
+    
+nav li a{
+    background-color: #c4c4c4;
+   display: inline-block;
+   color: black;
+   text-decoration: none;
+   padding: 8px;
+}
+    
+nav li a:hover{
+    background-color: red;
+}
+    
+.dropdown-menu{
+    position: absolute;
+    box-shadow: 0 0 2px black;
+    display: none;
+}
+    
+.dropdown-menu a{
+    display: block;
+    color: black;
+}
+    
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .navigation_header{
+        position: absolute;
+        flex-direction: column !important;
+        top: 0;
+        background: #c4c4c4;
+        height: 70%;
+        width: 35vw;
+        padding: 1em;
+        animation-duration: 1s;
+        margin-left: -7vw;
+    }
+    .btn_icon_header{
+        display: block;
+    }
+}
+@keyframes showSidebar {
+    from {margin-left: -100vw;}
+    to {margin-left: -vw;}
+}
+.cadastrar{
+    height: 40px;
+    width: 150px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 1.5%;
+    border-radius: 15px;
+    border: none;
+    background-color: #467599 ;
+    color: white;
+    font-weight: bold;
+}
+.listar{
+    height: 40px;
+    width: 170px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 1.5%;
+    border-radius: 15px;
+    border: none;
+    background-color: #4d5e6c ;
+    color: white;
+    font-weight: bold;
+}
+.filtro{
+    width: 100%;
+    height: 40px;
+    margin-top: 1%;
+    margin-bottom: 3%;
+
+
+}
+#txtBusca{
+    margin-top: 15px;
+    float: right;
+    margin-left: 2%;
+    padding-left:5px;
+    font-size:18px;
+    border:none;
+    height: 40px;
+    width: 10%;
+    border-radius: 15px;
+  }
+  #txtBsca{
+    margin-top: 15px;
+    float: right;
+    margin-left: 5%;
+    padding-left:5px;
+    font-size:18px;
+    border:none;
+    height: 40px;
+    width: 12%;
+    border-radius: 15px;
+  }
+  .filtro .busc{
+    float: right;
+    margin: 0px;
+    width: 150px;
+    height:  40px;
+    background-color: red;
+    text-decoration: none;
+    float: right;
+    margin-right: 4.5%;
+    margin-left: 3%;
+    border: none;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    align-items: center;
+    margin-top: 15px;
+}
+.form{
+    background-color: #467599;
+    height: 550px;
+    width: 97%;
+    margin-left: 1.5%;
+    border-radius: 10px;
+
+
+}
+.filtro .form-status{
+  float: right;
+  width: 150px;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-right: 1%;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+    text-align: center;
+}
+.filtrar{
+    margin-top: 3px;
+    float: right;
+    margin: 0px;
+    width: 150px;
+    height:  28px;
+    background-color: red;
+    text-decoration: none;
+    float: right;
+    margin-right: 3%;
+    margin-left: 3%;
+    border: none;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    align-items: center;
+
+}
+
+.title{
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    color: black;
+    background-color: #1d3354;
+}
+.title h3{
+
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+.form .group{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 100%;
+
+}
+.form .group a{
+    width: 100px;
+    background-color: #00ff08;
+
+}
+.form hr{
+    
+}
+.form .group .ver{
+    
+    width: 12%;
+    height: 28px;
+    background-color: blue;
+    text-decoration: none;
+    float: right;
+    font-size: 13px;
+    margin-right: 2%;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bold;
+    align-items: center;
+}
+.form .group .resolvida{
+    margin: 0px;
+    width: 12%;
+    height: 28px;
+    background-color: #00f556;
+    text-decoration: none;
+    float: right;
+    
+
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    align-items: center;
+}
+
+.form  .imgs{
+  float: right;
+  
+}
+.form .group .resolvido{
+    height: 60px;
+    width: 5%;
+}
+.form .group label{
+    text-align: center;
+    font-weight: bold;
+    width: 12%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 2%;
+    margin-right: 5px;
+    font-size: 15px;
+    color: #837e7e;
+    transition: all 0.4s ease;
+    display: inline-block;
+    align-items: center;
+    
+}
+.form .group .apt{
+    
+    margin-top: 15px;
+    color: #B4EFE1;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    
+}
+.form .group input{
+    width: 25%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 2%;
+    margin-right: 5px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+    align-items: center;
+
+}
+.form .group .x{
+    width: 5%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 1%;
+    margin-right: 5px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+
+}
+.form .group .oc{
+    width: 30%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 2%;
+    margin-right: 5px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+
+}
+.form .group .sts{
+    width: 8%;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 1%;
+    margin-right: 5px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+
+}
+.form .group .ap{
+    width: 20%;
+    height: 28px;
+    background-color: #f3f4f4;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 18px;
+    margin-right: 5px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+
+}
+
+.form .group .titulo{
+    width: 970px;
+    height: 28px;
+    background-color: #f3f4f4;
+    border-radius: 7px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 11px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+
+}
+.form .group input:focus{
+    border-color: #49ae96;
+}
+.form .group button{
+    width: 100%;
+    height: 47px;
+    background: #49ae96;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+.form .ocorrencia{
+       
+}
+
+.form .ocorrencia label{
+    margin-top: 5px;
+    color: #f3f4f4;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+ 
+.form .ocorrencia input{
+    width: 35%;
+    height: 25px;
+    background-color: #f3f4f4;
+    border-radius: 7px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 20px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;   
+}
+.form .ocorrencia a{
+    font-size: 15px;
+    
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+
+}
+.form .group .ocorr{
+    float: right;
+}
+.form .input-group{
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.form .input-group label{
+    margin-top: 15px;
+    color: #f3f4f4;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.form .input-group input{
+    width: 20%;
+    height: 20px;
+    background-color: #f3f4f4;
+    border-radius: 7px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-left: 11px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+
+}
+.form .input-group input:focus{
+    border-color: #49ae96;
+}
+.form .group .editar{
+    float: right;
+    width: 12%;
+    height: 28px;
+    background-color: red;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-right: 2%;
+    margin-top: 0px;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+.form .group .edit{
+    float: right;
+    width: 12%;
+    height: 28px;
+    background-color: yellow;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    margin-right: 2%;
+    margin-top: 0px;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+form hr {
+   margin-top: 20px;
+}

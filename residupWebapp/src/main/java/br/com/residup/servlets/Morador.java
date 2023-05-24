@@ -2,22 +2,17 @@ package br.com.residup.servlets;
 
 import br.com.residup.models.IconAlertJS;
 import br.com.residup.daos.MoradorDao;
-import br.com.residup.models.Morador;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,9 +24,9 @@ import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 
 
-@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/selectMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador"})
-public class CadastroMorador extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(CadastroMorador.class.getName());
+@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/listarMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador"})
+public class Morador extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(Morador.class.getName());
 
 
     @Override
@@ -51,6 +46,21 @@ public class CadastroMorador extends HttpServlet {
             request.getSession().removeAttribute("mgsJS");
             request.getRequestDispatcher("Telas/registroMorador.jsp").forward(request, response);
             return;
+        }
+        if(action.equals("/listarMorador")){
+            try {
+               MoradorDao moradorDao = MoradorDao.getInstance();
+               List listaMoradores = moradorDao.listarMoradores();
+
+               request.setAttribute("moradores", listaMoradores);
+                request.getRequestDispatcher("/Telas/listaMorador.jsp").forward(request, response);
+
+                return;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         request.getRequestDispatcher("Telas/registroMorador.jsp").forward(request, response);
@@ -80,7 +90,7 @@ public class CadastroMorador extends HttpServlet {
 
 
                 System.out.println(fotoMoradorImagePath);
-                var morador = new Morador(nome,sobrenome,cpf,rg,numero_apartamento,bloco,senha);
+                var morador = new br.com.residup.models.Morador(nome,sobrenome,cpf,rg,numero_apartamento,bloco,senha);
                 morador.setEnderecoFoto(fotoMoradorImagePath);
 
 
@@ -127,7 +137,7 @@ public class CadastroMorador extends HttpServlet {
         var confirmarSenha = parameters.get("Confs");
 
 
-            var morador = new Morador(null,null,"52201779821",null,null,null,senha);
+            var morador = new br.com.residup.models.Morador(null,null,"52201779821",null,null,null,senha);
             morador.setEnderecoFoto(fotoMoradorImagePath);
 
             if(!MoradorDao.updateMoradorPerfil(morador)){
@@ -139,7 +149,27 @@ public class CadastroMorador extends HttpServlet {
             response.sendRedirect("/perfilMorador");
 
 
+    }
 
+    public void updateMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String action = request.getServletPath();
+        Map<String, String> parameters = uploadImage(request);
+        String fotoMoradorImagePath = parameters.get("image");
+        var senha = parameters.get("Senha");
+        var confirmarSenha = parameters.get("Confs");
+
+
+        var morador = new br.com.residup.models.Morador(null,null,"52201779821",null,null,null,senha);
+        morador.setEnderecoFoto(fotoMoradorImagePath);
+
+        if(!MoradorDao.updateMoradorPerfil(morador)){
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Ocorreu um erro na alteração do Perfil. Tente novamente, mais tarde!");
+            request.getSession().setAttribute("mgsJS", msgJs);
+            request.getSession().setAttribute("check", true);
+            response.sendRedirect("/reservas");
+        }
+        response.sendRedirect("/perfilMorador");
 
 
     }
