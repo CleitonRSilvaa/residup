@@ -1,6 +1,6 @@
 package br.com.residup.models;
 
-public class ReserbaBuilder {
+public class ReservaBuilder {
 
     private int idReserva;
     private int idMorador;
@@ -9,28 +9,28 @@ public class ReserbaBuilder {
     private String nomeArea;
     private String horaReserva;
 
-    public ReserbaBuilder idReserva(int idReserva){
+    public ReservaBuilder idReserva(int idReserva){
         this.idReserva = idReserva;
         return this;
     }
-    public ReserbaBuilder idMorador(int idMorador){
+    public ReservaBuilder idMorador(int idMorador){
         this.idMorador = idMorador;
         return  this;
     }
-    public ReserbaBuilder idArea(int idArea){
+    public ReservaBuilder idArea(int idArea){
         this.idArea = idArea;
         return  this;
     }
 
-    public ReserbaBuilder nomeArea(String nomeArea){
+    public ReservaBuilder nomeArea(String nomeArea){
         this.nomeArea = nomeArea;
         return  this;
     }
-    public ReserbaBuilder horaReserva(String horaReserva){
+    public ReservaBuilder horaReserva(String horaReserva){
         this.horaReserva = horaReserva;
         return  this;
     }
-    public ReserbaBuilder dateReserva(String dateReserva){
+    public ReservaBuilder dateReserva(String dateReserva){
         this.dateReserva = dateReserva;
         return  this;
     }
