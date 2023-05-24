@@ -34,7 +34,7 @@ body{
 }
 .navigation_header a{
     text-decoration: none;
-    color: black;   
+    color: #FFF;   
     transition: 1s;
     font-weight: bold;
     font-size: 12px;
@@ -44,7 +44,7 @@ body{
     color: red;
 }
 .active{
-    background: #545454;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
     border-radius: 10px;
    
@@ -118,20 +118,22 @@ nav li a:hover{
 
 .mr{
     box-sizing: border-box;
-    background: #467599;
+    background: #fff;
     width: 97%;
     height: 400px;
     border-radius: 10px;
     margin-top: 30px;
     margin-left: 1.5%;   
+  
 }
 .mr .group label {
   width: 12%;
   height: 28px;
-  background-color: #9ed8db;
+  background-color: #fff;
   border-radius: 15px;
   outline: none;
   border: 2px solid transparent;
+  border-color: #1b98e0;
   margin-left: 5%;
   font-size: 15px;
   color: #616161;
@@ -144,10 +146,11 @@ nav li a:hover{
 .mr .group .oc {
   width: 12%;
   height: 28px;
-  background-color: #9ed8db;
+  background-color: #FFF;
   border-radius: 15px;
   outline: none;
-  border: 2px solid transparent;
+  border-color: #1b98e0;
+  border: 20;
   margin-left:  6.16%;
   font-size: 15px;
   color: #616161;
@@ -159,10 +162,11 @@ nav li a:hover{
 .mr .group .dt {
   width: 12%;
   height: 28px;
-  background-color: #9ed8db;
+  background-color: #FFF;
   border-radius: 15px;
   outline: none;
-  border: 2px solid transparent;
+  border-color: #1b98e0;
+  border: 20;
   font-size: 15px;
   margin-left:  6.16%;
   color: #616161;
@@ -191,12 +195,11 @@ nav li a:hover{
   float: right;
   width: 12%;
   height: 32px;
-  background-color: red;
   border-radius: 15px;
   outline: none;
   border: 2px solid transparent;
   margin-right: 4%;
-
+  background-image: linear-gradient(to right, #310909, #e01e1e);
   border: none;
   font-size: 13px;
   color: white;
@@ -208,7 +211,7 @@ nav li a:hover{
   float: right;
   width: 12%;
   height: 32px;
-  background-color: #85a4a7;
+  background-image: linear-gradient(to right, #006494, #561be0);
   border-radius: 15px;
   outline: none;
   border: 2px solid transparent;
@@ -226,7 +229,7 @@ nav li a:hover{
 }
 .mv{
   box-sizing: border-box;
-  background: #467599;
+  background: #fff;
   width: 97%;
   height: 400px;
   border-radius: 10px;
@@ -235,7 +238,7 @@ nav li a:hover{
 }
 .mo{
   box-sizing: border-box;
-  background: #467599;
+  background: #fff;
   width: 97%;
   height: 400px;
   border-radius: 10px;
@@ -253,7 +256,7 @@ nav li a:hover{
   padding: 10px;
   border-radius: 10px 10px 0 0;
   color: black;
-  background-color: #1d3354;
+  background-image: linear-gradient(to right, #006494, #1b98e0);
 }
 .title h3{
 
@@ -553,10 +556,11 @@ nav li a:hover{
    .mv .group input{
        width: 3%;
        height: 28px;
-       background-color: #B4EFE1;
+       background-color: #fff;
+       border: 20;
+       border-color: #1b98e0;
        border-radius: 15px;
        outline: none;
-       border: 2px solid transparent;
        margin-left: 3%;
        font-size: 15px;
        color: #616161;
@@ -569,10 +573,11 @@ nav li a:hover{
    .mv .group .nm{
        width: 20%;
        height: 28px;
-       background-color: #B4EFE1;
+       background-color: #fff;
+       border: 20;
+       border-color: #1b98e0;
        border-radius: 15px;
        outline: none;
-       border: 2px solid transparent;
        margin-left: 3%;
        font-size: 15px;
        color: #616161;
@@ -583,10 +588,11 @@ nav li a:hover{
    .mv .group .x{
        width: 12%;
        height: 28px;
-       background-color: #B4EFE1;
+       background-color: #fff;
+       border: 20;
+       border-color: #1b98e0;
        border-radius: 15px;
        outline: none;
-       border: 2px solid transparent;
        margin-left: 3%;
        font-size: 15px;
        color: #616161;
@@ -598,10 +604,11 @@ nav li a:hover{
    .mv .group .oc{
        width: 12%;
        height: 28px;
-       background-color: #B4EFE1;
+       background-color: #fff;
+       border: 20;
+       border-color: #1b98e0;
        border-radius: 15px;
        outline: none;
-       border: 2px solid transparent;
        margin-left: 3%;
        font-size: 15px;
        color: #616161;
@@ -614,7 +621,7 @@ nav li a:hover{
     float: right;
     width: 12%;
     height: 32px;
-    background-color: rgb(253, 220, 0);
+    background-image: linear-gradient(to right, #006494, #561be0);
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
@@ -633,7 +640,7 @@ nav li a:hover{
     float: right;
     width: 12%;
     height: 32px;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
@@ -669,28 +676,26 @@ nav li a:hover{
    .mo .group label {
     width: 20%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #fff;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
-    margin-left: 3%;
+    border: 2px solid #1b98e0;
+    margin-left: 4%;
     font-size: 15px;
-    color: black;
-    font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
-    align-items: center;
-    text-align: center;
+ 
   
   }
   
   .mo .group .oc {
     width: 32%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #fff;
+    border: 20;
+    border-color: #1b98e0;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 4%;
     font-size: 15px;
     transition: all 0.4s ease;
@@ -701,10 +706,11 @@ nav li a:hover{
   .mo .group .or {
     width: 12%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #fff;
+    border: 20;
+    border-color: #1b98e0;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 4%;
     font-size: 15px;
     transition: all 0.4s ease;
@@ -734,7 +740,7 @@ nav li a:hover{
     width: 100%;
     height: 35px;
     border-radius:15px ;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     font-weight: bold;
     color: white;
    border: none;

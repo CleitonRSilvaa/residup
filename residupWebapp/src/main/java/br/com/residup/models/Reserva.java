@@ -22,8 +22,8 @@ public class Reserva {
     }
 
 
-    public static ReserbaBuilder builder(){
-        return new ReserbaBuilder();
+    public static ReservaBuilder builder(){
+        return new ReservaBuilder();
     }
 
     public int getIdReserva() {

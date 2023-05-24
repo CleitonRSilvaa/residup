@@ -16,9 +16,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="ocorrdetalhada.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Document</title>
+    <link href="css/ocorrenciadetalhada.css" rel="stylesheet" type="text/css"/>
+    <title>Header Reserva</title>
 </head>
 <body>
     <div class="header" id="header">
@@ -38,24 +37,51 @@
             </button>
             <a href="#">ÁREA DE RESERVAS</a>
             <a href="#">CONTROLE DE VISITANTES</a>
-            <a href="#" class="active">OCORRÊNCIAS DE MORADORES</a>
-            <a href="#">REGISTRAR NOVO MORADOR</a>
+            <a href="HeaderVisitantes.html" class="active">OCORRÊNCIAS DE MORADORES</a>
+            <a href="HeaderOcorrencias.html">REGISTRR NOVO MORADOR</a>
         </div>
         <nav>
-            <ul>
-                <li class="dropdown">
-                    <a href="">MEU PERFIL</a>
-    
-                    <div class="dropdown-menu">
-                        <a href="">Editar perfil</a>
-                        <a href="">Sair da Conta</a>
-                    </div>
-                </li>
-            </ul>
+            <button id="openModal">Meu Perfil</button>
+
+        <div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+            <h2>Seu Perfil</h2>
+            <form action="#">
+              <div class="perfil">
+                <input type="text" id="nome" placeholder="Nome " name="Nome" disabled>
+
+                <input type="text" id="nome" placeholder="Sobrenome" name="Sobrenome"  disabled>
+                <label class="picture" for="picture__input" tabIndex="0">
+                  <span class="picture__image"></span>
+                </label>
+                <label></label>
+   
+                <input type="file" name="picture__input" id="picture__input">
+              </div>
+              <div class="input-group2">
+                <input type="rg" id="rg" placeholder="RG" maxlength="9" name="RG"  disabled>
+                <input class="cpff" type="cpf" id="cpf" placeholder="CPF" maxlength="14" name="CPF"  disabled>
+              </div>
+   
+              <div class="input-group2">
+                <input type="rg" id="rg" placeholder="apto" maxlength="9" name="Apto"  disabled>
+                <input class="cpff" type="cpf" id="cpf" placeholder="Bloco" maxlength="14" name="Bloco"  disabled>
+              </div>
+                <div class="input-group2">
+                    <input type="rg" id="rg" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
+                    <input class="cpff" type="cpf" id="cpf" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
+                </div>
+              <div class="input-group">
+                <button class="cadastrar">Alterar Senha</button>
+              </div>
+   
+            </form>
+          </div>
+
+    </div>
         </nav>
-    </div>  
-    <!--Fim da header-->
-    <form>
+    </div>
+    <div class="form">
         <div class="title">
             <h3>OCORRENCIA DOS MORADORES</h3>
         </div>
@@ -85,6 +111,7 @@
             <a href="#"><button class="voltar">Voltar</button></a>
         </div>
           
-    </form> 
+    </div> 
+    <script src="scripts/ocorrenciadetalhada.js"></script>
 </body>
 </html>
