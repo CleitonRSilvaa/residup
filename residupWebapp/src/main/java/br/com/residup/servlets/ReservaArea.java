@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -178,8 +179,8 @@ public class ReservaArea extends HttpServlet {
             }
 
 
-            if (!comparaData(data)) {
-                String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Informe uma data maior que a data de hoje ");
+            if (comparaData(data)) {
+                String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Informe uma data maior que a data de hoje \n ou faça uma reserva antes do meio-dia  ");
                 request.getSession().setAttribute("mgsJS", msgJs);
                 request.getSession().setAttribute("resultReserva", true);
                 response.sendRedirect("/reservas");
@@ -302,8 +303,12 @@ public class ReservaArea extends HttpServlet {
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
+            LocalDateTime dataHora = LocalDateTime.now(); // Obtém a data e hora atual
+
+            // Verifica se a hora é maior que meio-dia
+            boolean horaMaiorQueMeioDia = (dataHora.getHour() > 12);
             Date date = format.parse(dateString);
-            return date.compareTo(today) > 0;
+            return (date.compareTo(today) >= 0) && horaMaiorQueMeioDia ;
         } catch (ParseException e) {
             e.printStackTrace();
             return false;
