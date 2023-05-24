@@ -9,9 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -330,6 +333,60 @@ public class ReservaDao {
         }
 
     }
+
+    public List allReservas(String dataFiltro) throws SQLException, ParseException {
+        List <Reserva> reservaList = new ArrayList<>();
+        LocalDate dataAtual = LocalDate.now();
+        String resultado = (dataFiltro == null) ? dataAtual.toString() : dataFiltro;
+
+        String query = "SELECT ID_RESERVA_AREA, M.NOME AS NOME_MORADOR, SOBRENOME, BLOCO,  \n" +
+                "NUMERO_APARTAMENTO,  A.NOME AS  NOME_AREA, DATA_RESERVA, HORA_RESERVA \n" +
+                "FROM RESERVA_AREA  R\n" +
+                "INNER JOIN AREA A ON R.ID_AREA= A.ID_AREA\n" +
+                "INNER JOIN MORADOR M ON M.ID_MORADOR = R.ID_MORADOR\n" +
+                "WHERE DATA_RESERVA = '" +resultado+ "';";
+        try {
+            Connection connection = abrirConexao();
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("ID_RESERVA_AREA");
+                String nome= rs.getString("NOME_MORADOR");
+                String sobrenome = rs.getString("SOBRENOME");
+                String dataString  = rs.getString(2);
+                String hora = rs.getString(3);
+                String area = rs.getString(7);
+                DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatoSaida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                LocalDate data = LocalDate.parse(dataString, formatoEntrada);
+                String dataFormatada = formatoSaida.format(data);
+                var reserva = Reserva.builder()
+                        .idReserva(id)
+                        .dateReserva(dataFormatada)
+                        .horaReserva(hora)
+                        .nomeArea(area).build();
+
+                reserva.getMorador().setNome("");
+                reservaList.add(reserva);
+
+            }
+
+            connection.close();
+            return reservaList;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query TemReserva() ");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return reservaList;
+        }
+
+    }
+
 
 
     public List convidados(int id_morador, int id_reserva) throws SQLException {

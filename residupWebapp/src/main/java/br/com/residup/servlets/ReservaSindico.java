@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class ReservaSindico extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String action = request.getServletPath();
-            if (action.equals("/reservas")) {
+            if (action.equals("/reservasAdmin")) {
                 Boolean parametro3 = (Boolean) request.getSession().getAttribute("resultReserva");
                 String mgs = (String) request.getSession().getAttribute("mgsJS");
                 if (parametro3 != null) {
@@ -50,15 +51,12 @@ public class ReservaSindico extends HttpServlet {
                 request.getSession().removeAttribute("resultReserva");
                 request.getSession().removeAttribute("mgsJS");
                 request.getSession().removeAttribute("mgsmodal");
-                String id_morador = (String) request.getSession().getAttribute("id_morador");
-                List reservaList = reservaDao.reservas(Integer.parseInt(id_morador));
-                List areasList = reservaDao.areas();
-
+                String dataFiltro = request.getParameter("dataFiltro");
+                List reservaList = reservaDao.allReservas(dataFiltro);
                 request.setAttribute("reservas", reservaList);
-                request.setAttribute("areas", areasList);
-                request.getRequestDispatcher("Reservamorador.jsp").forward(request, response);
+                request.getRequestDispatcher("reservaAreaSindico.jsp").forward(request, response);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ParseException e) {
             throw new RuntimeException(e);
         }
     }
