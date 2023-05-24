@@ -2,6 +2,7 @@ package br.com.residup.servlets;
 
 import br.com.residup.daos.OcorrenciaDao;
 import br.com.residup.models.Ocorrencia;
+import br.com.residup.models.Status;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -92,17 +93,30 @@ public class OcorrenciaSindico extends HttpServlet {
     }
 
 
+    public void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idOcorrencia = Integer.parseInt(request.getParameter("idOcorrencia"));
+        Status status = Status.valueOf(request.getParameter("status"));
+
+        if (OcorrenciaDao.resolver(idOcorrencia, status)) {
+            request.getSession().setAttribute("validador", true);
+            response.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            request.getSession().setAttribute("validador", false);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+        response.sendRedirect("/OcorrenciaAdm");
+    }
 
 
 
-    public void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        //        if (OcorrenciaDao.resolver(ocorrencias)) {
+//    public void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+//                if (OcorrenciaDao.resolver(ocorrencias)) {
 //            request.getSession().setAttribute("validador", true);
 //            response.setStatus(HttpServletResponse.SC_OK);
 //        } else
 //            request.getSession().setAttribute("validador", false);
 //        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 //        response.sendRedirect("/OcorrenciaAdm");
-    }
+//    }
 
 }
