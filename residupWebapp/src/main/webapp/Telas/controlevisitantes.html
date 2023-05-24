@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="controlevisitantes.css">
+  <link rel="stylesheet" href="../css/controlevisitantes.css">
   <title>Controle de Visitantes</title>
   
 </head>
@@ -48,7 +48,7 @@
   <button class="cadastrarvisitante">Relátorio</button>
 
   <form class="filtro">
-  <button class="busc">buscar</button>
+  <button class="busc">Buscar</button>
   <input type="date" id="txtBusca" name="" id="">
   <input type="text" id="txtBsca" placeholder="Buscar Visitante..."/>
 </form>
@@ -69,7 +69,7 @@
         <input type="password" id="password" name="documento" required><br><br>
 
         <label for="name">Telefone:</label>
-        <input type="text" id="name" name="tel" required><br><br>
+        <input type="text" id="telefone" name="tel" required><br><br>
 
         <a  href="#"><button class="Salvar">Salvar</button></a>
       </div>
@@ -94,20 +94,20 @@
               <span class="close" onclick="closeModal2()">&times;</span>
               <h2>Editar Cadastro</h2>
               <div class="cadastrarvisita2">
-                <label for="name">ID</label>
-                <input class="editarid" type="text" id="name" name="nomevisit" required><br><br>
+                <label for="visiID">ID</label>
+                <input class="editarid" type="text" id="visiID" name="nomevisit" required><br><br>
         
-                <label for="name">Nome:</label>
-                <input class="editando" type="text" id="name" name="nomevisit" required><br><br>
+                <label for="visiName">Nome:</label>
+                <input class="editando" type="text" id="visiName" name="nomevisit" required><br><br>
         
-                <label for="name">Sobrenome</label>
-                <input class="editando" type="email" id="email" name="sobrenome" required><br><br>
+                <label for="visiSobrenome">Sobrenome</label>
+                <input class="editando" type="email" id="visiSobrenome" name="sobrenome" required><br><br>
         
-                <label for="password">Documento:</label>
-                <input class="editando" type="password" id="password" name="documento" required><br><br>
+                <label for="visiPassword">Documento:</label>
+                <input class="editando" type="password" id="visiPassword" name="documento" required><br><br>
         
-                <label for="name">Telefone:</label>
-                <input class="editando" type="text" id="name" name="tel" required><br><br>
+                <label for="visiTelefone">Telefone:</label>
+                <input class="editando" type="text" id="visiTelefone" name="tel" required><br><br>
         
                 <a  href="#" ><button class="Salvar">Salvar</button></a>
               </div>

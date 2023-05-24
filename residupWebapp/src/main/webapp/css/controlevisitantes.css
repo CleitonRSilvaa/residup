@@ -4,7 +4,7 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: #f3f4f4;
     color: white;
 }
 
@@ -34,7 +34,7 @@ body{
 }
 .navigation_header a{
     text-decoration: none;
-    color: black;   
+    color: #fff;   
     transition: 1s;
     font-weight: bold;
     font-size: 12px;
@@ -44,7 +44,7 @@ body{
     color: red;
 }
 .active{
-    background: #467599;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
     border-radius: 10px; 
 }
@@ -118,7 +118,7 @@ nav li a:hover{
  margin-left: 1.5%;
  border-radius: 15px;
  border: none;
- background-color: #467599 ;
+ background-image: linear-gradient(to right, #006494, #561be0);
  color: white;
  font-weight: bold;
 }
@@ -130,7 +130,7 @@ nav li a:hover{
     margin-left: 1.5%;
     border-radius: 15px;
     border: none;
-    background-color: #467599 ;
+    background-image: linear-gradient(to right, #006494, #561be0);
     color: white;
     font-weight: bold;
    }
@@ -300,8 +300,10 @@ nav li a:hover{
     width: 97%;
     height: 500px;
     margin-left: 1.5%;
-    background-color: #467599;
+    
     border-radius: 15px;
+    box-sizing: border-box;
+    background-color: #fff;
 }
 .nvvist{
     float: left;
@@ -313,7 +315,8 @@ nav li a:hover{
 
 }
 .form .title{
-    background-color: black;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
+    padding: 10px;
     height: 20px;
     border-radius: 15px 15px 0px 0px;
 }
@@ -341,10 +344,11 @@ nav li a:hover{
 .form .group input{
     width: 7%;
     height: 28px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
+    background-color: #fff;
+    border-color: #1b98e0;
+    border : 20;
     outline: none;
-    border: 2px solid transparent;
+    border-radius: 15px;
     margin-left: 2%;
     font-size: 15px;
     color: #616161;
@@ -357,10 +361,11 @@ nav li a:hover{
 .form .group .nm{
     width: 20%;
     height: 28px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
+    background-color: #fff;
+    border-color: #1b98e0;
+    border : 20;
     outline: none;
-    border: 2px solid transparent;
+    border-radius: 15px;
     margin-left: 2%;
     font-size: 15px;
     color: #616161;
@@ -371,10 +376,11 @@ nav li a:hover{
 .form .group .x{
     width: 15%;
     height: 28px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
+    background-color: #fff;
+    border-color: #1b98e0;
+    border : 20;
     outline: none;
-    border: 2px solid transparent;
+    border-radius: 15px;
     margin-left: 2%;
     font-size: 15px;
     color: #616161;
@@ -385,10 +391,11 @@ nav li a:hover{
 .form .group .oc{
     width: 15%;
     height: 28px;
-    background-color: #B4EFE1;
-    border-radius: 15px;
+    background-color: #fff;
+    border-color: #1b98e0;
+    border : 20;
     outline: none;
-    border: 2px solid transparent;
+    border-radius: 15px;
     margin-left: 2%;
     font-size: 15px;
     color: #616161;
@@ -414,9 +421,8 @@ nav li a:hover{
     margin: 0px;
     width: 12%;
     height: 35px;
-    background-color: rgb(255, 234, 0);
+    background-image: linear-gradient(to right, #006494, #561be0);
     text-decoration: none;
-
     margin-left: 4%;;
     color: white;
     text-align: center;
@@ -431,8 +437,8 @@ nav li a:hover{
     float: right;
     margin-left: 2%;
     padding-left:5px;
-    font-size:18px;
-    border:none;
+    font-size:14px;
+    border-color: #1b98e0;
     height: 40px;
     width: 10%;
     border-radius: 15px;
@@ -442,8 +448,8 @@ nav li a:hover{
     float: right;
     margin-left: 5%;
     padding-left:5px;
-    font-size:18px;
-    border:none;
+    font-size:14px;
+    border-color: #1b98e0;
     height: 40px;
     width: 12%;
     border-radius: 15px;
@@ -468,7 +474,7 @@ nav li a:hover{
     margin: 0px;
     width: 12%;
     height: 35px;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     text-decoration: none;
     float: right;
     margin-right: 3%;
@@ -501,7 +507,7 @@ nav li a:hover{
     margin: 0px;
     width: 150px;
     height:  40px;
-    background-color: red;
+    background-image: linear-gradient(to right, #006494, #561be0);
     text-decoration: none;
     float: right;
     margin-right: 4.5%;
