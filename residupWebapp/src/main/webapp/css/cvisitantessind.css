@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 #openModal {
     background-color: transparent;
     border: none;
@@ -382,13 +387,10 @@
     height: 20px;
   
   }
-  .title h3{
-    margin-left: 1.5%;
-    font-size: 18px;
-    color: white;
-    font-weight: bold;
-    display: flex;
-  
+  .title h2{
+    font-size: 15px;
+    margin-left: 10px;
+    color: #fff;
     
   }  
 .form .group{
