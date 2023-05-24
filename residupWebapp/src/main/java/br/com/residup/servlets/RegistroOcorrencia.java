@@ -59,7 +59,7 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
-        String filtroOcorrencias = request.getParameter("status-filter");
+        String filtroOcorrencias = request.getParameter("form-status");
         ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(Integer.parseInt(id_morador));
         ArrayList<Ocorrencia> listaFiltrada = new ArrayList<>();
 
@@ -128,20 +128,6 @@ public class RegistroOcorrencia extends HttpServlet {
         } else
             request.getSession().setAttribute("validador", false);
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-        response.sendRedirect("/Ocorrencia");
-    }
-
-
-    private void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
-        ocorrencias.setStatus(request.getParameter("resolucao"));
-        if (OcorrenciaDao.resolver(ocorrencias)) {
-            request.getSession().setAttribute("validador", true);
-            response.setStatus(HttpServletResponse.SC_OK);
-        } else
-            request.getSession().setAttribute("validador", false);
-        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         response.sendRedirect("/Ocorrencia");
     }
 }

@@ -519,3 +519,63 @@ html {
   .group-3 input:focus {
     border-color: #49ae96;
   }
+
+.filtro{
+    width: 98.4%;
+    margin: 0;
+    padding: 10px;
+    height: 35px;
+    border-radius: 10px 10px 0 0;
+    color: black;
+    background-color: #1d3354;r;
+ }
+ .filtro .form-status{
+    float: right;
+    width: 150px;
+    height: 28px;
+    background-color: #B4EFE1;
+    border-radius: 15px;
+    outline: none;
+    border: 2px solid transparent;
+    font-size: 15px;
+    margin-left: 2%;
+    color: #616161;
+    transition: all 0.4s ease;
+    display: inline-block;
+    text-align: center;
+}
+ .filtro .filtrar{
+    float: right;
+    margin: 0px;
+    width: 150px;
+    height:  28px;
+    background-color: red;
+    text-decoration: none;
+    float: right;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-top: 0px;
+    border: none;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    align-items: center;
+
+}
+.filtro .text {
+    float: left;
+    width: 30%;
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    color: black;
+    background-color: #1d3354;
+  }
+
+  .filtro .text h1 {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+  }

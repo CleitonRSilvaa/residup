@@ -85,4 +85,36 @@ public class LoginDao {
         }
     }
 
+    public boolean validaPrimeiroAcesso(String cpf) {
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        String senhaPadraoCriptografada = passwordEncryptor.encryptPassword("senha123");
+
+        try (Connection connection = abrirConexao();
+             PreparedStatement instrucao = connection.prepareStatement("SELECT SENHA_ACESSO FROM MORADOR WHERE CPF = ?")) {
+            instrucao.setString(1, cpf);
+
+            try (ResultSet rs = instrucao.executeQuery()) {
+                if (rs.next()) {
+                    String senhaAcesso = rs.getString("SENHA_ACESSO");
+                    senhaAcesso.equals(senhaPadraoCriptografada);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar a consulta: " + e.getMessage());
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erro ao carregar o driver do banco de dados: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+    }
 }
+
+
+
+
+
+

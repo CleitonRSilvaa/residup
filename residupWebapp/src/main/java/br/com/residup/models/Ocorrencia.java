@@ -1,6 +1,6 @@
 package br.com.residup.models;
 
-public class Ocorrencia {
+public class Ocorrencia extends Morador {
     private int id_ocorrencia;
     private String titulo;
     private String texto;
@@ -68,7 +68,9 @@ public class Ocorrencia {
     }
 
 
-    public Ocorrencia() {}
+    public Ocorrencia() {
+        super();
+    }
 
     @Override
     public String toString() {

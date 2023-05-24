@@ -11,6 +11,15 @@ public class Reserva {
     private String nomeArea;
     private String horaReserva;
 
+    private Morador morador;
+
+    public Morador getMorador() {
+        return morador;
+    }
+
+    public void setMorador(Morador morador) {
+        this.morador = morador;
+    }
 
     public Reserva(int idReserva, int idMorador, int idArea, String dateReserva, String nomeArea, String horaReserva) {
         this.idReserva = idReserva;
