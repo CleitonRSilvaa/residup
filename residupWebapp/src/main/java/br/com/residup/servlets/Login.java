@@ -51,8 +51,10 @@ public class Login extends HttpServlet {
                 request.getSession().setAttribute("validator", scriptMensagem);
                 request.getSession().setAttribute("primeiroAcesso", true);
                 response.sendRedirect(request.getContextPath() + "/visitantes");
+                return;
             } else {
                 response.sendRedirect(request.getContextPath() + "/Ocorrencia");
+                return;
             }
         } else {
             System.out.println("Login não encontrado/incorreto");

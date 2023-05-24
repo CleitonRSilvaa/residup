@@ -74,7 +74,8 @@ public class RegistroOcorrencia extends HttpServlet {
             filtroOcorrencias = "todos";
         }
 
-        Boolean parametro = (Boolean) request.getSession().getAttribute("validator");
+        Object parametroObject = request.getSession().getAttribute("validator");
+        Boolean parametro = Boolean.valueOf(String.valueOf(parametroObject));
         String mgs = (String) request.getSession().getAttribute("mgsJS");
 
         if (parametro != null && parametro) {
