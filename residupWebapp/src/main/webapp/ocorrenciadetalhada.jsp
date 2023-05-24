@@ -12,7 +12,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,7 +57,7 @@
         <select class="sts" id="form-horario" name="status" required>
             <option value="Todos" ${ocorrenciaGet.getStatus().equals("Todos") ? 'selected' : ''}>Todos</option>
             <option value="Em aberto" ${ocorrenciaGet.getStatus().equals("Em aberto") ? 'selected' : ''}>Em aberto</option>
-            <option value="Em análise" ${ocorrenciaGet.getStatus().equals("Em análise") ? 'selected' : ''}>Em análise</option>
+            <option value="Em analise" ${ocorrenciaGet.getStatus().equals("Em analise") ? 'selected' : ''}>Em analise</option>
             <option value="Em andamento" ${ocorrenciaGet.getStatus().equals("Em andamento") ? 'selected' : ''}>Em andamento</option>
             <option value="Resolvido" ${ocorrenciaGet.getStatus().equals("Resolvido") ? 'selected' : ''}>Resolvido</option>
         </select>
