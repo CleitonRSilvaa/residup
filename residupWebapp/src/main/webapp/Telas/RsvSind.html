@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="rsv.css">
-    <title>Document</title>
+    <title>Reservas de À</title>
 </head>
 <body>
     <div class="header" id="header">
@@ -29,6 +29,7 @@
             <a href="HeaderRegistro.html">REGISTRAR NOVO MORADOR</a>
         </div>
         <nav>
+          
             <ul>
                 <li class="dropdown">
                     <a href="">MEU PERFIL</a>
@@ -41,64 +42,32 @@
             </ul>
         </nav>
     </div>
-    <form>
-       <div class="title">
-        <h3>RESERVAS DOS MORADORES</h3>
-    
+    <div class="form">
+        <form class="filtro">
+            <div class="text"><h3>Reservas dos Moradores</h3></div>
+            <a href="#"><button class="filtrar">Filtrar</button></a>
+          <input type="date" class="data" id="form-status"></input>
+        </form> 
        <div class="input-group">
-        <label for="nome"> Morador</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="input-group">
-        <label for="nome"> Apartamento</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="input-group">
-        <label for="nome"> Bloco</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="input-group">
-        <label for="nome"> Área</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="input-group">
-        <label for="nome"> Horário</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="input-group">
-        <label for="nome"> Data</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="testando">
-
-      </div>
-      <div class="group">
-        <label for="nome"> Morador</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="group">
-        <label for="nome"> Apartamento</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="group">
-        <label for="nome"> Bloco</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="group">
-        <label for="nome"> Àrea</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="group">
-        <label for="nome"> Horário</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="group">
-        <label for="nome"> Data</label>
-        <input type="text" id="nome"  required>
-      </div>
-      <div class="testando">
-        
-      </div>
+        <label></label>
+        <label class="apt"></label>
+        <label class="apt"></label>
+        <label class="area"></label>
+        <label class="data"></label>
+        <label  class="hora"></label>
+        <button class="abrir" id="openModalBtn"> Convidados</button>
+  
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="convidados">
+            <h2>Lista de Convidados</h2>
+            <label class="nome"></label>
+            <label class="doc"></input>
+          </div>
+        </div>
     </form>
+    <hr>
+    <script src="reservasindico.js"></script>
 </body>
 </html>
