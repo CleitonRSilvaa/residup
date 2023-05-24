@@ -41,17 +41,12 @@ public class OcorrenciaSindico extends HttpServlet {
             carregarOcorrencia(request, response);
             return;
         }
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getServletPath();
         if (action.equals("/resolver")) {
-            carregarOcorrencia(request, response);
+            resolverOcorrencia(request, response);
             return;
         }
     }
+
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String filtroOcorrencias = request.getParameter("status-filter");
@@ -101,10 +96,25 @@ public class OcorrenciaSindico extends HttpServlet {
 
 
     public void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idOcorrencia = Integer.parseInt(request.getParameter("idOcorrencia"));
-        Status status = Status.valueOf(request.getParameter("status"));
+        String idOcorrencia = request.getParameter("idTop");
 
-        if (OcorrenciaDao.resolver(idOcorrencia, status)) {
+        String statusParam = request.getParameter("status");
+        Status status = null;
+
+        if (statusParam != null) {
+            for (Status value : Status.values()) {
+                if (value.getStatus().equals(statusParam)) {
+                    status = value;
+                    break;
+                }
+            }
+        }
+
+        if (status == null) {
+            throw new IllegalArgumentException("Valor inválido para o parâmetro 'status'");
+        }
+
+        if (OcorrenciaDao.resolver(Integer.parseInt(idOcorrencia), status)) {
             request.getSession().setAttribute("validador", true);
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
@@ -113,17 +123,4 @@ public class OcorrenciaSindico extends HttpServlet {
         }
         response.sendRedirect("/OcorrenciaAdm");
     }
-
-
-
-//    public void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-//                if (OcorrenciaDao.resolver(ocorrencias)) {
-//            request.getSession().setAttribute("validador", true);
-//            response.setStatus(HttpServletResponse.SC_OK);
-//        } else
-//            request.getSession().setAttribute("validador", false);
-//        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//        response.sendRedirect("/OcorrenciaAdm");
-//    }
-
 }
