@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../cadastro.css">
+  <link rel="stylesheet" href="css/cadastro.css">
 
   <title>cadastro</title>
 </head>
@@ -414,7 +414,7 @@
       </div>
 
   </section>
-  <script src="cadastro.js"></script>
+  <script src="scripts/cadastro.js"></script>
 
           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
