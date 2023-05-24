@@ -78,7 +78,7 @@ public class RegistroOcorrencia extends HttpServlet {
         String mgs = (String) request.getSession().getAttribute("mgsJS");
 
         if (parametro != null && parametro) {
-            String msg = mgs;
+            String msg = mgs != null ? mgs : "";
             request.setAttribute("mensagem", msg);
         }
 
@@ -90,6 +90,7 @@ public class RegistroOcorrencia extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_OK);
         rd.forward(request, response);
     }
+
 
 
     protected void registrarOcorrencia(HttpServletRequest request, HttpServletResponse response)
