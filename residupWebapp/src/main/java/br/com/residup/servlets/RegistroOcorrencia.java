@@ -59,7 +59,7 @@ public class RegistroOcorrencia extends HttpServlet {
     protected void ocorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
-        String filtroOcorrencias = request.getParameter("status-filter");
+        String filtroOcorrencias = request.getParameter("form-status");
         ArrayList<Ocorrencia> lista = OcorrenciaDao.listarDoMorador(Integer.parseInt(id_morador));
         ArrayList<Ocorrencia> listaFiltrada = new ArrayList<>();
 

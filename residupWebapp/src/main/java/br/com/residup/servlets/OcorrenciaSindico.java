@@ -74,7 +74,7 @@ public class OcorrenciaSindico extends HttpServlet {
 
         var ocorrencia = OcorrenciaDao.getOcorrencia(Integer.parseInt(idOcorrenciaSindico));
         request.setAttribute("ocorrenciaUnica", ocorrencia);
-        RequestDispatcher rd = request.getRequestDispatcher("Telas/ocorrenciaSindicoDetalhada.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("Telas/ocorrenciadetalhada.jsp");
         response.setStatus(HttpServletResponse.SC_OK);
         rd.forward(request, response);
 
