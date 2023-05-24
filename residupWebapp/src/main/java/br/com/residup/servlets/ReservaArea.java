@@ -1,10 +1,9 @@
 package br.com.residup.servlets;
 
+import br.com.residup.daos.ReservaDao;
 import br.com.residup.models.Convidado;
 import br.com.residup.models.IconAlertJS;
-import br.com.residup.daos.ReservaDao;
 import br.com.residup.models.Reserva;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,7 @@ import java.util.List;
 
 import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 
-@WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva" , "/excluirConvidado", "/cadastroConvidado","/convidosReserva"})
+@WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva", "/excluirConvidado", "/cadastroConvidado", "/convidosReserva"})
 public class ReservaArea extends HttpServlet {
 
 
@@ -42,20 +41,19 @@ public class ReservaArea extends HttpServlet {
                 }
             }
 
-
             ReservaDao reservaDao = ReservaDao.getInstance();
             String modal = (String) request.getSession().getAttribute("mgsmodal");
             String id_reserva = (String) request.getSession().getAttribute("idReserva");
-            if (modal != null && id_reserva != null  ) {
+            if (modal != null && id_reserva != null) {
+                String sgtIdMoardor = (String) request.getSession().getAttribute("id_morador");
                 request.setAttribute("mgsmodal", modal);
-                List convidadosList = reservaDao.convidados(1, Integer.parseInt(id_reserva));
+                List convidadosList = reservaDao.convidados(Integer.parseInt(sgtIdMoardor), Integer.parseInt(id_reserva));
                 List convidados = new ArrayList();
                 for (Object convidado : convidadosList) {
                     Convidado convidado1 = (Convidado) convidado;
                     convidados.add(convidado1);
                 }
-                System.out.println("ID DA RESERVA SELESIONADA "+id_reserva);
-//                request.setAttribute("IdReservaConvidado", id_reserva);
+                request.setAttribute("IdReservaConvidado", id_reserva);
                 request.setAttribute("listaConvidados", convidados);
 
             }
@@ -64,8 +62,8 @@ public class ReservaArea extends HttpServlet {
             request.getSession().removeAttribute("resultReserva");
             request.getSession().removeAttribute("mgsJS");
             request.getSession().removeAttribute("mgsmodal");
-
-            List reservaList = reservaDao.reservas(1);
+            String id_moardor = (String) request.getSession().getAttribute("id_morador");
+            List reservaList = reservaDao.reservas(Integer.parseInt(id_moardor));
             List areasList = reservaDao.areas();
 
             request.setAttribute("revervas", reservaList);
@@ -93,11 +91,11 @@ public class ReservaArea extends HttpServlet {
             }
         }
         if (action.equals("/deleteReserva")) {
-            doDelete(request,response);
+            doDelete(request, response);
         }
 
-        if(action.equals("/cadastroConvidado")){
-            cadastroConvidado(request,response);
+        if (action.equals("/cadastroConvidado")) {
+            cadastroConvidado(request, response);
             return;
         }
 
@@ -114,7 +112,7 @@ public class ReservaArea extends HttpServlet {
     }
 
 
-    public void deletarReserva(HttpServletRequest request, HttpServletResponse response){
+    public void deletarReserva(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
@@ -122,15 +120,19 @@ public class ReservaArea extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
 
-            String action = request.getServletPath();
-            System.out.println(action);
-            String idReserva = (String) request.getSession().getAttribute("idReservaDelete");
-            String idReserva2 = request.getParameter("idReservaDelete");
+            String idReserva = request.getParameter("idReservaDelete");
             ReservaDao reservaDao = ReservaDao.getInstance();
-            var reserva = Reserva.builder().idReserva(Integer.parseInt(idReserva)).idMorador(2).build();
-            System.out.println(reserva);
-            System.out.println(idReserva2);
-            if (reservaDao.deleteReserva(reserva)) {
+            String id_moardor = (String) request.getSession().getAttribute("id_morador");
+            var reserva = Reserva.builder().idReserva(Integer.parseInt(idReserva)).idMorador(Integer.parseInt(id_moardor)).build();
+
+
+
+
+            boolean deleteAllConvidados = reservaDao.deleteConvidadosEventos(Integer.parseInt(idReserva));
+            boolean deleteReserva = reservaDao.deleteReserva(reserva);
+
+
+            if (deleteAllConvidados && deleteReserva) {
                 String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Reserva cancelada com sucesso!");
                 request.getSession().setAttribute("mgsJS", msgJs);
                 request.getSession().setAttribute("resultReserva", true);
@@ -138,13 +140,17 @@ public class ReservaArea extends HttpServlet {
                 return;
             }
 
-            String msgJs =  scriptMensagemAlertJs(IconAlertJS.error,"Opsss","Erro ao cancelar reserva!");
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Opsss", "Erro ao cancelar reserva!");
             request.getSession().setAttribute("mgsJS", msgJs);
-            request.getSession().setAttribute("inserReserva",true );
+            request.getSession().setAttribute("inserReserva", true);
             response.sendRedirect("/reservas");
 
         } catch (Exception e) {
             System.out.println(e);
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Opsss", "Ouve um erro inesperado tente\n novamente mais tarde!");
+            request.getSession().setAttribute("mgsJS", msgJs);
+            request.getSession().setAttribute("inserReserva", true);
+            response.sendRedirect("/reservas");
             response.sendRedirect("/reservas");
         }
 
@@ -159,7 +165,7 @@ public class ReservaArea extends HttpServlet {
             ReservaDao reservaDao = ReservaDao.getInstance();
             String cpf = (String) request.getSession().getAttribute("cpf");
             String id_moardor = (String) request.getSession().getAttribute("id_morador");
-            System.out.println("CPF: "+ cpf + " ID : "+id_moardor);
+            System.out.println("CPF: " + cpf + " ID : " + id_moardor);
             var reserva = Reserva.builder().dateReserva(data).horaReserva(hora).idMorador(Integer.parseInt(id_moardor)).build();
 
             if (idArea.trim().isEmpty()) {
@@ -222,8 +228,8 @@ public class ReservaArea extends HttpServlet {
         String action = request.getServletPath();
         if (action.equals("/convidosReserva")) {
             String idReserva = request.getParameter("idReserva");
-            request.getSession().setAttribute("idReserva",idReserva);
-            request.getSession().setAttribute("mgsmodal","ok" );
+            request.getSession().setAttribute("idReserva", idReserva);
+            request.getSession().setAttribute("mgsmodal", "ok");
             response.sendRedirect("/reservas");
         }
 
@@ -235,20 +241,20 @@ public class ReservaArea extends HttpServlet {
         String id_convidado = request.getParameter("idConviado");
 
         ReservaDao reservaDao = ReservaDao.getInstance();
-        var reserva  = reservaDao.reserva(Integer.parseInt(idReserva));
+        var reserva = reservaDao.reserva(Integer.parseInt(idReserva));
 
-        if (reserva.getDateReserva() != null){
+        if (reserva.getDateReserva() != null) {
             Date today = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date date = format.parse(reserva.getDateReserva());
-            if (date.compareTo(today) <= 0){
+            if (date.compareTo(today) <= 0) {
                 String msgJs = scriptMensagemAlertJs(IconAlertJS.info, "Atenção", "Convidado não pode ser excluido! data do Evento vencida ");
                 request.getSession().setAttribute("mgsJS", msgJs);
                 request.getSession().setAttribute("resultReserva", true);
                 response.sendRedirect("/reservas");
                 return;
             }
-            if (!reservaDao.deleteConviado(Integer.parseInt(id_convidado))){
+            if (!reservaDao.deleteConvidado(Integer.parseInt(id_convidado))) {
                 String msgJs = scriptMensagemAlertJs(IconAlertJS.info, "Opss", "Convidado não pode ser excluido!");
                 request.getSession().setAttribute("mgsJS", msgJs);
                 request.getSession().setAttribute("resultReserva", true);
@@ -262,25 +268,25 @@ public class ReservaArea extends HttpServlet {
     }
 
 
+    public void cadastroConvidado(HttpServletRequest request, HttpServletResponse response) {
 
+        try {
+            String idReservaNew = request.getParameter("idReservaListaConvidado");
+            String nomeConvidado = request.getParameter("nomeConvidado");
+            String identidade = request.getParameter("identidade");
+            String id_moardor = (String) request.getSession().getAttribute("id_morador");
+            request.getParameter("idReserva");
+            ReservaDao reservaDao = ReservaDao.getInstance();
+            var convidado = new Convidado(0, nomeConvidado, identidade, Integer.parseInt(id_moardor), Integer.parseInt(idReservaNew));
+            var reserva = reservaDao.insertConviado(convidado);
+            request.getSession().setAttribute("idReserva", idReservaNew);
+            response.sendRedirect("/reservas");
+        } catch (Exception e) {
 
-    public void cadastroConvidado(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String idReserva = request.getParameter("idReservaListaConvidado");
-        String nomeConvidado = request.getParameter("nomeConvidado");
-        String identidade =  request.getParameter("identidade");
-        String id_moardor = (String) request.getSession().getAttribute("id_morador");
-        request.getParameter("idReserva");
-        System.out.println(idReserva);
-        ReservaDao reservaDao = ReservaDao.getInstance();
-        var convidado = new Convidado(0,nomeConvidado,identidade,Integer.parseInt(id_moardor),Integer.parseInt(idReserva));
-        var reserva  = reservaDao.insertConviado(convidado);
-        request.getSession().setAttribute("idReserva",idReserva);
-        response.sendRedirect("/reservas");
-
+        }
 
 
     }
-
 
 
     public String validarCapos(Reserva reserva) {
@@ -291,7 +297,6 @@ public class ReservaArea extends HttpServlet {
         if (reserva.getIdArea() == -1) return "ID_AREA is NULL";
         return "ok";
     }
-
 
 
     public static boolean comparaData(String dateString) {

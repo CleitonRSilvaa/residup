@@ -3,7 +3,6 @@ package br.com.residup.daos;
 
 
 import br.com.residup.models.Convidado;
-import br.com.residup.models.Morador;
 import br.com.residup.models.Reserva;
 
 import java.sql.Connection;
@@ -195,13 +194,55 @@ public class ReservaDao {
     }
 
 
-    public boolean deleteConviado(int id_convidado) {
+    public boolean deleteConvidado(int id_convidado) {
         Boolean retorno = false;
         String create = "DELETE FROM CONVIDADO_RESERVA WHERE ID_CONVIDADO = ? ;";
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(create);
             pst.setInt(1, id_convidado);
+
+            int linhasRetorno =  pst.executeUpdate();
+            connection.close();
+            return linhasRetorno > 0;
+
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar delete  convidado ");
+        }catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+            return retorno;
+        }
+    }
+
+    public boolean temConvidado(int reserva) {
+        Boolean retorno = false;
+        String create = "SELECT ID_RESERVA_AREA FROM CONVIDADO_RESERVA WHERE ID_RESERVA_AREA = ? ;";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(create);
+            pst.setInt(1, reserva);
+
+            int linhasRetorno =  pst.executeUpdate();
+            connection.close();
+            return linhasRetorno > 0;
+
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query  temConvidado ");
+        }catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+            return retorno;
+        }
+    }
+
+    public boolean deleteConvidadosEventos(int reserva) {
+        Boolean retorno = false;
+        String create = "DELETE FROM CONVIDADO_RESERVA WHERE ID_RESERVA_AREA = ? ;";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(create);
+            pst.setInt(1, reserva);
 
             int linhasRetorno =  pst.executeUpdate();
             connection.close();
