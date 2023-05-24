@@ -134,7 +134,7 @@
                 <div class="all-products">
 
                     <div class="product">
-                        <img src="../imagens/img/Salao.jpg" class="card-img-top" alt="...">
+                        <img src="imagens/img/Salao.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Salão de festas</h5>
                             <p class="card-text">Amplo espaço para realização de festas e eventos, contendo tudo que é necessário para seu evento perfeito. </p>
@@ -142,7 +142,7 @@
                         </div>
                     </div>
                     <div class="product">
-                        <img src="../imagens/img/reuniao.jpg" class="card-img-top" alt="...">
+                        <img src="imagens/img/reuniao.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Sala de reuniao</h5>
                             <p class="card-text">Precisa de um espaço para trabalhar ou fazer uma reunião? Nesse espaço voce encontra conforto e muito mais.</p>
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <div class="product">
-                        <img src="../imagens/img/churrasqueira.jpg" class="card-img-top" alt="...">
+                        <img src="imagens/img/churrasqueira.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Churrasqueira</h5>
                             <p class="card-text">Está planejando fazer aquele churrasco com a familia ou com seus amigos? Clique em saiba mais e conheça o espaço perfeito!</p>
@@ -158,7 +158,7 @@
                         </div>
                     </div>
                     <div class="product">
-                        <img src="../imagens/img/quadra.jpg" class="card-img-top" alt="...">
+                        <img src="magens/img/quadra.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Quadra de tenis</h5>
                             <p class="card-text">Pensando em praticar algum esporte? Clique em saiba mais e conheça todos os beneficios que a quadra te tenis te oeferece.</p>
