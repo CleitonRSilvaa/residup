@@ -132,23 +132,21 @@ public class Morador extends HttpServlet {
 
         String action = request.getServletPath();
         Map<String, String> parameters = uploadImage(request);
-        String fotoMoradorImagePath = parameters.get("image");
-        var senha = parameters.get("Senha");
-        var confirmarSenha = parameters.get("Confs");
+        br.com.residup.models.Morador morador = new br.com.residup.models.Morador();
+        morador.setNome(request.getParameter("Nome"));
+        morador.setSobrenome(request.getParameter("Sobrenome"));
+        morador.setCpf((request.getParameter("cpf")));
+        morador.setRg(request.getParameter("rg"));
+        morador.setNumeroApartamento(request.getParameter("numero_apartamento"));
+        morador.setBloco(request.getParameter("bloco"));
 
+        if (MoradorDao.alterarMorador(morador)){
+            request.getSession().setAttribute();
 
-            var morador = new br.com.residup.models.Morador(null,null,"52201779821",null,null,null,senha);
-            morador.setEnderecoFoto(fotoMoradorImagePath);
-
-            if(!MoradorDao.updateMoradorPerfil(morador)){
-                String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Ocorreu um erro na alteração do Perfil. Tente novamente, mais tarde!");
-                request.getSession().setAttribute("mgsJS", msgJs);
-                request.getSession().setAttribute("check", true);
-                response.sendRedirect("/reservas");
-            }
-            response.sendRedirect("/perfilMorador");
-
-
+        }else {
+            request.getSession().setAttribute();
+            response.sendRedirect("updateMorador");
+        }
     }
 
     public void updateMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {

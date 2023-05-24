@@ -14,6 +14,7 @@
     ArrayList<Reserva> listaReserva = (ArrayList<Reserva>) request.getAttribute("minhasReservas");
     ArrayList<Visitante> listaVisitante = (ArrayList<Visitante>) request.getAttribute("meuVisitantes");
 
+    Morador morador = (Morador) request.getAttribute("morador");
 %>
 <!DOCTYPE html>
 <html lang="en">

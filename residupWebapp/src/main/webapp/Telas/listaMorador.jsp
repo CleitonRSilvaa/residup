@@ -75,8 +75,8 @@
           <label class="oc"> <%=morador.getCpf()%></label>
           <label class="x"><%=morador.getNumeroApartamento()%></label>
           <label class="x"><%=morador.getBloco()%></label>
-          <form action="" method="">
-              <a  href="#"><button class="editar">Excluir</button></a>
+          <form action="/updateMorador" method="post">
+              <a  href="#"><button class="editar" type="submit">Excluir</button></a>
           </form>
           <form action="/updateMorador" method="get">
               <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%=morador.getCpf()%>">
