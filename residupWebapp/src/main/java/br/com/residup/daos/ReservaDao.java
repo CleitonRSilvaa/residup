@@ -3,6 +3,7 @@ package br.com.residup.daos;
 
 
 import br.com.residup.models.Convidado;
+import br.com.residup.models.Morador;
 import br.com.residup.models.Reserva;
 
 import java.sql.Connection;
@@ -355,9 +356,11 @@ public class ReservaDao {
                 int id = rs.getInt("ID_RESERVA_AREA");
                 String nome= rs.getString("NOME_MORADOR");
                 String sobrenome = rs.getString("SOBRENOME");
-                String dataString  = rs.getString(2);
-                String hora = rs.getString(3);
-                String area = rs.getString(7);
+                String bloco = rs.getString("BLOCO");
+                String numeroApartamento = rs.getString("NUMERO_APARTAMENTO");
+                String dataString  = rs.getString("DATA_RESERVA");
+                String hora = rs.getString("HORA_RESERVA");
+                String area = rs.getString("NOME_AREA");
                 DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 DateTimeFormatter formatoSaida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -368,8 +371,12 @@ public class ReservaDao {
                         .dateReserva(dataFormatada)
                         .horaReserva(hora)
                         .nomeArea(area).build();
-
-                reserva.getMorador().setNome("");
+                var morador = new Morador();
+                morador.setNome(nome);
+                morador.setSobrenome(sobrenome);
+                morador.setBloco(bloco);
+                morador.setNumeroApartamento(numeroApartamento);
+                reserva.setMorador(morador);
                 reservaList.add(reserva);
 
             }

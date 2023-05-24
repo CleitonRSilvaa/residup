@@ -44,7 +44,7 @@ public class OcorrenciaDao {
         boolean retorno = false;
         try {
             Connection connection = abrirConexao();
-            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR, STATUS) VALUES (?, ?, ?, ?)");
+            PreparedStatement instrucao = connection.prepareStatement("INSERT INTO REGISTRO_OCORRENCIA (TITULO, OCORRENCIA, ID_MORADOR, STATUS, DATA_REGISTRO_OCORRENCIA ) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)");
             instrucao.setString(1, ocorrencia.getTitulo());
             instrucao.setString(2, ocorrencia.getTexto());
             instrucao.setInt(3, ocorrencia.getId_morador());
@@ -131,7 +131,10 @@ public class OcorrenciaDao {
     }
 
     public static Ocorrencia getOcorrencia(int id_ocorrencia) {
-        String select = "SELECT * FROM REGISTRO_OCORRENCIA INNER JOIN MORADOR ON REGISTRO_OCORRENCIA.id_morador = MORADOR.id_morador";
+        String select = "SELECT * FROM REGISTRO_OCORRENCIA  RO\n" +
+                "INNER JOIN MORADOR M\n" +
+                "ON RO.ID_MORADOR = M.ID_MORADOR " +
+                "WHERE ID_OCORRENCIA = ? ";
         Ocorrencia ocorrencia = new Ocorrencia();
         try {
             Connection connection = abrirConexao();

@@ -1,13 +1,13 @@
+<%@page import="br.com.residup.models.Convidado"%>
 <%@page import="br.com.residup.models.Reserva"%>
 <%--<%@page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>--%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
-    @SuppressWarnings(
-            
-    
-    "unchecked")
-    ArrayList<Reserva> reservas = (ArrayList<Reserva>) request.getAttribute("revervas");
+    ArrayList<Reserva> allReservas = (ArrayList<Reserva>) request.getAttribute("allReservas");
+    ArrayList<Convidado> convidados = (ArrayList<Convidado>) request.getAttribute("listaConvidados");
 %>
 
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/rsv.css">
+
         <title>Reservas de À</title>
     </head>
     <body>
@@ -27,7 +28,7 @@
                 </svg>
             </button>
             <div class="logo_header">
-                <img src="/img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
+                <img src="../imagens/img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
             </div>
             <div class="navigation_header" id="navigation_header">
                 <button onclick="toggleSidebar()" class="btn_icon_header">
@@ -45,7 +46,6 @@
                 <ul>
                     <li class="dropdown">
                         <a href="">MEU PERFIL</a>
-
                         <div class="dropdown-menu">
                             <a href="">Editar perfil</a>
                             <a href="">Sair da Conta</a>
@@ -54,6 +54,7 @@
                 </ul>
             </nav>
         </div>
+
         <div class="form">
             <form class="filtro" action="reservasAdmin" method="GET">
                 <div class="text">
@@ -65,54 +66,61 @@
                 <input type="date" class="data" id="form-status" name="dataFiltro" />
             </form>
             <div class="input-group">
-                 <label></label>
-                <label class="apt"></label>
-                <label class="apt"></label>
-                <label class="area"></label>
-                <label class="data"></label>
-                <label  class="hora"></label>
-            </div>
-           
-            <%
-                if (reservas != null) {
-                    if (!reservas.isEmpty()) {
-                        for (Reserva reserva : reservas) {
-            %>
-            <div class="input-group">
+                <%for (Reserva reserva : allReservas) {%>
+                <label><%=reserva.getMorador().getNome() + " " + reserva.getMorador().getSobrenome()%></label>
+                <label class="apt"><%=reserva.getMorador().getNumeroApartamento()%></label>
+                <label class="apt"><%=reserva.getMorador().getBloco()%></label>
+                <label class="area"><%=reserva.getNomeArea()%></label>
+                <label class="data"><%=reserva.getDateReserva()%></label>
+                <label  class="hora"><%=reserva.getHoraReserva()%></label>
+                <form  action="/convidosReservaAdm" method="post">
+                    <input  type="hidden" name="idReservaAdm" id="idReservaAdm" value="<%=reserva.getIdReserva()%>">
+                    <button  type="submit" class="abrir" id="3openModalBtn"> Convidados</button>
+                    <hr>
+                </form>
+                <%}%>
 
-                <<label></label>
-                <label class="apt"></label>
-                <label class="apt"></label>
-                <label class="area"></label>
-                <label class="data"></label>
-                <label  class="hora"></label>
-                <button class="abrir" id="openModalBtn"> Convidados</button>
+
                 <div id="modal" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <div class="convidados">
                             <h2>Lista de Convidados</h2>
-                            <label class="nome"></label>
-                            <label class="doc"></label>
+                            <%
+                                if (convidados != null) {
+                                    if (!convidados.isEmpty()) {
+                                        for (Convidado objConvidado : convidados) {
+                            %>
+                            <label class="nome"><%= objConvidado.getNome()%></label>
+                            <label class="doc"><%= objConvidado.getIndentidade()%></label>
+                            <hr>
+                            <%
+                                        }
+                                    }
+                                }
+                            %>
                         </div>
                     </div>
-                    <hr>
-                </div>
+                </div>   
+
             </div>
-            <hr>
-
-
-            <%
-                        }
-                    }
-                }
-            %>
 
 
 
-        </div>
 
-        <script src="../scripts/reservasindico.js"></script>
 
-    </body>
-</html>
+            <c:if test="${not empty mgsmodalAdm}">
+                <script>
+                    var modal = document.getElementById('modal');
+                    modal.style.display = 'block';
+                    var closeModalButton = document.getElementsByClassName('close')[0];
+                    closeModalButton.addEventListener('click', function () {
+                        modal.style.display = 'none';
+                    });
+                </script>
+            </c:if>
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+            </body>
+            </html>
