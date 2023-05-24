@@ -1,5 +1,24 @@
+<%@page import="br.com.residup.models.Reserva"%>
+
+<%--<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>--%>
+<%@page import="java.util.ArrayList"%>
+<%
+    @SuppressWarnings(
+            "unchecked")
+    ArrayList<Reserva> reservas = (ArrayList<Reserva>) request.getAttribute("revervas");
+
+    ArrayList<String> horarios = new ArrayList<String>();
+
+    horarios.add("07:00 - 12:00");
+    horarios.add("07:00 - 22:00");
+    horarios.add("13:00 - 18:00");
+    horarios.add("13:00 - 22:00");
+
+%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,31 +62,40 @@
         </nav>
     </div>
     <div class="form">
-        <form class="filtro">
-            <div class="text"><h3>Reservas dos Moradores</h3></div>
-            <a href="#"><button class="filtrar">Filtrar</button></a>
-          <input type="date" class="data" id="form-status"></input>
-        </form> 
-       <div class="input-group">
-        <label></label>
-        <label class="apt"></label>
-        <label class="apt"></label>
-        <label class="area"></label>
-        <label class="data"></label>
-        <label  class="hora"></label>
-        <button class="abrir" id="openModalBtn"> Convidados</button>
-  
-        <div id="modal" class="modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="convidados">
-            <h2>Lista de Convidados</h2>
-            <label class="nome"></label>
-            <label class="doc"></input>
-          </div>
+        <form class="filtro" action="reservasAdmin" method="GET">
+            <div class="text">
+                <h3>Reservas dos Moradores</h3>
+            </div>
+                <a href="#">
+                <button class="filtrar">Filtrar</button>
+                </a>
+            <input type="date" class="data" id="form-status" />
+        </form>
+    <c:forEach var="reserva" items="${reservas}">
+        <div class="input-group">
+            <label>${reserva.getNomeArea()}</label>
+            <label class="apt">${reserva.getNumeroApartamento()}</label>
+            <label class="apt">${reserva.getBloco()}</label>
+            <label class="area">${reserva.getNomeArea()}</label>
+            <label class="data">${reserva.getDateReserva()}</label>
+            <label class="hora">${reserva.getHoraReserva()}</label>
+        <button class="abrir" id="openModalBtn">Convidados</button>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="convidados">
+                        <h2>Lista de Convidados</h2>
+                        <label class="nome"></label>
+                        <label class="doc"></label>
+                    </div>
+                </div>
+                <hr>
+            </div>
         </div>
-    </form>
-    <hr>
-    <script src="scripts/reservasindico.js"></script>
+    </c:forEach>
+</div>
+
+        <script src="scripts/reservasindico.js"></script>
+
 </body>
 </html>

@@ -65,7 +65,7 @@ public class ReservaArea extends HttpServlet {
 
               request.setAttribute("revervas", reservaList);
               request.setAttribute("areas", areasList);
-              request.getRequestDispatcher("/Telas/Reservamorador.jsp").forward(request, response);
+              request.getRequestDispatcher("Reservamorador.jsp").forward(request, response);
           }
         } catch (SQLException e) {
             throw new RuntimeException(e);
