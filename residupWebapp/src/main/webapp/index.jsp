@@ -55,10 +55,6 @@
                 <button type="submit id="btn-login">Entrar</button>
             </form>
 
-            <div class="cadastro">
-                <hr>
-                <span>Ainda não possui uma conta? <a href="#">Cadastre-se</a></span>
-            </div>
 
 
 
