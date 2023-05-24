@@ -131,9 +131,7 @@ public class OcorrenciaDao {
     }
 
     public static Ocorrencia getOcorrencia(int id_ocorrencia) {
-        String select = "SELECT *\n" +
-                "FROM REGISTRO_OCORRENCIA\n" +
-                "INNER JOIN MORADOR ON REGISTRO_OCORRENCIA.id_morador = MORADOR.id_morador";
+        String select = "SELECT * FROM REGISTRO_OCORRENCIA INNER JOIN MORADOR ON REGISTRO_OCORRENCIA.id_morador = MORADOR.id_morador";
         Ocorrencia ocorrencia = new Ocorrencia();
         try {
             Connection connection = abrirConexao();
@@ -148,11 +146,21 @@ public class OcorrenciaDao {
                 String nomeMorador = rs.getString("NOME");
                 String numeroApartamento = rs.getString("NUMERO_APARTAMENTO");
                 String bloco = rs.getString("BLOCO");
-                var registroOcorrencia = Ocorrencia.builder().id_ocorrencia(id_ocorrencia).titulo(titulo).texto(texto).id_ocorrencia(id_ocorrenciaResult).status(status).build();
+
+                var registroOcorrencia = Ocorrencia.builder()
+                        .id_ocorrencia(id_ocorrenciaResult)
+                        .titulo(titulo)
+                        .texto(texto)
+                        .id_ocorrencia(id_ocorrenciaResult)
+                        .status(status)
+                        .build();
+
                 registroOcorrencia.setNome(nomeMorador);
                 registroOcorrencia.setNumeroApartamento(numeroApartamento);
                 registroOcorrencia.setBloco(bloco);
+
                 ocorrencia = registroOcorrencia;
+                System.out.println("esssssse" + ocorrencia);
             }
             connection.close();
             return ocorrencia;
