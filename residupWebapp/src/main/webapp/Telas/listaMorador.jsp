@@ -20,9 +20,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/lsita.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Lista Morador</title>
 </head>
-<body>
+<body class="fundoBody">
     <div class="header" id="header">
         <button onclick="toggleSidebar()" class="btn_icon_header">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -62,12 +62,12 @@
   <button class="listar">Lista de Moradores</button>
 
   <form class="filtro">
-  <button class="busc" action="/listarMorador" method="get" >buscar</button>
+  <button class="busc" action="/listarMorador" method="get" >Buscar</button>
   <input type="text" id="txtBsca" placeholder="Buscar Morador..."/>  
 </form>
     <div class="form">
         <div class="title">
-            <h3>LISTA DE MORADORES</h3>
+            <h3>Lista de Moradores</h3>
         </div>
         <%for (Morador morador : listaMorador) {%>
           <div class="group">
