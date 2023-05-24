@@ -84,6 +84,35 @@ public class OcorrenciaDao {
         }
     }
 
+    public static ArrayList<Ocorrencia> listarDoMoradorSindico() {
+        try (Connection connection = abrirConexao();
+             PreparedStatement instrucao = connection
+                     .prepareStatement("SELECT *\n" +
+                             "FROM REGISTRO_OCORRENCIA\n" +
+                             "INNER JOIN MORADOR ON REGISTRO_OCORRENCIA.id_morador = MORADOR.id_morador;\n")) {
+            ArrayList<Ocorrencia> ocorrencias = new ArrayList<>();
+            ResultSet rs = instrucao.executeQuery();
+            while (rs.next()) {
+                int id_ocorrencia = rs.getInt("ID_OCORRENCIA");
+                String titulo = rs.getString("TITULO");
+                String texto = rs.getString("OCORRENCIA");
+                String status = rs.getString("STATUS");
+                String nomeMorador = rs.getString("NOME");
+                String numeroApartamento = rs.getString("NUMERO_APARTAMENTO");
+                String bloco = rs.getString("BLOCO");
+                var registroOcorrencia = Ocorrencia.builder().id_ocorrencia(id_ocorrencia).titulo(titulo).texto(texto).status(status).build();
+                registroOcorrencia.setNome(nomeMorador);
+                registroOcorrencia.setNumeroApartamento(numeroApartamento);
+                registroOcorrencia.setBloco(bloco);
+                ocorrencias.add(registroOcorrencia);
+            }
+            return ocorrencias;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
 
     public static boolean deletar(Ocorrencia ocorrencia) {
         String delete = "DELETE FROM REGISTRO_OCORRENCIA WHERE ID_OCORRENCIA=?";

@@ -130,18 +130,4 @@ public class RegistroOcorrencia extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         response.sendRedirect("/Ocorrencia");
     }
-
-
-    private void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
-        ocorrencias.setStatus(request.getParameter("resolucao"));
-        if (OcorrenciaDao.resolver(ocorrencias)) {
-            request.getSession().setAttribute("validador", true);
-            response.setStatus(HttpServletResponse.SC_OK);
-        } else
-            request.getSession().setAttribute("validador", false);
-        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        response.sendRedirect("/Ocorrencia");
-    }
 }
