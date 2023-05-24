@@ -29,6 +29,13 @@ public class OcorrenciaSindico extends HttpServlet {
             ocorrencia(request, response);
             return;
         }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String action = request.getServletPath();
         if (action.equals("/carregarOcorrencia")) {
             carregarOcorrencia(request, response);
             return;
