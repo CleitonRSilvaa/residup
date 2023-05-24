@@ -81,9 +81,9 @@ public class MoradorDao {
     }
 
 
-    public ArrayList <PerfilMorador> listarMoradores() throws SQLException, ClassNotFoundException {
+    public ArrayList <Morador> listarMoradores() throws SQLException, ClassNotFoundException {
 
-        ArrayList<PerfilMorador> listaMoradores = new ArrayList<>();
+        ArrayList<Morador> listaMoradores = new ArrayList<>();
         String comandoSQL = "SELECT * FROM Morador";
         try{
             this.connection = abrirConexao();
@@ -91,15 +91,16 @@ public class MoradorDao {
             ResultSet rs = instrucaoSQL.executeQuery();
 
             while(rs.next()){
-            PerfilMorador perfilMorador = new PerfilMorador();
-            perfilMorador.setNome(rs.getString("NOME"));
-            perfilMorador.setCpf(rs.getString("CPF"));
-            perfilMorador.setRg(rs.getString("RG"));
-            perfilMorador.setNumeroApartamento(rs.getString("NUMERO_APARTAMENTO"));
-            perfilMorador.setBloco(rs.getString("BLOCO"));
-            perfilMorador.setSenhaDeAcesso(rs.getString("SENHA_ACESSO"));
 
-            listaMoradores.add(perfilMorador);
+            String nome = (rs.getString("NOME"));
+            String sobrenome = (rs.getString("SOBRENOME"));
+            String cpf = (rs.getString("CPF"));
+            String numApart= (rs.getString("NUMERO_APARTAMENTO"));
+            String bloco = (rs.getString("BLOCO"));
+
+
+            var morador = new Morador(nome, sobrenome, cpf, null, numApart, bloco, null);
+            listaMoradores.add(morador);
 
             }
             connection.close();
