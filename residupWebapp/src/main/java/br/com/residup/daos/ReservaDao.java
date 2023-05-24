@@ -222,10 +222,10 @@ public class ReservaDao {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(create);
             pst.setInt(1, reserva);
-
-            int linhasRetorno =  pst.executeUpdate();
+            ResultSet rs = pst.executeQuery();
+            retorno = rs.next();
             connection.close();
-            return linhasRetorno > 0;
+            return retorno;
 
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getLocalizedMessage());

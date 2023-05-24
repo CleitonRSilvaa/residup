@@ -28,48 +28,45 @@ public class ReservaArea extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String action = request.getServletPath();
-            if (action.equals("/deleteReserva")) {
-                doDelete(request, response);
-                return;
-            }
-            Boolean parametro3 = (Boolean) request.getSession().getAttribute("resultReserva");
-            String mgs = (String) request.getSession().getAttribute("mgsJS");
-            if (parametro3 != null) {
-                if (parametro3) {
-                    String msg = mgs;
-                    request.setAttribute("mensagem", msg);
-                }
-            }
+          if(action.equals("/reservas")) {
+              Boolean parametro3 = (Boolean) request.getSession().getAttribute("resultReserva");
+              String mgs = (String) request.getSession().getAttribute("mgsJS");
+              if (parametro3 != null) {
+                  if (parametro3) {
+                      String msg = mgs;
+                      request.setAttribute("mensagem", msg);
+                  }
+              }
 
-            ReservaDao reservaDao = ReservaDao.getInstance();
-            String modal = (String) request.getSession().getAttribute("mgsmodal");
-            String id_reserva = (String) request.getSession().getAttribute("idReserva");
-            if (modal != null && id_reserva != null) {
-                String sgtIdMoardor = (String) request.getSession().getAttribute("id_morador");
-                request.setAttribute("mgsmodal", modal);
-                List convidadosList = reservaDao.convidados(Integer.parseInt(sgtIdMoardor), Integer.parseInt(id_reserva));
-                List convidados = new ArrayList();
-                for (Object convidado : convidadosList) {
-                    Convidado convidado1 = (Convidado) convidado;
-                    convidados.add(convidado1);
-                }
-                request.setAttribute("IdReservaConvidado", id_reserva);
-                request.setAttribute("listaConvidados", convidados);
+              ReservaDao reservaDao = ReservaDao.getInstance();
+              String modal = (String) request.getSession().getAttribute("mgsmodal");
+              String id_reserva = (String) request.getSession().getAttribute("idReserva");
+              if (modal != null && id_reserva != null) {
+                  String sgtIdMoardor = (String) request.getSession().getAttribute("id_morador");
+                  request.setAttribute("mgsmodal", modal);
+                  List convidadosList = reservaDao.convidados(Integer.parseInt(sgtIdMoardor), Integer.parseInt(id_reserva));
+                  List convidados = new ArrayList();
+                  for (Object convidado : convidadosList) {
+                      Convidado convidado1 = (Convidado) convidado;
+                      convidados.add(convidado1);
+                  }
+                  request.setAttribute("IdReservaConvidado", id_reserva);
+                  request.setAttribute("listaConvidados", convidados);
 
-            }
+              }
 
-            request.getSession().removeAttribute("idReserva");
-            request.getSession().removeAttribute("resultReserva");
-            request.getSession().removeAttribute("mgsJS");
-            request.getSession().removeAttribute("mgsmodal");
-            String id_moardor = (String) request.getSession().getAttribute("id_morador");
-            List reservaList = reservaDao.reservas(Integer.parseInt(id_moardor));
-            List areasList = reservaDao.areas();
+              request.getSession().removeAttribute("idReserva");
+              request.getSession().removeAttribute("resultReserva");
+              request.getSession().removeAttribute("mgsJS");
+              request.getSession().removeAttribute("mgsmodal");
+              String id_moardor = (String) request.getSession().getAttribute("id_morador");
+              List reservaList = reservaDao.reservas(Integer.parseInt(id_moardor));
+              List areasList = reservaDao.areas();
 
-            request.setAttribute("revervas", reservaList);
-            request.setAttribute("areas", areasList);
-            request.getRequestDispatcher("/Telas/Reservamorador.jsp").forward(request, response);
-
+              request.setAttribute("revervas", reservaList);
+              request.setAttribute("areas", areasList);
+              request.getRequestDispatcher("/Telas/Reservamorador.jsp").forward(request, response);
+          }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -124,13 +121,12 @@ public class ReservaArea extends HttpServlet {
             ReservaDao reservaDao = ReservaDao.getInstance();
             String id_moardor = (String) request.getSession().getAttribute("id_morador");
             var reserva = Reserva.builder().idReserva(Integer.parseInt(idReserva)).idMorador(Integer.parseInt(id_moardor)).build();
+            boolean deleteAllConvidados = true;
+            if (reservaDao.temConvidado(Integer.parseInt(idReserva))){
+                 deleteAllConvidados = reservaDao.deleteConvidadosEventos(Integer.parseInt(idReserva));
+            }
 
-
-
-
-            boolean deleteAllConvidados = reservaDao.deleteConvidadosEventos(Integer.parseInt(idReserva));
             boolean deleteReserva = reservaDao.deleteReserva(reserva);
-
 
             if (deleteAllConvidados && deleteReserva) {
                 String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Reserva cancelada com sucesso!");
@@ -263,6 +259,8 @@ public class ReservaArea extends HttpServlet {
             }
 
         }
+        request.getSession().setAttribute("idReserva", idReserva);
+        request.getSession().setAttribute("mgsmodal", "ok");
         response.sendRedirect("/reservas");
 
     }
@@ -280,6 +278,7 @@ public class ReservaArea extends HttpServlet {
             var convidado = new Convidado(0, nomeConvidado, identidade, Integer.parseInt(id_moardor), Integer.parseInt(idReservaNew));
             var reserva = reservaDao.insertConviado(convidado);
             request.getSession().setAttribute("idReserva", idReservaNew);
+            request.getSession().setAttribute("mgsmodal", "ok");
             response.sendRedirect("/reservas");
         } catch (Exception e) {
 

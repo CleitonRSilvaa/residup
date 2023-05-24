@@ -118,18 +118,14 @@
                     <label class="oc" ><%=reserva.getDateReserva()%></label>
                     <label class="dt" ><%=reserva.getHoraReserva()%></label>
                     <form style="display: inline-block;" action="/convidosReserva" method="post">
-                        
                         <input class="editar" type="hidden" name="idReserva" id="idReserva" value="<%=reserva.getIdReserva()%>">
-
                         <button type="submit"  class="convidados" >
                             Listar Convidados
                         </button>
-
                     </form>
-
                     <form style="display: inline-block;" name="frmDelete"  action="/deleteReserva" method="post">
                         <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
-                        <button class="editar" type='submit'>Excluir Reserva</button>
+                        <button class="editar" type='button' onclick =cancelarReserva()  >Excluir Reserva</button>
                     </form>
                 </div>
                 <hr>
@@ -203,7 +199,7 @@
                                 <input class="editar" type="hidden" name="idConviado" id="idConviado" value="<%= objConvidado.getId()%>">
                                                             <input class="editar" type="hidden" name="idReservaListaConvidadoExclui" id="idReservaListaConvidadoExclui" value="<%= objConvidado.getId_reserva()%>">
 
-                                <button class="editar" type="button" onclick="excluirConvidados()">Alterar e Submeter</button>
+                                <button class="editar" type="button" onclick="excluirConvidados()">Excluir</button>
 
                             <hr>
                             <%
@@ -230,14 +226,14 @@
         <script>
             function excluirConvidados() {
                 Swal.fire({
-                    title: 'Cancelar reserva?',
+                    title: 'Excluir convidado?',
                     text: "Você não será capaz de reverter isso!",
                     timer: 10000,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Sim, cancelar reserva!'
+                    confirmButtonText: 'Excluir!'
                 }).then((result) => {
                     if (result.isConfirmed) {
                     var form = document.getElementById("FormsConviados");
