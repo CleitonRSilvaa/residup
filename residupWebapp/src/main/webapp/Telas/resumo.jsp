@@ -1,3 +1,20 @@
+<%@page import="br.com.residup.models.Morador"%>
+<%@page import="br.com.residup.models.Ocorrencia"%>
+<%@page import="br.com.residup.models.Visitante"%>
+<%@page import="br.com.residup.models.Reserva"%>
+
+<%--<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>--%>
+<%@page import="java.util.ArrayList"%>
+<%
+    @SuppressWarnings(
+            "unchecked")
+    ArrayList<Morador> listaMorador = (ArrayList<Morador>) request.getAttribute("moradores");
+    ArrayList<Ocorrencia> listaOcorrencia = (ArrayList<Ocorrencia>) request.getAttribute("minhasOcorencias");
+    ArrayList<Reserva> listaReserva = (ArrayList<Reserva>) request.getAttribute("minhasReservas");
+    ArrayList<Visitante> listaVisitante = (ArrayList<Visitante>) request.getAttribute("meuVisitantes");
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,28 +63,32 @@
         <div class="title">
             <h3>Minhas Reservas</h3>   
         </div>
+        <%for (Reserva reserva : listaReserva) {%>
         <div class="group">
-            <label></label> 
-            <label class="oc"></label>
+            <label><%=reserva.getIdReserva()%></label>
+            <label class="oc"><%=reserva.getNomeArea()%></label>
             <label class="dt"></label>
             <a href="#"><button class="editar" type='submit'>Excluir</button></a>
             <a href="#"> <button type="button" class="listando"> Listar Convidados</button></a>
           </div>
           <hr>
+          <%}%>
     </div>
     <div class="mv">
             <div class="title">
                 <h3>Meus Visitantes</h3>   
             </div>
+            <%for ( Visitante visitante : listaVisitante) {%>
             <div class="group">
-                <input type="text" placeholder="ID"  name="ID" required></input>
-                <input class="nm"  placeholder="Nome" name="nome" disabled></input>
-                <input class="x" placeholder="Documento" name="doc" disabled></input>
-                <input class="oc" placeholder="Fone" name="fone" disabled></input>
+                <input type="text" placeholder="ID"  name="ID" required><%=visitante.getId()%></input>
+                <input class="nm"  placeholder="Nome" name="nome" disabled><%=visitante.getNome() + ' ' + visitante.getSobrenome()%></input>
+                <input class="x" placeholder="Documento" name="doc" disabled><%=visitante.getDocumento()%></input>
+                <input class="oc" placeholder="Fone" name="fone" disabled><%=visitante.getFone()%></input>
                 <a  href="#"><button class="editarcad">Excluir</button></a>
                 <a href="#"><button class="editvisitante"> Editar</button></a>
             </div>
             <hr>
+            <%}%>
         </div>
         </div>
         
@@ -76,13 +97,15 @@
         <div class="title">
             <h3>Minhas Ocorrências</h3>   
         </div>
+        <%for (Ocorrencia ocorrencia : listaOcorrencia) {%>
          <div class="group">
-            <label></label> 
-            <label class="oc"></label>
-            <label class="or"></label>
+            <label><%=ocorrencia.getTitulo()%></label>
+            <label class="oc"><%=ocorrencia.getTexto()%></label>
+            <label class="or"><%=ocorrencia.getStatus()%></label>
             <a href="#" class="editar" ><button class="ed" type='submit'>Excluir</button></a>
          </div>
          <hr>
+         <%}%>
     </div>
 </body>
 </html>
