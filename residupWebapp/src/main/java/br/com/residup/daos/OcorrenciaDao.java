@@ -1,6 +1,7 @@
 package br.com.residup.daos;
 
 import br.com.residup.models.Ocorrencia;
+import br.com.residup.models.OcorrenciaBuilder;
 import br.com.residup.models.Status;
 
 import java.sql.Connection;
@@ -126,6 +127,38 @@ public class OcorrenciaDao {
         } catch (Exception e) {
             System.out.println(e);
             return false;
+        }
+    }
+
+    public static Ocorrencia getOcorrencia(int id_ocorrencia) {
+        String select = "SELECT *\n" +
+                "FROM REGISTRO_OCORRENCIA\n" +
+                "INNER JOIN MORADOR ON REGISTRO_OCORRENCIA.id_morador = MORADOR.id_morador";
+        Ocorrencia ocorrencia = new Ocorrencia();
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(select);
+            pst.setInt(1, id_ocorrencia);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int id_ocorrenciaResult = rs.getInt("ID_OCORRENCIA");
+                String titulo = rs.getString("TITULO");
+                String texto = rs.getString("OCORRENCIA");
+                String status = rs.getString("STATUS");
+                String nomeMorador = rs.getString("NOME");
+                String numeroApartamento = rs.getString("NUMERO_APARTAMENTO");
+                String bloco = rs.getString("BLOCO");
+                var registroOcorrencia = Ocorrencia.builder().id_ocorrencia(id_ocorrencia).titulo(titulo).texto(texto).id_ocorrencia(id_ocorrenciaResult).status(status).build();
+                registroOcorrencia.setNome(nomeMorador);
+                registroOcorrencia.setNumeroApartamento(numeroApartamento);
+                registroOcorrencia.setBloco(bloco);
+                ocorrencia = registroOcorrencia;
+            }
+            connection.close();
+            return ocorrencia;
+        } catch (Exception e) {
+            System.out.println(e);
+            return ocorrencia;
         }
     }
 

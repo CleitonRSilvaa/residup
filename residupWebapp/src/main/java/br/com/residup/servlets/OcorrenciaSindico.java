@@ -36,7 +36,7 @@ public class OcorrenciaSindico extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getServletPath();
         if (action.equals("/resolve")) {
-            resolverOcorrencia(request, response);
+            carregarOcorrencia(request, response);
             return;
         }
     }
@@ -75,16 +75,22 @@ public class OcorrenciaSindico extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void resolverOcorrencia(HttpServletRequest request, HttpServletResponse response)
+    private void carregarOcorrencia(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ocorrencias.setId_ocorrencia(Integer.parseInt(request.getParameter("id")));
-        ocorrencias.setStatus(request.getParameter("resolucao"));
-        if (OcorrenciaDao.resolver(ocorrencias)) {
-            request.getSession().setAttribute("validador", true);
-            response.setStatus(HttpServletResponse.SC_OK);
-        } else
-            request.getSession().setAttribute("validador", false);
-        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        response.sendRedirect("/OcorrenciaAdm");
+        String idOcorrenciaSindico = request.getParameter("idOcorrenciaSindico");
+
+        var ocorrencia = OcorrenciaDao.getOcorrencia(Integer.parseInt(idOcorrenciaSindico));
+        request.setAttribute("ocorrenciaUnica", ocorrencia);
+        RequestDispatcher rd = request.getRequestDispatcher("ocorrenciaSindicoDetalhada.jsp");
+        response.setStatus(HttpServletResponse.SC_OK);
+        rd.forward(request, response);
+
+//        if (OcorrenciaDao.resolver(ocorrencias)) {
+//            request.getSession().setAttribute("validador", true);
+//            response.setStatus(HttpServletResponse.SC_OK);
+//        } else
+//            request.getSession().setAttribute("validador", false);
+//        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//        response.sendRedirect("/OcorrenciaAdm");
     }
 }

@@ -78,7 +78,10 @@
             <label class="oc">${ocorrencia.getTitulo()}</label>
             <label class="sts">${ocorrencia.getStatus()}</label>
 
-            <a class="ver" href="ocorrdetalhada.html">Ver</a>
+    <form class="filtro" action="Resolve" method="PUT">
+            <a class="ver"><button type="submit">Ver</button></a>
+            <input class="editar" type="hidden" name="idOcorrenciaSindico" id="idOcorrenciaSindico" value=${ocorrencia.getStatus()}>
+    </form>
 
         </div>
         <hr>

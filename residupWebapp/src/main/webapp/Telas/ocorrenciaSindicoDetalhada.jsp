@@ -1,3 +1,14 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="br.com.residup.models.Ocorrencia"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="java.util.ArrayList"%>
+
+
+<%
+    Ocorrencia ocorrencia = request.getAttribute("ocorrenciaUnica");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
