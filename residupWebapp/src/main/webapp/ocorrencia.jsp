@@ -107,6 +107,8 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
         <script src="scripts/scriptsOcorrencia.js"></script>
+        <script src="scripts/redutortamtext.js"></script>
+
 
         <c:if test="${not empty mensagem}">
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
@@ -114,7 +116,7 @@
                 <%= request.getAttribute("mensagem")%>
             </script>
         </c:if>
-        <script src="Telas/script.js"></script>
+        <script src="scripts/script.js"></script>
     </body>
 </html>
 
