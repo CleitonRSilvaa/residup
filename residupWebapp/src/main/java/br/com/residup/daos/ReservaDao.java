@@ -340,6 +340,9 @@ public class ReservaDao {
         LocalDate dataAtual = LocalDate.now();
         String resultado = (dataFiltro == null) ? dataAtual.toString() : dataFiltro;
 
+        if (resultado.trim().isEmpty() || resultado.trim().isBlank()){
+            resultado = dataAtual.toString();
+        }
         String query = "SELECT ID_RESERVA_AREA, M.NOME AS NOME_MORADOR, SOBRENOME, BLOCO,  \n" +
                 "NUMERO_APARTAMENTO,  A.NOME AS  NOME_AREA, DATA_RESERVA, HORA_RESERVA \n" +
                 "FROM RESERVA_AREA  R\n" +

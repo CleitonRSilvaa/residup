@@ -92,7 +92,6 @@ public class OcorrenciaSindico extends HttpServlet {
 
         System.out.println("olaa: "+ idOcorrenciaSindico);
         Ocorrencia ocorrencia = OcorrenciaDao.getOcorrencia(Integer.parseInt(idOcorrenciaSindico));
-        System.out.println(ocorrencia.getTitulo());
         request.setAttribute("ocorrenciaUnica", ocorrencia);
         RequestDispatcher rd = request.getRequestDispatcher("ocorrenciadetalhada.jsp");
         rd.forward(request, response);

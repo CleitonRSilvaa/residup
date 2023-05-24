@@ -83,7 +83,7 @@
 
                 <div id="modal" class="modal">
                     <div class="modal-content">
-                        <span class="close">&times;</span>
+                        <span class="close">&times;</span>F
                         <div class="convidados">
                             <h2>Lista de Convidados</h2>
                             <%
@@ -111,12 +111,20 @@
 
             <c:if test="${not empty mgsmodalAdm}">
                 <script>
-                    var modal = document.getElementById('modal');
-                    modal.style.display = 'block';
-                    var closeModalButton = document.getElementsByClassName('close')[0];
-                    closeModalButton.addEventListener('click', function () {
-                        modal.style.display = 'none';
-                    });
+                   var modal = document.getElementById('modal');
+                      modal.style.display = 'block';
+                      function closeModal() {
+                          modal.style.display = 'none';
+                      }
+                      window.addEventListener('click', function (event) {
+                          if (event.target == modal) {
+                              closeModal();
+                          }
+                      });
+                      var closeModalButton = document.getElementsByClassName('close')[0];
+                      closeModalButton.addEventListener('click', function () {
+                          closeModal();
+                      });
                 </script>
             </c:if>
 
