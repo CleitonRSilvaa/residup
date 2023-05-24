@@ -83,7 +83,7 @@
 
                 <div id="modal" class="modal">
                     <div class="modal-content">
-                        <span class="close">&times;</span>F
+                        <span class="close">&times;</span>
                         <div class="convidados">
                             <h2>Lista de Convidados</h2>
                             <%
