@@ -48,9 +48,9 @@
   </filter-mapping>
 
 
-    <welcome-file-list>
-    <welcome-file>visitantes.jsp</welcome-file>
-  </welcome-file-list>
+<!--    <welcome-file-list>-->
+<!--    <welcome-file>visitantes.jsp((((por resumo))))</welcome-file>-->
+<!--  </welcome-file-list>-->
 
   <listener>
     <listener-class>br.com.residup.listeners.SessionListener</listener-class>
