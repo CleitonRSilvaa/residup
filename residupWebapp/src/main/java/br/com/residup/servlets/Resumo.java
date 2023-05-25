@@ -25,10 +25,10 @@ public class Resumo extends HttpServlet {
         try {
             if(action.equals("/listarResumo")){
 
-                List minhasReservas = reservaDao.reservas(1);
+                List minhasReservas = reservaDao.reservas(31);
                 request.setAttribute("minhasReservas", minhasReservas);
 
-                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(1);
+                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(31);
                 request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
                 List meusVisitantes = VisitanteDao.listarVisitantes();
