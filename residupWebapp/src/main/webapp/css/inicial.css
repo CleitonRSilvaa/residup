@@ -9,10 +9,9 @@ body, h1, h2, h3, p, ul{
 
 .menu{
     width: 100%;
-    height: 60px;
+    height: px;
     background: #f4f3f3;
     padding: 5px 0px 30px 30px;
-    position: fixed;
 }
 
 

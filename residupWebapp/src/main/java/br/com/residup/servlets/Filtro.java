@@ -19,10 +19,8 @@ public class Filtro implements Filter {
 
         boolean loggedIn = session != null && session.getAttribute("cpf") != null;
         boolean loginRequest = httpRequest.getRequestURI().equals("/index");
-        boolean isStaticResource = httpRequest.getRequestURI().endsWith(".css") || httpRequest.getRequestURI().startsWith("/imagens/img/");
 
-
-        if (loggedIn || loginRequest || isStaticResource) {
+        if (loggedIn || loginRequest) {
             chain.doFilter(request, response);
             ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_OK);
         } else {

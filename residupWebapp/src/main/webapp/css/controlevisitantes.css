@@ -1,3 +1,7 @@
+@import	url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@charset "utf-8";
+
+
 *{
     margin: 0;
     padding: 0;
@@ -122,6 +126,8 @@ nav li a:hover{
  background-image: linear-gradient(to right, #006494, #561be0);
  color: white;
  font-weight: bold;
+ cursor: pointer;
+
 }
 .cadastrarvisitante2{
     height: 40px;
@@ -328,7 +334,7 @@ nav li a:hover{
 }
 .form .group{
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display: inline-block;
     width: 100%;
 }
@@ -357,7 +363,7 @@ nav li a:hover{
     display: inline-block;
     align-items: center;
     text-align: center;
-
+    margin-bottom:20px;
 }
 .form .group .nm{
     width: 20%;
@@ -432,6 +438,8 @@ nav li a:hover{
     font-size: 13px;
     align-items: center;
     border: none;
+    cursor: pointer;
+
 }
 #txtBusca{
     margin-top: 15px;
@@ -486,6 +494,8 @@ nav li a:hover{
     font-weight: bold;
     font-size: 13px;
     align-items: center;
+      cursor: pointer;
+
 }
 .form .group .resolvida{
     margin: 0px;
@@ -522,3 +532,48 @@ nav li a:hover{
     align-items: center;
     margin-top: 15px;
 }
+
+.modal-content {
+        padding: 20px;
+    }
+
+    .modal-title {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        margin-right: 10px;
+    }
+
+    /* Estilos para o Swal */
+    .swal2-title {
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+
+    .swal2-content {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .swal2-input {
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .swal2-validation-message {
+        font-size: 12px;
+    }
+
+    .modal-footer .btn-secondary {
+        margin-right: 10px;
+    }
+
+    .modal-footer .btn-primary {
+        margin-left: 10px;
+    }

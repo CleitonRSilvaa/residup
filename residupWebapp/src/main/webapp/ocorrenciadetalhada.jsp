@@ -12,7 +12,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,29 +49,30 @@
                <div class="title">
                    <h3>OCORRÊNCIA DOS MORADORES</h3>
                </div>
-               <form action="carregarOcorrencia" method="GET">
-                   <div class="group">
-                       <label class="morador"><%=ocorrenciaGet.getNome()%></label>
-                       <label class="apto"><%=ocorrenciaGet.getNumeroApartamento()%></label>
-                       <label>${ocorrenciaGet.getBloco()}</label>
-                       <select class="sts" id="form-horario" required>
-                           <option value="Todos" ${ocorrenciaGet.getStatus().equals("Todos") ? 'selected' : ''}>Todos</option>
-                           <option value="Em aberto" ${ocorrenciaGet.getStatus().equals("Em aberto") ? 'selected' : ''}>Em aberto</option>
-                           <option value="Em análise" ${ocorrenciaGet.getStatus().equals("Em análise") ? 'selected' : ''}>Em análise</option>
-                           <option value="Em andamento" ${ocorrenciaGet.getStatus().equals("Em andamento") ? 'selected' : ''}>Em andamento</option>
-                           <option value="Resolvido" ${ocorrenciaGet.getStatus().equals("Resolvido") ? 'selected' : ''}>Resolvido</option>
-                       </select>
-                   </div>
-                   <div class="ocorrencia">
-                       <label for="nome">Detalhes da Ocorrência</label>
-                       <textarea placeholder="Descrição da ocorrência">${ocorrenciaGet.getTexto()}</textarea>
-                   </div>
-                   <div class="resolv">
-                       <button type="submit" class="resolvido">Salvar</button>
-                   </div>
-               </form>
+<form action="resolver" method="POST">
+    <div class="group">
+        <label class="morador"><%=ocorrenciaGet.getNome()%></label>
+        <label class="apto"><%=ocorrenciaGet.getNumeroApartamento()%></label>
+        <label><%=ocorrenciaGet.getBloco()%></label>
+        <select class="sts" id="form-horario" name="status" required>
+            <option value="Todos" ${ocorrenciaGet.getStatus().equals("Todos") ? 'selected' : ''}>Todos</option>
+            <option value="Em aberto" ${ocorrenciaGet.getStatus().equals("Em aberto") ? 'selected' : ''}>Em aberto</option>
+            <option value="Em analise" ${ocorrenciaGet.getStatus().equals("Em analise") ? 'selected' : ''}>Em analise</option>
+            <option value="Em andamento" ${ocorrenciaGet.getStatus().equals("Em andamento") ? 'selected' : ''}>Em andamento</option>
+            <option value="Resolvido" ${ocorrenciaGet.getStatus().equals("Resolvido") ? 'selected' : ''}>Resolvido</option>
+        </select>
+    </div>
+    <div class="ocorrencia">
+        <label for="nome">Detalhes da Ocorrência</label>
+        <textarea placeholder="Descrição da ocorrência" name="descricao"><%=ocorrenciaGet.getTexto()%></textarea>
+    </div>
+    <div class="resolv">
+            <button type="submit" name="idTop" value="<%=ocorrenciaGet.getId_ocorrencia()%>" class="resolvido">Salvar</button>
+    </div>
+</form>
+
                <div class="volt">
-                   <a href="#"><button class="voltar">Voltar</button></a>
+                   <a href="OcorrenciaAdm"><button class="voltar">Voltar</button></a>
                </div>
            </div>
            <script src="scripts/ocorrenciadetalhada.js"></script>

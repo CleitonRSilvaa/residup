@@ -173,13 +173,13 @@ public class OcorrenciaDao {
         }
     }
 
-    public static boolean resolver(Ocorrencia ocorrencia) {
-        String update = "UPDATE REGISTRO_OCORRENCIA SET RESOLUCAO=? WHERE ID_OCORRENCIA=?";
+    public static boolean resolver(int idOcorrencia, Status status) {
+        String update = "UPDATE REGISTRO_OCORRENCIA SET STATUS=? WHERE ID_OCORRENCIA=?";
         try {
             Connection connection = abrirConexao();
             PreparedStatement pst = connection.prepareStatement(update);
-            pst.setString(1, ocorrencia.getStatus());
-            pst.setInt(2, ocorrencia.getId_ocorrencia());
+            pst.setString(1, status.getStatus());
+            pst.setInt(2, idOcorrencia);
             pst.executeUpdate();
             connection.close();
             return true;
