@@ -6,10 +6,10 @@ html {
     margin: 0;
     padding: 0;
   }
-  body {
+  .bodyCorNova {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
-    color: white;
+    background-color: #f3f4f4;
+
   }
 
 
@@ -53,7 +53,7 @@ html {
   }
 
   .active {
-    background: #467599;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
     border-radius: 10px;
 
@@ -141,19 +141,20 @@ html {
     align-items: center;
     flex-direction: column;
     margin: 40px;
+
+    
   }
 
   .NovaOcor {
     width: 100%;
     border-radius: 10px 10px 10px 10px;
-    background-color: #467599;
+    background-color: #fff;
   }
 
   .wrapper {
     width: 100%;
     height: 10%;
     border-radius: 10px 10px 10px 10px;
-    background-color: #467599;
     margin-bottom: 50px;
   }
 
@@ -161,12 +162,19 @@ html {
     margin-top: 20px;
   }
 
-  .text {
+  .textNovaOcorrencia {
     margin: 0;
     padding: 10px;
     border-radius: 10px 10px 0 0;
     color: black;
-    background-color: #1d3354;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
+  }
+
+  .h1NovaOcorrencia{
+    color: white;
+    font-size: 15px;
+    margin-left: 10px;
+    padding: auto;
   }
 
   .text h1 {
@@ -189,12 +197,13 @@ html {
   }
 
   input {
-    border: none;
     text-align: center;
     padding: 10px 20px;
     border-radius: 17px;
     width: 20%;
-    background-color: #9ed8db;
+    border: 2px solid #1b98e0;
+    background-color: #FFF;
+    color: #616161
   }
 
   input::placeholder {
@@ -205,16 +214,15 @@ html {
   }
 
   #deletarOcorrencia{
-        border: none;
+     border: none;
      text-align: center;
-     background-color: #9ed8db;
-     color: #1e1e1e;
+     background-image: linear-gradient(to right, #006494, #561be0);
+     color: #fff;
      font-family: 'Arial';
      font-size: 16px;
      height: 33px;
      border-radius: 15px;
      width: 15%;
-     margin-right: %;
 
  }
 
@@ -237,7 +245,8 @@ html {
     margin: 0;
     width: 100%;
     padding: 0;
-    border: none;
+    border-color: #1b98e0;
+    border: 20;
     border-radius: 12px;
   }
 
@@ -527,19 +536,20 @@ html {
     height: 35px;
     border-radius: 10px 10px 0 0;
     color: black;
-    background-color: #1d3354;r;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
  }
  .filtro .form-status{
     float: right;
     width: 150px;
     height: 28px;
-    background-color: #B4EFE1;
+    border: 20;
+    border-color: rgba(129, 4, 4, 0.938);
+    background-color: #FFF;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     font-size: 15px;
     margin-left: 2%;
-    color: #616161;
+    color: black;
     transition: all 0.4s ease;
     display: inline-block;
     text-align: center;
@@ -549,7 +559,7 @@ html {
     margin: 0px;
     width: 150px;
     height:  28px;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     text-decoration: none;
     float: right;
     margin-right: 2%;
@@ -571,11 +581,12 @@ html {
     padding: 10px;
     border-radius: 10px 10px 0 0;
     color: black;
-    background-color: #1d3354;
+   
   }
 
   .filtro .text h1 {
-    font-size: 20px;
     color: white;
-    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+    padding: auto;
   }
