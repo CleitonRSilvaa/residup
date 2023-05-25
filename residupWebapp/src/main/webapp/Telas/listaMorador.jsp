@@ -78,7 +78,7 @@
           <form action="/updateMorador" method="post">
               <a  href="#"><button class="editar" type="submit">Excluir</button></a>
           </form>
-          <form action="/updateMorador" method="get">
+          <form action="/updateMorador" method="pull">
               <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%=morador.getCpf()%>">
               <a  href="#"><button class="edit" type="submit">Editar</button></a>
           </form>
