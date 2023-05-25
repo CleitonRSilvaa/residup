@@ -86,9 +86,6 @@ public class LoginDao {
     }
 
     public boolean validaPrimeiroAcesso(String cpf) {
-        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-        String senhaPadraoCriptografada = passwordEncryptor.encryptPassword("senha123");
-
         try (Connection connection = abrirConexao();
              PreparedStatement instrucao = connection.prepareStatement("SELECT SENHA_ACESSO FROM MORADOR WHERE CPF = ?")) {
             instrucao.setString(1, cpf);
@@ -96,8 +93,8 @@ public class LoginDao {
             try (ResultSet rs = instrucao.executeQuery()) {
                 if (rs.next()) {
                     String senhaAcesso = rs.getString("SENHA_ACESSO");
-                    senhaAcesso.equals(senhaPadraoCriptografada);
-                    return true;
+                    boolean b = senhaAcesso == null;
+                    return b;
                 } else {
                     return false;
                 }

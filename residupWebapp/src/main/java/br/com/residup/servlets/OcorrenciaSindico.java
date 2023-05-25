@@ -29,7 +29,24 @@ public class OcorrenciaSindico extends HttpServlet {
             ocorrencia(request, response);
             return;
         }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String action = request.getServletPath();
         if (action.equals("/carregarOcorrencia")) {
+            carregarOcorrencia(request, response);
+            return;
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getServletPath();
+        if (action.equals("/resolver")) {
             carregarOcorrencia(request, response);
             return;
         }
@@ -51,11 +68,12 @@ public class OcorrenciaSindico extends HttpServlet {
             filtroOcorrencias = "todos";
         }
 
-        Boolean parametro = (Boolean) request.getSession().getAttribute("validator");
+        Object parametroObject = request.getSession().getAttribute("validator");
+        Boolean parametro = Boolean.valueOf(String.valueOf(parametroObject));
         String mgs = (String) request.getSession().getAttribute("mgsJS");
 
         if (parametro != null && parametro) {
-            String msg = mgs;
+            String msg = mgs != null ? mgs : "";
             request.setAttribute("mensagem", msg);
         }
 
@@ -72,14 +90,14 @@ public class OcorrenciaSindico extends HttpServlet {
             throws ServletException, IOException {
         String idOcorrenciaSindico = request.getParameter("idOcorrenciaSindico");
 
-        var ocorrencia = OcorrenciaDao.getOcorrencia(Integer.parseInt(idOcorrenciaSindico));
+        System.out.println("olaa: "+ idOcorrenciaSindico);
+        Ocorrencia ocorrencia = OcorrenciaDao.getOcorrencia(Integer.parseInt(idOcorrenciaSindico));
         request.setAttribute("ocorrenciaUnica", ocorrencia);
-        RequestDispatcher rd = request.getRequestDispatcher("Telas/ocorrenciadetalhada.jsp");
-        response.setStatus(HttpServletResponse.SC_OK);
+        RequestDispatcher rd = request.getRequestDispatcher("ocorrenciadetalhada.jsp");
         rd.forward(request, response);
-
-
     }
+
+
 
 
 
@@ -92,13 +110,5 @@ public class OcorrenciaSindico extends HttpServlet {
 //        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 //        response.sendRedirect("/OcorrenciaAdm");
     }
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getServletPath();
-        if (action.equals("/resolver")) {
-            carregarOcorrencia(request, response);
-            return;
-        }
-    }
+
 }
