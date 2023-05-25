@@ -32,7 +32,7 @@
 
             <form action="${pageContext.request.contextPath}/index" method="post">
                     <section class="makelogin">
-                        <h2>Login</h2>
+                        <h2 class="textLogin">Login</h2>
                     </section>
                     <section class="inputs-container">
                         <input type="text" name="cpf" placeholder="123.456.789-10"> <!-- Corrigido o tipo do input para "text" -->

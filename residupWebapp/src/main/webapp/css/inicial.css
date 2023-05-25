@@ -7,6 +7,12 @@ body, h1, h2, h3, p, ul{
     margin: 0px;
 }
 
+.textLogin{
+
+  color: #000000;
+  font-size: 20;
+}
+
 .menu{
     width: 100%;
     height: px;
@@ -79,7 +85,7 @@ body, h1, h2, h3, p, ul{
 form {
   width: 400px;
   height: 400px;
-  background-color: #545454;
+  background-color: #fff;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.4) inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 18px;
   padding: 2%;
@@ -113,10 +119,10 @@ form .inputs-container input {
   width: 90%;
   height: 45px;
   padding: 8px 15px;
-  border: 0;
+  border: 20;
   outline: 0;
   border-radius: 12px;
-
+  border-color: #1b98e0;
   font-size: 16px;
   color: #2E8B57;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25)
@@ -163,8 +169,8 @@ form .password-infos a:hover {
   color: #2E8B57;
  }
  form button {
-  color: #2E8B57;
-  background-color: #000000;
+  background-image: linear-gradient(to right, #006494, #1b98e0);
+  color: #fff;
   width: 90%;
   height: 50px;
   border: 0;
@@ -175,12 +181,11 @@ form .password-infos a:hover {
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  background: linear-gradient(to left, #00FA9A, #00FA9A);
   text-align: center;
 }
 form button:hover {
-  background: #fff;
-  color: #2E8B57;
+  background-image: linear-gradient(to right, #006494, #561be0);
+  color: #fff;
 }
 form .links-container {
   width: 100%;
