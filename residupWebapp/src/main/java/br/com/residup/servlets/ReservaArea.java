@@ -148,7 +148,6 @@ public class ReservaArea extends HttpServlet {
             request.getSession().setAttribute("mgsJS", msgJs);
             request.getSession().setAttribute("inserReserva", true);
             response.sendRedirect("/reservas");
-            response.sendRedirect("/reservas");
         }
 
     }

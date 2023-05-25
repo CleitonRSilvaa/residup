@@ -53,6 +53,16 @@
             </div>
         </div>
     </section>
+
+
+    <!-- Botão para abrir o modal de criação -->
+    <button onclick="openNovoVisitantesModal()">Abrir Modal de Criação</button>
+
+    <!-- Botão para abrir o modal de edição -->
+    <button onclick="openEditarVisitantesModal()">Abrir Modal de Edição</button>
+
+
+
     <section class="container">
         <div class="wrapper">
             <div class="text">Visitantes permitidos em minha residência</div>
@@ -65,6 +75,106 @@
             </div>
         </div>
     </section>
+
+
+        <!-- Modal de Cria��o -->
+        <div class="modal fade" id="novoVisitantesModal" tabindex="-1" role="dialog" aria-labelledby="novoContatoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="novoContatoModalLabel">Novo Visitante</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="frmContato" action="insert" method="post">
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sobrenome">Sobrenome:</label>
+                                <input type="text" class="form-control" id="sobrenome" name="sobrenome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="documento">Documento:</label>
+                                <input type="text" class="form-control" id="documento" name="documento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control" id="fone" name="fone">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="LimpaModalCriacao()">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="validarNovo()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de edição -->
+        <div class="modal fade" id="editarVisitantesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Editar Visitante</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form  name="frmContatoEdit" action="update" method="post">
+                            <div class="form-group">
+                                <label for="id" >ID: <input type="numero"id="idEdicao" name="id"  readonly
+                                                            value=""></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" class="form-control" id="nomeEdicao" name="nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="sobrenome">Sobrenome:</label>
+                                <input type="text" class="form-control" id="sobrenomeEdicao" name="sobrenome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Documento">Documento:</label>
+                                <input type="text" class="form-control" id="documentoEdicao" name="documento">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control" id="foneEdicao" name="fone">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="validarEditar()" >Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<script>
+    // Função para abrir o modal de criação
+    function openNovoVisitantesModal() {
+        var modal = document.getElementById('novoVisitantesModal');
+        modal.style.display = 'block';
+    }
+
+    // Função para abrir o modal de edição
+    function openEditarVisitantesModal() {
+        var modal = document.getElementById('editarVisitantesModal');
+        modal.style.display = 'block';
+    }
+</script>
+
+
+
 </body>
 
 </html>

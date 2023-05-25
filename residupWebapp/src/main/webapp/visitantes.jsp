@@ -16,8 +16,83 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Visitantes</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/visitanteStyle.css">
+
+        <style>
+            /* Estilos para o modal de criação */
+            #novoVisitantesModal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .modal-dialog {
+                margin: 10% auto;
+                max-width: 500px;
+                background: #fff;
+                border-radius: 5px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .modal-title {
+                margin: 0;
+                font-size: 18px;
+            }
+
+            .close {
+                float: right;
+                font-size: 20px;
+                font-weight: bold;
+                color: #000;
+                cursor: pointer;
+            }
+
+            /* Estilos para o modal de edição */
+            #editarVisitantesModal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .modal-dialog {
+                margin: 10% auto;
+                max-width: 500px;
+                background: #fff;
+                border-radius: 5px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .modal-title {
+                margin: 0;
+                font-size: 18px;
+            }
+
+            .close {
+                float: right;
+                font-size: 20px;
+                font-weight: bold;
+                color: #000;
+                cursor: pointer;
+            }
+        </style>
     </head>
 
     <body>
@@ -150,7 +225,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="scripts/scripts.js"></script>
+        <script src="../scripts/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
         <c:if test="${requestScope.validator eq true}">

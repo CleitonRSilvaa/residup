@@ -14,21 +14,24 @@ public class Filtro implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(false);
-
+        String requestURI = httpRequest.getRequestURI();
         boolean loggedIn = session != null && session.getAttribute("cpf") != null;
-        boolean loginRequest = httpRequest.getRequestURI().equals("/index");
-        boolean isStaticResource = httpRequest.getRequestURI().endsWith(".css") || httpRequest.getRequestURI().startsWith("/imagens/img/");
+        boolean loginRequest = httpRequest.getRequestURI().equals("/index") || httpRequest.getRequestURI().equals("/UpdatePassword");;
+        boolean isStaticResource = requestURI.endsWith(".css") || requestURI.startsWith("/imagens/img/");
 
-
-        if (loggedIn || loginRequest || isStaticResource) {
+        if (loggedIn || loginRequest || isStaticResource ) {
             chain.doFilter(request, response);
             ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_OK);
         } else {
-            httpResponse.sendRedirect("/index");
+
+           request.getRequestDispatcher("index.jsp").forward(request, response);
+
         }
     }
+
+
+
 
     @Override
     public void destroy() {
