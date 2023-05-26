@@ -70,7 +70,7 @@ public class VisitanteServlet extends HttpServlet {
         ArrayList<br.com.residup.models.Visitante> lista = VisitanteDao.listarVisitantes();
         request.setAttribute("listaVisitantes", lista);
         System.out.println(request.getParameter("validator"));
-        RequestDispatcher rd = request.getRequestDispatcher("visitantes.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("cadastroVisitante.jsp");
         rd.forward(request, response);
     }
 
