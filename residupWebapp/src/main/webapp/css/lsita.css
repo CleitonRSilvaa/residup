@@ -2,9 +2,9 @@
     margin: 0;
     padding: 0;
 }
-body{
+.fundoBody{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: #f3f4f4;
     color: white;
 }
 
@@ -38,7 +38,7 @@ body{
 }
 .navigation_header a{
     text-decoration: none;
-    color: black;   
+    color: #fff;   
     transition: 1s;
     font-weight: bold;
     font-size: 12px;
@@ -48,7 +48,7 @@ body{
     color: red;
 }
 .active{
-    background: #467599;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
     border-radius: 10px; 
 }
@@ -123,7 +123,7 @@ nav li a:hover{
     margin-left: 1.5%;
     border-radius: 15px;
     border: none;
-    background-color: #467599 ;
+    background-image: linear-gradient(to right, #006494, #561be0);
     color: white;
     font-weight: bold;
 }
@@ -135,7 +135,7 @@ nav li a:hover{
     margin-left: 1.5%;
     border-radius: 15px;
     border: none;
-    background-color: #4d5e6c ;
+    background-image: linear-gradient(to right, #006494, #561be0);
     color: white;
     font-weight: bold;
 }
@@ -163,8 +163,9 @@ nav li a:hover{
     float: right;
     margin-left: 5%;
     padding-left:5px;
-    font-size:18px;
-    border:none;
+    font-size:14px;
+    border-color: #1b98e0;
+    
     height: 40px;
     width: 12%;
     border-radius: 15px;
@@ -174,7 +175,7 @@ nav li a:hover{
     margin: 0px;
     width: 150px;
     height:  40px;
-    background-color: red;
+    background-image: linear-gradient(to right, #006494, #561be0);
     text-decoration: none;
     float: right;
     margin-right: 4.5%;
@@ -189,7 +190,7 @@ nav li a:hover{
     margin-top: 15px;
 }
 .form{
-    background-color: #467599;
+    background-color: #fff;
     height: 550px;
     width: 97%;
     margin-left: 1.5%;
@@ -237,13 +238,12 @@ nav li a:hover{
     margin: 0;
     padding: 10px;
     border-radius: 10px 10px 0 0;
-    color: black;
-    background-color: #1d3354;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
 }
 .title h3{
-
-    font-size: 18px;
-    color: white;
+    font-size: 15px;
+    margin-left: 10px;
+    color: #fff;
     font-weight: bold;
 }
 
@@ -307,10 +307,10 @@ nav li a:hover{
     font-weight: bold;
     width: 12%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #fff;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    border: 2px solid #1b98e0;
     margin-left: 2%;
     margin-right: 5px;
     font-size: 15px;
@@ -349,10 +349,10 @@ nav li a:hover{
 .form .group .x{
     width: 5%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #fff;
+    border-color: #1b98e0;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 1%;
     margin-right: 5px;
     font-size: 15px;
@@ -364,10 +364,10 @@ nav li a:hover{
 .form .group .oc{
     width: 30%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #fff;
+    border-color: #1b98e0;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 2%;
     margin-right: 5px;
     font-size: 15px;
@@ -505,10 +505,9 @@ nav li a:hover{
     float: right;
     width: 12%;
     height: 28px;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-right: 2%;
     margin-top: 0px;
     font-size: 15px;
@@ -521,7 +520,7 @@ nav li a:hover{
     float: right;
     width: 12%;
     height: 28px;
-    background-color: yellow;
+    background-image: linear-gradient(to right, #006494, #561be0);
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;

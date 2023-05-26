@@ -14,13 +14,13 @@ public class Filtro implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(false);
-        String requestURI = httpRequest.getRequestURI();
-        boolean loggedIn = session != null && session.getAttribute("cpf") != null;
-        boolean loginRequest = httpRequest.getRequestURI().equals("/index") || httpRequest.getRequestURI().equals("/UpdatePassword");;
-        boolean isStaticResource = requestURI.endsWith(".css") || requestURI.startsWith("/imagens/img/");
 
-        if (loggedIn || loginRequest || isStaticResource ) {
+        boolean loggedIn = session != null && session.getAttribute("cpf") != null;
+        boolean loginRequest = httpRequest.getRequestURI().equals("/index");
+
+        if (loggedIn || loginRequest) {
             chain.doFilter(request, response);
             ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_OK);
         } else {
@@ -29,9 +29,6 @@ public class Filtro implements Filter {
 
         }
     }
-
-
-
 
     @Override
     public void destroy() {

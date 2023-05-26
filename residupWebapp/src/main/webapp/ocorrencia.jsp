@@ -20,7 +20,7 @@
         <link href="css/ocorrenciamorador.css" rel="stylesheet" type="text/css"/>
         <title>Ocorrências</title>
     </head>
-    <body>
+    <body class="bodyCorNova">
         <div class="header" id="header">
             <button onclick="toggleSidebar()" class="btn_icon_header">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list"
@@ -59,7 +59,7 @@
         </div>
         <section class="container">
             <div class="NovaOcor">
-                <div class="text"><h1>Nova ocorrência</h1></div>
+                <div class="textNovaOcorrencia"><h1 class="h1NovaOcorrencia">Nova ocorrência</h1></div>
                 <form action="occurrenceInsert" method="post">
                     <div class="buttons">
                         <input type="text" placeholder="Título da ocorrência" name="titulo" required>

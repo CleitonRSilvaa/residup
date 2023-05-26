@@ -2,7 +2,7 @@ package br.com.residup.models;
 
 public enum Status {
     EM_ABERTO("Em aberto"),
-    EM_ANALISE("Em análise"),
+    EM_ANALISE("Em analise"),
     EM_ANDAMENTO("Em andamento"),
     RESOLVIDO("Resolvido");
 

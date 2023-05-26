@@ -61,7 +61,7 @@
       <select class="form-status" id="form-status"  name="status-filter"required>
         <option value="Em aberto" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Em aberto')}">selected</c:if>>Em aberto</option>
         <option value="todos"<c:if test="${filtroOcorrencias.equalsIgnoreCase('Todos')}">selected</c:if>>Todos</option>
-        <option value="Em análise" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Em análise')}">selected</c:if>>Em análise</option>
+        <option value="Em analise" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Em analise')}">selected</c:if>>Em análise</option>
         <option value="Em andamento" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Em andamento')}">selected</c:if>>Em andamento</option>
         <option value="Resolvido" <c:if test="${filtroOcorrencias.equalsIgnoreCase('Resolvido')}">selected</c:if>>Resolvido</option>
         </select>

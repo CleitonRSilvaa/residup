@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background-color: white;
+    background-color: #f3f4f4;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -52,7 +52,7 @@ body{
     color: red;
 }
 .active{
-    background: #49ae96;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
     border-radius: 10px;
    
@@ -135,26 +135,39 @@ section{
     display: flex;
     width: 100%;
 }
-button{
+.buttonCadastroMorador{
+    background-image: linear-gradient(to right, #006494, #1b98e0);
     margin-top: 25px;
     border-radius: 15px;
     width: 20%;
     height: 40px;
-    background-color: #c4c4c4;
     margin-left: 10%;
-    opacity: 50%;
+    border: none;
+    color: #fff;
 }
 .edtcad{
-    background-color: #c4c4c4;
-    opacity: 100%;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
+    margin-top: 25px;
+    border-radius: 15px;
+    width: 20%;
+    height: 40px;
+    margin-left: 10%;
+    border: none;
+    color: #fff;
 }
 .exccad{
-    background-color:#c4c4c4; 
-    opacity: 100%;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
+    margin-top: 25px;
+    border-radius: 15px;
+    width: 20%;
+    height: 40px;
+    margin-left: 10%;
+    border: none;
+    color: #fff;
 }
 .form-box{
     margin-top: 25px;
-    background-color: #c4c4c4;
+    background-color: #fff;
     backdrop-filter: blur(40px);
     padding: 30px 40px;
     display: block;
@@ -189,10 +202,11 @@ form .input-group label{
 form .input-group input{
     width: 100%;
     height: 47px;
-    background-color: rgba(255, 255, 255, 0.32);
+    background-color: #fff;
+    border-color: #1b98e0;
+    border: 20;
     border-radius: 20px;
     outline: none;
-    border: 2px solid transparent;
     padding: 15px;
     font-size: 15px;
     color: #616161;
@@ -204,7 +218,7 @@ form .input-group input:focus{
 form .input-group button{
     width: 100%;
     height: 47px;
-    background: #49ae96;
+    background-image: linear-gradient(to right, #006494, #561be0);
     border-radius: 20px;
     outline: none;
     border: none;
@@ -260,7 +274,7 @@ form .input-group button{
 .perfil {
     align-items: center;
     width: 100%;
-    background-color: #c4c4c4;
+    background-color: #fff;
     border-radius: 15px;
   
   }
@@ -283,10 +297,11 @@ form .input-group button{
 .perfil input{
     width: 80%;
     height: 47px;
-    background-color: rgba(255, 255, 255, 0.32);
+    background-color: #fff;
+    border-color: #1b98e0;
+    border: 20;
     border-radius: 20px;
     outline: none;
-    border: 2px solid transparent;
     padding: 15px;
     font-size: 15px;
     color: #616161;

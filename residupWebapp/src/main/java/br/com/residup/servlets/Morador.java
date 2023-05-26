@@ -44,7 +44,7 @@ public class Morador extends HttpServlet {
 
             request.getSession().removeAttribute("check");
             request.getSession().removeAttribute("mgsJS");
-            request.getRequestDispatcher("Telas/registroMorador.jsp").forward(request, response);
+            request.getRequestDispatcher("registroMorador.jsp").forward(request, response);
             return;
         }
         if(action.equals("/listarMorador")){
@@ -63,7 +63,7 @@ public class Morador extends HttpServlet {
             }
         }
 
-        request.getRequestDispatcher("Telas/registroMorador.jsp").forward(request, response);
+        request.getRequestDispatcher("registroMorador.jsp").forward(request, response);
 
 
     }
@@ -130,28 +130,6 @@ public class Morador extends HttpServlet {
 
     public void updatePerfilMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String action = request.getServletPath();
-        Map<String, String> parameters = uploadImage(request);
-        String fotoMoradorImagePath = parameters.get("image");
-        var senha = parameters.get("Senha");
-        var confirmarSenha = parameters.get("Confs");
-
-
-            var morador = new br.com.residup.models.Morador(null,null,"52201779821",null,null,null,senha);
-            morador.setEnderecoFoto(fotoMoradorImagePath);
-
-            if(!MoradorDao.updateMoradorPerfil(morador)){
-                String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Ocorreu um erro na alteração do Perfil. Tente novamente, mais tarde!");
-                request.getSession().setAttribute("mgsJS", msgJs);
-                request.getSession().setAttribute("check", true);
-                response.sendRedirect("/reservas");
-            }
-            response.sendRedirect("/perfilMorador");
-
-
-    }
-
-    public void updateMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String action = request.getServletPath();
         Map<String, String> parameters = uploadImage(request);
@@ -170,6 +148,28 @@ public class Morador extends HttpServlet {
             response.sendRedirect("/reservas");
         }
         response.sendRedirect("/perfilMorador");
+    }
+
+    public void editarMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        response.sendRedirect("registroMorador.jsp");
+        String action = request.getServletPath();
+        Map<String, String> parameters = uploadImage(request);
+        br.com.residup.models.Morador morador = new br.com.residup.models.Morador();
+        morador.setNome(request.getParameter("Nome"));
+        morador.setSobrenome(request.getParameter("Sobrenome"));
+        morador.setCpf((request.getParameter("cpf")));
+        morador.setRg(request.getParameter("rg"));
+        morador.setNumeroApartamento(request.getParameter("numero_apartamento"));
+        morador.setBloco(request.getParameter("bloco"));
+
+        if (MoradorDao.alterarMorador(morador)){
+//            request.getSession().setAttribute();
+
+        }else {
+//            request.getSession().setAttribute();
+
+        }
 
 
     }
