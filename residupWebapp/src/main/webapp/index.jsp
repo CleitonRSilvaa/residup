@@ -36,7 +36,7 @@
                 <section class="inputs-container">
                     <input type="text" name="cpfLogin" placeholder="123.456.789-10" required> <!-- Corrigido o tipo do input para "text" -->
                     <div class="password-container">
-                        <input type="password" name="senhaLogin" id="field-password" class="field-password" placeholder="******" >
+                        <input type="password" name="senhaLogin" id="field-password" class="field-password" placeholder="******" required >
                         <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
                         <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
                     </div>
@@ -207,10 +207,7 @@
             </script>
         </c:if>
 
-
-
         <!-- Fim do Rodapé -->
-                 <h1 id ="erro">${mensagemAlert}</h1>
 
     </body>
 </html>

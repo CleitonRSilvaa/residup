@@ -32,9 +32,17 @@ public class Login extends HttpServlet {
         if (mgs != null) {
             request.setAttribute("mensagem", mgs);
         }
+
+
+        String mgsErroSenha = (String) request.getSession().getAttribute("errorSenha");
+        if (mgsErroSenha != null) {
+            request.setAttribute("erro", mgsErroSenha);
+        }
+
         String primeiroAcesso = (String) request.getSession().getAttribute("primeiroAcesso");
         if (primeiroAcesso != null) request.setAttribute("primeiroAcesso", true);
 
+        request.getSession().removeAttribute("errorSenha");
         request.getSession().removeAttribute("primeiroAcesso");
         request.getSession().removeAttribute("mensagemAlert");
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -136,8 +144,8 @@ public class Login extends HttpServlet {
                 response.sendRedirect("reservas");
             } else {
                 System.out.println("Login não encontrado/incorreto");
-                request.setAttribute("error", "Senha CPF ou senha incorretos.");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getSession().setAttribute("errorSenha", "Senha CPF ou Senha incorretos.");
+                response.sendRedirect("/index");
             }
         }catch (Exception e){
 
