@@ -32,7 +32,10 @@ public class Login extends HttpServlet {
         if (mgs != null) {
             request.setAttribute("mensagem", mgs);
         }
+        String primeiroAcesso = (String) request.getSession().getAttribute("primeiroAcesso");
+        if (primeiroAcesso != null) request.setAttribute("primeiroAcesso", true);
 
+        request.getSession().removeAttribute("primeiroAcesso");
         request.getSession().removeAttribute("mensagemAlert");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
@@ -77,44 +80,69 @@ public class Login extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getServletPath();
-        System.out.println(action);
 
-        if (action.equals("UpdatePassword")){
-            String newSenha = request.getParameter("cpfLogin");
+        try {
+            String action = request.getServletPath();
+            LoginDao loginDao = LoginDao.getInstance();
 
+            if (action.equals("/UpdatePassword")){
+                String cpfTemp = (String) request.getSession().getAttribute("cpfTemp");
+                String senhaTemp = request.getParameter("senha");
+                Morador morador = new Morador(cpfTemp, senhaTemp);
+                request.getSession().removeAttribute("cpfTemp");
+                if (loginDao.autualizarSenha(morador)){
+                    String scriptMensagem = scriptMensagemAlertJs(
+                            IconAlertJS.success,
+                            "Senha atualizada com sucesso.",
+                            "Efetue novo login!"
+                    );
+                    request.getSession().setAttribute("mensagemAlert", scriptMensagem);
 
+                }else {
+                    String scriptMensagem = scriptMensagemAlertJs(
+                            IconAlertJS.error,
+                            "Erro ao atualizar senha.",
+                            "Contate o administrador!"
+                    );
+                    request.getSession().setAttribute("mensagemAlert", scriptMensagem);
+                }
+                response.sendRedirect("/index");
+                return;
+
+            }
+            String cpf = request.getParameter("cpfLogin");
+            String senha = request.getParameter("senhaLogin");
+            Morador morador = new Morador(cpf, senha);
+
+            if (loginDao.validaPrimeiroAcesso(cpf)) {
+
+                String scriptMensagem = scriptMensagemAlertJs(
+                        IconAlertJS.warning,
+                        "Sua senha é a padrão fornecida pelo síndico.",
+                        "Para sua segurança, altere a senha!"
+                );
+                request.getSession().setAttribute("cpfTemp", cpf);
+                request.getSession().setAttribute("mensagemAlert", scriptMensagem);
+                request.getSession().setAttribute("primeiroAcesso", "sim");
+                response.sendRedirect("/index");
+                return;
+            }
+
+            boolean loginValido = loginDao.logar(morador);
+            if (loginValido) {
+                HttpSession session = request.getSession();
+                session.setAttribute("cpf", cpf);
+                session.setAttribute("id_morador", loginDao.recuperarId(cpf));
+                response.sendRedirect("reservas");
+            } else {
+                System.out.println("Login não encontrado/incorreto");
+                request.setAttribute("error", "Senha CPF ou senha incorretos.");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        }catch (Exception e){
 
         }
-        String cpf = request.getParameter("cpfLogin");
-        String senha = request.getParameter("senhaLogin");
-        Morador morador = new Morador(cpf, senha);
-        LoginDao loginDao = LoginDao.getInstance();
 
-        if (loginDao.validaPrimeiroAcesso(cpf)) {
-
-            String scriptMensagem = scriptMensagemAlertJs(
-                    IconAlertJS.warning,
-                    "Sua senha é a padrão fornecida pelo síndico.",
-                    "Para sua segurança, altere a senha!"
-            );
-
-            request.getSession().setAttribute("mensagemAlert", scriptMensagem);
-            response.sendRedirect("/index");
-            return;
-        }
-
-        boolean loginValido = loginDao.logar(morador);
-        if (loginValido) {
-            HttpSession session = request.getSession();
-            session.setAttribute("cpf", cpf);
-            session.setAttribute("id_morador", loginDao.recuperarId(cpf));
-            response.sendRedirect("reservas");
-        } else {
-            System.out.println("Login não encontrado/incorreto");
-            request.setAttribute("error", "Senha CPF ou senha incorretos.");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
 
     }
 

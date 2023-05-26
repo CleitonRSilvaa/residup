@@ -148,9 +148,9 @@
                         <h2>Nova Senha:</h2>
                     </section>
                     <section class="inputs-container">
-                        <input type="password" name="senha" id="field-password" class="field-password" placeholder="******">
+                        <input type="password" name="senha" id="newPassword" class="field-password" placeholder="******">
                         <div class="password-container">
-<input type="password" name="senha" id="field-confirm-password" class="field-password" placeholder="******">
+                        <input type="password" name="senha" id="field-confirm-password" class="field-password" placeholder="******">
                             <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
                             <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
                         </div>
@@ -176,9 +176,8 @@
 
 <script>
     function validateForm() {
-        var password = document.getElementById("field-password").value;
-        var confirmPassword = document.getElementById("field-confirm-password").value;
-
+        let password = document.getElementById("newPassword").value;
+        let confirmPassword = document.getElementById("field-confirm-password").value;
         if (password !== confirmPassword) {
             alert("As senhas digitadas não são iguais. Por favor, verifique novamente.");
             return false; // Impede o envio do formulário
@@ -193,8 +192,6 @@
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
             <script>
                 ${mensagem};
-                var modal = document.getElementById('modal');
-                modal.style.display = 'block';
             </script>
          </c:if>
 
@@ -203,8 +200,10 @@
                 // Função para abrir o modal
                 function openModal() {
                     var modal = document.getElementById('modal');
+                    modal.classList.add("modal-open");
                     modal.style.display = 'block';
                 }
+                openModal();
             </script>
         </c:if>
 
