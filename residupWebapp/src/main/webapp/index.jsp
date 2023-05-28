@@ -176,8 +176,9 @@
 
 <script>
     function validateForm() {
-        let password = document.getElementById("newPassword").value;
-        let confirmPassword = document.getElementById("field-confirm-password").value;
+        var password = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("field-confirm-password").value;
+
         if (password !== confirmPassword) {
             alert("As senhas digitadas não são iguais. Por favor, verifique novamente.");
             return false; // Impede o envio do formulário
@@ -192,6 +193,8 @@
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
             <script>
                 ${mensagem};
+                var modal = document.getElementById('modal');
+                modal.style.display = 'block';
             </script>
          </c:if>
 
@@ -200,14 +203,15 @@
                 // Função para abrir o modal
                 function openModal() {
                     var modal = document.getElementById('modal');
-                    modal.classList.add("modal-open");
                     modal.style.display = 'block';
                 }
-                openModal();
             </script>
         </c:if>
 
+
+
         <!-- Fim do Rodapé -->
+                 <h1 id ="erro">${mensagemAlert}</h1>
 
     </body>
 </html>
