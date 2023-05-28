@@ -17,13 +17,21 @@
     horarios.add("13:00 - 22:00");
 
 %>
+
+<%@page import="br.com.residup.models.Morador"%>
+
+
+<%
+    Morador morador = (Morador) request.getAttribute("morador");
+
+%>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HEADER ResidUP</title>
+        <title>Reservas</title>
         <link rel="stylesheet" href="css/rsvmorador.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
@@ -49,19 +57,55 @@
                 <a href="/visitantes">CONTROLE DE VISITANTES</a>
                 <a href="/Ocorrencia">REGISTRO DE OCORRENCIAS</a>
             </div>
-            <nav>
-                <ul>
-                    <li class="dropdown">
-                        <a href="">MEU PERFIL</a>
 
-                        <div class="dropdown-menu">
-                            <a href="">Editar perfil</a>
-                            <a href="">Sair da Conta</a>
+                <form action="perfilMorador" method="get">
+                    <button type="submit" id="openModal">Meu Perfil</button>
+                    </form>
+                <div id="modalOverlay" class="modal-overlay">
+            <div class="modal">
+                    <h2>Seu Perfil</h2>
+                    <c:if test="${not empty morador}">
+
+                    <form action="updatePerfilMorador" method="post" enctype="multipart/form-data">
+                      <div class="perfil">
+                        <input type="text" id="nome" placeholder="Nome " name="Nome" value="<%= morador.getNome() + ' ' + morador.getSobrenome() %>" disabled>
+
+                        <input type="text" id="nome" placeholder="Sobrenome" name="Sobrenome" value="<%= morador.getSobrenome() %>"  disabled>
+                        <label class="picture" for="picture__input" tabIndex="0">
+                          <span class="picture__image"></span>
+                        </label>
+                        <label></label>
+
+                        <input type="file" name="picture__input" id="picture__input" value="<%= morador.getEnderecoFoto() %>" >
+                      </div>
+                      <div class="input-group2">
+                        <input type="rg" id="rg" placeholder="RG" maxlength="9" name="RG" value= <%= morador.getRg() %> disabled>
+                        <input class="cpff" type="cpf" id="cpf" placeholder="CPF" maxlength="14" name="CPF" value= <%= morador.getCpf() %> disabled>
+                      </div>
+
+                      <div class="input-group2">
+                        <input type="rg" id="rg" placeholder="apto" maxlength="9" name="Apto" value= <%= morador.getNumeroApartamento() %> disabled>
+                        <input class="cpff" type="cpf" id="cpf" placeholder="Bloco" maxlength="14" name="Bloco" value= <%= morador.getBloco() %> disabled>
+                      </div>
+                        <div class="input-group2">
+                            <input type="rg" id="rg" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
+                            <input class="cpff" type="cpf" id="cpf" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
                         </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                      <div class="input-group">
+                        <button type="submit" class="cadastrar">Alterar Senha</button>
+                      </div>
+
+                    </form>
+                    </c:if>
+                  </div>
+
+
+            </div>
+                </nav>
+            </div>
+
+
+
         <!--Fim da header-->
         <section class="reserva">
             <form action="insertReserva" method="post" >
@@ -221,7 +265,27 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+        <script>
+                          // Obtenha uma referência ao botão "Meu Perfil" e ao modal
+                          const openModalButton = document.getElementById('openModal');
+                          const modalOverlay = document.getElementById('modalOverlay');
 
+                          openModalButton.addEventListener('click', function () {
+
+                                  modalOverlay.style.opacity = '1';
+                                  modalOverlay.style.pointerEvents = 'auto';
+                                });
+
+                                modalOverlay.addEventListener('click', function (event) {
+                                        if (event.target === modalOverlay) {
+                                          modalOverlay.style.opacity = '0';
+                                          modalOverlay.style.pointerEvents = 'none';
+                                        }
+                                      });
+
+                        </script>
+
+                        <script src="scripts/perfil.js"></script>
 
         <script>
             function excluirConvidados() {

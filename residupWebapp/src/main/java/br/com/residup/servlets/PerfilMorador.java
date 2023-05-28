@@ -32,7 +32,7 @@ public class PerfilMorador extends HttpServlet{
 
                 req.setAttribute("morador", morador);
 
-                req.getRequestDispatcher("/Telas/perfilMorador.jsp").forward(req, resp);
+                req.getRequestDispatcher("perfilMorador.jsp").forward(req, resp);
 
                 }
             } catch (Exception exception){
