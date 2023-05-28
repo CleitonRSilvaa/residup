@@ -34,7 +34,7 @@ public class Resumo extends HttpServlet {
                 List meusVisitantes = VisitanteDao.listarVisitantes();
                 request.setAttribute("meusVisitantes", meusVisitantes);
 
-                request.getRequestDispatcher("/Telas/resumo.jsp").forward(request, response);
+                request.getRequestDispatcher("resumo.jsp").forward(request, response);
             }
 
         } catch (SQLException e) {

@@ -31,7 +31,7 @@
 
             <form action="${pageContext.request.contextPath}/index" method="post">
                 <section class="makelogin">
-                    <h2>Login</h2>
+                    <h2 class="textLogin">Login</h2>
                 </section>
                 <section class="inputs-container">
                     <input type="text" name="cpfLogin" placeholder="123.456.789-10" required> <!-- Corrigido o tipo do input para "text" -->
@@ -145,7 +145,7 @@
             <div  id="ModalSenha" >
                 <form action="UpdatePassword" onsubmit="return validateForm()" method="post">
                     <section class="makelogin">
-                        <h2>Nova Senha:</h2>
+                        <h2 class="textLogin">Nova Senha:</h2>
                     </section>
                     <section class="inputs-container">
                         <input type="password" name="senha" id="newPassword" class="field-password" placeholder="******">

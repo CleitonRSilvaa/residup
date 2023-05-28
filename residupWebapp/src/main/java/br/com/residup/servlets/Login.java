@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("cpf", cpf);
                 session.setAttribute("id_morador", loginDao.recuperarId(cpf));
-                response.sendRedirect("reservas");
+                response.sendRedirect("listarResumo");
             } else {
                 System.out.println("Login não encontrado/incorreto");
                 request.setAttribute("error", "Senha CPF ou senha incorretos.");
@@ -141,7 +141,7 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("cpf", cpf);
                 session.setAttribute("id_morador", loginDao.recuperarId(cpf));
-                response.sendRedirect("reservas");
+                response.sendRedirect("listarResumo");
             } else {
                 System.out.println("Login não encontrado/incorreto");
                 request.getSession().setAttribute("errorSenha", "Senha CPF ou Senha incorretos.");
