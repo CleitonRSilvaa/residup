@@ -255,34 +255,10 @@ form .cadastro a:hover {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#erro {
+ margin-top: 1rem;
+color:#FF0000;
+}
 
 
 
@@ -521,3 +497,12 @@ form .cadastro a:hover {
     margin-bottom: 15px;
 }
 /* Fim Rodapé*/
+
+
+
+
+
+#ModalSenha{
+    margin: auto;
+}
+

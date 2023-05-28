@@ -68,7 +68,6 @@
                 <div class="form">
                     <div class="titulo">
                         <h1>Realizar nova reserva</h1>
-                        <p>${not empty mensagem}</p>
                     </div>
                     <a href="#"><button type="submit"
                                         class="bto">Salvar Reserva</button>

@@ -63,6 +63,27 @@ public class LoginDao {
             throw new RuntimeException(e);
         }
     }
+    public boolean autualizarSenha(Morador morador) {
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        boolean retorno = false;
+
+        try (Connection connection = abrirConexao();
+             PreparedStatement instrucao = connection.prepareStatement("UPDATE MORADOR SET SENHA_ACESSO = ?, DATA_ALTERACAO= CURRENT_TIMESTAMP WHERE  CPF = ? ")
+        ) {
+            instrucao.setString(1,passwordEncryptor.encryptPassword(morador.getSenhaDeAcesso()));
+            instrucao.setString(2, morador.getCpf());
+            int linhasRetorno = instrucao.executeUpdate();
+            connection.close();
+            return linhasRetorno > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao update senha: " + e.getMessage());
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Erro ao carregar o driver do banco de dados: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 
     public String recuperarId(String cpf) {
         try (Connection connection = abrirConexao();
@@ -84,6 +105,8 @@ public class LoginDao {
             throw new RuntimeException(e);
         }
     }
+
+
 
     public boolean validaPrimeiroAcesso(String cpf) {
         StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();

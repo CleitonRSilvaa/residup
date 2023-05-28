@@ -403,13 +403,12 @@ public class ReservaDao {
 
         List <Convidado> convidados = new ArrayList<>();
         String query = "SELECT * FROM CONVIDADO_RESERVA \n" +
-                "WHERE ID_MORADOR = ? AND ID_RESERVA_AREA = ?;";
+                "WHERE ID_RESERVA_AREA = ?;";
         try {
             Connection connection = abrirConexao();
 
             PreparedStatement pst = connection.prepareStatement(query);
-            pst.setInt(1, id_morador);
-            pst.setInt(2, id_reserva);
+            pst.setInt(1, id_reserva);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(1);

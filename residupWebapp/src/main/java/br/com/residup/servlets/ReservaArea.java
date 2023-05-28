@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -144,10 +145,9 @@ public class ReservaArea extends HttpServlet {
 
         } catch (Exception e) {
             System.out.println(e);
-            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Opsss", "Ouve um erro inesperado tente\n novamente mais tarde!");
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Opsss", "Ouve um erro inesperado tente novamente mais tarde!");
             request.getSession().setAttribute("mgsJS", msgJs);
             request.getSession().setAttribute("inserReserva", true);
-            response.sendRedirect("/reservas");
             response.sendRedirect("/reservas");
         }
 
@@ -179,8 +179,8 @@ public class ReservaArea extends HttpServlet {
             }
 
 
-            if (comparaData(data)) {
-                String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Informe uma data maior que a data de hoje \n ou faça uma reserva antes do meio-dia  ");
+            if (!comparaData(data)) {
+                String msgJs = scriptMensagemAlertJs(IconAlertJS.warning, "Atenção", "Informe uma data maior que a data de hoje ou faça uma reserva antes do meio-dia  ");
                 request.getSession().setAttribute("mgsJS", msgJs);
                 request.getSession().setAttribute("resultReserva", true);
                 response.sendRedirect("/reservas");
@@ -212,7 +212,7 @@ public class ReservaArea extends HttpServlet {
 
             response.sendRedirect("/reservas");
         } catch (Exception e) {
-            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Atenção", "Houve um erro ao inesperado \n tente novamente mais tarde");
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Atenção", "Houve um erro ao inesperado  tente novamente mais tarde");
             request.getSession().setAttribute("mgsJS", msgJs);
             request.getSession().setAttribute("resultReserva", true);
             System.out.println(e);
@@ -244,7 +244,9 @@ public class ReservaArea extends HttpServlet {
             Date today = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date date = format.parse(reserva.getDateReserva());
-            if (date.compareTo(today) <= 0) {
+            LocalDate dataAtual = LocalDate.now();
+            LocalDate dataConvertida = LocalDate.parse(reserva.getDateReserva());
+            if (dataConvertida.isBefore(dataAtual)) {
                 String msgJs = scriptMensagemAlertJs(IconAlertJS.info, "Atenção", "Convidado não pode ser excluido! data do Evento vencida ");
                 request.getSession().setAttribute("mgsJS", msgJs);
                 request.getSession().setAttribute("resultReserva", true);
@@ -300,16 +302,23 @@ public class ReservaArea extends HttpServlet {
 
 
     public static boolean comparaData(String dateString) {
-        Date today = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            LocalDateTime dataHora = LocalDateTime.now(); // Obtém a data e hora atual
 
-            // Verifica se a hora é maior que meio-dia
+        try {
+
+            LocalDateTime dataHora = LocalDateTime.now();
+            LocalDate dataAtual = LocalDate.now();
+            LocalDate dataConvertida = LocalDate.parse(dateString);
+
             boolean horaMaiorQueMeioDia = (dataHora.getHour() > 12);
-            Date date = format.parse(dateString);
-            return (date.compareTo(today) >= 0) && horaMaiorQueMeioDia ;
-        } catch (ParseException e) {
+            if(dataConvertida.isAfter(dataAtual)) return  true;
+            if (dataConvertida.isEqual(dataAtual) ) {
+                System.out.println("A data fornecida é igual ou maior que o dia de hoje.");
+                if (horaMaiorQueMeioDia) return false;
+                return true;
+            }
+
+            return  false;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
