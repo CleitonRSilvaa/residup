@@ -26,13 +26,16 @@ public class Resumo extends HttpServlet {
         try {
             if(action.equals("/listarResumo") || action.equals("/")){
 
-                List minhasReservas = reservaDao.reservas(31);
+                String stringIdMoardor = (String) request.getSession().getAttribute("id_morador");
+                int idMotador = Integer.parseInt(stringIdMoardor);
+
+                List minhasReservas = reservaDao.reservas(idMotador);
                 request.setAttribute("minhasReservas", minhasReservas);
 
-                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(31);
+                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(idMotador);
                 request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
-                List meusVisitantes = visitantedao.listarVisitantes(31,"");
+                List meusVisitantes = visitantedao.listarVisitantes(idMotador,"");
                 request.setAttribute("meusVisitantes", meusVisitantes);
 
                 request.getRequestDispatcher("resumo.jsp").forward(request, response);
