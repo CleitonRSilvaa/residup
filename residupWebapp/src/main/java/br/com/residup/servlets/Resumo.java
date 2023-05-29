@@ -25,10 +25,12 @@ public class Resumo extends HttpServlet {
         try {
             if(action.equals("/listarResumo")){
 
-                List minhasReservas = reservaDao.reservas(31);
+                String idMorador = (String) request.getSession().getAttribute("id_morador");
+                int moradorId = Integer.parseInt(idMorador);
+                List minhasReservas = reservaDao.reservas(moradorId);
                 request.setAttribute("minhasReservas", minhasReservas);
 
-                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(31);
+                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(moradorId);
                 request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
                 List meusVisitantes = VisitanteDao.listarVisitantes();

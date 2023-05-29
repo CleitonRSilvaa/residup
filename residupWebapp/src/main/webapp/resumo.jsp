@@ -70,8 +70,6 @@
                 <label><%=reserva.getIdReserva()%></label>
                 <label class="oc"><%=reserva.getNomeArea()%></label>
                 <label class="dt"></label>
-                <a href="#"><button class="editar" type='submit'>Excluir</button></a>
-                <a href="#"> <button type="button" class="listando"> Listar Convidados</button></a>
               </div>
               <hr>
               <%}%>
@@ -88,8 +86,6 @@
                     <input class="nm"  placeholder="Nome" name="nome" disabled><%=visitante.getNome() + ' ' + visitante.getSobrenome()%></input>
                     <input class="x" placeholder="Documento" name="doc" disabled><%=visitante.getDocumento()%></input>
                     <input class="oc" placeholder="Fone" name="fone" disabled><%=visitante.getFone()%></input>
-                    <a  href="#"><button class="editarcad">Excluir</button></a>
-                    <a href="#"><button class="editvisitante"> Editar</button></a>
                 </div>
                 <hr>
                 <%}%>
@@ -108,7 +104,6 @@
                 <label><%=ocorrencia.getTitulo()%></label>
                 <label class="oc"><%=ocorrencia.getTexto()%></label>
                 <label class="or"><%=ocorrencia.getStatus()%></label>
-                <a href="#" class="editar" ><button class="ed" type='submit'>Excluir</button></a>
              </div>
              <hr>
              <%}%>

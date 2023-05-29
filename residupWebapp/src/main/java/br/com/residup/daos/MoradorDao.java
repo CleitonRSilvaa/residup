@@ -81,10 +81,13 @@ public class MoradorDao {
     }
 
 
-    public ArrayList <Morador> listarMoradores() throws SQLException, ClassNotFoundException {
+    public ArrayList <Morador> listarMoradores(String cpfFiltro) throws SQLException, ClassNotFoundException {
 
+        String extensaoSelect = "";
+        String filtro = (cpfFiltro.equals("")) ? "" : " WHERE CPF= " + cpfFiltro;
+        System.out.println(cpfFiltro);
         ArrayList<Morador> listaMoradores = new ArrayList<>();
-        String comandoSQL = "SELECT * FROM Morador";
+        String comandoSQL = "SELECT * FROM Morador" + filtro;
         try{
             this.connection = abrirConexao();
             PreparedStatement instrucaoSQL = connection.prepareStatement(comandoSQL);
@@ -159,26 +162,6 @@ public class MoradorDao {
 
     }
 
-    public static Boolean alterarMorador(Morador morador){
-
-        String updateMorador = "UPDATE MORADOR SET NOME =?, SET CPF=?, SET RG=?, SET NUMERO_APARTAMENTO=?, SET BLOCO=?, SET SENHA_ACESSO=?";
-        try{
-            Connection connection = abrirConexao();
-            PreparedStatement upd = connection.prepareStatement(updateMorador);
-            upd.setString(1, morador.getNome());
-            upd.setString(2, morador.getCpf());
-            upd.setString(3, morador.getRg());
-            upd.setString(4, morador.getNumeroApartamento());
-            upd.setString(5,morador.getBloco());
-            upd.setString(6,morador.getSenhaDeAcesso());
-            upd.executeUpdate();
-            return true;
-        }catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-    }
-
     public static Boolean updateMoradorPerfil(Morador morador){
 
         String updateMorador = "UPDATE MORADOR SET SENHA_ACESSO= ?, DATA_ALTERACAO= CURRENT_TIMESTAMP, FOTO_FILE_PATH= ? WHERE CPF=?";
@@ -193,6 +176,34 @@ public class MoradorDao {
         }catch (SQLException sqlException){
             System.out.println(sqlException.getLocalizedMessage());
             throw new RuntimeException("----->>>> Erro ao executar query Update Perfil Morador()");
+
+        }catch (Exception exception){
+            System.out.println(exception.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    public static Boolean editarMorador(Morador morador){
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+
+        String editarMorador = "UPDATE MORADOR SET NOME= ?, SOBRENOME= ?, CPF= ?, RG= ?, NUMERO_APARTAMENTO= ?, BLOCO= ?, SENHA_ACESSO= ?, DATA_ALTERACAO= CURRENT_TIMESTAMP, FOTO_FILE_PATH= ? WHERE CPF=?";
+        try{
+            Connection connection = abrirConexao();
+            PreparedStatement upd = connection.prepareStatement(editarMorador);
+            upd.setString(1,morador.getNome());
+            upd.setString(2,morador.getSobrenome());
+            upd.setString(3,morador.getCpf());
+            upd.setString(4,morador.getRg());
+            upd.setString(5,morador.getNumeroApartamento());
+            upd.setString(6,morador.getBloco());
+            upd.setString(7, passwordEncryptor.encryptPassword(morador.getSenhaDeAcesso()));
+            upd.setString(8,morador.getEnderecoFoto());
+            upd.setString(9,morador.getCpf());
+            upd.executeUpdate();
+            return true;
+        }catch (SQLException sqlException){
+            System.out.println(sqlException.getLocalizedMessage());
+            throw new RuntimeException("----->>>> Erro ao executar query Editar Morador()");
 
         }catch (Exception exception){
             System.out.println(exception.getLocalizedMessage());
