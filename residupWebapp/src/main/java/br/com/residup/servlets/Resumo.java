@@ -33,10 +33,9 @@ public class Resumo extends HttpServlet {
                 List minhasReservas = reservaDao.reservas(idMorador);
                 request.setAttribute("minhasReservas", minhasReservas);
 
-
                 List minhasOcorrencias = OcorrenciaDao.listarDoMorador(idMorador);
-                request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
+                request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
                 List meusVisitantes = visitantedao.listarVisitantes(idMorador,"");
 

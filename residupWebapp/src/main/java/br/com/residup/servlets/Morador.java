@@ -24,7 +24,7 @@ import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 
 
-@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/listarMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador"})
+@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/listarMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador", "/carregarMorador"})
 public class Morador extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(Morador.class.getName());
 
@@ -49,8 +49,9 @@ public class Morador extends HttpServlet {
         }
         if(action.equals("/listarMorador")){
             try {
+                String cpfFiltro = request.getParameter("txtBsca");
                MoradorDao moradorDao = MoradorDao.getInstance();
-               List listaMoradores = moradorDao.listarMoradores();
+               List listaMoradores = moradorDao.listarMoradores("");
 
                request.setAttribute("moradores", listaMoradores);
                 request.getRequestDispatcher("listaMorador.jsp").forward(request, response);
@@ -62,6 +63,11 @@ public class Morador extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
+        if (action.equals("/carregarMorador")){
+            carregarMorador(request,response);
+            return;
+        }
+
 
         request.getRequestDispatcher("registroMorador.jsp").forward(request, response);
 
@@ -123,6 +129,26 @@ public class Morador extends HttpServlet {
             updatePerfilMorador(request, response);
             return;
         }
+        if(action.equals("/updateMorador")){
+            editarMorador(request,response);
+            return;
+        }
+        if(action.equals("/listarMorador")){
+            try {
+                String cpfFiltro = request.getParameter("txtBsca");
+                MoradorDao moradorDao = MoradorDao.getInstance();
+                List listaMoradores = moradorDao.listarMoradores(cpfFiltro);
+
+                request.setAttribute("moradores", listaMoradores);
+                request.getRequestDispatcher("listaMorador.jsp").forward(request, response);
+
+                return;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
 
     }
@@ -150,27 +176,47 @@ public class Morador extends HttpServlet {
         response.sendRedirect("/perfilMorador");
     }
 
-    public void editarMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void carregarMorador(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        response.sendRedirect("registroMorador.jsp");
+
         String action = request.getServletPath();
-        Map<String, String> parameters = uploadImage(request);
-        br.com.residup.models.Morador morador = new br.com.residup.models.Morador();
-        morador.setNome(request.getParameter("Nome"));
-        morador.setSobrenome(request.getParameter("Sobrenome"));
-        morador.setCpf((request.getParameter("cpf")));
-        morador.setRg(request.getParameter("rg"));
-        morador.setNumeroApartamento(request.getParameter("numero_apartamento"));
-        morador.setBloco(request.getParameter("bloco"));
+        var cpf = request.getParameter("cpfMorador");
+        try {
+            br.com.residup.models.Morador morador = new MoradorDao().buscarMorador(cpf);
 
-        if (MoradorDao.alterarMorador(morador)){
-//            request.getSession().setAttribute();
+            request.setAttribute("moradorEditar", morador);
+            request.getRequestDispatcher("editarMorador.jsp").forward(request, response);
 
-        }else {
-//            request.getSession().setAttribute();
+        }catch (Exception exception){
 
         }
 
+    }
+
+    public void editarMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String action = request.getServletPath();
+        Map<String, String> parameters = uploadImage(request);
+        String fotoMoradorImagePath = parameters.get("image");
+        var nome = parameters.get("nomeMorador");
+        var sobrenome = parameters.get("sobrenomeMorador");
+        var cpf = parameters.get("cpfMorador");
+        var rg = parameters.get("rgMorador");
+        var bloco = parameters.get("blocoMorador");
+        var email = parameters.get("emailMorador");
+        var telefone = parameters.get("telefoneMorador");
+        var numero_apartamento = parameters.get("numero_apartamentoMorador");
+        var senha = parameters.get("senhaMorador");
+
+        br.com.residup.models.Morador morador = new br.com.residup.models.Morador(nome,sobrenome, cpf, rg, numero_apartamento, bloco, senha);
+        morador.setEnderecoFoto(fotoMoradorImagePath);
+        if(!MoradorDao.editarMorador(morador)){
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Ocorreu um erro na alteração do Perfil. Tente novamente, mais tarde!");
+            request.getSession().setAttribute("mgsJS", msgJs);
+            request.getSession().setAttribute("check", true);
+            response.sendRedirect("/carregarMorador");
+        }
+        response.sendRedirect("/listarMorador");
 
     }
     private Map<String, String> uploadImage(HttpServletRequest httpServletRequest) {
