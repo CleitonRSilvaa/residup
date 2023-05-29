@@ -22,6 +22,7 @@ public class Resumo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String action = request.getServletPath();
+        var visitantedao = VisitanteDao.getInstance();
         try {
             if(action.equals("/listarResumo")){
 
@@ -31,7 +32,7 @@ public class Resumo extends HttpServlet {
                 List minhasOcorrencias = OcorrenciaDao.listarDoMorador(31);
                 request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
-                List meusVisitantes = VisitanteDao.listarVisitantes();
+                List meusVisitantes = visitantedao.listarVisitantes(31,"");
                 request.setAttribute("meusVisitantes", meusVisitantes);
 
                 request.getRequestDispatcher("resumo.jsp").forward(request, response);
