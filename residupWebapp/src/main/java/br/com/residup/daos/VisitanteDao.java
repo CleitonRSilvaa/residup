@@ -1,12 +1,15 @@
 package br.com.residup.daos;
+import br.com.residup.models.Morador;
 import br.com.residup.models.Visitante;
+
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static br.com.residup.shared.GerenciadorConexaoH2.abrirConexao;
-import static br.com.residup.shared.GerenciadorConexaoH2.fecharConexao;
 
 public  class VisitanteDao {
 	private static VisitanteDao instance;
@@ -71,6 +74,64 @@ public  class VisitanteDao {
 			return false;
 		}
 	}
+
+	public List<Visitante>  allVisitantes(String dataFiltro) {
+		List<Visitante> visitantes = new ArrayList<>();
+		LocalDate dataAtual = LocalDate.now();
+		String resultado = (dataFiltro == null) ? dataAtual.toString() : dataFiltro;
+
+		if (resultado.trim().isEmpty() || resultado.trim().isBlank()){
+			resultado = dataAtual.toString();
+		}
+		String read = "SELECT RV.ID_REGISTRO,\tV.ID_VISITANTE, M.ID_MORADOR,  V.NOME, V.SOBRENOME, V.DOCUMENTO, V.TELEFONE, M.NUMERO_APARTAMENTO, M.BLOCO,  RV.CHECK_IN, RV.DATA_REGISTRO,\n" +
+				"FROM REGISTRO_VISITANTE RV\n" +
+				"INNER JOIN MORADOR M\n" +
+				"ON M.ID_MORADOR = RV.ID_MORADOR\n" +
+				"INNER JOIN VISITANTE V  \n" +
+				"ON V.ID_VISITANTE = RV.ID_VISITANTE\n" +
+				"WHERE DATA_REGISTRO ='" +resultado+ "';";
+
+		try {
+			Connection connection = abrirConexao();
+			PreparedStatement pst = connection.prepareStatement(read);
+
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				var v = new Visitante();
+				String id = rs.getString("ID_VISITANTE");
+				String nome = rs.getString("NOME");
+				String sobreNome = rs.getString("SOBRENOME"  );
+				String documento = rs.getString("DOCUMENTO");
+				String fone = rs.getString("TELEFONE");
+				String idRegistro =  rs.getString("ID_REGISTRO");
+				String numeroApartamento = rs.getString("NUMERO_APARTAMENTO");
+				String bloco = rs.getString("BLOCO");
+				String checkIn = rs.getString("CHECK_IN");
+
+				v.setNome(nome);
+				v.setSobrenome(sobreNome);
+				v.setDocumento(documento);
+				v.setFone(fone);
+				v.setId(id);
+
+				v.setCheckIn(checkIn);
+				v.setIdRegistro(idRegistro);
+				var morador = new Morador();
+				morador.setNumeroApartamento(numeroApartamento);
+				morador.setBloco(bloco);
+				v.setMorador(morador);
+				visitantes.add(v);
+			}
+			if (!connection.isClosed()){
+				connection.close();
+			}
+			return visitantes;
+		} catch (Exception e) {
+			System.out.println(e);
+			return visitantes;
+		}
+	}
+
 
 	public  ArrayList<Visitante> listarVisitantes(int idMorador, String filtroNome) {
 		ArrayList<Visitante> visitantes = new ArrayList<>();

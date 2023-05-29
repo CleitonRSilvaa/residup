@@ -1,3 +1,11 @@
+<%@page import="br.com.residup.models.Visitante"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+    ArrayList<Visitante> lista = (ArrayList<Visitante>) request.getAttribute("listaVisitantes");
+%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -73,24 +81,26 @@
     </div>
         </nav>
     </div>
-  <form class="filtro">
-  <button class="busc">Buscar</button>
-  <input type="date" id="txtBusca" name="" id="">
-  <input type="text" id="txtBsca" placeholder="Buscar Visitante..."/>
+  <form class="filtro" action="visitantesAdm" method="GET">
+  <button type="submit" class="busc">Buscar</button>
+  <input type="date" id="txtBusca" name="dataFiltro" >
 </form>
 
   <div class="form">
     <div class="title">
         <h2>Visitantes</h2>
     </div>
+    <%for (Visitante visitante : lista) {%>
     <div class="group">
-        <input class="nm"  placeholder="Nome" name="nome" disabled></input>
-        <input class="x" placeholder="Documento" name="doc" disabled></input>
-        <input class="oc" placeholder="Fone" name="fone" disabled></input>
-        <input class="apto" placeholder="Apto" name="fone" disabled></input>
-        <input class="apto" placeholder="bloco" name="fone" disabled></input>
-        <a  href="#"><button class="editarcad">Check-in</button></a>
+        <input class="nm"  value="<%=visitante.getNome()%>  <%=visitante.getSobrenome()%>"  visitante name="nome" disabled></input>
+        <input class="x" value="<%=visitante.getDocumento()%>" name="doc" disabled></input>
+        <input class="oc" value="<%=visitante.getFone()%>" name="fone" disabled></input>
+        <input class="apto" value="<%=visitante.getMorador().getNumeroApartamento()%>" name="fone" disabled></input>
+        <input class="apto" value="<%=visitante.getMorador().getBloco()%>" name="fone" disabled></input>
+
     </div>
+    <%}%>
+
 </div>
   <script src="../scripts/perfil.js"></script>
 

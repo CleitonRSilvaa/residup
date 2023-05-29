@@ -7,7 +7,10 @@ public class Visitante {
 	private String  sobrenome;
 	private String documento;
 	private String fone;
+	private String checkIn  ;
+	private String idRegistro;
 
+	private  Morador morador;
 
 
 	public Visitante() {
@@ -18,6 +21,7 @@ public class Visitante {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.documento = documento;
+		this.checkIn = null;
 	}
 
 	public String getId() {
@@ -59,6 +63,30 @@ public class Visitante {
 
 	public void setFone(String fone) {
 		this.fone = fone;
+	}
+
+	public String getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public String getIdRegistro() {
+		return idRegistro;
+	}
+
+	public void setIdRegistro(String idRegistro) {
+		this.idRegistro = idRegistro;
+	}
+
+	public Morador getMorador() {
+		return morador;
+	}
+
+	public void setMorador(Morador morador) {
+		this.morador = morador;
 	}
 
 	public static String[] separarNomeSobrenome(String nomeCompleto) {

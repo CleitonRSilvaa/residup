@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/","/listarResumo"})
+@WebServlet(urlPatterns = {"/listarResumo"})
 public class Resumo extends HttpServlet {
 
     ReservaDao reservaDao = ReservaDao.getInstance();
