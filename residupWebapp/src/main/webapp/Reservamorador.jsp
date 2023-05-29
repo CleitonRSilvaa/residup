@@ -37,6 +37,7 @@
 
     </head>
     <body>
+        <body class="bodyCorNova">
         <div class="header" id="header">
             <button onclick="toggleSidebar()" class="btn_icon_header">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">

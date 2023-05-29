@@ -21,12 +21,10 @@
   align-items: center;
 }
 .header{
-  background-color: #c4c4c4;
+  background-color: white;
   justify-content: space-between;
   padding: 0 10px;
   height: 3.5em;
-  margin-bottom: 10px;
-  box-shadow: 0 0 10px black;
 }
 
 .navigation_header{
@@ -51,7 +49,7 @@
   color: red;
 }
 .active{
-  background: #49ae96;
+  background-image: linear-gradient(to right, #006494, #1b98e0);
   padding: 10px;
   border-radius: 10px;
 
@@ -67,13 +65,8 @@
 nav{
  background-color: #fff;
  height: 3.5em;
- width: 200px;
 }
-.logout{
-  float; right;
-  height: 40px;
-  margin-left: 0px;
-}
+
 nav li{
  display: inline-block;
 }
@@ -129,6 +122,12 @@ body {
     background-color: #f1f1f1;
     margin: 0;
     padding: 0;
+  }
+
+  .bodyCorNova {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f4f4;
+
   }
 
   .modal-overlay {
@@ -360,7 +359,7 @@ body {
 
 .form{
     box-sizing: border-box;
-    background: #467599;
+    background: #fff;
     width: 97%;
     height: 105px;
     border-radius: 10px;
@@ -368,15 +367,16 @@ body {
     margin-left: 1.5%;
 }
 .titulo{
-    background-color: black;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
     width: 100%;
     height: 25px;
     border-radius: 10px 10px 0px 0px;
 }
 .titulo h1{
-    font-size: 16px;
     color: white;
+    font-size: 15px;
     margin-left: 10px;
+    padding: auto;
     font-weight: bold;
 
 }
@@ -394,8 +394,9 @@ body {
     border-radius: 20px;
     text-align: center;
     font-weight: bold;
-    border: 0px;
-    background-color:#9ed8db;
+    border: 20;
+    border-color: rgba(129, 4, 4, 0.938);
+    background-color: #FFF;
 }
 .horario{
     width: 12%;
@@ -410,8 +411,9 @@ body {
     border-radius: 20px;
     text-align: center;
     font-weight: bold;
-    border: 0px;
-    background-color: #9ed8db;
+    border: 20;
+    border-color: rgba(129, 4, 4, 0.938);
+    background-color: #FFF;;
 }
 .datas{
     width: 12%;
@@ -428,8 +430,9 @@ body {
     border-radius: 20px;
     text-align: center;
     font-weight: bold;
-    border: 0px;
-    background-color: #9ed8db;
+    border: 2px solid #1b98e0;
+    background-color: #FFF;
+    color: #616161;
     margin-bottom: 30px;
 }
 .convid{
@@ -477,14 +480,16 @@ textarea{
     margin-top: 47px;
     margin-right: 6%;
     border-radius: 10px;
-    background-color: rgb(29, 211, 99);
+    background-image: linear-gradient(to right, #006494, #561be0);
+    color: #fff;
+    font-family: 'Arial';
     border: 0px;
     font-weight: bold;
 }
 
 .mr{
     box-sizing: border-box;
-    background: #467599;
+    background: #fff;
     width: 97%;
     height: auto;
     border-radius: 10px;
@@ -511,13 +516,13 @@ h2{
 }
 
 .all-products{
-    margin-top: 15% ;
+  margin-top: 15% ;
 	display: flex;
-    width: 100%;
+  width: 100%;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-    background-color: white;
+  background-color: rgb(243, 244, 244);
 }
 .espacos{
     display: flex;
@@ -525,8 +530,9 @@ h2{
 
 .product{
 	overflow: hidden;
-	background: #467599;
-	color: white;
+	border: 2px solid #1b98e0;
+  background-color: #FFF;
+	color: rgb(84, 84, 84);;
 	text-align: center;
 	width: 24%;
 	height: 550px;
@@ -535,9 +541,8 @@ h2{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	
 	margin: 5px;
-    margin-top: 30px;
+  margin-top: 30px;
 }
 .all-products h2{
 font-size: 50px;
@@ -596,7 +601,7 @@ color: #545454;
 	color: #ececec;
 	display: inline-block;
 	text-decoration: none;
-	background-color: #2c3e50;
+	background-image: linear-gradient(to right, #006494, #1b98e0);
 	padding: 1.2rem 3rem;
 	border-radius: 1rem;
 	margin-top: 1rem;
@@ -615,7 +620,7 @@ color: #545454;
     width: 100%;
   
 }
-
+  
 .group label {
     width: 12%;
     height: 28px;
@@ -630,9 +635,8 @@ color: #545454;
     display: inline-block;
     align-items: center;
     font-weight: bold;
-    text-align: center;
 }
-
+  
 .group .oc {
     width: 12%;
     height: 28px;
@@ -645,8 +649,8 @@ color: #545454;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
-
-
+  
+  
  }
 .group .dt {
     width: 12%;
@@ -660,12 +664,11 @@ color: #545454;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
-
-
+  
+  
 }
-.group .listt .convidados{
-
-    width: 130%;
+.group .convidados{
+    width: 15%;
     height: 28px;
     background-color: #9ed8db;
     border-radius: 15px;
@@ -676,9 +679,7 @@ color: #545454;
     color: black;
     transition: all 0.4s ease;
     display: inline-block;
-    margin-left: 60%;
-
-
+    margin-left:  6.16%;
 }
 .modal-body .nomecomp{
     width: 50%;
@@ -687,16 +688,15 @@ color: #545454;
     width: 30%;
 }
 
-  .group .listt .editar {
-
-    width: 130%;
+  .group .editar {
+    width: 12%;
     height: 28px;
     background-color: red;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-
-    margin-left:  140%;
+    margin-right: 5%;
+    margin-left:  6.16%;
     font-size: 15px;
     color: white;
     font-weight: bold;
