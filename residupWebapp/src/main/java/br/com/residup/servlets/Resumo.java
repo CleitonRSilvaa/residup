@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/listarResumo"})
+@WebServlet(urlPatterns = {"/","/listarResumo"})
 public class Resumo extends HttpServlet {
 
     ReservaDao reservaDao = ReservaDao.getInstance();
@@ -24,7 +24,7 @@ public class Resumo extends HttpServlet {
         String action = request.getServletPath();
         var visitantedao = VisitanteDao.getInstance();
         try {
-            if(action.equals("/listarResumo")){
+            if(action.equals("/listarResumo") || action.equals("/")){
 
                 List minhasReservas = reservaDao.reservas(31);
                 request.setAttribute("minhasReservas", minhasReservas);
