@@ -98,11 +98,31 @@
         <input class="apto" value="<%=visitante.getMorador().getNumeroApartamento()%>" name="fone" disabled></input>
         <input class="apto" value="<%=visitante.getMorador().getBloco()%>" name="fone" disabled></input>
 
+<%
+        if (visitante.getCheckIn() == null) {
+
+        %>
+        <form  action="CheckInVisitantes" method="POST">
+         <input class="editar" type="hidden" name="idReserva" id="idRegistro" value="<%=visitante.getIdRegistro()%>">
+          <button type="submit" class="editarcad">Check-in</button>
+        </form>
+        <%
+            }
+        %>
     </div>
     <%}%>
 
 </div>
   <script src="../scripts/perfil.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+
+           <c:if test="${not empty mensagem}">
+                      <%-- Exibe o alerta somente se a mensagem não for nula --%>
+                      <script>
+                          <%= request.getAttribute("mensagem")%>
+                      </script>
+                  </c:if>
 
 
 </body>

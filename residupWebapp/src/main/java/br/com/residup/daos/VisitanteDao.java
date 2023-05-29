@@ -235,6 +235,24 @@ public  class VisitanteDao {
 		}
 	}
 
+	public  Boolean fazerCheckInVisitante(int idRegistro) {
+		String update = "UPDATE REGISTRO_VISITANTE SET CHECK_IN = 'S', DATA_CHECK_IN = CURRENT_TIMESTAMP WHERE ID_REGISTRO = ?";
+		try {
+			Connection connection = abrirConexao();
+			PreparedStatement pst = connection.prepareStatement(update);
+			pst.setInt(1, idRegistro);
+
+			int resultSet = pst.executeUpdate();
+			if (!connection.isClosed()){
+				connection.close();
+			}
+			return resultSet == 1 ;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	}
+
 	public  boolean deletarVisitante(Visitante visitante) {
 		String delete = "update visitante set STATUS_CONTA = 0  where ID_VISITANTE=?";
 		try {
