@@ -123,7 +123,8 @@ nav li a:hover{
     height: 400px;
     border-radius: 10px;
     margin-top: 30px;
-    margin-left: 1.5%;   
+    margin-left: 1.5%;
+    height: 400px;
   
 }
 .mr .group label {
@@ -140,7 +141,7 @@ nav li a:hover{
   transition: all 0.4s ease;
   display: inline-block;
   align-items: center;
-  font-weight: bold;
+  text-align: center;
 }
 
 .mr .group .oc {
@@ -187,9 +188,16 @@ nav li a:hover{
 }
 .mo .group{
   margin-bottom: 10px;
+  align-items:center;
 }
 .mv .group{
   margin-bottom: 10px;
+}
+
+.scrollable-div {
+  max-height: 345px; /* altura máxima desejada da div */
+  overflow: auto;
+  padding: 1px; /* espaçamento interno */
 }
 .mr .group .editar {
   float: right;
@@ -206,6 +214,7 @@ nav li a:hover{
   font-weight: bold;
   transition: all 0.4s ease;
   display: inline-block;
+  cursor: pointer;
 }
 .mr .group .listando {
   float: right;
@@ -234,7 +243,7 @@ nav li a:hover{
   height: 400px;
   border-radius: 10px;
   margin-top: 30px;
-  margin-left: 1.5%;   
+  margin-left: 1.5%;
 }
 .mo{
   box-sizing: border-box;
@@ -248,7 +257,7 @@ nav li a:hover{
 .minhasreservas{
     margin-top: 15px;
     height: 20px;
-    width: 100%;
+    width: 200px;
     background-color: white;
 }
 .title{
@@ -282,12 +291,11 @@ nav li a:hover{
     margin-bottom: 5px;
     display: inline-block;
     width: 100%;
-  
+
   }
   .group  form{
     float: right;
     width: 30%;
-   
   }
   
 
@@ -368,8 +376,7 @@ nav li a:hover{
   input::placeholder {
   
     color: #1e1e1e;
-    font-family: 'Arial';
-    font-size: 16px;
+    font-size: 15px;
   }
   .cadastrarvisitante{
     height: 40px;
@@ -614,7 +621,8 @@ nav li a:hover{
        color: #616161;
        transition: all 0.4s ease;
        display: inline-block;
-   
+          align-items: center;
+          text-align: center;
    }
 
    .mv .group .editvisitante{
@@ -652,6 +660,8 @@ nav li a:hover{
     font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
+    cursor: pointer;
+
    }
 
    .filtro .busc{
@@ -684,8 +694,9 @@ nav li a:hover{
     font-size: 15px;
     transition: all 0.4s ease;
     display: inline-block;
- 
-  
+    align-items: center;
+    text-align: center;
+
   }
   
   .mo .group .oc {
@@ -715,8 +726,8 @@ nav li a:hover{
     font-size: 15px;
     transition: all 0.4s ease;
     display: inline-block;
-  
-  
+           align-items: center;
+           text-align: center;
   }
   
   .mo .group .editar {
@@ -743,7 +754,7 @@ nav li a:hover{
     background-image: linear-gradient(to right, #310909, #e01e1e);
     font-weight: bold;
     color: white;
-   border: none;
-  
+    border: none;
+    cursor: pointer;
   }
   

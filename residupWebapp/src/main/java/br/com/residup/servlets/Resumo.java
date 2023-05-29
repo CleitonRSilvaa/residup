@@ -26,16 +26,18 @@ public class Resumo extends HttpServlet {
         try {
             if(action.equals("/listarResumo") || action.equals("/")){
 
-                String stringIdMoardor = (String) request.getSession().getAttribute("id_morador");
-                int idMotador = Integer.parseInt(stringIdMoardor);
 
-                List minhasReservas = reservaDao.reservas(idMotador);
+                String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
+                List minhasReservas = reservaDao.reservas(Integer.parseInt(id_morador));
                 request.setAttribute("minhasReservas", minhasReservas);
 
-                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(idMotador);
+
+                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(Integer.parseInt(id_morador));
                 request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
-                List meusVisitantes = visitantedao.listarVisitantes(idMotador,"");
+
+                List meusVisitantes = VisitanteDao.listarVisitantes();
+
                 request.setAttribute("meusVisitantes", meusVisitantes);
 
                 request.getRequestDispatcher("resumo.jsp").forward(request, response);
