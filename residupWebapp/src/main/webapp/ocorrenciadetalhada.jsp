@@ -55,7 +55,6 @@
         <label class="apto"><%=ocorrenciaGet.getNumeroApartamento()%></label>
         <label><%=ocorrenciaGet.getBloco()%></label>
         <select class="sts" id="form-horario" name="status" required>
-            <option value="Todos" ${ocorrenciaGet.getStatus().equals("Todos") ? 'selected' : ''}>Todos</option>
             <option value="Em aberto" ${ocorrenciaGet.getStatus().equals("Em aberto") ? 'selected' : ''}>Em aberto</option>
             <option value="Em analise" ${ocorrenciaGet.getStatus().equals("Em analise") ? 'selected' : ''}>Em analise</option>
             <option value="Em andamento" ${ocorrenciaGet.getStatus().equals("Em andamento") ? 'selected' : ''}>Em andamento</option>
