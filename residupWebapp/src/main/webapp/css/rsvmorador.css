@@ -21,10 +21,12 @@
   align-items: center;
 }
 .header{
-  background-color: white;
+  background-color: #c4c4c4;
   justify-content: space-between;
   padding: 0 10px;
   height: 3.5em;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px black;
 }
 
 .navigation_header{
@@ -65,8 +67,13 @@
 nav{
  background-color: #fff;
  height: 3.5em;
+ width: 200px;
 }
-
+.logout{
+  float; right;
+  height: 40px;
+  margin-left: 0px;
+}
 nav li{
  display: inline-block;
 }
@@ -518,7 +525,7 @@ h2{
 
 .product{
 	overflow: hidden;
-	background: #545454;
+	background: #467599;
 	color: white;
 	text-align: center;
 	width: 24%;
@@ -608,7 +615,7 @@ color: #545454;
     width: 100%;
   
 }
-  
+
 .group label {
     width: 12%;
     height: 28px;
@@ -623,8 +630,9 @@ color: #545454;
     display: inline-block;
     align-items: center;
     font-weight: bold;
+    text-align: center;
 }
-  
+
 .group .oc {
     width: 12%;
     height: 28px;
@@ -637,8 +645,8 @@ color: #545454;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
-  
-  
+
+
  }
 .group .dt {
     width: 12%;
@@ -652,11 +660,12 @@ color: #545454;
     color: #616161;
     transition: all 0.4s ease;
     display: inline-block;
-  
-  
+
+
 }
-.group .convidados{
-    width: 15%;
+.group .listt .convidados{
+
+    width: 130%;
     height: 28px;
     background-color: #9ed8db;
     border-radius: 15px;
@@ -667,7 +676,9 @@ color: #545454;
     color: black;
     transition: all 0.4s ease;
     display: inline-block;
-    margin-left:  6.16%;
+    margin-left: 60%;
+
+
 }
 .modal-body .nomecomp{
     width: 50%;
@@ -676,15 +687,16 @@ color: #545454;
     width: 30%;
 }
 
-  .group .editar {
-    width: 12%;
+  .group .listt .editar {
+
+    width: 130%;
     height: 28px;
     background-color: red;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
-    margin-right: 5%;
-    margin-left:  6.16%;
+
+    margin-left:  140%;
     font-size: 15px;
     color: white;
     font-weight: bold;
