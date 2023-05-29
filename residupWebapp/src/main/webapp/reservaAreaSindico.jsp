@@ -73,10 +73,10 @@
                 <label class="area"><%=reserva.getNomeArea()%></label>
                 <label class="data"><%=reserva.getDateReserva()%></label>
                 <label  class="hora"><%=reserva.getHoraReserva()%></label>
-                <form  action="/convidosReservaAdm" method="post">
+                <form class="convid" action="/convidosReservaAdm" method="post">
                     <input  type="hidden" name="idReservaAdm" id="idReservaAdm" value="<%=reserva.getIdReserva()%>">
                     <button  type="submit" class="abrir" id="3openModalBtn"> Convidados</button>
-                    <hr>
+
                 </form>
                 <%}%>
 

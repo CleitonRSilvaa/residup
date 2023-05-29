@@ -37,6 +37,7 @@
 
     </head>
     <body>
+        <body class="bodyCorNova">
         <div class="header" id="header">
             <button onclick="toggleSidebar()" class="btn_icon_header">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -161,18 +162,18 @@
                     <label><%=reserva.getNomeArea()%></label>
                     <label class="oc" ><%=reserva.getDateReserva()%></label>
                     <label class="dt" ><%=reserva.getHoraReserva()%></label>
-                    <form style="display: inline-block;" action="/convidosReserva" method="post">
+                    <form class="listt" style="display: inline-block;" action="/convidosReserva" method="post">
                         <input class="editar" type="hidden" name="idReserva" id="idReserva" value="<%=reserva.getIdReserva()%>">
                         <button type="submit"  class="convidados" >
                             Listar Convidados
                         </button>
                     </form>
-                    <form style="display: inline-block;" name="frmDelete"  action="/deleteReserva" method="post">
+                    <form class="listt" style="display: inline-block;" name="frmDelete"  action="/deleteReserva" method="post">
                         <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
                         <button class="editar" type='button' onclick =cancelarReserva()  >Excluir Reserva</button>
                     </form>
                 </div>
-                <hr>
+
                 <%}%>
 
                 <div class="all-products">

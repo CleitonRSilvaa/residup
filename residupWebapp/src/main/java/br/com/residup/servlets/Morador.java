@@ -53,7 +53,7 @@ public class Morador extends HttpServlet {
                List listaMoradores = moradorDao.listarMoradores();
 
                request.setAttribute("moradores", listaMoradores);
-                request.getRequestDispatcher("/Telas/listaMorador.jsp").forward(request, response);
+                request.getRequestDispatcher("listaMorador.jsp").forward(request, response);
 
                 return;
             } catch (SQLException e) {
