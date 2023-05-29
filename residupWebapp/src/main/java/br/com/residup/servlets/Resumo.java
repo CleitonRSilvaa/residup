@@ -22,21 +22,23 @@ public class Resumo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String action = request.getServletPath();
-        var visitantedao = VisitanteDao.getInstance();
+
         try {
+            var visitantedao = VisitanteDao.getInstance();
             if(action.equals("/listarResumo") || action.equals("/")){
 
 
-                String id_morador = String.valueOf(request.getSession().getAttribute("id_morador"));
-                List minhasReservas = reservaDao.reservas(Integer.parseInt(id_morador));
+                String stringIdMorador = String.valueOf(request.getSession().getAttribute("id_morador"));
+                int idMorador  = Integer.parseInt(stringIdMorador);
+                List minhasReservas = reservaDao.reservas(idMorador);
                 request.setAttribute("minhasReservas", minhasReservas);
 
 
-                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(Integer.parseInt(id_morador));
+                List minhasOcorrencias = OcorrenciaDao.listarDoMorador(idMorador);
                 request.setAttribute("minhasOcorrencias", minhasOcorrencias);
 
 
-                List meusVisitantes = VisitanteDao.listarVisitantes();
+                List meusVisitantes = visitantedao.listarVisitantes(idMorador,"");
 
                 request.setAttribute("meusVisitantes", meusVisitantes);
 
