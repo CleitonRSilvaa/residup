@@ -57,13 +57,11 @@
         </nav>
     </div>  
     <!--Fim da header-->
-<form class="filtro">
-  <button class="cadastrar" >Cadastrar Morador</button>
-  <button class="listar">Lista de Moradores</button>
+<form class="filtro" action="/listarMorador" method="post">
+  <button class="cadastrar" action="/create_morador" >Cadastrar Morador</button>
 
-  <form class="filtro">
-  <button class="busc" action="/listarMorador" method="get" >Buscar</button>
-  <input type="text" id="txtBsca" placeholder="Buscar Morador..."/>  
+  <button class="busc" type="submit">Buscar</button>
+  <input type="text" id="txtBsca" name="txtBsca" placeholder="Buscar Morador..."/>
 </form>
     <div class="form">
         <div class="title">
@@ -72,13 +70,13 @@
         <%for (Morador morador : listaMorador) {%>
           <div class="group">
           <label><%=morador.getNome() + ' ' + morador.getSobrenome()%></label>
-          <label class="oc"> <%=morador.getCpf()%></label>
+          <label class="oc"><%=morador.getCpf()%></label>
           <label class="x"><%=morador.getNumeroApartamento()%></label>
           <label class="x"><%=morador.getBloco()%></label>
-          <form action="/updateMorador" method="post">
+          <form action="#" method="post">
               <a  href="#"><button class="editar" type="submit">Excluir</button></a>
           </form>
-          <form action="/updateMorador" method="pull">
+          <form action="/carregarMorador" method="get">
               <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%=morador.getCpf()%>">
               <a  href="#"><button class="edit" type="submit">Editar</button></a>
           </form>
