@@ -102,3 +102,113 @@ function validarNovo() {
 
 
 
+async function cadastrarVisitante() {
+    const { value: nome } = await Swal.fire({
+      title: 'Novo Visitante',
+      html:
+        '<input id="swal-nome" class="swal2-input" placeholder="Nome" required>' +
+        '<input id="swal-sobrenome" class="swal2-input" placeholder="Sobrenome" required>' +
+        '<input id="swal-documento" class="swal2-input" placeholder="Documento" required>' +
+        '<input id="swal-telefone" class="swal2-input" placeholder="Telefone">',
+      focusConfirm: false,
+      preConfirm: () => {
+        return {
+          nome: document.getElementById('swal-nome').value,
+          sobrenome: document.getElementById('swal-sobrenome').value,
+          documento: document.getElementById('swal-documento').value,
+          telefone: document.getElementById('swal-telefone').value
+        };
+      }
+    });
+
+
+     if (nome.nome ===  "" || nome.sobrenome === "" || nome.documento === "") {
+            // Exibe mensagem de erro
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Nome e Documento são campos obrigatórios!',
+            })
+            return false;
+        }
+      document.getElementById('nome').value = nome.nome;
+      document.getElementById('sobrenome').value = nome.sobrenome;
+      document.getElementById('documento').value = nome.documento;
+      document.getElementById('fone').value = nome.telefone;
+
+
+
+      // Submeta o formulário se necessário
+       document.forms["frmContato"].submit();
+
+  }
+
+
+   function editarVisitante(id, nome, sobrenome,documento,fone) {
+
+      Swal.fire({
+        title: 'Editar Visitante',
+        html:
+          '<input id="swal-nome" class="swal2-input" placeholder="Nome" value="' + nome + '" required>' +
+          '<input id="swal-sobrenome" class="swal2-input" placeholder="Sobrenome" value="' + sobrenome + '" required>' +
+          '<input id="swal-documento" class="swal2-input" placeholder="Documento" value="' + documento + '" required>' +
+          '<input id="swal-fone" class="swal2-input" placeholder="Telefone" value="' + fone + '">',
+        focusConfirm: false,
+        preConfirm: () => {
+          return {
+          id : id,
+            nome: document.getElementById('swal-nome').value,
+            sobrenome: document.getElementById('swal-sobrenome').value,
+            documento: document.getElementById('swal-documento').value,
+            fone: document.getElementById('swal-fone').value
+          };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const editedId = result.value.id;
+          const editedNome = result.value.nome;
+          const editedSobrenome = result.value.sobrenome;
+          const editedDocumento = result.value.documento;
+          const editedFone = result.value.fone;
+           console.log(editedId,editedNome, editedSobrenome,editedDocumento , editedFone )
+          // Crie um novo formulário e envie as informações para onde desejar
+          const form = document.createElement('form');
+          form.method = 'post';
+          form.action = 'update';
+
+          const hiddenId = document.createElement('input');
+          hiddenId.type = 'hidden';
+          hiddenId.name = 'hiddenId';
+          hiddenId.value = id;
+
+          const hiddenNome = document.createElement('input');
+          hiddenNome.type = 'hidden';
+          hiddenNome.name = 'editedNome';
+          hiddenNome.value = editedNome;
+
+           const hiddenSobrenome = document.createElement('input');
+           hiddenSobrenome.type = 'hidden';
+           hiddenSobrenome.name = 'editedSobrenome';
+           hiddenSobrenome.value = editedSobrenome;
+
+          const hiddenDocumento = document.createElement('input');
+          hiddenDocumento.type = 'hidden';
+          hiddenDocumento.name = 'editedDocumento';
+          hiddenDocumento.value = editedDocumento;
+
+          const hiddenFone = document.createElement('input');
+          hiddenFone.type = 'hidden';
+          hiddenFone.name = 'editedFone';
+          hiddenFone.value = editedFone;
+
+          form.appendChild(hiddenId);
+          form.appendChild(hiddenNome);
+          form.appendChild(hiddenSobrenome);
+          form.appendChild(hiddenDocumento);
+          form.appendChild(hiddenFone);
+
+          document.body.appendChild(form);
+          form.submit();
+        }
+      });
+    }

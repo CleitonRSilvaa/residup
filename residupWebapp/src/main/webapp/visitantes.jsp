@@ -15,7 +15,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/controlevisitantes.css">
-  <link rel="stylesheet" href="css/visitanteStyle.css">
 
   <title>Controle de Visitantes</title>
 
@@ -55,14 +54,14 @@
             </ul>
         </nav>
     </div>
-    <button type="button" onclick="cadastrarVisitante()" class="cadastrarvisitante">Novo Visitante</button>
-  <button type="button" class="cadastrarvisitante">Relátorio</button>
+  <button type="button" onclick="cadastrarVisitante()" class="cadastrarvisitante">Novo Visitante</button>
+  <button type="button" class="cadastrarvisitante"><a class="cadastrarvisitante" href="report">Relátorio</a></button>
 
-  <form class="filtro">
-  <button class="busc">Buscar</button>
-  <input type="date" id="txtBusca" name="" id="">
-  <input type="text" id="txtBsca" placeholder="Buscar Visitante..."/>
-</form>
+
+  <form class="filtro" action="visitantes" method = "GET" >
+  <button type='submit' class="busc">Buscar</button>
+  <input type="text" id="txtBsca" name= "txtBsca" placeholder="Buscar Visitante..."/>
+    </form>
 
 
   <!-- Modal de Cadastro -->
@@ -80,7 +79,7 @@
             <input class="nm"  placeholder="Nome" name="nome" value="<%=lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%>"disabled></input>
             <input class="x" placeholder="Documento" name="doc" value="<%= lista.get(i).getDocumento() %>" disabled></input>
             <input class="oc" placeholder="Fone" name="fone" value="<%= lista.get(i).getFone() %>" disabled></input>
-            <button type="submit" onclick= "editarVisitante()" class="editvisitante">Editar</button>
+            <button type="submit" onclick= "editarVisitante('<%= lista.get(i).getId() %>',' <%=lista.get(i).getNome()%>' ,'<%=lista.get(i).getSobrenome()%>', '<%= lista.get(i).getDocumento() %>' ,'<%= lista.get(i).getFone() %>' )" class="editvisitante">Editar</button>
             <a  href="javascript: confirmar(<%=lista.get(i).getId()%>)"><button class="editarcad"  onclick="removerVisitante(${lista.get(i).getId()})">Excluir</button></a>
 
      <%
@@ -92,150 +91,31 @@
 
 
 
-                        <form name="frmContato" action="insert" method="post">
-                            <div class="form-group">
-                                <label for="nome">Nome:</label>
-                                <input type="text" class="form-control" id="nome" name="nome" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="sobrenome">Sobrenome:</label>
-                                <input type="text" class="form-control" id="sobrenome" name="sobrenome" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="documento">Documento:</label>
-                                <input type="text" class="form-control" id="documento" name="documento" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="telefone">Telefone:</label>
-                                <input type="text" class="form-control" id="fone" name="fone">
-                            </div>
+                        <form  type="hidden" name="frmContato" action="insert" method="post">
+                                <input type="hidden" class="form-control" id="nome" name="nome" required>
+                                <input type="hidden" class="form-control" id="sobrenome" name="sobrenome" required>
+                                <input type="hidden" class="form-control" id="documento" name="documento" required>
+                                <input type="hidden" class="form-control" id="fone" name="fone">
                         </form>
 
 
 
-<script>
-  async function cadastrarVisitante() {
-    const { value: nome } = await Swal.fire({
-      title: 'Novo Visitante',
-      html:
-        '<input id="swal-nome" class="swal2-input" placeholder="Nome" required>' +
-        '<input id="swal-sobrenome" class="swal2-input" placeholder="Sobrenome" required>' +
-        '<input id="swal-documento" class="swal2-input" placeholder="Documento" required>' +
-        '<input id="swal-telefone" class="swal2-input" placeholder="Telefone">',
-      focusConfirm: false,
-      preConfirm: () => {
-        return {
-          nome: document.getElementById('swal-nome').value,
-          sobrenome: document.getElementById('swal-sobrenome').value,
-          documento: document.getElementById('swal-documento').value,
-          telefone: document.getElementById('swal-telefone').value
-        };
-      }
-    });
-
-    if (nome) {
-      document.getElementById('nome').value = nome.nome;
-      document.getElementById('sobrenome').value = nome.sobrenome;
-      document.getElementById('documento').value = nome.documento;
-      document.getElementById('fone').value = nome.telefone;
-
-      // Submeta o formulário se necessário
-       document.forms["frmContato"].submit();
-    }
-  }
-</script>
-
-<script>
-  function editarVisitante() {
-    const id = document.querySelector('input[name="ID"]').value;
-    const nome = document.querySelector('input[name="nome"]').value;
-    const documento = document.querySelector('input[name="doc"]').value;
-    const fone = document.querySelector('input[name="fone"]').value;
-
-    Swal.fire({
-      title: 'Editar Visitante',
-      html:
-        '<input id="swal-nome" class="swal2-input" placeholder="Nome" value="' + nome + '" required>' +
-        '<input id="swal-documento" class="swal2-input" placeholder="Documento" value="' + documento + '" required>' +
-        '<input id="swal-fone" class="swal2-input" placeholder="Telefone" value="' + fone + '">',
-      focusConfirm: false,
-      preConfirm: () => {
-        return {
-          nome: document.getElementById('swal-nome').value,
-          documento: document.getElementById('swal-documento').value,
-          fone: document.getElementById('swal-fone').value
-        };
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const editedNome = result.value.nome;
-        const editedDocumento = result.value.documento;
-        const editedFone = result.value.fone;
-
-        // Atualize os campos do formulário original com os novos valores editados
-        document.querySelector('input[name="nome"]').value = editedNome;
-        document.querySelector('input[name="doc"]').value = editedDocumento;
-        document.querySelector('input[name="fone"]').value = editedFone;
-
-        // Crie um novo formulário e envie as informações para onde desejar
-        const form = document.createElement('form');
-        form.method = 'post';
-        form.action = 'update';
-
-        const hiddenId = document.createElement('input');
-        hiddenId.type = 'hidden';
-        hiddenId.name = 'ID';
-        hiddenId.value = id;
-
-        const hiddenNome = document.createElement('input');
-        hiddenNome.type = 'hidden';
-        hiddenNome.name = 'nome';
-        hiddenNome.value = editedNome;
-
-        const hiddenDocumento = document.createElement('input');
-        hiddenDocumento.type = 'hidden';
-        hiddenDocumento.name = 'doc';
-        hiddenDocumento.value = editedDocumento;
-
-        const hiddenFone = document.createElement('input');
-        hiddenFone.type = 'hidden';
-        hiddenFone.name = 'fone';
-        hiddenFone.value = editedFone;
-
-        form.appendChild(hiddenId);
-        form.appendChild(hiddenNome);
-        form.appendChild(hiddenDocumento);
-        form.appendChild(hiddenFone);
-
-        document.body.appendChild(form);
-        form.submit();
-      }
-    });
-  }
-</script>
-
-<button class="editvisitante" onclick="editarVisitante()">Editar</button>
 
 
-
-
-        <script src="scripts/controle.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="scripts/scripts.js"></script>
+        <script src="../scripts/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
-        <c:if test="${requestScope.validator eq true}">
-        <script>
-             Swal.fire(
-                        'Sucesso!',
-                        'Visitante cadastrado.',
-                        'success'
-                        );
-            </script>
 
-        </c:if>
+         <c:if test="${not empty mensagem}">
+                    <%-- Exibe o alerta somente se a mensagem não for nula --%>
+                    <script>
+                        <%= request.getAttribute("mensagem")%>
+                    </script>
+                </c:if>
+
 </body>
 
 </html>

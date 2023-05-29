@@ -77,6 +77,8 @@ public class ReservaArea extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
+        request.setCharacterEncoding("UTF-8");
+
         if (action.equals("/insertReserva")) {
             gravarReserva(request, response);
             return;
