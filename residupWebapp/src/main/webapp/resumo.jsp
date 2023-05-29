@@ -2,6 +2,10 @@
 <%@page import="br.com.residup.models.Ocorrencia"%>
 <%@page import="br.com.residup.models.Visitante"%>
 <%@page import="br.com.residup.models.Reserva"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 
 <%--<%@page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>--%>
@@ -60,16 +64,17 @@
         </nav>
     </div>
     <!-- Fim Header -->
-    <c:if test="${not empty listaReserva}">
+
+<c:if test="${not empty listaReserva}">
         <div class="mr">
             <div class="title">
                 <h3>Minhas Reservas</h3>
             </div>
             <%for (Reserva reserva : listaReserva) {%>
             <div class="group">
-                <label><%=reserva.getIdReserva()%></label>
-                <label class="oc"><%=reserva.getNomeArea()%></label>
-                <label class="dt"></label>
+                <label><%=reserva.getNomeArea()%></label>
+                <label class="oc"><%=reserva.getHoraReserva()%></label>
+                <label class="dt"><%=reserva.getDateReserva()%></label>
                 <a href="#"><button class="editar" type='submit'>Excluir</button></a>
                 <a href="#"> <button type="button" class="listando"> Listar Convidados</button></a>
               </div>
@@ -77,6 +82,14 @@
               <%}%>
         </div>
     </c:if>
+
+
+
+
+
+
+
+
     <c:if test="${not empty listaVisitante}">
         <div class="mv">
                 <div class="title">
@@ -84,21 +97,22 @@
                 </div>
                 <%for ( Visitante visitante : listaVisitante) {%>
                 <div class="group">
-                    <input type="text" placeholder="ID"  name="ID" required><%=visitante.getId()%></input>
-                    <input class="nm"  placeholder="Nome" name="nome" disabled><%=visitante.getNome() + ' ' + visitante.getSobrenome()%></input>
-                    <input class="x" placeholder="Documento" name="doc" disabled><%=visitante.getDocumento()%></input>
-                    <input class="oc" placeholder="Fone" name="fone" disabled><%=visitante.getFone()%></input>
+                    <input type="text" name="ID" required value="<%=visitante.getId()%>">
+                    <input class="nm" name="nome" disabled value="<%=visitante.getNome() + ' ' + visitante.getSobrenome()%>">
+                    <input class="x" name="doc" disabled value="<%=visitante.getDocumento()%>">
+                    <input class="oc" name="fone" disabled value="<%=visitante.getFone()%>">
                     <a  href="#"><button class="editarcad">Excluir</button></a>
                     <a href="#"><button class="editvisitante"> Editar</button></a>
                 </div>
-                <hr>
                 <%}%>
             </div>
             </div>
         </div>
     </c:if>
-    <c:if test="${not empty listaOcorrencia}">
 
+
+
+    <c:if test="${not empty listaOcorrencia}">
         <div class="mo">
             <div class="title">
                 <h3>Minhas Ocorrências</h3>
@@ -114,5 +128,6 @@
              <%}%>
         </div>
     </c:if>
+
 </body>
 </html>
