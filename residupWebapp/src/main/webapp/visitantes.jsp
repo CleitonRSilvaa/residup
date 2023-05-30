@@ -16,8 +16,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/controlevisitantes.css">
-        <link rel="stylesheet" href="../css/perfil.css">
+        <link href="css/controlevisitantes.css" rel="stylesheet" type="text/css">
+        <link href="css/perfil.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
 
   <title>Controle de Visitantes</title>
@@ -32,7 +32,7 @@
             </svg>
         </button>
         <div class="logo_header">
-            <img src="img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
+          <img src="../imagens/img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
         </div>
         <div class="navigation_header" id="navigation_header">
             <button onclick="toggleSidebar()" class="btn_icon_header">
@@ -40,10 +40,11 @@
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </button>
-            <a href="RsvSind.html" >PAGINA INICIAL</a>
-            <a href="RsvSind.html" >RESERVAR ÁREA</a>
-            <a href="#" class="active">CONTROLE DE VISITANTES</a>
-            <a href="HeaderOcorrencias.html">REGISTRO DE OCORRÊNCIAS</a>
+
+            <a href="/listarResumo" >PAGINA INICIAL</a>
+            <a href="/reservas" >RESERVAR ÁREA</a>
+            <a href="/visitantes" class="active">CONTROLE DE VISITANTES</a>
+            <a href="/Ocorrencia">REGISTRO DE OCORRÊNCIAS</a>
         </div>
         <nav>
             <ul>

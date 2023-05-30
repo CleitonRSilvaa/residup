@@ -1,11 +1,13 @@
 <%@page import="java.util.List"%>
 <%@page import="br.com.residup.models.Reserva"%>
 <%@page import="br.com.residup.models.Convidado"%>
+<%@page import="br.com.residup.models.Morador"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
+    Morador morador = (Morador) request.getAttribute("morador");
     ArrayList<Reserva> reservas = (ArrayList<Reserva>) request.getAttribute("revervas");
     ArrayList<Reserva> areas = (ArrayList<Reserva>) request.getAttribute("areas");
     ArrayList<Convidado> convidados = (ArrayList<Convidado>) request.getAttribute("listaConvidados");
@@ -26,8 +28,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Reservas</title>
-        <link rel="stylesheet" href="../css/rsvmorador.css">
-        <link rel="stylesheet" href="../css/perfil.css">
+        <link href="css/rsvmorador.css" rel="stylesheet"type="text/css" >
+        <link href="css/perfil.css" rel="stylesheet" type="text/css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
     </head>
@@ -63,158 +65,158 @@
 
         <!--Fim da header-->
         <section class="reserva">
-            <form action="insertReserva" method="post" >
-                <div class="form">
-                    <div class="titulo">
-                        <h1>Realizar nova reserva</h1>
-                    </div>
-                    <a href="#"><button type="submit"
-                                        class="bto">Salvar Reserva</button>
-                    </a>
-
-                    <div class="area">
-                        <select class="form-area" id="form-area" name ="areaSelect" required>
-                            <option selected disabled value=""></option>
-                            <%for (Reserva areaReserva : areas) {%>
-                            <option value = <%=areaReserva.getIdArea()%> > <%=areaReserva.getNomeArea()%></option>
-                            <%}%>
-                        </select>
-
-
-                    </div>
-                    <div class="horario">
-                        <select class="form-horario" id="form-horario" name="horarioSelect" required>
-                            <option selected disabled value=""></option>
-                            <%
-                                for (int i = 0; i < horarios.size(); i++) {
-                            %>
-                            <option><%=horarios.get(i)%></option>
-
-                            <%
-                                }
-                            %>
-                        </select>
-                    </div>
-
-                    <div class="datas">
-                        <div class="formdata">
-                            <input class="date" type="date"name ="dataInput" required>
-                        </div>
-
-                    </div>
-                </div>
-                </div>
-                </div>
-            </form>
-
-            <div class="mr">
-                <div class="titulo">
-                    <h1>Minhas Reservas</h1>
-                </div>
-                <%for (Reserva reserva : reservas) {%>
-                <div class="group">
-                    <label><%=reserva.getNomeArea()%></label>
-                    <label class="oc" ><%=reserva.getDateReserva()%></label>
-                    <label class="dt" ><%=reserva.getHoraReserva()%></label>
-                    <form class="listt" style="display: inline-block;" action="/convidosReserva" method="post">
-                        <input class="editar" type="hidden" name="idReserva" id="idReserva" value="<%=reserva.getIdReserva()%>">
-                        <button type="submit"  class="convidados" >
-                            Listar Convidados
-                        </button>
-                    </form>
-                    <form class="listt" style="display: inline-block;" name="frmDelete"  action="/deleteReserva" method="post">
-                        <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
-                        <button class="editar" type='button' onclick =cancelarReserva()  >Excluir Reserva</button>
-                    </form>
-                </div>
-
-                <%}%>
-
-                <div class="all-products">
-
-                    <div class="product">
-                        <img src="imagens/img/Salao.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Salão de festas</h5>
-                            <p class="card-text">Amplo espaço para realização de festas e eventos, contendo tudo que é necessário para seu evento perfeito. </p>
-                            <a href="#" class="btn btn-primary">Saber Mais</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <img src="imagens/img/reuniao.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Sala de reuniao</h5>
-                            <p class="card-text">Precisa de um espaço para trabalhar ou fazer uma reunião? Nesse espaço voce encontra conforto e muito mais.</p>
-                            <a href="#" class="btn btn-primary">Saber Mais</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <img src="imagens/img/churrasqueira.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Churrasqueira</h5>
-                            <p class="card-text">Está planejando fazer aquele churrasco com a familia ou com seus amigos? Clique em saiba mais e conheça o espaço perfeito!</p>
-                            <a href="#" class="btn btn-primary">Saber Mais</a>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <img src="magens/img/quadra.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Quadra de tenis</h5>
-                            <p class="card-text">Pensando em praticar algum esporte? Clique em saiba mais e conheça todos os beneficios que a quadra te tenis te oeferece.</p>
-                            <a href="#" class="btn btn-primary">Saber Mais</a>
-                        </div>
-                    </div>
-                </div>
-               </form>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Digite os dados do convidados</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form  id="FormsConviados"  name="FormsConviados" action="cadastroConvidado" method="post">
-
-                            <div class="modal-body">
-                            <input class="nomecomp" placeholder="Digite o nome"  type="text" name="nomeConvidado" required>
-                            <input class="doc" placeholder="Digite o Documento" type="text" name="identidade" required>
-                            <input class="editar" type="hidden" name="idReservaListaConvidado" id="idReservaListaConvidado" value="<%= request.getAttribute("IdReservaConvidado")%>">
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                                <button type="submit" class="btn btn-primary">Salvar</button>
+                    <form action="insertReserva" method="post" >
+                        <div class="form">
+                            <div class="titulo">
+                                <h1>Realizar nova reserva</h1>
                             </div>
-                            <hr>
-                            <%
-                                if (convidados != null) {
-                                    if (!convidados.isEmpty()) {
-                                        for (Convidado objConvidado : convidados) {
-                            %>
-                            <label class="nomecomp"><%= objConvidado.getNome()%></label>
-                            <label class="doc"><%= objConvidado.getIndentidade()%> </label>
-                                <input class="editar" type="hidden" name="idConviado" id="idConviado" value="<%= objConvidado.getId()%>">
-                                                            <input class="editar" type="hidden" name="idReservaListaConvidadoExclui" id="idReservaListaConvidadoExclui" value="<%= objConvidado.getId_reserva()%>">
+                            <a href="#"><button type="submit"
+                                                class="bto">Salvar Reserva</button>
+                            </a>
 
-                                <button class="editar" type="button" onclick="excluirConvidados()">Excluir</button>
+                            <div class="area">
+                                <select class="form-area" id="form-area" name ="areaSelect" required>
+                                    <option selected disabled value=""></option>
+                                    <%for (Reserva areaReserva : areas) {%>
+                                    <option value = <%=areaReserva.getIdArea()%> > <%=areaReserva.getNomeArea()%></option>
+                                    <%}%>
+                                </select>
 
-                            <hr>
-                            <%
+
+                            </div>
+                            <div class="horario">
+                                <select class="form-horario" id="form-horario" name="horarioSelect" required>
+                                    <option selected disabled value=""></option>
+                                    <%
+                                        for (int i = 0; i < horarios.size(); i++) {
+                                    %>
+                                    <option><%=horarios.get(i)%></option>
+
+                                    <%
                                         }
-                                    }
-                                }
-                            %>
+                                    %>
+                                </select>
+                            </div>
 
+                            <div class="datas">
+                                <div class="formdata">
+                                    <input class="date" type="date"name ="dataInput" required>
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </form>
+
+                    <div class="mr">
+                        <div class="titulo">
+                            <h1>Minhas Reservas</h1>
+                        </div>
+                        <%for (Reserva reserva : reservas) {%>
+                        <div class="group">
+                            <label><%=reserva.getNomeArea()%></label>
+                            <label class="oc" ><%=reserva.getDateReserva()%></label>
+                            <label class="dt" ><%=reserva.getHoraReserva()%></label>
+                            <form class="listt" style="display: inline-block;" action="/convidosReserva" method="post">
+                                <input class="editar" type="hidden" name="idReserva" id="idReserva" value="<%=reserva.getIdReserva()%>">
+                                <button type="submit"  class="convidados" >
+                                    Listar Convidados
+                                </button>
+                            </form>
+                            <form class="listt" style="display: inline-block;" name="frmDelete"  action="/deleteReserva" method="post">
+                                <input class="editar" type="hidden" name="idReservaDelete" id="idReservaDelete" value="<%=reserva.getIdReserva()%>">
+                                <button class="editar" type='button' onclick =cancelarReserva()  >Excluir Reserva</button>
+                            </form>
                         </div>
 
-                        </form>
+                        <%}%>
 
+                        <div class="all-products">
+
+                            <div class="product">
+                                <img src="imagens/img/Salao.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Salão de festas</h5>
+                                    <p class="card-text">Amplo espaço para realização de festas e eventos, contendo tudo que é necessário para seu evento perfeito. </p>
+                                    <a href="#" class="botao">Saber Mais</a>
+                                </div>
+                            </div>
+                            <div class="product">
+                                <img src="imagens/img/reuniao.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sala de reuniao</h5>
+                                    <p class="card-text">Precisa de um espaço para trabalhar ou fazer uma reunião? Nesse espaço voce encontra conforto e muito mais.</p>
+                                    <a href="#" class="botao">Saber Mais</a>
+                                </div>
+                            </div>
+                            <div class="product">
+                                <img src="imagens/img/churrasqueira.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Churrasqueira</h5>
+                                    <p class="card-text">Está planejando fazer aquele churrasco com a familia ou com seus amigos? Temos o espaço perfeito para você.</p>
+                                    <a href="#" class="botao">Saber Mais</a>
+                                </div>
+                            </div>
+                            <div class="product">
+                                <img src="imagens/img/quadra.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Quadra de tenis</h5>
+                                    <p class="card-text">Pensando em praticar algum esporte? Chame os amigos e aproveite a quadra de tenis.</p>
+                                    <a href="#" class="botao">Saber Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                       </form>
                     </div>
-                </div>
-            </div>
-        </section>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Digite os dados do convidados</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form  id="FormsConviados"  name="FormsConviados" action="cadastroConvidado" method="post">
+
+                                    <div class="modal-body">
+                                    <input class="nomecomp" placeholder="Digite o nome"  type="text" name="nomeConvidado" required>
+                                    <input class="doc" placeholder="Digite o Documento" type="text" name="identidade" required>
+                                    <input class="editar" type="hidden" name="idReservaListaConvidado" id="idReservaListaConvidado" value="<%= request.getAttribute("IdReservaConvidado")%>">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </div>
+                                    <hr>
+                                    <%
+                                        if (convidados != null) {
+                                            if (!convidados.isEmpty()) {
+                                                for (Convidado objConvidado : convidados) {
+                                    %>
+                                    <label class="nomecomp"><%= objConvidado.getNome()%></label>
+                                    <label class="doc"><%= objConvidado.getIndentidade()%> </label>
+                                        <input class="editar" type="hidden" name="idConviado" id="idConviado" value="<%= objConvidado.getId()%>">
+                                                                    <input class="editar" type="hidden" name="idReservaListaConvidadoExclui" id="idReservaListaConvidadoExclui" value="<%= objConvidado.getId_reserva()%>">
+
+                                        <button class="editar" type="button" onclick="excluirConvidados()">Excluir</button>
+
+                                    <hr>
+                                    <%
+                                                }
+                                            }
+                                        }
+                                    %>
+
+                                </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
         <div id="custom-modalOverlay" class="custom-modal-overlay">
                     <div class="custom-modal">

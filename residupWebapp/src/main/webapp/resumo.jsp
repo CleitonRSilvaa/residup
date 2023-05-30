@@ -31,9 +31,8 @@
                                                             </svg>
                                                         </button>
                                                         <div class="logo_header">
-                                                            <img src="img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
-
-                                                        </div>
+                                                                        <img src="../imagens/img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
+                                                                    </div>
                                                         <div class="navigation_header" id="navigation_header">
                                                             <button onclick="toggleSidebar()" class="btn_icon_header">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
