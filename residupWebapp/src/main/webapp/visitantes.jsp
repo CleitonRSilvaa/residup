@@ -9,9 +9,6 @@
     ArrayList<Visitante> lista = (ArrayList<Visitante>) request.getAttribute("listaVisitantes");
 %>
 
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -21,116 +18,80 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/controlevisitantes.css">
         <link rel="stylesheet" href="../css/perfil.css">
+  <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
 
-        <title>Controle de Visitantes</title>
+  <title>Controle de Visitantes</title>
 
-    </head>
+</head>
 
-    <body>
-        <div class="header" id="header">
-            <button onclick="toggleSidebar()" class="btn_icon_header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+<body>
+    <div class="header" id="header">
+        <button onclick="toggleSidebar()" class="btn_icon_header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </button>
+        <div class="logo_header">
+            <img src="img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
+        </div>
+        <div class="navigation_header" id="navigation_header">
+            <button onclick="toggleSidebar()" class="btn_icon_header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </button>
-            <div class="logo_header">
-                <img src="img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
-            </div>
-            <div class="navigation_header" id="navigation_header">
-                <button onclick="toggleSidebar()" class="btn_icon_header">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </button>
-                <a href="RsvSind.html" >PAGINA INICIAL</a>
-                <a href="RsvSind.html" >RESERVAR ÁREA</a>
-                <a href="#" class="active">CONTROLE DE VISITANTES</a>
-                <a href="HeaderOcorrencias.html">REGISTRO DE OCORRÊNCIAS</a>
-            </div>
-            <nav>
-                <ul>
-                    <li class="dropdown">
-                        <a href="">MEU PERFIL</a>
-
-                        <div class="dropdown-menu">
-                            <a href="">Editar perfil</a>
-                            <a href="">Sair da Conta</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <a href="RsvSind.html" >PAGINA INICIAL</a>
+            <a href="RsvSind.html" >RESERVAR ÁREA</a>
+            <a href="#" class="active">CONTROLE DE VISITANTES</a>
+            <a href="HeaderOcorrencias.html">REGISTRO DE OCORRÊNCIAS</a>
         </div>
-        <button type="button" onclick="cadastrarVisitante()" class="cadastrarvisitante">Novo Visitante</button>
-        <button type="button" class="cadastrarvisitante"><a class="cadastrarvisitante" href="report">Relátorio</a></button>
+        <nav>
+            <ul>
+                <li class="dropdown">
+                    <a href="">MEU PERFIL</a>
+
+                    <div class="dropdown-menu">
+                        <a href="">Editar perfil</a>
+                        <a href="">Sair da Conta</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+  <button type="button" onclick="cadastrarVisitante()" class="cadastrarvisitante">Novo Visitante</button>
+  <button type="button" class="cadastrarvisitante"><a class="cadastrarvisitante" href="report">Relátorio</a></button>
 
 
-        <form class="filtro" action="visitantes" method = "GET" >
-            <button type='submit' class="busc">Buscar</button>
-            <input type="text" id="txtBsca" name= "txtBsca" placeholder="Buscar Visitante..."/>
-        </form>
+  <form class="filtro" action="visitantes" method = "GET" >
+  <button type='submit' class="busc">Buscar</button>
+  <input type="text" id="txtBsca" name= "txtBsca" placeholder="Buscar Visitante..."/>
+    </form>
 
 
-        <!-- Modal de Cadastro -->
-        <div id="modal" class="modal">
-        </div>
-        <div class="form">
-            <div class="title">
-                <h2>Seus Visitantes</h2>
-            </div>
-            <div class="group">
-                <%
-                    for (int i = 0; i < lista.size(); i++) {
-                %>
-                <input placeholder="ID" name="ID" value="<%= lista.get(i).getId()%>" disabled></input>
-                <input class="nm"  placeholder="Nome" name="nome" value="<%=lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%>"disabled></input>
-                <input class="x" placeholder="Documento" name="doc" value="<%= lista.get(i).getDocumento()%>" disabled></input>
-                <input class="oc" placeholder="Fone" name="fone" value="<%= lista.get(i).getFone()%>" disabled></input>
-                <button type="submit" onclick= "editarVisitante('<%= lista.get(i).getId()%>', ' <%=lista.get(i).getNome()%>', '<%=lista.get(i).getSobrenome()%>', '<%= lista.get(i).getDocumento()%>', '<%= lista.get(i).getFone()%>')" class="editvisitante">Editar</button>
-                <a  href="javascript: confirmar(<%=lista.get(i).getId()%>)"><button class="editarcad"  onclick="removerVisitante(${lista.get(i).getId()})">Excluir</button></a>
+  <!-- Modal de Cadastro -->
+  <div id="modal" class="modal">
+  </div>
+  <div class="form">
+    <div class="title">
+        <h2>Seus Visitantes</h2>
+    </div>
+    <div class="group">
+     <%
+       for (int i = 0; i < lista.size(); i++) {
+     %>
+            <input placeholder="ID" name="ID" value="<%= lista.get(i).getId() %>" disabled></input>
+            <input class="nm"  placeholder="Nome" name="nome" value="<%=lista.get(i).getNome()%> <%=lista.get(i).getSobrenome()%>"disabled></input>
+            <input class="x" placeholder="Documento" name="doc" value="<%= lista.get(i).getDocumento() %>" disabled></input>
+            <input class="oc" placeholder="Fone" name="fone" value="<%= lista.get(i).getFone() %>" disabled></input>
+            <button type="submit" onclick= "editarVisitante('<%= lista.get(i).getId() %>',' <%=lista.get(i).getNome()%>' ,'<%=lista.get(i).getSobrenome()%>', '<%= lista.get(i).getDocumento() %>' ,'<%= lista.get(i).getFone() %>' )" class="editvisitante">Editar</button>
+            <a  href="javascript: confirmar(<%=lista.get(i).getId()%>)"><button class="editarcad"  onclick="removerVisitante(${lista.get(i).getId()})">Excluir</button></a>
 
-                <%
-                    }
-                %>
+     <%
+     }
+     %>
 
-            </div>
-        </div>
-
-        <div id="custom-modalOverlay" class="custom-modal-overlay">
-            <div class="custom-modal">
-              <h2>Seu Perfil</h2>
-                <form action="updatePerfilMorador" method="post" enctype="multipart/form-data">
-                  <div class="custom-perfil">
-                    <input type="text" id="custom-nome" placeholder="Nome" name="Nome" value="" disabled>
-
-                    <input type="text" id="custom-sobrenome" placeholder="Sobrenome" name="Sobrenome" value="" disabled>
-                    <label class="custom-picture" for="custom-picture__input" tabIndex="0">
-                      <span class="custom-picture__image"></span>
-                    </label>
-                    <label></label>
-
-                    <input type="file" name="custom-picture__input" id="custom-picture__input" >
-                  </div>
-                  <div class="custom-input-group2">
-                    <input type="rg" id="custom-rg" placeholder="RG" maxlength="9" name="RG" value="" disabled>
-                    <input class="custom-cpff" type="cpf" id="custom-cpf" placeholder="CPF" maxlength="14" name="CPF" value= disabled>
-                  </div>
-
-                  <div class="custom-input-group2">
-                    <input type="rg" id="custom-apto" placeholder="apto" maxlength="9" name="Apto" value="" disabled>
-                    <input class="custom-cpff" type="cpf" id="custom-bloco" placeholder="Bloco" maxlength="14" name="Bloco" value= disabled>
-                  </div>
-                  <div class="custom-input-group2">
-                    <input type="rg" id="custom-rg-senha" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
-                    <input class="custom-cpff" type="cpf" id="custom-cpf-confirma" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
-                  </div>
-                  <div class="custom-input-group">
-                    <button type="submit" class="custom-cadastrar">Alterar Senha</button>
-                  </div>
-
-                </form>
-
-            </div>
-          </div>
+    </div>
+</div>
 
         <form  type="hidden" name="frmContato" action="insert" method="post">
             <input type="hidden" class="form-control" id="nome" name="nome" required>
@@ -160,6 +121,6 @@
             </script>
         </c:if>
 
-    </body>
+</body>
 
 </html>

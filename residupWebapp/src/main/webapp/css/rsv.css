@@ -13,7 +13,7 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: #f1f1f1;
     color: white;
 }
 
@@ -53,7 +53,7 @@ body{
     color: red;
 }
 .active{
-    background: #49ae96;
+        background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
     border-radius: 10px;
    
@@ -122,7 +122,7 @@ nav li a:hover{
 }
 
 .form{
-    background-color: #467599;
+    background-color: #fff;
     height: 570px;
     width: 97%;
     margin-left: 1.5%;
@@ -131,13 +131,13 @@ nav li a:hover{
 }
 
 .filtro{
-    width: 98.8%;
+    width: 98.7%;
     margin: 0;
-    padding: 8px;
+    padding: 10px;
     height: 35px;
     border-radius: 10px 10px 0 0;
-    color: white;
-    background-color: #1d3354;
+    color: #fff;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
  }
  .filtro .text{
     width: 50%;
@@ -148,13 +148,14 @@ nav li a:hover{
     float: right;
     width: 150px;
     height: 28px;
-    background-color: transparent;
+    border: 2px solid #006494, #561be0;
+    background-color: #FFF;
+    color: #616161;
+    font-weight: bold;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     font-size: 15px;
     margin-left: 2%;
-    color: white;
     transition: all 0.4s ease;
     display: inline-block;
     text-align: center;
@@ -164,7 +165,7 @@ nav li a:hover{
     margin: 0px;
     width: 150px;
     height:  28px;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     text-decoration: none;
     float: right;
     margin-right: 2%;

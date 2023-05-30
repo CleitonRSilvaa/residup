@@ -1,17 +1,17 @@
 @media screen and (max-width: 768px) {
-  .navigation_header {
-    position: absolute;
-    flex-direction: column !important;
-    top: 0;
-    background: #c4c4c4;
-    height: 100%;
-    width: 35vw;
-    padding: 1em;
-    animation-duration: 1s;
-    margin-left: -vw;
+  .navigation_header{
+      position: absolute;
+      flex-direction: column !important;
+      top: 0;
+      background: #c4c4c4;
+      height: 100%;
+      width: 35vw;
+      padding: 1em;
+      animation-duration: 1s;
+      margin-left: -vw;
   }
-  .btn_icon_header {
-    display: block;
+  .btn_icon_header{
+      display: block;
   }
 }
 @keyframes showSidebar {
@@ -22,7 +22,6 @@
     margin-left: -10vw;
   }
 }
-
 
 .custom-modal-overlay {
   position: fixed;
