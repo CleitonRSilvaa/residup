@@ -1,13 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="br.com.residup.models.Ocorrencia"%>
-
+<%@page import="br.com.residup.models.Morador" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.util.ArrayList"%>
 
 
 <%
     ArrayList<Ocorrencia> lista = (ArrayList<Ocorrencia>) request.getAttribute("ocorrencias");
+    Morador morador = (Morador) request.getAttribute("morador");
+
 %>
 
 <!DOCTYPE html>
@@ -18,6 +20,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/ocorrenciamorador.css" rel="stylesheet" type="text/css"/>
+         <link href="css/perfil.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
 
         <title>Ocorrências</title>
@@ -104,6 +107,36 @@
                 </c:forEach>
             </div>
         </section>
+           <div id="custom-modalOverlay" class="custom-modal-overlay">
+                  <div class="custom-modal">
+                    <c:if test="${not empty morador}">
+
+                      <form  method="post" enctype="multipart/form-data">
+                        <div class="custom-perfil">
+                          <input type="text" id="custom-nome" placeholder="Nome" name="Nome" value="<%= morador.getNome() + ' ' + morador.getSobrenome() %>" disabled>
+
+                          <input type="text" id="custom-sobrenome" placeholder="Sobrenome" name="Sobrenome" value="<%= morador.getSobrenome() %>" disabled>
+                          <label class="custom-picture" for="custom-picture__input" tabIndex="0">
+                            <span class="custom-picture__image"></span>
+                          </label>
+                          <label></label>
+
+                          <input type="file" name="custom-picture__input" id="custom-picture__input" value="<%= morador.getEnderecoFoto() %>">
+                        </div>
+                        <div class="custom-input-group2">
+                          <input type="rg" id="custom-rg" placeholder="RG" maxlength="9" name="RG" value=<%=morador.getRg() %> disabled>
+                          <input class="custom-cpff" type="cpf" id="custom-cpf" placeholder="CPF" maxlength="14" name="CPF" value=<%=morador.getCpf() %> disabled>
+                        </div>
+
+                        <div class="custom-input-group2">
+                          <input type="rg" id="custom-apto" placeholder="apto" maxlength="9" name="Apto" value=<%=morador.getNumeroApartamento() %> disabled>
+                          <input class="custom-cpff" type="cpf" id="custom-bloco" placeholder="Bloco" maxlength="14" name="Bloco" value=<%=morador.getBloco() %> disabled>
+                        </div>
+
+                      </form>
+                    </c:if>
+                  </div>
+                </div>
 
         <!-- JavaScript Link -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -119,6 +152,7 @@
             </script>
         </c:if>
         <script src="scripts/script.js"></script>
+         <script src="../scripts/perfil.js"></script>
     </body>
 </html>
 

@@ -71,7 +71,7 @@
                 <input class="cpff" type="cpf" id="cpf" placeholder="Bloco" maxlength="14" name="Bloco" value= <%= morador.getBloco() %> disabled>
               </div>
                 <div class="input-group2">
-                    <input type="rg" id="rg" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
+                    <input type="rg" id="rg" placeholder="Digite a nova Senha" maxlength="9" name="senha" required>
                     <input class="cpff" type="cpf" id="cpf" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
                 </div>
               <div class="input-group">

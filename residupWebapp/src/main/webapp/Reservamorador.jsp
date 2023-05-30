@@ -219,41 +219,35 @@
                 </section>
 
         <div id="custom-modalOverlay" class="custom-modal-overlay">
-                    <div class="custom-modal">
-                      <h2>Seu Perfil</h2>
-                        <form action="updatePerfilMorador" method="post" enctype="multipart/form-data">
-                          <div class="custom-perfil">
-                            <input type="text" id="custom-nome" placeholder="Nome" name="Nome" value="" disabled>
+          <div class="custom-modal">
+            <c:if test="${not empty morador}">
 
-                            <input type="text" id="custom-sobrenome" placeholder="Sobrenome" name="Sobrenome" value="" disabled>
-                            <label class="custom-picture" for="custom-picture__input" tabIndex="0">
-                              <span class="custom-picture__image"></span>
-                            </label>
-                            <label></label>
+              <form  method="post" enctype="multipart/form-data">
+                <div class="custom-perfil">
+                  <input type="text" id="custom-nome" placeholder="Nome" name="Nome" value="<%= morador.getNome() + ' ' + morador.getSobrenome() %>" disabled>
 
-                            <input type="file" name="custom-picture__input" id="custom-picture__input" >
-                          </div>
-                          <div class="custom-input-group2">
-                            <input type="rg" id="custom-rg" placeholder="RG" maxlength="9" name="RG" value="" disabled>
-                            <input class="custom-cpff" type="cpf" id="custom-cpf" placeholder="CPF" maxlength="14" name="CPF" value= disabled>
-                          </div>
+                  <input type="text" id="custom-sobrenome" placeholder="Sobrenome" name="Sobrenome" value="<%= morador.getSobrenome() %>" disabled>
+                  <label class="custom-picture" for="custom-picture__input" tabIndex="0">
+                    <span class="custom-picture__image"></span>
+                  </label>
+                  <label></label>
 
-                          <div class="custom-input-group2">
-                            <input type="rg" id="custom-apto" placeholder="apto" maxlength="9" name="Apto" value="" disabled>
-                            <input class="custom-cpff" type="cpf" id="custom-bloco" placeholder="Bloco" maxlength="14" name="Bloco" value= disabled>
-                          </div>
-                          <div class="custom-input-group2">
-                            <input type="rg" id="custom-rg-senha" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
-                            <input class="custom-cpff" type="cpf" id="custom-cpf-confirma" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
-                          </div>
-                          <div class="custom-input-group">
-                            <button type="submit" class="custom-cadastrar">Alterar Senha</button>
-                          </div>
+                  <input type="file" name="custom-picture__input" id="custom-picture__input" value="<%= morador.getEnderecoFoto() %>">
+                </div>
+                <div class="custom-input-group2">
+                  <input type="rg" id="custom-rg" placeholder="RG" maxlength="9" name="RG" value=<%=morador.getRg() %> disabled>
+                  <input class="custom-cpff" type="cpf" id="custom-cpf" placeholder="CPF" maxlength="14" name="CPF" value=<%=morador.getCpf() %> disabled>
+                </div>
 
-                        </form>
+                <div class="custom-input-group2">
+                  <input type="rg" id="custom-apto" placeholder="apto" maxlength="9" name="Apto" value=<%=morador.getNumeroApartamento() %> disabled>
+                  <input class="custom-cpff" type="cpf" id="custom-bloco" placeholder="Bloco" maxlength="14" name="Bloco" value=<%=morador.getBloco() %> disabled>
+                </div>
 
-                    </div>
-                  </div>
+              </form>
+            </c:if>
+          </div>
+        </div>
 
 
         <script src="../scripts/scriptReserva.js"></script>
