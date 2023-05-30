@@ -1,28 +1,34 @@
 package br.com.residup.servlets;
 
+import br.com.residup.daos.MoradorDao;
 import br.com.residup.daos.ReservaDao;
 import br.com.residup.models.Convidado;
 import br.com.residup.models.IconAlertJS;
+import br.com.residup.models.Morador;
 import br.com.residup.models.Reserva;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 
 import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
+import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 
-@WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva", "/excluirConvidado", "/cadastroConvidado", "/convidosReserva" })
+@WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva", "/excluirConvidado", "/cadastroConvidado", "/convidosReserva" ,"/updateMoradorTelaReserva" })
 public class ReservaArea extends HttpServlet {
 
 
@@ -64,7 +70,10 @@ public class ReservaArea extends HttpServlet {
               String id_moardor = (String) request.getSession().getAttribute("id_morador");
               List reservaList = reservaDao.reservas(Integer.parseInt(id_moardor));
               List areasList = reservaDao.areas();
+              String cpf = (String) request.getSession().getAttribute("cpf");
+              Morador morador = new MoradorDao().buscarMorador(cpf);
 
+              request.setAttribute("morador", morador);
               request.setAttribute("revervas", reservaList);
               request.setAttribute("areas", areasList);
               request.getRequestDispatcher("Reservamorador.jsp").forward(request, response);
@@ -97,6 +106,12 @@ public class ReservaArea extends HttpServlet {
 
         if (action.equals("/cadastroConvidado")) {
             cadastroConvidado(request, response);
+            return;
+        }
+        if (action.equals("/updateMoradorTelaReserva")) {
+
+            updatePerfilMorador(request,response);
+
             return;
         }
 
@@ -290,6 +305,82 @@ public class ReservaArea extends HttpServlet {
         }
 
 
+    }
+
+    public void updatePerfilMorador(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        Map<String, String> parameters = uploadImage(request);
+        String fotoMoradorImagePath = parameters.get("image");
+
+        var senha = parameters.get("newsenha");
+
+        String cpf = (String) request.getSession().getAttribute("cpf");
+        var morador = new Morador(cpf,senha);
+        morador.setEnderecoFoto(fotoMoradorImagePath);
+
+//        if(!MoradorDao.updateMoradorPerfil(morador)){
+//            String msgJs = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Ocorreu um erro na alteração do Perfil. Tente novamente mais tarde!");
+//            request.getSession().setAttribute("mgsJS", msgJs);
+//            request.getSession().setAttribute("resultReserva", true);
+//            response.sendRedirect("/reservas");
+//            return;
+//        }
+//        String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Dados atualizado com sucesso");
+//        request.getSession().setAttribute("mgsJS", msgJs);
+//        request.getSession().setAttribute("resultReserva", true);
+//        response.sendRedirect("/reservas");
+    }
+    private Map<String, String> uploadImage(HttpServletRequest httpServletRequest) {
+
+        Map<String, String> requestParameters = new HashMap<>();
+
+        if (isMultipartContent(httpServletRequest)) {
+
+            try {
+
+                DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+
+                List<FileItem> fileItems = new ServletFileUpload(diskFileItemFactory).parseRequest(httpServletRequest);
+
+                for (FileItem fileItem : fileItems) {
+
+                    checkFieldType(fileItem, requestParameters);
+
+                }
+
+            } catch (Exception ex) {
+
+                requestParameters.put("image", "imagens/fotoMorador/default-perfil.jpg");
+
+            }
+
+        }
+
+        return requestParameters;
+
+    }
+
+    private void checkFieldType(FileItem item, Map requestParameters) throws Exception {
+
+        if (item.isFormField()) {
+
+            requestParameters.put(item.getFieldName(), item.getString());
+
+        } else {
+
+            String fileName = processUploadedFile(item);
+            requestParameters.put("image", "imagens/fotoMorador/".concat(fileName));
+
+        }
+
+    }
+
+    private String processUploadedFile(FileItem fileItem) throws Exception {
+        Long currentTime = new Date().getTime();
+        String fileName = currentTime.toString().concat("-").concat(fileItem.getName().replace(" ", ""));
+        String filePath = this.getServletContext().getRealPath("imagens/fotoMorador").concat(File.separator).concat(fileName);
+        fileItem.write(new File(filePath));
+        return fileName;
     }
 
 
