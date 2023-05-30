@@ -1,5 +1,6 @@
 package br.com.residup.servlets;
 
+import br.com.residup.daos.VisitanteDao;
 import br.com.residup.models.IconAlertJS;
 import br.com.residup.daos.MoradorDao;
 import org.apache.commons.fileupload.FileItem;
@@ -52,7 +53,16 @@ public class Morador extends HttpServlet {
                 String cpfFiltro = request.getParameter("txtBsca");
                MoradorDao moradorDao = MoradorDao.getInstance();
                List listaMoradores = moradorDao.listarMoradores("");
-
+                Boolean check = (Boolean) request.getSession().getAttribute("check");
+                String mgs = (String) request.getSession().getAttribute("mgsJS");
+                if (check != null) {
+                    if (check) {
+                        String msg = mgs;
+                        request.setAttribute("mensagem", msg);
+                    }
+                }
+                request.getSession().removeAttribute("check");
+                request.getSession().removeAttribute("mgsJS");
                request.setAttribute("moradores", listaMoradores);
                 request.getRequestDispatcher("listaMorador.jsp").forward(request, response);
 
@@ -65,6 +75,10 @@ public class Morador extends HttpServlet {
         }
         if (action.equals("/carregarMorador")){
             carregarMorador(request,response);
+            return;
+        }
+        if(action.equals("/deleteMorador")){
+            removerMorador(request,response);
             return;
         }
 
@@ -174,6 +188,23 @@ public class Morador extends HttpServlet {
             response.sendRedirect("/reservas");
         }
         response.sendRedirect("/perfilMorador");
+    }
+
+    protected void removerMorador(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        var cpf = request.getParameter("cpfMorador");
+        br.com.residup.models.Morador morador = new br.com.residup.models.Morador(cpf,null);
+
+        if (MoradorDao.deletarMorador(morador)){
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Morador deletado com sucesso!");
+            request.getSession().setAttribute("mgsJS", msgJs);
+            request.getSession().setAttribute("check", true);
+        }else{
+            String msgJsErro = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Erro deletar morador!");
+            request.getSession().setAttribute("mgsJS", msgJsErro);
+            request.getSession().setAttribute("check", true);
+        }
+        response.sendRedirect("/listarMorador");
     }
 
     public void carregarMorador(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

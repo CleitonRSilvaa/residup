@@ -2,6 +2,7 @@ package br.com.residup.daos;
 
 import br.com.residup.models.Morador;
 import br.com.residup.models.PerfilMorador;
+import br.com.residup.models.Visitante;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import java.sql.*;
@@ -238,6 +239,40 @@ public class MoradorDao {
         }
 
 
+    }
+
+    public static boolean deletarMorador(Morador morador) {
+        String delete = "UPDATE MORADOR SET STATUS_CONTA = 0 WHERE CPF=?";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(delete);
+            pst.setString(1, morador.getCpf());
+            pst.executeUpdate();
+            if (!connection.isClosed()){
+                connection.close();
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static boolean ativarMorador(Morador morador) {
+        String ativar = "UPDATE MORADOR SET STATUS_CONTA = 1 WHERE CPF=?";
+        try {
+            Connection connection = abrirConexao();
+            PreparedStatement pst = connection.prepareStatement(ativar);
+            pst.setString(1, morador.getCpf());
+            pst.executeUpdate();
+            if (!connection.isClosed()){
+                connection.close();
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 
 
