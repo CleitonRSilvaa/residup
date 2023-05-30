@@ -35,7 +35,7 @@
                     <h2 class="textLogin">Login</h2>
                 </section>
                 <section class="inputs-container">
-                    <input type="text" name="cpfLogin" placeholder="123.456.789-10" required> <!-- Corrigido o tipo do input para "text" -->
+                    <input type="number" name="cpfLogin" placeholder="123.456.789-10" min="11" maxlength="11" required> <!-- Corrigido o tipo do input para "text" -->
                     <div class="password-container">
                         <input type="password" name="senhaLogin" id="field-password" class="field-password" placeholder="******" required >
                         <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
