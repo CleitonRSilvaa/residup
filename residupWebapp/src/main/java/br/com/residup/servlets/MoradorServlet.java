@@ -1,8 +1,7 @@
 package br.com.residup.servlets;
-
-import br.com.residup.daos.VisitanteDao;
 import br.com.residup.models.IconAlertJS;
 import br.com.residup.daos.MoradorDao;
+import br.com.residup.models.Morador;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -26,8 +25,8 @@ import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipar
 
 
 @WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/listarMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador", "/carregarMorador"})
-public class Morador extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(Morador.class.getName());
+public class MoradorServlet extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(MoradorServlet.class.getName());
 
 
     @Override
@@ -63,7 +62,7 @@ public class Morador extends HttpServlet {
                 }
                 request.getSession().removeAttribute("check");
                 request.getSession().removeAttribute("mgsJS");
-               request.setAttribute("moradores", listaMoradores);
+                request.setAttribute("moradores", listaMoradores);
                 request.getRequestDispatcher("listaMorador.jsp").forward(request, response);
 
                 return;
@@ -105,14 +104,8 @@ public class Morador extends HttpServlet {
                 var telefone = parameters.get("telefoneMorador");
                 var numero_apartamento = parameters.get("numero_apartamentoMorador");
                 var senha = parameters.get("senhaMorador");
-
-
-
-
-                System.out.println(fotoMoradorImagePath);
-                var morador = new br.com.residup.models.Morador(nome,sobrenome,cpf,rg,numero_apartamento,bloco,senha);
+                var morador = new Morador(nome,sobrenome,cpf,rg,numero_apartamento,bloco,senha);
                 morador.setEnderecoFoto(fotoMoradorImagePath);
-
 
 
                 if(MoradorDao.checkCadastro(cpf)){
@@ -177,8 +170,7 @@ public class Morador extends HttpServlet {
         var senha = parameters.get("Senha");
         var confirmarSenha = parameters.get("Confs");
 
-
-        var morador = new br.com.residup.models.Morador(null,null,"52201779821",null,null,null,senha);
+        var morador = new Morador(null,null,"52201779821",null,null,null,senha);
         morador.setEnderecoFoto(fotoMoradorImagePath);
 
         if(!MoradorDao.updateMoradorPerfil(morador)){
@@ -193,7 +185,7 @@ public class Morador extends HttpServlet {
     protected void removerMorador(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         var cpf = request.getParameter("cpfMorador");
-        br.com.residup.models.Morador morador = new br.com.residup.models.Morador(cpf,null);
+        var morador = new br.com.residup.models.Morador(cpf,null);
 
         if (MoradorDao.deletarMorador(morador)){
             String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Morador deletado com sucesso!");
@@ -209,11 +201,10 @@ public class Morador extends HttpServlet {
 
     public void carregarMorador(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-
         String action = request.getServletPath();
         var cpf = request.getParameter("cpfMorador");
         try {
-            br.com.residup.models.Morador morador = new MoradorDao().buscarMorador(cpf);
+           var morador = new MoradorDao().buscarMorador(cpf);
 
             request.setAttribute("moradorEditar", morador);
             request.getRequestDispatcher("editarMorador.jsp").forward(request, response);
