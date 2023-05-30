@@ -73,7 +73,8 @@
           <label class="oc"><%=morador.getCpf()%></label>
           <label class="x"><%=morador.getNumeroApartamento()%></label>
           <label class="x"><%=morador.getBloco()%></label>
-          <form action="#" method="post">
+          <form action="/deleteMorador" method="get">
+              <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%=morador.getCpf()%>">
               <a  href="#"><button class="editar" type="submit">Excluir</button></a>
           </form>
           <form action="/carregarMorador" method="get">
@@ -86,5 +87,14 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
+
+             <c:if test="${not empty mensagem}">
+                        <%-- Exibe o alerta somente se a mensagem não for nula --%>
+                        <script>
+                            <%= request.getAttribute("mensagem")%>
+                        </script>
+                    </c:if>
 </body>
 </html>
