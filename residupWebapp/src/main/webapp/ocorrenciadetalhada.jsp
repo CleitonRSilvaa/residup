@@ -20,7 +20,7 @@
     <link href="css/ocorrenciadetalhada.css" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
 
-    <title>Header Reserva</title>
+    <title>Ocorrência Detalhada</title>
 </head>
 <body>
     <div class="header" id="header">

@@ -153,9 +153,9 @@ body {
   .modal {
     width: 60%;
     height: 400px;
-    background-color: #1d3354;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
@@ -318,7 +318,7 @@ body {
     margin-top: 0px;
     align-items: center;
     width: 100%;
-    background-color: #1d3354;
+    border-color: rgb(27, 152, 224);
     border-radius: 15px;
   
   }
@@ -345,13 +345,13 @@ body {
     margin-top: 10px;
     width: 80%;
     height: 5px;
-    background-color: rgba(255, 255, 255, 0.32);
+    border: 2px solid #1b98e0;
+    background-color: #FFF;
+    color: #616161;
     border-radius: 20px;
     outline: none;
-    border: 2px solid transparent;
     padding: 15px;
     font-size: 15px;
-    color: #616161;
     transition: all 0.4s ease;
     float: right;
   }

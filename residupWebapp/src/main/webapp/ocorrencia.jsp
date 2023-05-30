@@ -18,6 +18,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/ocorrenciamorador.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
+
         <title>Ocorrências</title>
     </head>
     <body class="bodyCorNova">
