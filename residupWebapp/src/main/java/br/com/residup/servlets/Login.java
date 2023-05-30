@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
         }
 
         String primeiroAcesso = (String) request.getSession().getAttribute("primeiroAcesso");
-        if (primeiroAcesso != null) request.setAttribute("primeiroAcesso", true);
+        if (primeiroAcesso != null) request.setAttribute("pprimeiroAcesso", true);
 
         request.getSession().removeAttribute("errorSenha");
         request.getSession().removeAttribute("primeiroAcesso");
@@ -99,12 +99,14 @@ public class Login extends HttpServlet {
                 Morador morador = new Morador(cpfTemp, senhaTemp);
                 request.getSession().removeAttribute("cpfTemp");
                 if (loginDao.autualizarSenha(morador)){
+                    request.getSession().removeAttribute("primeiroAcesso");
                     String scriptMensagem = scriptMensagemAlertJs(
                             IconAlertJS.success,
                             "Senha atualizada com sucesso.",
-                            "Efetue novo login!"
+                            "Efetue novamente o login!"
                     );
-                    request.getSession().setAttribute("mensagemAlert", scriptMensagem);
+                    String fecharModal = " modal.style.display = 'none';";
+                    request.getSession().setAttribute("mensagemAlert", scriptMensagem + fecharModal);
 
                 }else {
                     String scriptMensagem = scriptMensagemAlertJs(
