@@ -22,7 +22,7 @@ import java.util.List;
 
 import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 
-@WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva", "/excluirConvidado", "/cadastroConvidado", "/convidosReserva"})
+@WebServlet(urlPatterns = {"/reservas", "/insertReserva", "/selectReserva", "/updateRerva", "/deleteReserva", "/excluirConvidado", "/cadastroConvidado", "/convidosReserva" })
 public class ReservaArea extends HttpServlet {
 
 

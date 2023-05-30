@@ -57,4 +57,23 @@ function cancelarReserva() {
 
 
 
+ function excluirConvidados() {
+                Swal.fire({
+                    title: 'Excluir convidado?',
+                    text: "Você não será capaz de reverter isso!",
+                    timer: 10000,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Excluir!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    var form = document.getElementById("FormsConviados");
+                        form.action = "excluirConvidado";
+                        form.method = "POST";
+                        form.submit();
 
+                    }
+                });
+            }

@@ -18,13 +18,7 @@
 
 %>
 
-<%@page import="br.com.residup.models.Morador"%>
 
-
-<%
-    Morador morador = (Morador) request.getAttribute("morador");
-
-%>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -32,7 +26,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Reservas</title>
-        <link rel="stylesheet" href="css/rsvmorador.css">
+        <link rel="stylesheet" href="../css/rsvmorador.css">
+        <link rel="stylesheet" href="../css/perfil.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     </head>
@@ -59,51 +54,10 @@
                 <a href="/Ocorrencia">REGISTRO DE OCORRENCIAS</a>
             </div>
 
-                <form action="perfilMorador" method="get">
-                    <button type="submit" id="openModal">Meu Perfil</button>
-                    </form>
-                <div id="modalOverlay" class="modal-overlay">
-            <div class="modal">
-                    <h2>Seu Perfil</h2>
-                    <c:if test="${not empty morador}">
-
-                    <form action="updatePerfilMorador" method="post" enctype="multipart/form-data">
-                      <div class="perfil">
-                        <input type="text" id="nome" placeholder="Nome " name="Nome" value="<%= morador.getNome() + ' ' + morador.getSobrenome() %>" disabled>
-
-                        <input type="text" id="nome" placeholder="Sobrenome" name="Sobrenome" value="<%= morador.getSobrenome() %>"  disabled>
-                        <label class="picture" for="picture__input" tabIndex="0">
-                          <span class="picture__image"></span>
-                        </label>
-                        <label></label>
-
-                        <input type="file" name="picture__input" id="picture__input" value="<%= morador.getEnderecoFoto() %>" >
-                      </div>
-                      <div class="input-group2">
-                        <input type="rg" id="rg" placeholder="RG" maxlength="9" name="RG" value= <%= morador.getRg() %> disabled>
-                        <input class="cpff" type="cpf" id="cpf" placeholder="CPF" maxlength="14" name="CPF" value= <%= morador.getCpf() %> disabled>
-                      </div>
-
-                      <div class="input-group2">
-                        <input type="rg" id="rg" placeholder="apto" maxlength="9" name="Apto" value= <%= morador.getNumeroApartamento() %> disabled>
-                        <input class="cpff" type="cpf" id="cpf" placeholder="Bloco" maxlength="14" name="Bloco" value= <%= morador.getBloco() %> disabled>
-                      </div>
-                        <div class="input-group2">
-                            <input type="rg" id="rg" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
-                            <input class="cpff" type="cpf" id="cpf" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
-                        </div>
-                      <div class="input-group">
-                        <button type="submit" class="cadastrar">Alterar Senha</button>
-                      </div>
-
-                    </form>
-                    </c:if>
-                  </div>
+             <button type="button" onclick="openModalteste()" id="openModal">Meu Perfil</button>
 
 
-            </div>
-                </nav>
-            </div>
+        </div>
 
 
 
@@ -224,7 +178,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form  id="FormsConviados"  name="FormsConviados" action="cadastroConvidado" method="post">
-                            
+
                             <div class="modal-body">
                             <input class="nomecomp" placeholder="Digite o nome"  type="text" name="nomeConvidado" required>
                             <input class="doc" placeholder="Digite o Documento" type="text" name="identidade" required>
@@ -232,7 +186,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                                 <button type="submit" class="btn btn-primary">Salvar</button>
-                            </div>   
+                            </div>
                             <hr>
                             <%
                                 if (convidados != null) {
@@ -254,65 +208,58 @@
                             %>
 
                         </div>
-                            
+
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
         </section>
 
+        <div id="custom-modalOverlay" class="custom-modal-overlay">
+                    <div class="custom-modal">
+                      <h2>Seu Perfil</h2>
+                        <form action="updatePerfilMorador" method="post" enctype="multipart/form-data">
+                          <div class="custom-perfil">
+                            <input type="text" id="custom-nome" placeholder="Nome" name="Nome" value="" disabled>
+
+                            <input type="text" id="custom-sobrenome" placeholder="Sobrenome" name="Sobrenome" value="" disabled>
+                            <label class="custom-picture" for="custom-picture__input" tabIndex="0">
+                              <span class="custom-picture__image"></span>
+                            </label>
+                            <label></label>
+
+                            <input type="file" name="custom-picture__input" id="custom-picture__input" >
+                          </div>
+                          <div class="custom-input-group2">
+                            <input type="rg" id="custom-rg" placeholder="RG" maxlength="9" name="RG" value="" disabled>
+                            <input class="custom-cpff" type="cpf" id="custom-cpf" placeholder="CPF" maxlength="14" name="CPF" value= disabled>
+                          </div>
+
+                          <div class="custom-input-group2">
+                            <input type="rg" id="custom-apto" placeholder="apto" maxlength="9" name="Apto" value="" disabled>
+                            <input class="custom-cpff" type="cpf" id="custom-bloco" placeholder="Bloco" maxlength="14" name="Bloco" value= disabled>
+                          </div>
+                          <div class="custom-input-group2">
+                            <input type="rg" id="custom-rg-senha" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
+                            <input class="custom-cpff" type="cpf" id="custom-cpf-confirma" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
+                          </div>
+                          <div class="custom-input-group">
+                            <button type="submit" class="custom-cadastrar">Alterar Senha</button>
+                          </div>
+
+                        </form>
+
+                    </div>
+                  </div>
+
+
         <script src="../scripts/scriptReserva.js"></script>
+        <script src="../scripts/perfil.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css "rel="stylesheet">
-        <script>
-                          // Obtenha uma referência ao botão "Meu Perfil" e ao modal
-                          const openModalButton = document.getElementById('openModal');
-                          const modalOverlay = document.getElementById('modalOverlay');
 
-                          openModalButton.addEventListener('click', function () {
-
-                                  modalOverlay.style.opacity = '1';
-                                  modalOverlay.style.pointerEvents = 'auto';
-                                });
-
-                                modalOverlay.addEventListener('click', function (event) {
-                                        if (event.target === modalOverlay) {
-                                          modalOverlay.style.opacity = '0';
-                                          modalOverlay.style.pointerEvents = 'none';
-                                        }
-                                      });
-
-                        </script>
-
-                        <script src="scripts/perfil.js"></script>
-
-        <script>
-            function excluirConvidados() {
-                Swal.fire({
-                    title: 'Excluir convidado?',
-                    text: "Você não será capaz de reverter isso!",
-                    timer: 10000,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Excluir!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                    var form = document.getElementById("FormsConviados");
-                        form.action = "excluirConvidado";
-                        form.method = "POST";
-                        form.submit();
-
-                    }
-                });
-            }
-
-
-
-        </script>
 
         <c:if test="${not empty mensagem}">
             <%-- Exibe o alerta somente se a mensagem não for nula --%>
