@@ -12,7 +12,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/cadastro.css">
+  <link href="../css/cadastro.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
 
   <title>Editar Cadastro</title>
@@ -27,8 +27,8 @@
         </svg>
     </button>
     <div class="logo_header">
-        <img src="img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
-    </div>
+                    <img src="../imagens/img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
+                </div>
     <div class="navigation_header" id="navigation_header">
         <button onclick="toggleSidebar()" class="btn_icon_header">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
