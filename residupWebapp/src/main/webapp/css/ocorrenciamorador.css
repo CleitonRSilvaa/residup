@@ -1,111 +1,111 @@
-html {
-    height: 100%;
-    width: 100%;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  .bodyCorNova {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f3f4f4;
+#openModal {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
 
-  }
-
-
-  .header,
-  .navigation_header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .header {
-    background-color: white;
-    justify-content: space-between;
-    padding: 0 10px;
-    height: 3.5em;
-  }
-
-  .navigation_header {
-    gap: 3em;
-    z-index: 2;
-  }
-
-  .content {
-    padding-top: 5em;
-    text-align: center;
-    height: 100vh;
-    transition: 1s;
-  }
-
-  .navigation_header a {
-    text-decoration: none;
-    color: black;
-    transition: 1s;
-    font-weight: bold;
-    font-size: 12px;
-    margin-left: 30px;
-  }
-
-  .navigation_header a:hover {
-    color: red;
-  }
-
-  .active {
-    background-image: linear-gradient(to right, #006494, #1b98e0);
-    padding: 10px;
-    border-radius: 10px;
-
-  }
+#openModal img {
+  width: 40px;
+  height: 40px;
+  border-radius: 90%;
+  margin-top: 7px;
+}
 
 
-  .btn_icon_header {
-    background: transparent;
-    border: none;
-    color: var(--color-white);
-    cursor: pointer;
-    display: none;
-  }
+.header,
+.navigation_header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header{
+  background-color: #c4c4c4;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 3.5em;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px black;
+}
 
-  nav {
-    background-color: #fff;
-  }
+.navigation_header{
+  gap: 3em;
+  z-index: 2;
+}
+.content{
+  padding-top: 5em;
+  text-align: center;
+  height: 100vh;
+  transition: 1s;
+}
+.navigation_header a{
+  text-decoration: none;
+  color: black;
+  transition: 1s;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: 30px;
+}
+.navigation_header a:hover{
+  color: red;
+}
+.active{
+  background-image: linear-gradient(to right, #006494, #1b98e0);
+  padding: 10px;
+  border-radius: 10px;
 
-  nav li {
-    display: inline-block;
-  }
+}
+.btn_icon_header{
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  display: none;
+}
 
-  nav li a {
-    display: inline-block;
-    color: black;
-    text-decoration: none;
-    padding: 10px;
-  }
+nav{
+ background-color: #fff;
+ height: 3.5em;
+ width: 200px;
+}
+.logout{
+  float; right;
+  height: 40px;
+  margin-left: 0px;
+}
+nav li{
+ display: inline-block;
+}
 
-  nav li a:hover {
-    background-color: #c4c4c4;
-  }
+nav li a{
+ display: inline-block;
+ color: black;
+ text-decoration: none;
+ padding: 10px;
+}
 
-  .dropdown-menu {
-    position: absolute;
-    box-shadow: 0 0 2px black;
-    display: none;
-    border-radius: 10px;
-  }
+nav li a:hover{
+  background-color: red;
+}
 
-  .dropdown-menu a {
-    display: block;
-    color: black;
-    background-color: ;
-  }
+.dropdown-menu{
+  position: absolute;
+  box-shadow: 0 0 2px black;
+  display: none;
+}
 
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
+.dropdown-menu a{
+  display: block;
+  color: black;
+}
 
-  @media screen and (max-width: 768px) {
-    .navigation_header {
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation_header{
       position: absolute;
       flex-direction: column !important;
       top: 0;
@@ -115,34 +115,256 @@ html {
       padding: 1em;
       animation-duration: 1s;
       margin-left: -vw;
-    }
-
-    .btn_icon_header {
+  }
+  .btn_icon_header{
       display: block;
-    }
+  }
+}
+@keyframes showSidebar {
+  from {margin-left: -100vw;}
+  to {margin-left: -10vw;}
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
   }
 
-  @keyframes showSidebar {
-    from {
-      margin-left: -100vw;
-    }
-
-    to {
-      margin-left: -10vw;
-    }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
   }
 
-  * {
-    margin: 0 auto;
+  .modal {
+    width: 60%;
+    height: 400px;
+    background-color: #1d3354;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
-  .container {
+  .modal h2 {
+    color: white;
+  }
+
+  .form-box {
+    margin-top: 25px;
+    background-color: #c4c4c4;
+    backdrop-filter: blur(40px);
+    padding: 30px 40px;
+    display: block;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px 20px 20px 20px;
+    align-items: center;
+  }
+
+  .form-box h2 {
+    font-size: 20px;
+  }
+
+  .form-box p {
+    font-weight: bold;
+    color: #3D3D3D;
+  }
+
+  .form-box p a {
+    color: #49ae96;
+    text-decoration: none;.group label
+  }
+
+  .form-box form {
+    margin: 20px 0;
+  }
+
+  form .input-group {
+    margin-bottom: 15px;
+  }
+
+  form .input-group label {
+    color: #3D3D3D;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  form .input-group input {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+  }
+  form .input-group2 .cpf {
+    color: black;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    float: right;
+    margin-top: 10px;
+  }
+  form .input-group2 input {
+    width: 40%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 15px;
+    color: black;
+    transition: all 0.4s ease;
+    margin-top: 10px;
+  }
+  form .input-group2  .cpff{
+    margin-top: 10px;
+    width: 40%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 15px;
+    color: black;
+    transition: all 0.4s ease;
+    float: right;
+  }
+
+
+  form .input-group input:focus {
+    border-color: #49ae96;
+  }
+
+  form .input-group button {
+    width: 100%;
+    height: 47px;
+    background: #49ae96;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    margin-left: 2px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 100%;
+  }
+
+  #picture__input {
+    display: none;
+  }
+
+  .picture {
+    border-radius: 90%;
+    width: 12%;
+    aspect-ratio: 4/4;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 2px dashed currentcolor;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+  }
+
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+
+  .picture:active {
+    border-color: turquoise;
+    color: turquoise;
+    background: #eee;
+  }
+
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .picture__img {
+    max-width: 100%;
+  }
+
+  .perfil {
+    margin-top: 0px;
+    align-items: center;
+    width: 100%;
+    background-color: #1d3354;
+    border-radius: 15px;
+
+  }
+
+  .perfil .nome {
+    margin-right: 75%;
+    float: right;
+    color: #3D3D3D;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .perfil .sobrenome {
+    margin-right: 72%;
+    float: right;
+    color: #3D3D3D;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .perfil input {
+    margin-top: 10px;
+    width: 80%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 15px;
+    color: #616161;
+    transition: all 0.4s ease;
+    float: right;
+  }
+
+  .perfil input:focus {
+    border-color: #49ae96;
+}
+
+/*Fim Header*/
+ .container {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 40px;
 
-    
+
   }
 
   .NovaOcor {
@@ -231,7 +453,7 @@ html {
     font-size: 13px;
     width: 100%;
   }
-
+/*Minhas Ocorrencias*/
   button:hover {
     background-color: #B4EFE1;
     cursor: pointer;
@@ -581,7 +803,7 @@ html {
     padding: 10px;
     border-radius: 10px 10px 0 0;
     color: black;
-   
+
   }
 
   .filtro .text h1 {
