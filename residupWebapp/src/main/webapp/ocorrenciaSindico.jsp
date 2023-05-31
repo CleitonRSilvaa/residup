@@ -75,14 +75,14 @@
             <label class="oc">${ocorrencia.getTitulo()}</label>
             <label class="sts">${ocorrencia.getStatus()}</label>
 
-          <form action="carregarOcorrencia" method="POST">
+          <form   action="carregarOcorrencia" method="POST">
               <input type="hidden" name="idOcorrenciaSindico" value="${ocorrencia.getId_ocorrencia()}">
               <button class="ver" type="submit">Ver</button>
           </form>
 
 
         </div>
-        <hr>
+
         </c:forEach>
     </div>
     <script src="../scripts/ocorrenciassind.js"></script>

@@ -46,11 +46,7 @@
 
                 <ul>
                     <li class="dropdown">
-                        <a href="">MEU PERFIL</a>
-                        <div class="dropdown-menu">
-                            <a href="">Editar perfil</a>
-                            <a href="">Sair da Conta</a>
-                        </div>
+                        <a href="">Logout</a>
                     </li>
                 </ul>
             </nav>

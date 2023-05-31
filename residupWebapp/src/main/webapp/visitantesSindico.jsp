@@ -28,7 +28,7 @@
             </svg>
         </button>
         <div class="logo_header">
-            <img src="img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
+            <img src="imagens/img/LogoHeader.png" alt="Logo ResidUP" class="img_logo_header">
         </div>
         <div class="navigation_header" id="navigation_header">
             <button onclick="toggleSidebar()" class="btn_icon_header">
@@ -36,51 +36,17 @@
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </button>
-            <a href="/reservasAdmin" >ÁREA DE RESERVAS</a>
-            <a href="/visitantesAdm"class="active" >CONTROLE DE VISITANTES</a>
-            <a href="/OcorrenciaAdm" >OCORRÊNCIAS DE MORADORES</a>
-            <a href="/cadastro_morador">REGISTRAR NOVO MORADOR</a>
+               <a href="/reservasAdmin" >ÁREA DE RESERVAS</a>
+               <a href="/visitantesAdm" class="active" >CONTROLE DE VISITANTES</a>
+               <a href="/OcorrenciaAdm">OCORRÊNCIAS DE MORADORES</a>
+               <a href="/cadastro_morador">REGISTRAR NOVO MORADOR</a>
         </div>
         <nav>
-            <button id="openModal">Meu Perfil</button>
-
-        <div id="modalOverlay" class="modal-overlay">
-    <div class="modal">
-            <h2>Seu Perfil</h2>
-            <form action="#">
-              <div class="perfil">
-                <input type="text" id="nomePerfil" placeholder="Nome " name="Nome" disabled>
-
-                <input type="text" id="nomeSobrenome" placeholder="Sobrenome" name="Sobrenome"  disabled>
-                <label class="picture" for="picture__input" tabIndex="0">
-                  <span class="picture__image"></span>
-                </label>
-                <label></label>
-
-                <input type="file" name="picture__input" id="picture__input">
-              </div>
-              <div class="input-group2">
-                <input type="rg" id="rgPerfil" placeholder="RG" maxlength="9" name="RG"  disabled>
-                <input class="cpff" type="cpf" id="cpfPerfil" placeholder="CPF" maxlength="14" name="CPF"  disabled>
-              </div>
-
-              <div class="input-group2">
-                <input type="rg" id="rgId" placeholder="apto" maxlength="9" name="Apto"  disabled>
-                <input class="cpff" type="cpf" id="cpff" placeholder="Bloco" maxlength="14" name="Bloco"  disabled>
-              </div>
-                <div class="input-group2">
-                    <input type="rg" id="rg" placeholder="Digite a nova Senha" maxlength="9" name="Senha" required>
-                    <input class="cpff" type="cpf" id="cpf" placeholder="Confirme a Nova senha" maxlength="14" name="Confs" required>
-                </div>
-              <div class="input-group">
-                <button class="cadastrar">Alterar Senha</button>
-              </div>
-
-            </form>
-          </div>
-
-
-    </div>
+            <ul>
+                <li class="dropdown">
+                    <a href="">Logout</a>
+                </li>
+            </ul>
         </nav>
     </div>
   <form class="filtro" action="visitantesAdm" method="GET">

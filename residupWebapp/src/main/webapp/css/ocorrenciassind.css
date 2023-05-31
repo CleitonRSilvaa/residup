@@ -81,7 +81,8 @@ nav li a{
    display: inline-block;
    color: white;
    text-decoration: none;
-   padding: 7px;
+   padding: 5px;
+   text-align: center;
 }
 
 nav li a:hover{
@@ -211,7 +212,8 @@ nav li a:hover{
 .form hr{
     
 }
-.form .group .ver{
+
+.form .group  .ver{
     
     width: 12%;
     height: 28px;
@@ -219,7 +221,7 @@ nav li a:hover{
     text-decoration: none;
     float: right;
     font-size: 13px;
-    margin-right: 2%;
+
     color: white;
     text-align: center;
     border-radius: 15px;
@@ -265,6 +267,7 @@ nav li a:hover{
     transition: all 0.4s ease;
     display: inline-block;
     align-items: center;
+    text-align: center;
     
 }
 .form .group .apt{
@@ -331,7 +334,7 @@ nav li a:hover{
     outline: none;
     border: 2px solid #1b98e0;
     margin-left: 1%;
-    margin-right: 5px;
+
     font-size: 15px;
     color: #616161;
     transition: all 0.4s ease;
@@ -393,6 +396,7 @@ nav li a:hover{
     margin-bottom: 5px;
     margin-left: 20px;
     font-size: 13px;
+
 }
  
 .form .ocorrencia input{
