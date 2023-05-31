@@ -502,10 +502,11 @@ body {
   .group label {
     width: 20%;
     height: 28px;
-    background-color: #B4EFE1;
+    border: 2px solid #1b98e0;
+    background-color: #FFF;
+    color: #616161;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 4%;
     font-size: 15px;
     color: black;
@@ -520,10 +521,11 @@ body {
   .group .oc {
     width: 32%;
     height: 28px;
-    background-color: #B4EFE1;
+    border: 2px solid #1b98e0;
+    background-color: #FFF;
+    color: #616161;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 4%;
     font-size: 15px;
     transition: all 0.4s ease;
@@ -534,10 +536,11 @@ body {
   .group .or {
     width: 12%;
     height: 28px;
-    background-color: #B4EFE1;
+    border: 2px solid #1b98e0;
+    background-color: #FFF;
+    color: #616161;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 4%;
     font-size: 15px;
     transition: all 0.4s ease;
@@ -551,7 +554,6 @@ body {
     float: right;
     width: 12%;
     height: 28px;
-    background-color: red;
     border-radius: 15px;
     outline: none;
     border: 2px solid transparent;
@@ -568,7 +570,7 @@ body {
     width: 100%;
     height: 28px;
     border-radius:15px ;
-    background-color: red;
+    background-image: linear-gradient(to right, #310909, #e01e1e);
     font-weight: bold;
     color: white;
   }
