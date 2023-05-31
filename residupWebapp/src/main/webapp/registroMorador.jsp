@@ -8,9 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/cadastro.css">
-  <link rel="shortcut icon" href="imagens/LogoHeader.png" type="image/x-icon">
 
-  <title>Registro Do Morador</title>
+  <title>cadastro</title>
 </head>
 
 
@@ -30,10 +29,10 @@
                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
             </svg>
         </button>
-        <a href="/reservasAdmin" >ÁREA DE RESERVAS</a>
-        <a href="/visitantesAdm">CONTROLE DE VISITANTES</a>
-        <a href="/OcorrenciaAdm">OCORRÊNCIAS DE MORADORES</a>
-        <a href="/cadastro_morador"class="active">REGISTRAR NOVO MORADOR</a>
+           <a href="/reservasAdmin" >ÁREA DE RESERVAS</a>
+           <a href="/visitantesAdm">CONTROLE DE VISITANTES</a>
+           <a href="/OcorrenciaAdm">OCORRÊNCIAS DE MORADORES</a>
+           <a href="/cadastro_morador"class="active">REGISTRAR NOVO MORADOR</a>
     </div>
     <nav>
         <ul>
@@ -46,7 +45,7 @@
   <section>
   <form action="/" method="get" >
     <a href="#"><button class="buttonCadastroMorador">Cadastro de  morador</button></a>
-    <a href="/listarMorador"><button class="edtcad">Lista de Moradores</button></a>
+    <a href="#"><button class="edtcad">Lista de Moradores</button></a>
     <div class="box">
     </form>
     <div class="form-box">
@@ -67,23 +66,24 @@
             </div>
             <div class="input-group">
               <label for="cpf">CPF</label>
-              <input type="cpf" id="cpfMorador" placeholder="Digite o CPF do Morador" maxlength="11" name="cpfMorador" required class="input-cpf">
               <label  class="rg" for="rg">RG</label>
+              <input type="cpf" id="cpfMorador" placeholder="Digite o CPF do Morador" maxlength="11" name="cpfMorador" required class="input-cpf">
+
               <input  class="rgg" type="rg" id="rgMorador" placeholder="Digite o  RG" maxlength="9" name="rgMorador" required class="input-rg">
             </div>
 
             <div class="input-group">
               <label for="numero_apartamento">Apartamento</label>
-              <input type="text" id="numero_apartamentoMorador" placeholder="Digite o numero do apartamento" maxlength="4" name="numero_apartamentoMorador" required>
               <label class="blc" for="Bloco">Bloco</label>
+              <input type="text" id="numero_apartamentoMorador" placeholder="Digite o numero do apartamento" maxlength="4" name="numero_apartamentoMorador" required>
               <input class="rgg" type="text" id="blocoMorador" placeholder="Digite o bloco" maxlength="2" name="blocoMorador" required>
             </div>
 
 
             <div class="input-group">
               <label for="senha">Senha</label>
-              <input type="password" id="senhaMorador" placeholder="Digite a senha" name="senhaMorador" required>
               <label class="conf" for="Confirmarsenha">Confirmar Senha</label>
+              <input type="password" id="senhaMorador" placeholder="Digite a senha" name="senhaMorador" required>
               <input class="rgg" type="password" id="Confirmarsenha" placeholder="Confirme a senha" name="Confirmar" required>
             </div>
 
