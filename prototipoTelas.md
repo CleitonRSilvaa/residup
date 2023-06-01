@@ -33,6 +33,9 @@ Tela Login
 ![reserva_area_morador](https://user-images.githubusercontent.com/104398217/225482756-bf743d3d-3a92-44e9-b816-c60fdebcf013.png)
 Reservar Área
 
+![ReservaArea](https://github.com/CleitonRSilvaa/residup/assets/126733500/3f4fea66-f215-4f4a-a53f-c07964a27360)
+
+![ReservaArea 1](https://github.com/CleitonRSilvaa/residup/assets/126733500/f1ad2aac-5b51-44cc-a3b2-2f1bc76a7e82)
 
 
 
