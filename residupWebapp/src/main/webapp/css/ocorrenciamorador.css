@@ -399,13 +399,26 @@ body {
     padding: auto;
   }
 
-  .text h1 {
-    font-size: 18px;
+  .wrapper .filtro .text h1 {
     color: white;
-    font-weight: bold;
-    margin-left: 2%;
+    font-size: 15px;
+    margin-left: 10px;
+    padding: auto;
+  }
+  .textNovaOcorrencia {
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    color: black;
+    background-image: linear-gradient(to right, #006494, #1b98e0);
   }
 
+  .h1NovaOcorrencia{
+    color: white;
+    font-size: 15px;
+    margin-left: 10px;
+    padding: auto;
+  }
   .buttons {
     display: flex;
     justify-content: space-between;
@@ -503,13 +516,13 @@ body {
     width: 20%;
     height: 28px;
     border: 2px solid #1b98e0;
-    background-color: #FFF;
+    background-color: white;
     color: #616161;
     border-radius: 15px;
     outline: none;
     margin-left: 4%;
     font-size: 15px;
-    color: black;
+    color: #616161;
     font-weight: bold;
     transition: all 0.4s ease;
     display: inline-block;
@@ -573,6 +586,7 @@ body {
     background-image: linear-gradient(to right, #310909, #e01e1e);
     font-weight: bold;
     color: white;
+    font-weight: bold;
   }
 
 
@@ -652,7 +666,7 @@ body {
     display: inline-block;
 
   }
-  .group-2 .ed {
+  .group .ed {
     width: 100%;
     height: 28px;
     border-radius:15px ;
@@ -757,9 +771,10 @@ body {
     width: 98.4%;
     margin: 0;
     padding: 10px;
-    height: 35px;
+    height: 55px;
     border-radius: 10px 10px 0 0;
     color: black;
+    float: right;
     background-image: linear-gradient(to right, #006494, #1b98e0);
  }
  .filtro .form-status{
@@ -799,6 +814,7 @@ body {
 
 }
 .filtro .text {
+
     float: left;
     width: 30%;
     margin: 0;
@@ -813,4 +829,5 @@ body {
     font-size: 15px;
     margin-left: 10px;
     padding: auto;
+
   }
