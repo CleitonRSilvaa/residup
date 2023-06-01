@@ -42,7 +42,7 @@
 
 ![Visitantes](https://github.com/CleitonRSilvaa/residup/assets/126733500/dbd17d4e-4dcb-4685-beca-17d63d681d2f)
 
-## ocorrência Dos Moradores ##
+## Ocorrência Dos Moradores ##
 
 ![ocorrencias dos moradores](https://github.com/CleitonRSilvaa/residup/assets/126733500/8f2ce292-b47a-4389-a731-1f7ea273cdf9)
 
