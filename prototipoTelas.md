@@ -82,6 +82,10 @@ Perfil do Morador
 ![reserva_morador](https://user-images.githubusercontent.com/104398217/225441453-4eefba0c-c67d-4102-b835-54245ac1b32d.png)
 Reserva do Morador
 
+![Cadastro Morador](https://github.com/CleitonRSilvaa/residup/assets/126733500/5c1f4d42-90e7-4a98-a494-ee94d5a567e3)
+
+![CadastroMorador](https://github.com/CleitonRSilvaa/residup/assets/126733500/e9a6c0f6-6e87-4b1f-8cf9-56bcc090a6e1)
+
 ![reservas_sindico](https://user-images.githubusercontent.com/104398217/225441470-a4c14b5b-e030-4ab8-af1d-96c83443da6c.png)
 Reserva do Síndico
 
