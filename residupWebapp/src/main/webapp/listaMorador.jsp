@@ -40,10 +40,10 @@
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </button>
-            <a href="#">ÁREA DE RESERVAS</a>
-            <a href="#">CONTROLE DE VISITANTES</a>
-            <a href="#" >OCORRÊNCIAS DE MORADORES</a>
-            <a href="#" class="active">REGISTRAR NOVO MORADOR</a>
+            <a href="/reservasAdmin">ÁREA DE RESERVAS</a>
+            <a href="/visitantesAdm">CONTROLE DE VISITANTES</a>
+            <a href="/OcorrenciaAdm">OCORRÊNCIAS DE MORADORES</a>
+            <a href="/cadastro_morador" class="active">REGISTRAR NOVO MORADOR</a>
         </div>
         <nav>
             <ul>
@@ -60,7 +60,7 @@
     </div>  
     <!--Fim da header-->
 <form class="filtro" action="/listarMorador" method="post">
-  <button class="cadastrar" action="/create_morador" >Cadastrar Morador</button>
+  <button class="cadastrar"><a href="/cadastro_morador" style="color: white; text-decoration: none; font-size: 16px;">Cadastrar Morador</a></button>
 
   <button class="busc" type="submit">Buscar</button>
   <input type="text" id="txtBsca" name="txtBsca" placeholder="Buscar Morador..."/>
@@ -69,23 +69,35 @@
         <div class="title">
             <h3>Lista de Moradores</h3>
         </div>
-        <%for (Morador morador : listaMorador) {%>
-          <div class="group">
-          <label><%=morador.getNome() + ' ' + morador.getSobrenome()%></label>
-          <label class="oc"><%=morador.getCpf()%></label>
-          <label class="x"><%=morador.getNumeroApartamento()%></label>
-          <label class="x"><%=morador.getBloco()%></label>
-          <form action="/deleteMorador" method="get">
-              <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%=morador.getCpf()%>">
-              <a  href="#"><button class="editar" type="submit">Excluir</button></a>
-          </form>
-          <form action="/carregarMorador" method="get">
-              <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%=morador.getCpf()%>">
-              <a  href="#"><button class="edit" type="submit">Editar</button></a>
-          </form>
-          </div>
-          <hr>
-        <%}%>
+        <% for (Morador morador : listaMorador) { %>
+            <div class="group">
+                <label><%= morador.getNome() + ' ' + morador.getSobrenome() %></label>
+                <label class="oc"><%= morador.getCpf() %></label>
+                <label class="x"><%= morador.getNumeroApartamento() %></label>
+                <label class="x"><%= morador.getBloco() %></label>
+
+                <% if (morador.getStatus().equals("1")) { %>
+                            <form action="/deleteMorador" method="get">
+                                <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%= morador.getCpf() %>">
+                                <button class="editar" type="submit">Excluir</button>
+                            </form>
+                        <% } %>
+
+                <% if (morador.getStatus().equals("0")) { %>
+                            <form action="/ativarMorador" method="get">
+                                <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%= morador.getCpf() %>">
+                                <button class="editAtivar" type="submit">Ativar Morador</button>
+                            </form>
+                        <% } %>
+
+                <form action="/carregarMorador" method="get">
+                                                <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%= morador.getCpf() %>">
+                                                <button class="edit" type="submit">Editar</button>
+                                            </form>
+
+            </div>
+            <hr>
+        <% } %>
     </div>
     
     <script src="../scripts/bootstrap.bundle.min.js"></script>

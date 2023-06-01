@@ -101,9 +101,11 @@ public class MoradorDao {
             String cpf = (rs.getString("CPF"));
             String numApart= (rs.getString("NUMERO_APARTAMENTO"));
             String bloco = (rs.getString("BLOCO"));
+            String status = (rs.getString("STATUS_CONTA"));
 
 
             var morador = new Morador(nome, sobrenome, cpf, null, numApart, bloco, null);
+            morador.setStatus(status);
             listaMoradores.add(morador);
 
             }
@@ -257,6 +259,7 @@ public class MoradorDao {
             return false;
         }
     }
+
 
     public static boolean ativarMorador(Morador morador) {
         String ativar = "UPDATE MORADOR SET STATUS_CONTA = 1 WHERE CPF=?";

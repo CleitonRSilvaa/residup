@@ -43,11 +43,11 @@
     </nav>
 </div>
   <section>
-  <form action="/" method="get" >
-    <a href="#"><button class="buttonCadastroMorador">Cadastro de  morador</button></a>
-    <a href="#"><button class="edtcad">Lista de Moradores</button></a>
+
+    <button class="buttonCadastroMorador"><a href="/create_morador" style="color: white; text-decoration: none; font-size: 16px;">Cadastro de  morador</a></button>
+    <button class="edtcad" ><a href="/listarMorador" style="color: white; text-decoration: none; font-size: 16px;">Lista de Moradores</a></button>
     <div class="box">
-    </form>
+
     <div class="form-box">
       <h2>Cadastrar de Morador</h2>
 

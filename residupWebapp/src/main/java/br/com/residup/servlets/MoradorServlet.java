@@ -24,7 +24,7 @@ import static br.com.residup.shared.Uteis.scriptMensagemAlertJs;
 import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 
 
-@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/listarMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador", "/carregarMorador"})
+@WebServlet(urlPatterns = {"/cadastro_morador", "/create_morador", "/listarMorador", "/updateMorador", "/deleteMorador", "/updatePerfilMorador", "/carregarMorador", "/ativarMorador"})
 public class MoradorServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(MoradorServlet.class.getName());
 
@@ -78,6 +78,10 @@ public class MoradorServlet extends HttpServlet {
         }
         if(action.equals("/deleteMorador")){
             removerMorador(request,response);
+            return;
+        }
+        if(action.equals("/ativarMorador")){
+            ativarMorador(request,response);
             return;
         }
 
@@ -193,6 +197,23 @@ public class MoradorServlet extends HttpServlet {
             request.getSession().setAttribute("check", true);
         }else{
             String msgJsErro = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Erro deletar morador!");
+            request.getSession().setAttribute("mgsJS", msgJsErro);
+            request.getSession().setAttribute("check", true);
+        }
+        response.sendRedirect("/listarMorador");
+    }
+
+    protected void ativarMorador(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        var cpf = request.getParameter("cpfMorador");
+        var morador = new br.com.residup.models.Morador(cpf,null);
+
+        if (MoradorDao.ativarMorador(morador)){
+            String msgJs = scriptMensagemAlertJs(IconAlertJS.success, "Sucesso", "Morador ativado com sucesso!");
+            request.getSession().setAttribute("mgsJS", msgJs);
+            request.getSession().setAttribute("check", true);
+        }else{
+            String msgJsErro = scriptMensagemAlertJs(IconAlertJS.error, "Erro", "Erro ao ativar morador!");
             request.getSession().setAttribute("mgsJS", msgJsErro);
             request.getSession().setAttribute("check", true);
         }

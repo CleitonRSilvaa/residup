@@ -14,6 +14,9 @@ public class Morador {
 
     private String enderecoFoto;
 
+    private String status;
+
+
 
     public Morador(String nome, String sobrenome, String cpf, String rg, String numeroApartamento, String bloco, String senhaDeAcesso) {
         this.nome = nome;
@@ -139,7 +142,13 @@ public class Morador {
         this.enderecoFoto = enderecoFoto;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
     @Override
     public String toString() {
         return "Morador{" +

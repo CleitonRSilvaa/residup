@@ -8,6 +8,12 @@
     color: white;
 }
 
+.linkCadastro{
+
+    color: #fff;
+
+}
+
 
 .header,
 .navigation_header{
@@ -523,7 +529,22 @@ nav li a:hover{
     background-image: linear-gradient(to right, #006494, #561be0);
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    margin-right: 2%;
+    margin-top: 0px;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.form .group .editAtivar{
+    float: right;
+    width: 12%;
+    height: 28px;
+    background-image: linear-gradient(to right, #006400, #00A31B);
+    border-radius: 15px;
+    outline: none;
     margin-right: 2%;
     margin-top: 0px;
     font-size: 15px;
