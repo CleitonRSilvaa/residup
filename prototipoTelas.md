@@ -54,7 +54,12 @@ Perfil do Morador
 
 ### Prototipação LowFidelity
 ![controle_visitantes_morador](https://user-images.githubusercontent.com/104398217/225441172-7ef65f16-8093-4845-ad1a-eb9d42603749.png)
+
+
 Controle De Visitantes do Morador
+
+![ControleVisitante](https://github.com/CleitonRSilvaa/residup/assets/126733500/cf8af888-693b-4e67-96b3-04537bdde42f)
+
 
 ![controle_visitantes_sindico](https://user-images.githubusercontent.com/104398217/225441255-0d21b456-04d9-432b-a656-97b334491feb.png)
 Controle de Visitantes do Síndico
