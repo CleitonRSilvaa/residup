@@ -7,8 +7,11 @@
 ![tela inicial#3](https://github.com/CleitonRSilvaa/residup/assets/126733500/3b814653-acd6-4ccb-b58d-4692911f368d)
 
 
-![tela inicial#4](https://github.com/CleitonRSilvaa/residup/assets/126733500/2517913d-0bf4-457b-afa7-90384056ef27)
+![5](https://github.com/CleitonRSilvaa/residup/assets/126733500/048e0277-62e5-48b2-9818-ce181e220dc8)
 
+
+
+![6](https://github.com/CleitonRSilvaa/residup/assets/126733500/1a26d9b7-5df7-42cc-a038-df5765f41319)
 
 ### Telas Gerais
 ![tela_geral](https://user-images.githubusercontent.com/104398217/225482557-9819a548-7fda-4224-83fe-6af1a873bc10.png)
