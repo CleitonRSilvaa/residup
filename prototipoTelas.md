@@ -1,6 +1,14 @@
 ## Prototipação HighFidelity
 ### Landing page
-![tela inicial](https://user-images.githubusercontent.com/125705404/225486445-67bae7d1-1ae3-49a6-91d4-f0a64793911b.png)
+![tela inicial#1](https://github.com/CleitonRSilvaa/residup/assets/126733500/7c87277f-6cdb-44ae-a846-cb043b3e38fa)
+
+![tela inicial#2](https://github.com/CleitonRSilvaa/residup/assets/126733500/b253e913-38f9-40ef-924e-4fc4c2f156cb)
+
+![tela inicial#3](https://github.com/CleitonRSilvaa/residup/assets/126733500/3b814653-acd6-4ccb-b58d-4692911f368d)
+
+
+![tela inicial#4](https://github.com/CleitonRSilvaa/residup/assets/126733500/2517913d-0bf4-457b-afa7-90384056ef27)
+
 
 ### Telas Gerais
 ![tela_geral](https://user-images.githubusercontent.com/104398217/225482557-9819a548-7fda-4224-83fe-6af1a873bc10.png)
