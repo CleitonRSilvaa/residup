@@ -108,7 +108,7 @@ async function cadastrarVisitante() {
       html:
         '<input id="swal-nome" class="swal2-input" placeholder="Nome" required>' +
         '<input id="swal-sobrenome" class="swal2-input" placeholder="Sobrenome" required>' +
-        '<input id="swal-documento" class="swal2-input" placeholder="Documento" required>' +
+        '<input type="number" id="swal-documento" class="swal2-input" placeholder="Documento" required>' +
         '<input id="swal-telefone" class="swal2-input" placeholder="Telefone">',
       focusConfirm: false,
       preConfirm: () => {
@@ -151,7 +151,7 @@ async function cadastrarVisitante() {
         html:
           '<input id="swal-nome" class="swal2-input" placeholder="Nome" value="' + nome + '" required>' +
           '<input id="swal-sobrenome" class="swal2-input" placeholder="Sobrenome" value="' + sobrenome + '" required>' +
-          '<input id="swal-documento" class="swal2-input" placeholder="Documento" value="' + documento + '" required>' +
+          '<input type="number" id="swal-documento" class="swal2-input" placeholder="Documento" value="' + documento + '" required>' +
           '<input id="swal-fone" class="swal2-input" placeholder="Telefone" value="' + fone + '">',
         focusConfirm: false,
         preConfirm: () => {

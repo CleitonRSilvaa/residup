@@ -183,13 +183,13 @@
 
                                     <div class="modal-body">
                                     <input class="nomecomp" placeholder="Digite o nome"  type="text" name="nomeConvidado" required>
-                                    <input class="doc" placeholder="Digite o Documento" type="text" name="identidade" required>
+                                    <input type="number" class="doc" placeholder="Documento" type="text" name="identidade" required>
                                     <input class="editar" type="hidden" name="idReservaListaConvidado" id="idReservaListaConvidado" value="<%= request.getAttribute("IdReservaConvidado")%>">
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                                         <button type="submit" class="btn btn-primary">Salvar</button>
                                     </div>
-                                    <hr>
+
                                     <%
                                         if (convidados != null) {
                                             if (!convidados.isEmpty()) {

@@ -58,12 +58,14 @@
             <!--Fim da header-->
         <section class="container">
             <div class="NovaOcor">
-                <div class="textNovaOcorrencia"><h1 class="h1NovaOcorrencia">Nova ocorrência</h1></div>
+                <div class="textNovaOcorrencia">
+                <h1 class="h1NovaOcorrencia">Nova ocorrência</h1>
+                </div>
                 <form action="occurrenceInsert" method="post">
                     <div class="buttons">
                         <input type="text" placeholder="Título da ocorrência" name="titulo" required>
                         <button id="deletarOcorrencia" type="submit">
-                            <h4>Salvar ocorrência</h4>
+                           Salvar ocorrência
                         </button>
                     </div>
                     <div class="character">
@@ -97,7 +99,7 @@
                             <button id="deletarOcorrencia" class="ed" onclick="deletarOcorrencia(${ocorrencia.getId_ocorrencia()})">Excluir</button>
                         </label>
                     </div>
-                    <hr>
+
                 </c:forEach>
             </div>
         </section>

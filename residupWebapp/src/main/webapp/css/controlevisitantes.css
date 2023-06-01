@@ -573,13 +573,14 @@ body {
 .form .title{
     background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
-    height: 20px;
+    height: 40px;
     border-radius: 15px 15px 0px 0px;
 }
 .form .title h2{
     font-size: 15px;
     margin-left: 10px;
     padding: auto;
+    color: white;
 }
 .form .group{
     margin-top: 20px;
