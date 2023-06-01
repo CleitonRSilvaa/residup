@@ -42,6 +42,8 @@ Reservar Área
 ![controle_visitantes_morador_high](https://user-images.githubusercontent.com/104398217/225482811-cf97cced-1dcf-49e9-a2bc-007e038deaf5.png)
 Controle de Visitantes
 
+![ControleVisitante](https://github.com/CleitonRSilvaa/residup/assets/126733500/a4240e0d-4f8d-446e-a5cd-816f46e53d95)
+
 ![registro_ocorrencia](https://user-images.githubusercontent.com/104398217/225482867-5c74d129-7e82-41af-9e65-45e12ffb452f.png)
 Registro de Ocorrências
 
