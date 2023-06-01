@@ -22,7 +22,9 @@ Tela Login
 
 ## Pagina Inicial 
 
-![Pagina inicial](https://github.com/CleitonRSilvaa/residup/assets/126733500/e5778ff3-8e4a-4273-9cd1-4825eec0b5c5)
+![Pagina inicial](https://github.com/CleitonRSilvaa/residup/assets/126733500/899fe824-790d-4dbe-9548-0820ada79e94)
+
+
 
 ![Pagina inicial 1](https://github.com/CleitonRSilvaa/residup/assets/126733500/029befdf-3e1d-4936-ad5d-07602d9590da)
 
