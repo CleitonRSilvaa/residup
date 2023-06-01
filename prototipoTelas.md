@@ -20,9 +20,19 @@ Telas Gerais
 ![tela_geral_dois](https://user-images.githubusercontent.com/104398217/225482627-5113b475-b720-43a8-b494-fec3df36425c.png)
 Tela Login
 
+## Pagina Inicial 
+
+![Pagina inicial](https://github.com/CleitonRSilvaa/residup/assets/126733500/e5778ff3-8e4a-4273-9cd1-4825eec0b5c5)
+
+![Pagina inicial 1](https://github.com/CleitonRSilvaa/residup/assets/126733500/029befdf-3e1d-4936-ad5d-07602d9590da)
+
+
 ## Versão Morador
 ![reserva_area_morador](https://user-images.githubusercontent.com/104398217/225482756-bf743d3d-3a92-44e9-b816-c60fdebcf013.png)
 Reservar Área
+
+
+
 
 ![controle_visitantes_morador_high](https://user-images.githubusercontent.com/104398217/225482811-cf97cced-1dcf-49e9-a2bc-007e038deaf5.png)
 Controle de Visitantes
