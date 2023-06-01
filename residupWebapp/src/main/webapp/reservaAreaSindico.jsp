@@ -46,7 +46,7 @@
 
                 <ul>
                     <li class="dropdown">
-                        <a href="">Logout</a>
+                        <a href="/logout">Logout</a>
                     </li>
                 </ul>
             </nav>
