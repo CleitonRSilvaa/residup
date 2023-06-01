@@ -199,10 +199,11 @@ nav li a:hover{
 .form .input-group label{
     width: 20%;
     height: 28px;
-    background-color: #B4EFE1;
+    background-color: #fff;
+    border: 20;
+    border: 2px solid #1b98e0;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
     margin-left: 3%;
     font-size: 15px;
     color: #616161;
@@ -214,10 +215,11 @@ nav li a:hover{
 .form .input-group .apt{
     width: 5%;
     height: 28px;
-    background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    background-color: #fff;
+    border: 20;
+    border: 2px solid #1b98e0;
     margin-left: 1%;
     font-size: 15px;
     color: #616161;
@@ -229,10 +231,11 @@ nav li a:hover{
 .form .input-group .area{
     width: 20%;
     height: 28px;
-    background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    background-color: #fff;
+    border: 20;
+    border: 2px solid #1b98e0;
     margin-left: 1%;
     font-size: 15px;
     color: #616161;
@@ -244,10 +247,11 @@ nav li a:hover{
 .form .input-group .data{
     width: 10%;
     height: 28px;
-    background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    background-color: #fff;
+    border: 20;
+    border: 2px solid #1b98e0;
     margin-left: 1%;
     font-size: 15px;
     color: #616161;
@@ -258,10 +262,11 @@ nav li a:hover{
 .form .input-group .hora{
     width: 10%;
     height: 28px;
-    background-color: #B4EFE1;
     border-radius: 15px;
     outline: none;
-    border: 2px solid transparent;
+    background-color: #fff;
+    border: 20;
+    border: 2px solid #1b98e0;
     margin-left: 1%;
     font-size: 15px;
     color: #616161;
@@ -280,7 +285,7 @@ nav li a:hover{
 .form .input-group .convid .abrir{
     width:100%;
     height: 32px;
-    background: #fff200;
+    background-image: linear-gradient(to right, #006494, #561be0);
     border-radius: 20px;
     outline: none;
     border: none;
