@@ -47,6 +47,9 @@ Controle de Visitantes
 ![registro_ocorrencia](https://user-images.githubusercontent.com/104398217/225482867-5c74d129-7e82-41af-9e65-45e12ffb452f.png)
 Registro de Ocorrências
 
+![Ocorrencia Morador](https://github.com/CleitonRSilvaa/residup/assets/126733500/c357fc9b-0941-4152-ace5-968fa59e514d)
+
+
 ![RegistroOcorre](https://github.com/CleitonRSilvaa/residup/assets/126733500/c73394db-5d64-4b11-883f-42ed886ed86f)
 
 ![perfil_morador high](https://user-images.githubusercontent.com/104398217/225482928-21301aca-0fb7-4242-903c-04019a74be6f.png)
