@@ -140,10 +140,20 @@ public class Login extends HttpServlet {
 
             boolean loginValido = loginDao.logar(morador);
             if (loginValido) {
-                HttpSession session = request.getSession();
-                session.setAttribute("cpf", cpf);
-                session.setAttribute("id_morador", loginDao.recuperarId(cpf));
-                response.sendRedirect("listarResumo");
+                if (morador.getSenhaDeAcesso().equals("admin")){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("cpf", cpf);
+                    session.setAttribute("id_morador", loginDao.recuperarId(cpf));
+                    response.sendRedirect("reservasAdmin");
+                    return;
+                }else {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("cpf", cpf);
+                    session.setAttribute("id_morador", loginDao.recuperarId(cpf));
+                    response.sendRedirect("listarResumo");
+                    return;
+                }
+
             } else {
                 System.out.println("Login não encontrado/incorreto");
                 request.getSession().setAttribute("errorSenha", "Senha CPF ou Senha incorretos.");
