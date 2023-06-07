@@ -13,7 +13,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,12 +48,8 @@
         <nav>
             <ul>
                 <li class="dropdown">
-                    <a href="">MEU PERFIL</a>
-    
-                    <div class="dropdown-menu">
-                        <a href="">Editar perfil</a>
-                        <a href="">Sair da Conta</a>
-                    </div>
+                    <a href="/logout">Logout</a>
+
                 </li>
             </ul>
         </nav>
@@ -77,20 +73,20 @@
                 <label class="x"><%= morador.getBloco() %></label>
 
                 <% if (morador.getStatus().equals("1")) { %>
-                            <form action="/deleteMorador" method="get">
+                            <form id="op" action="/deleteMorador" method="get">
                                 <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%= morador.getCpf() %>">
                                 <button class="editar" type="submit">Excluir</button>
                             </form>
                         <% } %>
 
                 <% if (morador.getStatus().equals("0")) { %>
-                            <form action="/ativarMorador" method="get">
+                            <form id="op" action="/ativarMorador" method="get">
                                 <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%= morador.getCpf() %>">
                                 <button class="editAtivar" type="submit">Ativar Morador</button>
                             </form>
                         <% } %>
 
-                <form action="/carregarMorador" method="get">
+                <form id="op" action="/carregarMorador" method="get">
                                                 <input type="hidden" name="cpfMorador" id="cpfMorador" value="<%= morador.getCpf() %>">
                                                 <button class="edit" type="submit">Editar</button>
                                             </form>

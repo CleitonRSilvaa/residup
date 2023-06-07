@@ -47,9 +47,10 @@
                                                                     <a href="/visitantes">CONTROLE DE VISITANTES</a>
                                                                     <a href="/Ocorrencia">REGISTRO DE OCORRENCIAS</a>
                                                                 </div>
-
-                                                                 <button type="button" onclick="openModalteste()" id="openModal">Meu Perfil</button>
-
+                                                                  <div id="perfs">
+                                                                     <button type="button" onclick="openModalteste()" id="openModal">Meu Perfil</button>
+                                                                      <a href="/logout"><button id="sair" > Sair</button></a>
+                                                                  </div>
 
                                                             </div>
 

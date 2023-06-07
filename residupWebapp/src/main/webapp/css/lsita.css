@@ -44,7 +44,8 @@
 }
 .navigation_header a{
     text-decoration: none;
-    color: #fff;   
+    color: black;
+    font-weight: bold;
     transition: 1s;
     font-weight: bold;
     font-size: 12px;
@@ -56,7 +57,7 @@
 .active{
     background-image: linear-gradient(to right, #006494, #1b98e0);
     padding: 10px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 .btn_icon_header{
     background: transparent;
@@ -65,38 +66,43 @@
     cursor: pointer;
     display: none;
 }
- 
+
 nav{
    background-color: #c4c4c4;
+   height: 40px;
 }
-    
+
 nav li{
    display: inline-block;
 }
-    
+
 nav li a{
-    background-color: #c4c4c4;
+   margin-top: 0px;
+   background-color: red;
    display: inline-block;
    color: black;
    text-decoration: none;
    padding: 8px;
+   border-radius: 10px;
+   color: white;
+   font-weight: bold;
 }
-    
+
 nav li a:hover{
     background-color: red;
 }
-    
+
 .dropdown-menu{
     position: absolute;
     box-shadow: 0 0 2px black;
     display: none;
 }
-    
+
 .dropdown-menu a{
     display: block;
     color: black;
 }
-    
+
 .dropdown:hover .dropdown-menu{
     display: block;
 }
@@ -259,6 +265,11 @@ nav li a:hover{
     display: inline-block;
     width: 100%;
 
+}
+#op{
+  float: right;
+  width: 30%;
+  margin-left: 0px;
 }
 .form .group a{
     width: 100px;
@@ -507,14 +518,16 @@ nav li a:hover{
 .form .input-group input:focus{
     border-color: #49ae96;
 }
+
 .form .group .editar{
     float: right;
-    width: 12%;
+    width: 40%;
     height: 28px;
     background-image: linear-gradient(to right, #310909, #e01e1e);
     border-radius: 15px;
     outline: none;
     margin-right: 2%;
+    margin-left: 0px;
     margin-top: 0px;
     font-size: 15px;
     color: white;
@@ -523,14 +536,14 @@ nav li a:hover{
     display: inline-block;
 }
 .form .group .edit{
-    float: right;
-    width: 12%;
+    float: left;
+    width: 40%;
     height: 28px;
     background-image: linear-gradient(to right, #006494, #561be0);
     border-radius: 15px;
     outline: none;
     margin-right: 2%;
-    margin-top: 0px;
+    margin-top: -28px;
     font-size: 15px;
     color: white;
     font-weight: bold;
@@ -540,7 +553,7 @@ nav li a:hover{
 
 .form .group .editAtivar{
     float: right;
-    width: 12%;
+    width: 40%;
     height: 28px;
     background-image: linear-gradient(to right, #006400, #00A31B);
     border-radius: 15px;

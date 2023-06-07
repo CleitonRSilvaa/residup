@@ -66,7 +66,6 @@ body{
 }
 
 nav{
-   background-color: red;
    border-radius: 10px;
    Color: white;
    Font-weight: bold;
@@ -78,11 +77,14 @@ nav li{
 }
 
 nav li a{
+   background-color: red;
    display: inline-block;
    color: white;
    text-decoration: none;
-   padding: 5px;
+   padding: 8px;
    text-align: center;
+   border-radius: 10px;
+   margin-top: 15px;
 }
 
 nav li a:hover{
@@ -98,7 +100,7 @@ nav li a:hover{
     border-radius: 10px;
 }
 
-.dropdown-menu a{
+.dropdown-menu {
     display: block;
     color: black;
 }
@@ -127,7 +129,10 @@ nav li a:hover{
     from {margin-left: -100vw;}
     to {margin-left: -10vw;}
 }
-
+#verdetalhada{
+  float: right;
+  width: 15%;
+}
 
 .filtro{
     width: 100%;
@@ -215,18 +220,20 @@ nav li a:hover{
 
 .form .group  .ver{
     
-    width: 12%;
+    width: 80%;
     height: 28px;
     background-image: linear-gradient(to right, #006494, #561be0);
     text-decoration: none;
     float: right;
     font-size: 13px;
-
+    margin-top: 0px;
     color: white;
     text-align: center;
     border-radius: 15px;
     font-weight: bold;
     align-items: center;
+    margin-right: 15%;
+    border: 2px solid #1b98e0;
 }
 .form .group .resolvida{
     margin: 0px;

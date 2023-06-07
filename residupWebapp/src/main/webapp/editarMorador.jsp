@@ -43,25 +43,19 @@
     <nav>
         <ul>
             <li class="dropdown">
-                <a href="">MEU PERFIL</a>
-
-                <div class="dropdown-menu">
-                    <a href="">Editar perfil</a>
-                    <a href="">Sair da Conta</a>
-                </div>
+                <a href="">Logout</a>
             </li>
         </ul>
     </nav>
 </div>
   <section>
   <form action="/" method="get" >
-    <a href="#"><button class="buttonCadastroMorador">Cadastro de  morador</button></a>
-    <a href="cpf.html"><button class="edtcad">Editar Cadastro</button></a>
-    <a href="excluirmorador.html"><button class="exccad">Excluir Morador</button></a>
+    <a  href="#"><button class="buttonCadastroMorador">Cadastro de  Morador</button></a>
+    <a href="#"><button  class="edtcad">Lista de Moradores</button></a>
     <div class="box">
     </form>
     <div class="form-box">
-      <h2>Cadastrar de Morador</h2>
+      <h2>Editar Cadastro</h2>
 
       <form action="/updateMorador" method="post" enctype="multipart/form-data">
            <div class="perfil">
@@ -78,31 +72,22 @@
             </div>
             <div class="input-group">
               <label for="cpf">CPF</label>
+              <label class="rg" for="rg">RG</label>
               <input type="cpf" id="cpfMorador" placeholder="Digite o CPF do Morador" maxlength="11" name="cpfMorador" value="<%= morador.getCpf()%>" required class="input-cpf">
+              <input class="rgg" type="rg" id="rgMorador" placeholder="Digite o  RG" maxlength="9" name="rgMorador" value="<%= morador.getRg()%>" required class="input-rg">
             </div>
-            <div class="input-group">
-              <label for="rg">RG</label>
-              <input type="rg" id="rgMorador" placeholder="Digite o  RG" maxlength="9" name="rgMorador" value="<%= morador.getRg()%>" required class="input-rg">
-            </div>
-
             <div class="input-group">
               <label for="numero_apartamento">Apartamento</label>
+              <label class="rg" for="Bloco">Bloco</label>
               <input type="text" id="numero_apartamentoMorador" placeholder="Digite o numero do apartamento" maxlength="4" name="numero_apartamentoMorador" value="<%= morador.getNumeroApartamento()%>" required>
+              <input class="rgg" type="text" id="blocoMorador" placeholder="Digite o bloco" maxlength="2" name="blocoMorador" value="<%= morador.getBloco()%>" required>
             </div>
 
             <div class="input-group">
-              <label for="Bloco">Bloco</label>
-              <input type="text" id="blocoMorador" placeholder="Digite o bloco" maxlength="2" name="blocoMorador" value="<%= morador.getBloco()%>" required>
-            </div>
-
-            <div class="input-group w50">
-              <label for="senha">Senha</label>
-              <input type="password" id="senhaMorador" placeholder="Digite a senha" name="senhaMorador" required>
-            </div>
-
-            <div class="input-group w50">
-              <label for="Confirmarsenha">Confirmar Senha</label>
-              <input type="password" id="Confirmarsenha" placeholder="Confirme a senha" name="Confirmar" required>
+                <label for="senha">Senha</label>
+                <label class="conf" for="Confirmarsenha">Confirmar Senha</label>
+                <input type="password" id="senhaMorador" placeholder="Digite a senha" name="senhaMorador" required>
+                <input class="rgg" type="password" id="Confirmarsenha" placeholder="Confirme a senha" name="Confirmar" required>
             </div>
 
             <div class="input-group">

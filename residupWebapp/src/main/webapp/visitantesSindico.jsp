@@ -70,7 +70,7 @@
         if (visitante.getCheckIn() == null) {
 
         %>
-        <form  action="CheckInVisitantes" method="POST">
+        <form id="ck" action="CheckInVisitantes" method="POST">
          <input class="editar" type="hidden" name="idReserva" id="idRegistro" value="<%=visitante.getIdRegistro()%>">
           <button type="submit" class="editarcad">Check-in</button>
         </form>

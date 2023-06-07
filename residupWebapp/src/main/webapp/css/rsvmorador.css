@@ -1,9 +1,28 @@
+#perfs{
+  float: right;
+
+}
+ #sair{
+  margin-left: 10px;
+  float: right;
+  margin-top: 10px;
+  width:60px;
+  border: none;
+  height: 30px;
+  border-radius: 15px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  font-size: 13px;
+}
 #openModal {
   background-color: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   outline: none;
+  float: left;
+
 }
 
 #openModal img {

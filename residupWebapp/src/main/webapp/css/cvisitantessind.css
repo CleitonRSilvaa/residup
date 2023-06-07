@@ -155,7 +155,7 @@ nav li a:hover{
      color: white;
 
    }
-   .title h3{
+   .title h2{
      margin-left: 1.5%;
      font-size: 18px;
      color: white;
@@ -324,10 +324,16 @@ nav li a:hover{
      width: 15%;
      float: right;
    }
+  #ck {
+    float: right;
+    width: 12%;
+    margin-right: 5%;
+  }
  .form .group .editarcad{
+     border: 2px solid #1b98e0;
      margin: 0px;
-     width: 12%;
-     height: 35px;
+     width: 100%;
+     height: 28px;
      background-image: linear-gradient(to right, #006494, #561be0);
      text-decoration: none;
      float: right;
